@@ -1,0 +1,19 @@
+{
+  "run_id": "key-check-cadd639b4856",
+  "date": "2026-10-26",
+  "task": "key-check",
+  "mode": "api-smoke",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "outcome": "ERROR",
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "cached_input": 0
+  },
+  "cost_usd": 0,
+  "model_invoked": false,
+  "http_status": 400,
+  "reason": "Token-count validation rejected unsupported reasoning effort none; no inference forwarded.",
+  "budget_events": []
+}

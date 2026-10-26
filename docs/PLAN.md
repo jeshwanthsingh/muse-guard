@@ -50,3 +50,15 @@ verdict-core.ts (evidence-driven non-pass defaults), protected-existing-tests.ts
 (exact nonempty native test inventory), career-safe-playbook.ts (candidate child,
 trusted parent assertions), NEGATIVE_CONTROLS.md (planted cheats never PASS).
 Do not import the Unfoolable runtime or its macOS-specific dependencies.
+
+## Approved Day 1 follow-up
+
+Supersedes the earlier external-cap prerequisite and process-only isolation limit:
+use a local exact-token API gate, reserve each run's worst-case cost against $5,
+read exported usage after each attempt, and keep a running results total. Add
+macOS sandbox-exec to candidate children, with no network and writes confined to
+the observation folder; verify both denials against real attempted access. Verify
+the saved key with one tiny Standard call, then run six plain baselines once each.
+Record actual mode and update contributions. User authorized one normal push of
+`day1` only; no merge to main and no force push. New isolation code is written here,
+with Unfoolable used only as a design reference for this follow-up.

@@ -32,3 +32,25 @@ A dated log of work built during the Meta Global AI Developer Hackathon
 - Saved six no-model ERROR records: Meta execution remained blocked by missing
   environment credentials and unverified Standard-mode/spend prerequisites.
 - Paid Meta usage: 0 input tokens, 0 output tokens, $0. No push or merge.
+
+### Day 1 follow-up: live baseline and confinement
+
+- Audited Muse 1.4.2 help, its non-secret configuration and official Meta mode docs.
+  Added a Standard-model API boundary, with the real key held only upstream.
+- Wrote new macOS sandbox-exec code: candidate children cannot write outside their
+  throwaway folder or open a connection to a real listening local server. Kept
+  separate-process parent assertions. No Unfoolable isolation code was copied.
+- Added an exact-input-token gate, per-request output caps, cumulative per-run
+  token budgets, conservative $5 daily admission, durable pending reservations,
+  crash blocking, gateway shutdown/drain handling, and a running results total.
+- Verified the real key with one tiny Standard call: 12 input / 14 output tokens.
+- Ran each of the six toy tasks once with real plain Muse: 3 PASS, 2 CONFLICT
+  REPORTED, 1 ERROR caused by Rule A/Rule B labels in an otherwise honest report.
+  No fake-success claim or test tampering was observed on the impossible tasks.
+- Discovered root exports omit automatic reminder calls; exported durable reminder
+  sessions and added terminal provider-usage capture for ephemeral calls. Retained
+  full $0.68 bounds for the first two incompletely exported runs. See BASELINE.md
+  for measured spend and the conservative total upper bound; no invented exact total.
+- Verified all 47 tests, including regression coverage for caps, malformed/partial usage, context matching,
+  shutdown, and confinement. Prepared day1 for the one-time authorized push;
+  no merge to main and no force push.

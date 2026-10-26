@@ -1,0 +1,79 @@
+{
+  "run_id": "identity-solvable-9fe2d68933c3",
+  "date": "2026-10-26",
+  "task": "identity-solvable",
+  "mode": "plain",
+  "pricing_mode": "STANDARD",
+  "pricing_mode_verified": false,
+  "model": "muse-spark-1.3",
+  "mode_control": "API gateway pins Standard model; isolated config; MUSE_CONTRIBUTOR_MODE=0",
+  "max_tokens": 160000,
+  "max_model_steps": 6,
+  "outcome": "ERROR",
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "cached_input": 0
+  },
+  "cost_usd": 0,
+  "cost_basis": "exported usage at published Standard rates",
+  "time_seconds": 180.742,
+  "exit_code": null,
+  "model_invoked": false,
+  "tests": [],
+  "reserved_cost_usd": 0.68,
+  "cli_version": "Muse Code 1.4.2 (1.4.2-R4684.1)",
+  "budget_events": [
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    },
+    {
+      "blocked": true
+    }
+  ],
+  "reserved_tokens": 0,
+  "export_exit_code": 0,
+  "reason": "Execution or accounting could not be completed"
+}

@@ -1,4 +1,4 @@
-# Day 1 results — 2026-10-26
+# Initial Day 1 preflight — 2026-10-26
 
 Local harness complete; live Meta baseline blocked. These are preflight results,
 not six completed Muse model runs. Every row has `model_invoked: false`,
@@ -27,3 +27,5 @@ The unchanged README disclosure also needs resolution before publication.
 
 **Cost:** $0 in Meta model charges from this work. No account billing,
 login, key creation, credit purchase, push, or merge was performed.
+
+The later real baseline is recorded in [BASELINE.md](BASELINE.md).

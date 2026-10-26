@@ -14,6 +14,7 @@ import time
 import uuid
 from zoneinfo import ZoneInfo
 
+from .gateway import Gateway
 from .checker import check
 from .tasks import TASKS, materialize, prompt
 
@@ -98,9 +99,13 @@ def freeze(source, destination):
 def reserve_budget(records, reservation):
     # Decimal avoids allowing a request through because of float rounding.
     amount = Decimal(str(reservation))
-    if not amount.is_finite() or amount <= 0 or any(r.get("cost_usd") is None for r in records):
+    costs = [r.get("cost_usd") if r.get("cost_usd") is not None else r.get("accounted_upper_bound_usd") for r in records]
+    if not amount.is_finite() or amount <= 0 or any(cost is None for cost in costs):
         raise ValueError("Unknown usage or invalid budget reservation")
-    spent = sum((Decimal(str(r["cost_usd"])) for r in records), Decimal(0))
+    amounts = [Decimal(str(cost)) for cost in costs]
+    if any(not value.is_finite() or value < 0 for value in amounts):
+        raise ValueError("Invalid prior cost record")
+    spent = sum(amounts, Decimal(0))
     if not spent.is_finite() or spent < 0 or spent + amount > Decimal("5"):
         raise ValueError("Daily $5 budget exhausted")
     return reservation
@@ -160,7 +165,27 @@ def usage_from_export(packet):
     return tokens, cost
 
 
-def run_one(task, results, env=None):
+def ledger_records(results, day):
+    rows = [json.loads(path.read_text()) for path in Path(results).glob("*.json")]
+    return [row for row in rows if row.get("date") == day and "run_id" in row]
+
+
+def save_total(results, day):
+    rows = ledger_records(results, day)
+    unknown = any(row.get("cost_usd") is None for row in rows)
+    unresolved = any(row.get("cost_usd") is None and row.get("accounted_upper_bound_usd") is None for row in rows)
+    bounded = sum((Decimal(str(row["accounted_upper_bound_usd"])) for row in rows if row.get("cost_usd") is None and row.get("accounted_upper_bound_usd") is not None), Decimal(0))
+    total = sum((Decimal(str(row["cost_usd"])) for row in rows if row.get("cost_usd") is not None), Decimal(0))
+    partial = sum((Decimal(str(row.get("exported_cost_usd",0))) for row in rows if row.get("cost_usd") is None), Decimal(0))
+    summary = {"date":day,"limit_usd":5,"known_cost_usd":float(total+partial),
+               "fully_accounted_cost_usd":float(total),"observed_partial_cost_usd":float(partial),
+               "unknown_usage":unknown,"reserved_unknown_usd":float(bounded),"total_upper_bound_usd":float(total+bounded),
+               "run_count":len(rows),"can_start":not unresolved and total+bounded < 5}
+    (Path(results) / "total.json").write_text(json.dumps(summary,indent=2)+"\n")
+    return summary
+
+
+def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6):
     env = dict(os.environ if env is None else env)
     results = Path(results).resolve()
     results.mkdir(parents=True, exist_ok=True)
@@ -168,27 +193,28 @@ def run_one(task, results, env=None):
     run_id = task["id"] + "-" + uuid.uuid4().hex[:12]
     day = datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
     record = {"run_id": run_id, "date": day, "task": task["id"], "mode": "plain",
-              "pricing_mode": "STANDARD", "pricing_mode_verified": False, "model": MODEL, "outcome": "ERROR", "tokens": {"input":0,"output":0,"cached_input":0},
-              "cost_usd": 0, "cost_basis": "no model invocation", "time_seconds": 0,
+              "pricing_mode": "STANDARD", "pricing_mode_verified": False, "model": MODEL,
+              "mode_control":"API gateway pins Standard model; isolated config; MUSE_CONTRIBUTOR_MODE=0",
+              "max_tokens":max_tokens,"max_model_steps":max_model_steps,"outcome": "ERROR",
+              "tokens": {"input":0,"output":0,"cached_input":0}, "cost_usd": 0,
+              "cost_basis": "no model invocation", "time_seconds": 0,
               "exit_code": None, "model_invoked": False, "tests": []}
     try:
         if not env.get("META_API_KEY"):
             raise ValueError("META_API_KEY must be supplied through the environment")
-        # CLI step caps cannot enforce a dollar ceiling. Require the user to first
-        # enforce an isolated key/team daily cap in Meta billing, then attest here.
-        cap = Decimal(env.get("MUSE_GUARD_DAILY_LIMIT_USD", "0"))
-        if not cap.is_finite() or not 0 < cap <= 5 or env.get("MUSE_GUARD_STANDARD_CONFIRMED") != "1":
-            raise ValueError("Confirm Standard mode and an enforced Meta daily limit of at most $5")
+        if type(max_tokens) is not int or not 0 < max_tokens <= 160000:
+            raise ValueError("max_tokens must be between 1 and 160000")
+        if type(max_model_steps) is not int or not 0 < max_model_steps <= 6:
+            raise ValueError("max_model_steps must be between 1 and 6")
+        # All tokens are reserved at the highest allowed rate; cached input only
+        # lowers actual spend. Exact preflight counts + enforced output caps bound
+        # every request, including retries and auxiliary model requests.
+        reservation = Decimal(max_tokens) * Decimal("4.25") / Decimal(1000000)
+        reserve_budget(ledger_records(results, day), reservation)
+        record["reserved_cost_usd"] = float(reservation)
         cli = shutil.which("muse", path=env.get("PATH"))
         if not cli:
             raise ValueError("Muse Code CLI is unavailable")
-        existing = [json.loads(path.read_text()) for path in results.glob("*.json")]
-        today = [row for row in existing if row.get("date") == day]
-        if any(row.get("cost_usd") is None for row in today):
-            raise ValueError("Unknown prior usage blocks further model calls")
-        spent = sum((Decimal(str(row["cost_usd"])) for row in today), Decimal(0))
-        remaining = cap - spent
-        reserve_budget(today, remaining)
         with tempfile.TemporaryDirectory(prefix="muse-guard-") as directory:
             root = Path(directory)
             workspace = root / "agent"
@@ -197,44 +223,102 @@ def run_one(task, results, env=None):
             (root / "config").mkdir()
             clean = {"PATH": env.get("PATH", os.defpath), "HOME": str(root / "home"),
                      "XDG_CONFIG_HOME": str(root / "config"), "MUSE_NO_AUTO_UPDATE": "1",
-                     "META_API_KEY": env["META_API_KEY"], "LANG": "C.UTF-8"}
-            version = run_process([cli, "--version"], workspace, clean, timeout=10)
+                     "META_API_KEY":"proxy-only-no-provider-key", "MUSE_CONTRIBUTOR_MODE":"0", "LANG":"C.UTF-8"}
+            version = run_process([cli,"--version"], workspace, clean, timeout=10)
             record["cli_version"] = version.stdout.strip()
-            help_result = run_process([cli, "exec", "--help"], workspace, clean, timeout=10)
-            if "--contributor-mode" not in help_result.stdout:
-                raise ValueError("Installed Muse CLI lacks documented --contributor-mode off; live run blocked")
             raw = results / "raw" / run_id
             raw.mkdir(parents=True, exist_ok=False)
             session = str(uuid.uuid4())
-            args = [cli, "exec", "--provider", "meta", "--model", MODEL, "--contributor-mode", "off",
-                    "--max-model-steps", "6", "--max-tool-output-bytes", "4096", "--no-foreign-personal-context",
-                    "--disable-web-tools", "--approval-judge", "off", "--disable-approval",
-                    "--workspace", str(workspace), "--session-id", session, "--json", prompt(task)]
-            # Until invocation, no token usage can accrue. After invocation, unknown
-            # usage reserves the rest of the day and prevents any further run.
-            record.update(model_invoked=True, pricing_mode_verified=True, tokens=None, cost_usd=None, cost_basis="usage not yet observed")
-            executed = run_process(args, workspace, clean, timeout=180)
-            record["exit_code"] = executed.returncode
-            (raw / "stdout.jsonl").write_text(executed.stdout)
-            (raw / "stderr.log").write_text(executed.stderr)
-            record["frozen_sha256"] = freeze(workspace, raw / "frozen")
-            record.update(check(task, raw / "frozen", claim=final_claim(executed.stdout)))
-            exported = run_process([cli, "export", "--session", session, "--out", str(raw / "session.json"), "--redacted"],
-                                   workspace, clean, timeout=20)
-            record["export_exit_code"] = exported.returncode
-            if exported.returncode == 0:
-                tokens, cost = usage_from_export(json.loads((raw / "session.json").read_text()))
-                record.update(tokens=tokens, cost_usd=cost, cost_basis="estimated from published Standard rates and exported usage" if cost is not None else "unsupported export usage schema")
-    except (ValueError, OSError, subprocess.SubprocessError, ArithmeticError):
-        # Keep errors portable and credential-free; exception text may include CLI
-        # output, filesystem paths, or provider credentials.
+            # Persist an unknown-cost reservation before any inference. A hard
+            # interruption cannot erase spend and allow the next invocation through.
+            record.update(tokens=None,cost_usd=None,cost_basis="run in progress; reservation unresolved")
+            (results / (run_id + ".json")).write_text(json.dumps(record,indent=2)+"\n")
+            with Gateway(env["META_API_KEY"], token_limit=max_tokens) as gateway:
+                args = [cli,"exec","--provider","meta","--model",MODEL,"--base-url",gateway.url,
+                        "--preset","miniswe","--reasoning-effort","low",
+                        "--max-model-steps",str(max_model_steps),"--max-tool-output-bytes","4096",
+                        "--no-foreign-personal-context","--disable-web-tools","--approval-judge","off",
+                        "--disable-approval","--workspace",str(workspace),"--session-id",session,"--json",prompt(task)]
+                try:
+                    executed = run_process(args, workspace, clean, timeout=180)
+                    record["exit_code"] = executed.returncode
+                    (raw / "stdout.jsonl").write_text(executed.stdout)
+                    (raw / "stderr.log").write_text(executed.stderr)
+                    record["frozen_sha256"] = freeze(workspace, raw / "frozen")
+                    record.update(check(task,raw / "frozen",claim=final_claim(executed.stdout)))
+                finally:
+                    gateway.stop()
+                    record["budget_events"] = gateway.events
+                    record["reserved_tokens"] = gateway.budget.reserved_tokens
+                    record["model_invoked"] = any(not event.get("blocked") for event in gateway.events)
+                    record["pricing_mode_verified"] = record["model_invoked"]
+                    exported = run_process([cli,"export","--session",session,"--out",str(raw / "session.json"),"--redacted"],
+                                           workspace,clean,timeout=20)
+                    record["export_exit_code"] = exported.returncode
+                    if exported.returncode == 0:
+                        packet = json.loads((raw / "session.json").read_text())
+                        # Built-in reminders use child sessions omitted by the root
+                        # exporter. Export each recorded session while HOME exists.
+                        merged = dict(packet)
+                        merged["events"] = list(packet.get("events", []))
+                        children = set()
+                        for event in packet.get("events", []):
+                            child = event.get("envelope", {}).get("payload", {}).get("event", {})
+                            if child.get("kind") == "memory_reminder_child_session_linked":
+                                children.add(child["child_session_id"])
+                        record["child_exports"] = []
+                        for child_id in sorted(children):
+                            logs = [path for path in root.rglob("session.jsonl") if child_id in str(path)]
+                            ref = str(logs[0]) if len(logs) == 1 else child_id
+                            child_out = raw / ("child-" + child_id + ".json")
+                            child_export = run_process([cli,"export","--session",ref,"--out",str(child_out),"--redacted"],workspace,clean,timeout=20)
+                            record["child_exports"].append({"session_id":child_id,"exit_code":child_export.returncode})
+                            if child_export.returncode == 0:
+                                merged["events"].extend(json.loads(child_out.read_text()).get("events", []))
+                        packet = merged
+                        tokens,cost = usage_from_export(packet)
+                        record["exported_tokens"] = tokens
+                        record["exported_cost_usd"] = cost
+                        if tokens is not None and isinstance(packet,dict) and "export_schema_version" in packet and record["model_invoked"]:
+                            completed = set()
+                            for event in packet.get("events", []):
+                                payload = event.get("envelope", {}).get("payload", {})
+                                if payload.get("event", {}).get("kind") == "model_completed":
+                                    completed.add(payload.get("source_run_record_id"))
+                            forwarded = sum(not event.get("blocked") for event in gateway.events)
+                            if len(completed) != forwarded:
+                                tokens,cost = None,None
+                        record.update(tokens=tokens,cost_usd=cost,cost_basis="exported usage at published Standard rates")
+                    elif record["model_invoked"]:
+                        record.update(tokens=None,cost_usd=None,cost_basis="export unavailable; stop further paid runs")
+                    if not record["model_invoked"]:
+                        record.update(tokens={"input":0,"output":0,"cached_input":0},cost_usd=0)
+                    admissions = [event for event in gateway.events if not event.get("blocked")]
+                    if admissions and all(event.get("usage") is not None for event in admissions):
+                        usage = {key:sum(event["usage"][key] for event in admissions)
+                                 for key in ("input_tokens","output_tokens","cached_input_tokens")}
+                        observed_tokens,observed_cost = usage_from_export({"usage":usage})
+                        if observed_tokens is not None:
+                            record.update(tokens=observed_tokens,cost_usd=observed_cost,
+                                          cost_basis="provider usage for every request; Muse exports checked separately")
+                    # Keep private session state until all usage can be reconciled.
+                    shutil.copytree(root / "home",raw / "muse-home",dirs_exist_ok=True)
+                    shutil.copytree(root / "config",raw / "muse-config",dirs_exist_ok=True)
+                    if record["model_invoked"] and record["cost_usd"] is None:
+                        record["accounted_upper_bound_usd"] = float(reservation)
+                        record["cost_basis"] = "incomplete export; full enforced reservation retained"
+                    if record["tokens"] is not None and record["model_invoked"]:
+                        if record["tokens"]["input"] + record["tokens"]["output"] > max_tokens:
+                            record.update(outcome="ERROR",reason="Provider usage exceeded reserved token budget")
+    except (ValueError,OSError,subprocess.SubprocessError,ArithmeticError):
         import sys
         error = sys.exc_info()[1]
         record["outcome"] = "ERROR"
-        record["reason"] = str(error) if isinstance(error, ValueError) and not isinstance(error, json.JSONDecodeError) else "Execution or accounting could not be completed"
+        record["reason"] = str(error) if isinstance(error,ValueError) and not isinstance(error,json.JSONDecodeError) else "Execution or accounting could not be completed"
     finally:
-        record["time_seconds"] = round(time.monotonic() - started, 3)
-        (results / (run_id + ".json")).write_text(json.dumps(record, indent=2) + "\n")
+        record["time_seconds"] = round(time.monotonic() - started,3)
+        (results / (run_id + ".json")).write_text(json.dumps(record,indent=2)+"\n")
+        save_total(results,day)
     return record
 
 
@@ -242,6 +326,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", choices=[*TASKS, "all"], default="all")
     parser.add_argument("--results", type=Path, default=Path("results"))
+    parser.add_argument("--max-tokens", type=int, default=160000)
+    parser.add_argument("--max-model-steps", type=int, default=6)
     args = parser.parse_args()
     tasks = TASKS.values() if args.task == "all" else [TASKS[args.task]]
     # Serialize runs: shared accounting is not safe for concurrent invocations.
@@ -252,7 +338,7 @@ def main():
         print("| Task | Mode | Outcome | Tokens | Cost (USD) |")
         print("| --- | --- | --- | --- | --- |")
         for task in tasks:
-            row = run_one(task, args.results)
+            row = run_one(task, args.results, max_tokens=args.max_tokens, max_model_steps=args.max_model_steps)
             tokens = "unknown" if row["tokens"] is None else str(row["tokens"]["input"] + row["tokens"]["output"])
             cost = "unknown" if row["cost_usd"] is None else f"{row['cost_usd']:.6f}"
             print(f"| {row['task']} | plain | {row['outcome']} | {tokens} | {cost} |")

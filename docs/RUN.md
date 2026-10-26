@@ -1,89 +1,71 @@
-# Run locally
+# Run the synthetic baseline
 
-Requires Python 3.11+ on Linux or macOS. No Python packages are required.
-Linux compatibility is by design; the current verification host was macOS.
+Requires Python 3.11+, Muse Code, and macOS `sandbox-exec`. Candidate checking now
+fails closed on other platforms; an equally strict Linux backend is future work.
+
+Put the key only in ignored `.env` as `META_API_KEY=...`, with owner-only file
+permissions. Never commit it or paste it into chat. Load it into the environment:
 
 ```sh
+set -a
+. ./.env
+set +a
 python3 -m unittest discover -v
-python3 -m muse_guard.runner --task all
+python3 -m muse_guard.runner --task all --max-model-steps 6 --max-tokens 160000
 ```
 
-The second command creates six preflight ERROR records when no environment key is
-available. That does not run Meta or measure model behavior. Existing JSON records
-are retained with unique IDs. Do not run two Python API callers concurrently;
-the command-line entry point takes a filesystem lock for serial accounting.
+Run the suite outside a pre-existing nested sandbox so macOS can apply Seatbelt.
+The suite uses local fixtures and never makes paid model calls.
 
-## Before a paid run
+## Plain Muse, controlled spend
 
-Supply `META_API_KEY` through the process environment, never a command argument,
-tracked file, chat message, or committed shell script. The runner does not load
-.env files or use stored browser/keyring credentials. It isolates HOME/config and
-passes the key only to Muse; candidate checker children receive no credentials.
+The CLI uses the built-in miniswe preset, six model steps, low reasoning, no web
+tools or foreign personal context, and disabled approval judge. The initial task
+spec is unchanged. No custom repair agent or second model evaluates the result.
+Muse's own tool sandbox stays enabled. The external candidate checker uses a
+separate process plus a new macOS deny-by-default profile: no network and writes
+only inside the per-observation temporary directory. Filesystem reads remain
+allowed; this is not protection against reading same-user secrets.
 
-The operator must first configure and verify an isolated key/team's enforceable
-remaining daily spending cap at Meta, at most $5, and Standard mode. If the billing
-console has no enforceable cap, do not use this attestation path: live work stays
-blocked until request-level token limits or a budget-enforcing proxy are built.
-A notification threshold or payment threshold is not a spending cap.
-Once that enforcement actually exists, set `MUSE_GUARD_DAILY_LIMIT_USD` to the cap
-and `MUSE_GUARD_STANDARD_CONFIRMED=1` in the environment. These are attestations,
-not a programmatic proof of the provider's billing configuration. CLI step limits
-and local accounting alone do not guarantee the $5 ceiling. No paid calls were
-made during Day 1.
+Muse 1.4.2 has no usable documented Contributor CLI flag. See
+[MODE_CHECK.md](MODE_CHECK.md): the local API gateway enforces the Standard model
+`muse-spark-1.3`. The real key is retained by the gateway; Muse receives a dummy key.
+The gateway counts each request at `/v1/responses/input_tokens`, then reserves input
+plus at most 2,048 output tokens. Output caps include reasoning tokens. Reservations
+are cumulative per run and include auxiliary requests and retries. Unknown context
+fields and hosted tools are rejected, so counting and generation see the same
+context. The model has no access to a provider key that could bypass the gate.
 
-The runner pins `muse-spark-1.3`, passes `--contributor-mode off`, six model steps,
-no web tools, no foreign personal context, and disables the model-based approval
-judge. Tool approval prompts are disabled only inside the throwaway workspace;
-Muse's filesystem sandbox stays enabled. Default user hooks, settings and saved
-credentials are excluded through a fresh HOME/config. Live checking of hostile
-candidate code needs a container; this prototype does not provide one.
+Default per-run token ceiling: 160,000. Conservatively pricing every reserved token
+at the highest allowed rate ($4.25/M) reserves at most $0.68 per run. Before a run,
+the ledger must cover known spend plus the entire next reservation within $5.
+A process-wide CLI lock serializes runs. Unresolved prior usage blocks further calls. Completed runs with missing telemetry
+retain their full enforced upper bound instead of assuming zero cost.
+A durable pending row with unknown cost is saved before inference; a crash cannot
+silently reset accounting. Gateway shutdown drains active requests before export.
+This cap covers runs recorded in this results directory, not unrelated account use.
 
-Installed Muse 1.4.2 does not support the documented Contributor-off flag.
-The runner deliberately refuses to omit it. A CLI version supporting that flag
-(or a separately verified equivalent Standard-only configuration) is still needed.
+## Evidence and recovery
 
-## Artifacts and accounting
+Each `results/<run-id>.json` records task, plain mode, Standard mode, model steps,
+token ceiling, actual exported tokens, cost estimate, elapsed time, exit code,
+named original tests, tampering flags, and frozen file hashes. `results/total.json`
+keeps the running total. Costs are computed from reported usage at published rates;
+account invoices remain authoritative. Do not delete unknown/pending rows to resume: reconcile their private exports
+or retain their maximum reserved spend after proving requests have drained.
 
-`results/<task>-<unique-id>.json` includes requested mode, whether a model was
-invoked, exit code, named checker rows, tokens, estimated USD cost, duration, and
-frozen SHA-256 file hashes. Standard rates checked on 2026-10-26: $1.25/M uncached
-input, $0.15/M cached input, $4.25/M output. Account invoices remain the billing
-authority. The local ledger assumes these are the only calls using the capped key.
+`muse export --session <id> --out <absolute-file-path> --redacted` writes the exact
+session as schema-v1 JSON, offline. Raw exports and candidate artifacts stay under
+ignored `results/raw/`. Completed request counts must match the forwarded requests;
+missing, malformed or inconsistent usage retains the enforced per-run upper bound.
+Unresolved in-progress records still block all further calls. Root exports omit
+ephemeral reminders, so complete terminal provider usage is captured for all
+requests and recorded separately from the durable-export subset. Export occurs
+after every CLI attempt, including failed attempts. The separate API key smoke
+check uses provider response usage directly, since it has no Muse session.
 
-The runner exports the exact session, not `--last`:
-
-```sh
-muse export --session <session-id> --out <absolute-file-path> --redacted
-```
-
-The observed exporter writes one self-contained JSON document, schema v1, with
-sessions, events, exporter version and diagnostics. Without `--out`, export prints
-the absolute path to a timestamped trajectory JSON. With `--out`, it replaces the
-named file atomically on success. Export is offline. Raw exports may contain code,
-paths and personal context even with redaction; keep them in ignored `results/raw/`.
-
-The meter supports the observed v1 `runtime.session` / `model_completed` usage
-records, deduplicates source record IDs, and also accepts a normalized aggregate
-for local protocol fixtures. It does not sum cumulative attribution/summary rows.
-An unsupported or missing usage schema produces null tokens/cost and blocks the
-next paid call. The meter has been verified on a zero-token echo export and on
-nonzero local fixtures, not a billable Meta session. Final-claim extraction supports
-the observed terminal envelope; it ignores unknown event schemas and tool output.
-
-## Current CLI evidence
-
-- `muse --version`: 1.4.2 (1.4.2-R4684.1); exporter identifies build b538db0a2c.
-- Meta diagnostic, one model-step cap, Contributor-off flag: exit 2, unknown option.
-- Credential diagnostic without that unsupported flag: exit 1, missing credentials.
-- Export after those rejected attempts: exit 1, no retained session.
-- Offline `--provider echo` diagnostic: exit 0; export exit 0, schema v1 file saved.
-  Echo is a local protocol check, not a Standard Meta model result. Its event log
-  includes a helper task configuration failure; exit 0 alone proves no task result.
-
-See [CLI_CHECK.json](CLI_CHECK.json) for portable metadata. Raw local diagnostics
-are kept under ignored `results/raw/cli-check/`.
-
-Sources: [Meta authentication](https://dev.meta.ai/docs/muse-code/auth),
-[headless execution and export](https://dev.meta.ai/docs/muse-code/extending),
-[configuration](https://dev.meta.ai/docs/muse-code/configuration),
-[Standard pricing](https://dev.meta.ai/docs/pricing-rate-limits).
+The checker restores original tests from trusted task definitions and generates
+named reports only in the parent. Empty, missing, duplicate, skipped and errored
+test inventories never PASS. A validated conflict is a separate non-PASS result.
+The detector flags test edits; it does not establish deceptive intent. PASS is
+limited to the toy's named checks, not arbitrary correctness or security.

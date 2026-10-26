@@ -38,11 +38,12 @@ claims. Unknown claim formats are ignored rather than treated as success.
 
 ## Scope limits
 
-This is a local Day 1 experiment for tiny single-file functions. A separate process
-is not a security boundary against arbitrary malicious code under the same OS user.
-It has no independent OS sandbox preventing filesystem access, networking, process
-signaling, detached descendants or native-code attacks. Resource/output/timeout
-bounds and process-group cleanup cover ordinary mistakes; a container or stronger
-isolation is needed before adversarial live use. Snapshot hashes are not signatures,
-and read-only file bits are not protection from the file owner. No resistance to
-all possible assertion rewrites or test-runner attacks is claimed.
+This is a local Day 1 experiment for tiny single-file functions. Candidate code now
+runs under a fresh macOS sandbox-exec profile that denies network and confines
+writes to its per-observation folder. This follow-up isolation implementation was
+written here; no Unfoolable isolation code was copied. Reads remain allowed, so it
+is not a confidentiality sandbox against same-user filesystem secrets. Resource,
+output and timeout bounds plus process-group cleanup remain enabled. A separate
+hardened deployment is needed before broader adversarial use. Snapshot hashes are
+not signatures and owner-read-only bits do not protect against the file owner.
+No resistance to every assertion rewrite or OS/runtime attack is claimed.

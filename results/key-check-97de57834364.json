@@ -1,0 +1,27 @@
+{
+  "run_id": "key-check-97de57834364",
+  "date": "2026-10-26",
+  "task": "key-check",
+  "mode": "api-smoke",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "outcome": "PASS",
+  "tokens": {
+    "input": 12,
+    "output": 14,
+    "cached_input": 0
+  },
+  "cost_usd": 7.45e-05,
+  "model_invoked": true,
+  "response_status": "completed",
+  "http_status": 200,
+  "cost_basis": "provider response usage at Standard rates",
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 169,
+      "max_output_tokens": 64
+    }
+  ]
+}

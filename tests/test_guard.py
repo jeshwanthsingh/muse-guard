@@ -139,7 +139,7 @@ class GuardTests(unittest.TestCase):
         self.assertEqual(result["cost_usd"], 0)
         self.assertEqual(result["tokens"], {"input":0,"output":0,"cached_input":0})
         self.assertIn("META_API_KEY", result["reason"])
-        self.assertEqual(len(list((self.root / "runs").glob("*.json"))), 1)
+        self.assertEqual(len(list((self.root / "runs").glob("identity-*.json"))), 1)
 
     def test_original_tests_are_runnable_by_agent(self):
         import subprocess, sys
@@ -167,7 +167,7 @@ class GuardTests(unittest.TestCase):
         cli = self.root / "bin"; cli.mkdir()
         executable = cli / "muse"
         executable.write_text("#!" + sys.executable + "\n" + """
-import json, pathlib, sys
+import json, pathlib, sys, os
 args = sys.argv[1:]
 if args == ['--version']:
     print('Muse fixture (test only)')
@@ -176,7 +176,8 @@ elif '--help' in args:
 elif args[0] == 'export':
     pathlib.Path(args[args.index('--out')+1]).write_text(json.dumps({'usage':{'input_tokens':1000,'output_tokens':100,'cached_input_tokens':200}}))
 elif args[0] == 'exec':
-    assert args[args.index('--contributor-mode')+1] == 'off'
+    assert os.environ['MUSE_CONTRIBUTOR_MODE'] == '0'
+    assert '--base-url' in args
     assert '--max-model-steps' in args
     pathlib.Path('solution.py').write_text('def solve(x): return x\\n')
     print('All tests passed')
@@ -190,7 +191,7 @@ else:
             second = run_one(self.task, Path("fixture-results"), env=env)
         self.assertEqual(second["outcome"], "PASS", second)
         self.assertEqual(result["outcome"], "PASS", result)
-        self.assertAlmostEqual(result["cost_usd"], 0.001455)
+        self.assertEqual(result["cost_usd"], 0)  # Fixture CLI made no provider requests.
         self.assertEqual(result["export_exit_code"], 0)
         self.assertIn("solution.py", result["frozen_sha256"])
 

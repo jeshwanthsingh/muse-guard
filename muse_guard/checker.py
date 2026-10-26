@@ -1,6 +1,6 @@
 """Original tests and verdicts run outside the candidate process.
 Adapted design: oracle-tree.ts, protected-existing-tests.ts, verdict-core.ts,
-and career-safe-playbook.ts. This is not an OS security sandbox.
+and career-safe-playbook.ts. Candidate execution additionally uses macOS Seatbelt.
 """
 import hashlib
 import json
@@ -9,6 +9,7 @@ from pathlib import Path
 import signal
 import subprocess
 import sys
+import platform
 import tempfile
 import unittest
 
@@ -37,7 +38,16 @@ def _observe(solution, value):
         isolated_solution.write_bytes(solution.read_bytes())
         with tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
             env = {"PATH": os.defpath, "HOME": directory, "TMPDIR": directory, "LANG": "C.UTF-8"}
-            process = subprocess.Popen([sys.executable, "-I", "-B", "-c", CHILD, str(isolated_solution)],
+            if platform.system() != "Darwin" or not Path("/usr/bin/sandbox-exec").exists():
+                raise ObservationError("macOS sandbox-exec is required; unconfined execution refused")
+            # Fresh policy written here; no copied Unfoolable sandbox code.
+            # Default deny includes network access. Read access supports Python and
+            # its standard library; all writes are confined to this realpath.
+            profile = ("(version 1)(deny default)(allow process-exec)(allow process-fork)"
+                       "(allow sysctl-read)(allow file-read*)"
+                       "(allow file-write* (subpath " + json.dumps(str(Path(directory).resolve())) + "))")
+            command = ["/usr/bin/sandbox-exec", "-p", profile, sys.executable, "-I", "-B", "-c", CHILD, str(isolated_solution)]
+            process = subprocess.Popen(command,
                                        cwd=directory, env=env, stdin=subprocess.PIPE,
                                        stdout=out, stderr=err, start_new_session=True)
             try:
