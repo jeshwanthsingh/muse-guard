@@ -75,3 +75,12 @@ uses the shared Model API and restricted `meta-models/muse-spark-open-1026` name
 Offline bridge tests pass. Live comparison remains blocked on a verified token
 counter and balanced executor; do not represent fake tests as a
 live adapter validation. Tomorrow's preflight reports this blocker without calls.
+
+
+## Review correction — 2026-10-26
+
+The approved [behavior-only recovery amendment](amendments/2026-10-26-behavior-only-recovery.md)
+supersedes the older strict recovery criterion. Keep Day6 raw results, then apply
+the external scorer and reviewed supplemental freeze described in [CONTINUOUS.md](CONTINUOUS.md).
+Test edits are descriptive in both modes, not recovery failures. The current
+continuous demo also shows exactly what its finite checks do and do not cover.

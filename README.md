@@ -1,6 +1,6 @@
 # muse-guard
 
-muse-guard catches requirement conflicts before your AI writes code, and proves every fix with checks the AI never sees.
+muse-guard finds every conflicting action among the confirmed rules and declared inputs, then independently checks the fix against every input in the approved rule table.
 
 Requirements can contradict each other even when each sentence sounds reasonable.
 A coding agent may stop, guess which rule matters, or claim a fix that misses the real requirement.
@@ -10,7 +10,7 @@ muse-guard makes the clash explicit, lets the developer decide, and checks the r
 Spec → Clash found → You decide → Muse Code repairs → Independent checks
 ```
 
-Muse Spark proposes rules from English and explains clashes. A deterministic checker verifies conflicts over a small finite input space; the developer confirms the translation and chooses the winning rule. Muse Code writes and repairs code, then a separate checker runs visible and hidden checks. The new spec preflight and recorded recovery demo are separate entry points today.
+Muse Spark proposes rules from English and explains clashes. A deterministic checker verifies conflicts over a small finite input space; the developer confirms the translation and chooses the winning rule. Muse Code writes and repairs code, then a separate checker runs visible and hidden checks. The submission command now connects spec review, a developer decision, approved v2, Muse Code implementation and independent recheck in one record and page.
 
 | Meta tool | Role |
 |---|---|
@@ -33,12 +33,12 @@ Open **http://127.0.0.1:8000**. The submission branch is currently local only; t
 Try the clearly labeled fake-response spec example locally:
 
 ```sh
-PATH="$PWD/spec_guard/bin:$PATH" muse-guard spec spec_eval/docs/refunds.md --response spec_eval/fake/refunds.json --accept-all
+PATH="$PWD/submission_tools/bin:$PATH" muse-guard spec demo/continuous/refund.md --fake-response demo/continuous/fake-response.json --accept-all --decide B --out spec_runs/quickstart
 ```
 
 Open the printed `index.html` path. Without `--accept-all`, you review each translation yourself.
 
-[Static recorded demo](output/submission-site/index.html) · [Spec instructions](docs/SPEC.md) · [Study plan](docs/STUDY.md)
+[Static recorded demo](output/submission-site/index.html) · [Continuous flow](docs/CONTINUOUS.md) · [Study plan](docs/STUDY.md)
 
 ## Results
 
@@ -52,3 +52,10 @@ Small finite rule tables, a restricted condition language, and small samples. An
 Built during the Meta Global AI Developer Hackathon (Oct 26–Nov 4, 2026).
 On Day 1, seven detection patterns were copied from my earlier Unfoolable project. They and copied diagnostic wording were replaced on Day 6; Unfoolable is now a design reference only for the current implementation. Earlier commits preserve that history.
 [Provenance](docs/PROVENANCE.md) · [Dated contributions](docs/CONTRIBUTIONS.md)
+
+## Related work
+
+[Kiro requirements analysis](https://kiro.dev/docs/specs/analyze-requirements/) analyzes inconsistencies, ambiguities and gaps in requirements.
+[ImpossibleBench](https://arxiv.org/abs/2510.20270) studies coding agents exploiting tests using impossible variants of coding tasks.
+[Harbor](https://www.harborframework.com/) provides a framework for sandboxed agent evaluation and optimization.
+Our narrower focus is exhaustive finite-domain checking followed by a developer decision → repair → independent recheck, with explicit coverage limits. Requirements analysis itself is not a novelty claim, and this is not a claim that those projects lack these capabilities.

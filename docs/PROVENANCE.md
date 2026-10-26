@@ -90,3 +90,11 @@ folder. New isolation/rules/recovery code was written in muse-guard, with no add
 Unfoolable copying. Parent-side approval is a trusted local boundary; hashes do not
 attest an external human identity. Snapshot hashes are not signatures. Broader
 production hardening and a Linux confinement backend remain future work.
+
+
+## Wording correction — 2026-10-26
+
+There is no claim that code was never copied. The historical statements above
+are dated records of earlier disclosures; the current disclosure is Day1 copying
+followed by Day6 replacement. Historical results remain unchanged; the approved
+behavior-only recovery amendment publishes a separate amended scoring view.

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-26",
+  "branch": "codex/submission",
+  "comparison_base": "c281b750add15c16ad9ac06a9c64aa3a693ab856",
+  "protected_files_unchanged": 103,
+  "prior_evidence_files_unchanged": 121,
+  "offline_tests_passed": 198,
+  "incremental_model_spend_usd": 0,
+  "paid_calls": 0,
+  "continuous_fixture": {
+    "fake_responses": true,
+    "outcome": "PASS",
+    "approved_inputs_checked": 4,
+    "declared_inputs": 4
+  },
+  "privacy": "Export scan_text and gitleaks passed",
+  "browser": "1280x720, no horizontal overflow or live controls, evidence data URL parsed",
+  "post_pilot_reviewed_freeze_created": false
+}

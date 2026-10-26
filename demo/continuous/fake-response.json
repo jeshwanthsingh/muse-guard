@@ -1,0 +1,53 @@
+{
+  "kind": "constructed fake Spark and Muse responses; not observed model behavior",
+  "proposal": {
+    "input_space": {
+      "eligible": [
+        false,
+        true
+      ],
+      "fraud_hold": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "For every eligible request, refund immediately.",
+        "when": {
+          "eligible": {
+            "eq": true
+          }
+        },
+        "action": "refund_immediately"
+      },
+      {
+        "id": "B",
+        "quote": "For every request on fraud hold, do not refund until manual review.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "hold_for_review"
+      }
+    ],
+    "default": {
+      "quote": "If neither rule matches, reject the refund.",
+      "action": "reject"
+    },
+    "unconverted": [
+      {
+        "quote": "Keep the customer-facing tone friendly.",
+        "reason": "This is not a rule for the return value."
+      }
+    ]
+  },
+  "implementation": {
+    "claim": "Implementation complete.",
+    "files": {
+      "solution.py": "def solve(x):\n    return \"hold_for_review\" if x[\"fraud_hold\"] else \"refund_immediately\" if x[\"eligible\"] else \"reject\"\n"
+    }
+  }
+}

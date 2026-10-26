@@ -359,3 +359,32 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   The static output passed gitleaks and private-data checks; browser loading made
   no external requests and all four cards fit at 1280x720. See
   results/SUBMISSION_VERIFICATION.json. The hook runs the guard before the commit.
+
+## 2026-10-26 — Submission review fixes (offline)
+
+- Developer approved the behavior-only recovery amendment before commit. Both
+  modes use the same complete approved-v2 behavioral checks; post-decision test
+  edits are descriptive. Guarded synchronized v2 artifacts are explicitly part
+  of the intervention. Earlier protocols and scored results remain intact.
+- Added an external deterministic scorer and a post-pilot supplemental freeze
+  preparer. It requires reviewed, complete, accounted Day6 evidence and binds
+  the exact runtime, original manifests and committed scoring policy. No new
+  reviewed freeze or holdout execution is claimed today.
+- Connected spec review, exhaustive clash search, developer decision, approved
+  rules, implementation and independent checks in one submission-only command
+  and one page. Reused the existing validation, approval, sandbox and checker.
+  The clearly labeled fake refund flow selected B and passed all four declared
+  inputs, including hidden checks. A legitimate test edit still passes correct
+  behavior; a claimed incorrect fix remains CLAIM CONTRADICTED.
+- Bounded current README/demo claims, added source-linked Kiro/ImpossibleBench/
+  Harbor related work, retained the Day1-copy/Day6-replacement disclosure, and
+  clarified that demo policies return one next action. Frozen historical text
+  and original evidence are retained rather than silently rewritten.
+- Viewer shows checked/declared inputs, rejected/unconverted content, limits,
+  approved priority and a downloadable continuous record. Re-exported the
+  static site and inspected new 1280x720 screenshots. No live controls.
+- Verified 198 offline tests, all 103 protected hashes, and unchanged prior
+  result/ledger/study/holdout evidence. Export privacy and gitleaks scans passed.
+  No paid calls; incremental model spend $0. See results/REVIEW_FIX_VERIFICATION.json.
+- Tomorrow's separate real spec command and post-pilot freeze procedure are in
+  docs/CONTINUOUS.md. The official pilot stays on exact Day6 ef9d36b.

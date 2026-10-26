@@ -30,7 +30,7 @@ class SubmissionTests(unittest.TestCase):
   from submission_tools.export_demo import export
   with tempfile.TemporaryDirectory() as directory:
    out=export(Path(directory)/'site');page=(out/'index.html').read_text()
-   for text in ('Refund policy - conflict','Refund policy - normal task','GitHub','Clash found','muse-guard finds conflicting requirements'):self.assertIn(text,page)
+   for text in ('Refund policy - conflict','Refund policy - normal task','GitHub','Clash found','muse-guard finds every conflicting action among the confirmed rules and declared inputs'):self.assertIn(text,page)
    for p in (out/'evidence').glob('*.json'):self.assertEqual(p.read_bytes(),(ROOT/'output/judge-site/evidence'/p.name).read_bytes())
    for p in out.rglob('*.html'):
     text=p.read_text();self.assertNotIn('<script',text);self.assertNotIn('<form',text)
