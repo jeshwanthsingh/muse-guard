@@ -18,7 +18,7 @@ class ViewTests(unittest.TestCase):
   from muse_guard.view import render
   row=json.loads(RECORD.read_text());before=copy.deepcopy(row)
   page=render(row,diff_text='- old\n+ repaired')
-  headings=['Task and rules','Conflict card','Developer decision','Repair diff','Independent checks','Download evidence record']
+  headings=['Task and rules','Conflict card','Developer decision','Behavior: before → after','Independent checks','Download evidence record']
   positions=[page.index(x) for x in headings]
   self.assertEqual(positions,sorted(positions));self.assertEqual(row,before)
   for text in ['Recorded run','Verified by checker','Rule A wins','Rule B wins','manual_review','HiddenTests.test_hidden_000','RECOVERED']:

@@ -1,5 +1,6 @@
 """Plain Muse execution, frozen files, fail-closed spend accounting."""
 import argparse
+from contextlib import nullcontext
 from datetime import datetime
 from decimal import Decimal
 import hashlib
@@ -18,6 +19,7 @@ from .gateway import Gateway
 from .checker import check
 from .tasks import TASKS, materialize, prompt
 
+RESULTS_ROOT=Path(__file__).resolve().parents[1]/"results"
 MODEL = "muse-spark-1.3"
 RATES = {"input": 1.25, "cached_input": 0.15, "output": 4.25}
 
@@ -185,14 +187,14 @@ def save_total(results, day):
     return summary
 
 
-def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, seed_solution=None, mode="plain", allow_holdout=False):
+def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, seed_solution=None, mode="plain", allow_holdout=False, retain_session=False, continuation=None, dollar_quota=False):
     env = dict(os.environ if env is None else env)
     results = Path(results).resolve()
     results.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     run_id = task["id"] + "-" + uuid.uuid4().hex[:12]
     day = datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": mode, "stage":"day4",
+    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": mode, "stage":"day5",
               "pricing_mode": "STANDARD", "pricing_mode_verified": False, "model": MODEL,
               "mode_control":"API gateway pins Standard model; isolated config; MUSE_CONTRIBUTOR_MODE=0",
               "max_tokens":max_tokens,"max_model_steps":max_model_steps,"outcome": "HARNESS ERROR",
@@ -202,11 +204,16 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
     try:
         if not env.get("META_API_KEY"):
             raise ValueError("META_API_KEY must be supplied through the environment")
+        if dollar_quota and results!=RESULTS_ROOT.resolve():
+            raise ValueError("Dollar-quota runs require the canonical shared ledger")
         if "input_space" not in task.get("requirements",{}):
             raise ValueError("Only finite, admitted catalog tasks may invoke a model")
         from .quality_gate import accept_task
         record["quality_gate"]=accept_task(task)
         if task.get("split")=="holdout":
+            protocol=json.loads((RESULTS_ROOT.parent/"study/protocol.json").read_text())
+            if not protocol.get('fair_plain_adapter_ready') or not protocol.get('study_runs_authorized'):
+                raise ValueError('Study blocked: same-session adapter authorization and a new freeze are required')
             from .freeze import verify_freeze
             verify_freeze()
             if not allow_holdout:raise ValueError("Holdout model runs require explicit future study authorization")
@@ -224,50 +231,87 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
         # lowers actual spend. Exact preflight counts + enforced output caps bound
         # every request, including retries and auxiliary model requests.
         reservation = Decimal(max_tokens) * Decimal("4.25") / Decimal(1000000)
-        reserve_budget(ledger_records(results, day), reservation)
+        prior=ledger_records(results,day)
+        if dollar_quota:
+            reserve_budget(prior,Decimal('0.00000001'))
+            spent=sum((Decimal(str(r['cost_usd'] if r.get('cost_usd') is not None else r['accounted_upper_bound_usd'])) for r in prior),Decimal(0))
+            reservation=min(reservation,Decimal(5)-spent)
+        reserve_budget(prior,reservation)
         record["reserved_cost_usd"] = float(reservation)
         cli = shutil.which("muse", path=env.get("PATH"))
         if not cli:
             raise ValueError("Muse Code CLI is unavailable")
-        with tempfile.TemporaryDirectory(prefix="muse-guard-") as directory:
+        raw=results/"raw"/run_id;raw.mkdir(parents=True,exist_ok=False)
+        session=str(uuid.uuid4())
+        if continuation:
+            import re
+            if mode!='plain' or not re.fullmatch(r'[A-Za-z0-9_-]+',continuation.get('run_id','')):
+                raise ValueError('Invalid plain session continuation')
+            location=results/'raw'/continuation['run_id']/'state-location.json'
+            state=Path(json.loads(location.read_text())['root'])
+            if (state.parent.resolve()!=Path('/private/tmp') or not state.name.startswith('muse-plain-state-') or
+                state.stat().st_uid!=os.getuid()):raise ValueError('Invalid retained state location')
+            if state.is_symlink() or not state.is_dir():raise ValueError('Retained session unavailable')
+            session=continuation['session_id']
+            if task['requirements'].get('parent_hash')!=continuation.get('requirements_hash'):
+                raise ValueError('Continuation is not bound to its original requirements')
+            context=nullcontext(str(state))
+        elif retain_session:
+            state=Path(tempfile.mkdtemp(prefix='muse-plain-state-',dir='/private/tmp'))
+            location=raw/'state-location.json';location.write_text(json.dumps({'root':str(state)})+'\n');location.chmod(0o600)
+            context=nullcontext(str(state))
+        else:context=tempfile.TemporaryDirectory(prefix="muse-guard-")
+        with context as directory:
             root = Path(directory)
             workspace = root / "agent"
-            materialize(task, workspace)
+            if not continuation:materialize(task, workspace)
             if seed_solution is not None:
                 (workspace / "solution.py").write_bytes(seed_solution)
-            (root / "home").mkdir()
-            (root / "config").mkdir()
+            (root / "home").mkdir(exist_ok=bool(continuation))
+            (root / "config").mkdir(exist_ok=bool(continuation))
+            (root / "tmp").mkdir(exist_ok=bool(continuation))
             clean = {"PATH": env.get("PATH", os.defpath), "HOME": str(root / "home"),
-                     "XDG_CONFIG_HOME": str(root / "config"), "MUSE_NO_AUTO_UPDATE": "1",
+                     "XDG_CONFIG_HOME": str(root / "config"), "TMPDIR":str(root/"tmp"),"MUSE_NO_AUTO_UPDATE": "1",
                      "META_API_KEY":"proxy-only-no-provider-key", "MUSE_CONTRIBUTOR_MODE":"0", "LANG":"C.UTF-8"}
             version = run_process([cli,"--version"], workspace, clean, timeout=10)
             record["cli_version"] = version.stdout.strip()
             if task.get("split")=="holdout" and record["cli_version"]!="Muse Code 1.4.2 (1.4.2-R4684.1)":
                 raise ValueError("Frozen study CLI version changed")
-            raw = results / "raw" / run_id
-            raw.mkdir(parents=True, exist_ok=False)
-            session = str(uuid.uuid4())
+            record['session_id']=session
+            record['retained_session']=bool(retain_session or continuation)
+            if continuation:
+                # Before starting the continuation, ensure the preserved v1 workspace
+                # still matches its frozen first-turn artifact, byte for byte.
+                current={str(p.relative_to(workspace)):hashlib.sha256(p.read_bytes()).hexdigest() for p in workspace.rglob('*') if p.is_file() and not p.is_symlink()}
+                if any(p.is_symlink() for p in workspace.rglob('*')) or current!=continuation.get('frozen_sha256'):raise ValueError('Retained workspace changed between turns')
             # Persist an unknown-cost reservation before any inference. A hard
             # interruption cannot erase spend and allow the next invocation through.
             record.update(tokens=None,cost_usd=None,cost_basis="run in progress; reservation unresolved")
             (results / (run_id + ".json")).write_text(json.dumps(record,indent=2)+"\n")
-            with Gateway(env["META_API_KEY"], token_limit=max_tokens, journal=raw / "provider-usage.json") as gateway:
+            with Gateway(env["META_API_KEY"], token_limit=max_tokens, journal=raw / "provider-usage.json",dollar_limit=reservation if dollar_quota else None) as gateway:
                 args = [cli,"exec","--provider","meta","--model",MODEL,"--base-url",gateway.url,
                         "--preset","miniswe","--reasoning-effort","low",
                         "--max-model-steps",str(max_model_steps),"--max-tool-output-bytes","4096",
                         "--no-foreign-personal-context","--disable-web-tools","--approval-judge","off",
-                        "--disable-approval","--workspace",str(workspace),"--session-id",session,"--json",prompt(task)]
+                        "--disable-approval","--disable-sandbox","--workspace",str(workspace),"--session-id",session,"--json",("Rule B wins. Please update the code." if continuation else prompt(task))]
                 try:
-                    executed = run_process(args, workspace, clean, timeout=300)
+                    from .isolation import author_command
+                    record['author_isolation']='outer macOS Seatbelt: harness/home-secret reads denied, writes only throwaway root, outbound only token gateway; Muse inner sandbox disabled to avoid unsupported nesting'
+                    executed = run_process(author_command(args,write_root=root,gateway_url=gateway.url), workspace, clean, timeout=300)
                     record["exit_code"] = executed.returncode
                     record["termination"]=("MODEL STEP LIMIT" if "model did not reach a terminal state within" in executed.stderr
                                            else "TURN COMPLETE" if executed.returncode==0 else "CLI ERROR")
                     (raw / "stdout.jsonl").write_text(executed.stdout)
                     (raw / "stderr.log").write_text(executed.stderr)
                     record["frozen_sha256"] = freeze(workspace, raw / "frozen")
-                    record.update(check(task,raw / "frozen",claim=final_claim(executed.stdout)))
+                    if continuation:
+                        from .plain import score_repair
+                        from .rules import build_task
+                        record.update(score_repair(build_task(task['requirements']['parent_requirements']),task,raw/"frozen",final_claim(executed.stdout),before=results/'raw'/continuation['run_id']/'frozen'))
+                    else:record.update(check(task,raw / "frozen",claim=final_claim(executed.stdout)))
                 finally:
                     gateway.stop()
+                    record["dollar_quota_usd"]=float(reservation) if dollar_quota else None
                     record["budget_events"] = gateway.events
                     record["reserved_tokens"] = gateway.budget.reserved_tokens
                     record["model_invoked"] = any(not event.get("blocked") for event in gateway.events)
@@ -283,6 +327,8 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
                     record["export_exit_code"] = exported.returncode
                     if exported.returncode == 0:
                         packet = json.loads((raw / "session.json").read_text())
+                        from .evidence import session_evidence
+                        record.update(session_evidence(packet,continuation.get('model_record_ids',[]) if continuation else ()))
                         # Built-in reminders use child sessions omitted by the root
                         # exporter. Export each recorded session while HOME exists.
                         merged = dict(packet)

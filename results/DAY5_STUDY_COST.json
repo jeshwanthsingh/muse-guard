@@ -1,0 +1,42 @@
+{
+  "status": "PROVISIONAL COST-ONLY PROJECTION; clean corrected pilot incomplete",
+  "sample": {
+    "plain_initial": {
+      "n": 4,
+      "cached_usd": 0.079091575,
+      "uncached_usd": 0.127030125
+    },
+    "guarded_initial": {
+      "n": 3,
+      "cached_usd": 0.12672236666666667,
+      "uncached_usd": 0.18683883333333332
+    },
+    "plain_repair": {
+      "n": 2,
+      "cached_usd": 0.08021035,
+      "uncached_usd": 0.16744474999999998
+    },
+    "guarded_repair": {
+      "n": 1,
+      "cached_usd": 0.1412546,
+      "uncached_usd": 0.2190015
+    },
+    "card": {
+      "n": 1,
+      "cached_usd": 0.00240325,
+      "uncached_usd": 0.00240325
+    }
+  },
+  "weights": {
+    "plain_initial": 120,
+    "guarded_initial": 120,
+    "plain_repair": 60,
+    "guarded_repair": 60,
+    "card": 60
+  },
+  "cached_usd": 38.129765,
+  "uncached_usd": 60.995245,
+  "math": "120*(plain initial + guarded initial) + 60*(plain repair + guarded repair + card)",
+  "study_model_calls": 0,
+  "limitations": "Completed pre-fix phases have real usage receipts but are not a valid fair comparison. Excludes shipping infrastructure failures and interrupted/quota-censored phases. Only one guarded repair/card; final corrected adapter has no paid validation yet."
+}

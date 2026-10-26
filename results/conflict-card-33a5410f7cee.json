@@ -1,0 +1,35 @@
+{
+  "run_id": "conflict-card-33a5410f7cee",
+  "date": "2026-10-26",
+  "stage": "day5",
+  "task": "retry-impossible-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00240325,
+  "tokens": {
+    "input": 175,
+    "output": 514,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card:\n\nInput: method POST, idempotent false, status 429.\n\nRule A - \"Retry every HTTP 429 response.\" triggers on this input and requires action: retry.\n\nRule B - \"Never retry a non-idempotent POST.\" triggers on this input and requires action: stop.\n\nActions retry and stop are incompatible - both cannot be done.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 332,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 175,
+        "output_tokens": 514,
+        "cached_input_tokens": 0
+      }
+    }
+  ],
+  "time_seconds": 2.519,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

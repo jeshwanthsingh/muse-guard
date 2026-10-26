@@ -1,6 +1,7 @@
 """Local token gate for Muse 1.4.2; only Standard Spark inference is forwarded.
 New implementation. No Unfoolable code is copied here.
 """
+from decimal import Decimal, ROUND_FLOOR
 import http.server
 import json
 import os
@@ -76,14 +77,39 @@ class TokenBudget:
         return output
 
 
+class DollarBudget:
+    """Serial request quota; unknown usage never releases its reservation."""
+    def __init__(self,limit):
+        self.limit=Decimal(str(limit));self.spent=Decimal(0);self.pending=Decimal(0);self.unknown=False
+        if not self.limit.is_finite() or self.limit<=0:raise ValueError("Invalid dollar quota")
+    def admit(self,input_tokens,requested_output):
+        if self.unknown or self.pending:raise ValueError("Prior provider usage is unresolved")
+        if type(input_tokens) is not int or input_tokens<0 or type(requested_output) is not int or requested_output<=0:
+            raise ValueError("Invalid dollar reservation")
+        input_cost=Decimal(input_tokens)*Decimal('1.25')/1000000
+        output=int(((self.limit-self.spent-input_cost)*1000000/Decimal('4.25')).to_integral_value(rounding=ROUND_FLOOR))
+        output=min(output,requested_output)
+        if output<1:raise ValueError("Daily dollar quota exhausted")
+        self.pending=input_cost+Decimal(output)*Decimal('4.25')/1000000
+        return output
+    def settle(self,usage):
+        if usage is None:self.unknown=True;return
+        actual=(Decimal(usage['input_tokens']-usage['cached_input_tokens'])*Decimal('1.25')+
+                Decimal(usage['cached_input_tokens'])*Decimal('.15')+Decimal(usage['output_tokens'])*Decimal('4.25'))/1000000
+        if actual>self.pending or actual<0:
+            self.unknown=True;raise ValueError("Provider usage exceeded request reservation")
+        self.spent+=actual;self.pending=Decimal(0)
+
+
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         raise ValueError("Provider redirects refused")
 
 
 class Gateway:
-    def __init__(self, key, token_limit=160000, transport=None, journal=None):
+    def __init__(self, key, token_limit=160000, transport=None, journal=None, dollar_limit=None):
         self.key = key
+        self.dollars= DollarBudget(dollar_limit) if dollar_limit is not None else None
         self.budget = TokenBudget(token_limit)
         self.transport = transport
         self.events = []
@@ -174,12 +200,15 @@ class Gateway:
                         if owner.closing:
                             raise ValueError("Gateway is closing")
                         counted = json.loads(body).get("input_tokens")
-                        data["max_output_tokens"] = owner.budget.admit(counted, data.get("max_output_tokens", 2048))
+                        requested=data.get("max_output_tokens",2048)
+                        if owner.dollars:requested=owner.dollars.admit(counted,min(requested,2048))
+                        data["max_output_tokens"] = owner.budget.admit(counted,requested)
                         owner.events.append({"model":MODEL,"pricing_mode":"STANDARD","input_tokens_reserved":counted,
                                              "max_output_tokens":data["max_output_tokens"]})
                         owner.persist_usage()  # reservation exists before first inference
                         status, kind, body = owner.forward("/responses", data)
                         owner.events[-1]["usage"] = response_usage(body)
+                        if owner.dollars:owner.dollars.settle(owner.events[-1]["usage"])
                         owner.persist_usage()  # actual usage durable before CLI receives output
                         self.reply(status,kind,body)
                     except (ValueError, TypeError, AttributeError, OSError, urllib.error.URLError):

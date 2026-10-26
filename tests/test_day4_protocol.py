@@ -16,7 +16,7 @@ class Day4ProtocolTests(unittest.TestCase):
   self.assertEqual(protocol['timeout_seconds'],300)
   self.assertEqual(inspect.signature(run_one).parameters['max_model_steps'].default,12)
   self.assertEqual(inspect.signature(run_one).parameters['max_tokens'].default,320000)
-  self.assertFalse(protocol['fair_plain_adapter_ready'])
+  self.assertTrue(protocol['fair_plain_adapter_ready']);self.assertFalse(protocol['study_runs_authorized'])
  def test_new_reservation_refuses_before_model(self):
   from muse_guard.runner import run_one
   from muse_guard.rules import TASKS

@@ -22,8 +22,20 @@ after a verified conflict it generates a card, pauses for A/B, creates approved 
 repairs, rechecks, and prints status/version/checks/cost/record path. Empty input,
 EOF or Ctrl-C at the choice leaves AWAITING DECISION with no v2 or repair. `--decide`
 records a scripted choice; it does not pretend an interactive human approved it.
-`--plain` is initial-only development debugging. It is not the amended fair-recovery baseline.
-The study is blocked until a tested same-session plain follow-up adapter is ready.
+`--plain` now runs the amended development flow. It retains an isolated workspace
+outside the harness, appends exactly "Rule B wins. Please update the code." with
+the same Muse session ID, and never supplies v2 files or verified witness feedback
+to that agent. The final checker uses approved-v2 assertions with the candidate's
+actual original/runtime rules; it does not gift v2 to a generic interpreter.
+Before/after test inventories and original-test tampering are recorded separately.
+Both modes require the same final PASS criterion for RECOVERED.
+
+`--remaining-quota` enables the same hard per-request remaining-dollar quota in
+both modes. Exact input counts reserve uncached input + worst-case output before
+forwarding; terminal usage releases only measured savings. Unknown usage stops
+further admission and retains its bound. Normal full-attempt reservations remain
+the default. All supported CLI/pilot calls hold canonical results/.run.lock.
+No key is printed or sent to the browser.
 
 ## Admission and datasets
 
@@ -107,3 +119,29 @@ The approved Day4 protocol amendment and study/MANIFEST-day4.json supersede runt
 hashes and limits from Day3 while retaining its original manifest and holdout bytes.
 Both study modes receive a B decision and are scored against the same approved-v2
 checker; plain does not see v2 files, verified witness or hidden checks during repair.
+
+## Day5 status and outer authoring boundary
+
+The adapter is implemented and has a real-Muse two-turn test driven by local SSE
+fixtures. The final paid corrected pilot is NOT complete: the Day5 attempts found
+an isolation-placement bug and a nested Muse sandbox failure before consuming the
+remaining daily headroom. See results/DAY5_PILOT.md, including raw outcomes, costs,
+uncertainty and exclusions. Do not treat those outcomes as a fair comparison.
+
+Muse authoring now runs inside a single outer macOS Seatbelt policy. Its own
+sandbox is disabled only inside that enforced wrapper to avoid unsupported nested
+sandbox initialization. The OS policy denies the harness and common home secrets,
+restricts writes to the throwaway state, and permits outbound traffic only to the
+run's token gateway. Candidate checks keep their existing separate stricter sandbox.
+Same-session echo AND actual shell-tool/two-turn integration are tested offline.
+
+The original Day3/Day4 manifests and holdout files remain unchanged. Day5 runtime
+changes invalidate their runtime hashes; a new reviewed freeze and a clean dev
+pilot are required before any holdout study. Study execution is explicitly blocked.
+
+The polished replay is:
+`muse-guard view recovery-289db424fb09-view-day5`.
+It adds actual unedited export text, selected decision, approved-rules change and
+precomputed behavior observations. For a recovery without display observations,
+`python3 scripts/prepare_view.py results/<recovery>.json` creates a separate derived
+record using sandboxed observations. The HTTP viewer itself never executes code.

@@ -28,6 +28,7 @@ def main():
     gate=sub.add_parser('gate');gate.add_argument('--split',choices=['dev','holdout','all'],default='dev')
     run=sub.add_parser('run');run.add_argument('task',choices=sorted(TASKS))
     run.add_argument('--decide',choices=['A','B']);run.add_argument('--plain',action='store_true')
+    run.add_argument('--remaining-quota',action='store_true',help='Enforce the remaining daily dollars at every provider request')
     run.add_argument('--allow-holdout',action='store_true',help='Only for a separately authorized future frozen study')
     view=sub.add_parser('view');view.add_argument('record')
     view.add_argument('--live',action='store_true');view.add_argument('--port',type=int,default=0)
@@ -54,10 +55,11 @@ def main():
         verify_freeze()
         if not args.allow_holdout:parser.error('No holdout model calls authorized; use only in a future approved study')
         if not args.plain and args.decide!='B':parser.error('Frozen guarded holdout policy requires --decide B')
-    if args.plain and args.decide:parser.error('--decide applies only to recovery mode')
+    if args.plain and args.decide not in (None,'B'):parser.error('Matched plain policy requires B')
     results.mkdir(exist_ok=True)
     with (results/'.run.lock').open('w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
-        row=(run_one(task,results,mode='plain',allow_holdout=args.allow_holdout) if args.plain else
-             recover(results,args.decide,task_name=args.task,allow_holdout=args.allow_holdout))
+        from .plain import recover_plain
+        row=(recover_plain(results,task_name=args.task,decision='B',dollar_quota=args.remaining_quota) if args.plain else
+             recover(results,args.decide,task_name=args.task,allow_holdout=args.allow_holdout,dollar_quota=args.remaining_quota))
     print(evidence(row,results),flush=True)

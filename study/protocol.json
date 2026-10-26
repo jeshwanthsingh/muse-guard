@@ -31,9 +31,11 @@
   ],
   "holdout_ids": "opaque; no solvability labels are sent to the model",
   "prompt_policy": "Identical initial prompt; same-session plain follow-up: Rule B wins. Please update the code. Guarded adds verified card and approved-v2 repair.",
-  "fair_plain_adapter_ready": false,
+  "fair_plain_adapter_ready": true,
   "amendment": "docs/amendments/2026-10-26-day4-fair-recovery.md",
   "plain_test_edits": "Record hashes/diffs against original agent-visible v1 tests separately from approved-v2 behavioral checks",
   "plain_repair_hidden_checks": false,
-  "study_runs_authorized": false
+  "study_runs_authorized": false,
+  "plain_adapter_scope": "dev only; same-session exec continuation; original v1 agent files; actual runtime rules in final approved-v2 scoring",
+  "runtime_freeze_status": "Day5 runtime changed; prior manifests retained; new freeze required before holdouts"
 }

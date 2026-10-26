@@ -69,3 +69,14 @@ attempt. The original Day3 freeze is retained; the active amended manifest recor
 its parent hash. The same-session plain adapter is not yet implemented, so the
 study is blocked. The current --plain CLI remains initial-only dev debugging.
 No study campaign is authorized today.
+
+## Day 5 implementation status — 2026-10-26
+
+The amended plain adapter is implemented for development. Offline integration uses
+the real Muse CLI for two turns, actual tool execution, unchanged v1 agent files
+and independent v2 scoring. The Day5 paid dev pilot is not a valid comparison:
+initial retained state was inside the checkout, then outer sandbox nesting blocked
+tools. All outcomes and costs are retained with those limitations. The final
+outer-only authoring sandbox is tested offline but still needs a clean paid pilot.
+Current runtime changes are not covered by the retained Day3/Day4 manifests. A new
+freeze and study authorization remain required. No holdout model calls occurred.

@@ -18,19 +18,28 @@ from .rules import TASKS, verify_conflict, approve, build_task, digest
 
 RESULTS_ROOT=Path(__file__).resolve().parents[1]/"results"
 
-def conflict_card(req,proof,results,env):
+def is_recovered(repair):
+    return repair.get('outcome')=='PASS'
+
+def conflict_card(req,proof,results,env,*,dollar_quota=False):
     started=time.monotonic()
     run_id="conflict-card-"+uuid.uuid4().hex[:12]
     day=datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    row={"run_id":run_id,"date":day,"stage":"day4","task":req["id"]+"-conflict-card","mode":"guarded-card",
+    row={"run_id":run_id,"date":day,"stage":"day5","task":req["id"]+"-conflict-card","mode":"guarded-card",
          "pricing_mode":"STANDARD","model":"muse-spark-1.3","cost_usd":None,"tokens":None,
          "status":"PENDING","reserved_cost_usd":0.068,"model_invoked":False}
     path=results/(run_id+".json")
-    reserve_budget(ledger_records(results,day),Decimal("0.068"))
+    allowance=Decimal('0.068')
+    if dollar_quota:
+        prior=ledger_records(results,day);reserve_budget(prior,Decimal('0.00000001'))
+        spent=sum((Decimal(str(r['cost_usd'] if r.get('cost_usd') is not None else r['accounted_upper_bound_usd'])) for r in prior),Decimal(0))
+        allowance=min(allowance,Decimal(5)-spent)
+    reserve_budget(ledger_records(results,day),allowance)
+    row['reserved_cost_usd']=float(allowance)
     path.write_text(json.dumps(row,indent=2)+"\n")
     raw=results/"raw"/run_id;raw.mkdir(parents=True)
     try:
-        with Gateway(env["META_API_KEY"],token_limit=16000,journal=raw/"provider-usage.json") as gate:
+        with Gateway(env["META_API_KEY"],token_limit=16000,journal=raw/"provider-usage.json",dollar_limit=allowance if dollar_quota else None) as gate:
             facts={"rules":req["rules"],"witness":proof["witness"],"actions":proof["actions"]}
             prompt=("Write a short plain-English conflict card for a developer from these independently verified facts. "
                     "Explain the concrete input, name both rules and the incompatible actions, and ask which rule wins. "
@@ -63,6 +72,7 @@ def conflict_card(req,proof,results,env):
     finally:
         row["time_seconds"]=round(time.monotonic()-started,3)
         row["cost_basis"]="all terminal provider usage, persisted from first request"
+        if row.get('cost_usd') is None:row['accounted_upper_bound_usd']=float(allowance)
         path.write_text(json.dumps(row,indent=2)+"\n")
         save_total(results,day)
     return row
@@ -81,7 +91,7 @@ def choose_decision(rule_ids,decide=None,input_fn=None):
         print("Please choose a verified rule ID.")
 
 
-def recover(results,decision=None,env=None,*,task_name="retry-impossible",allow_holdout=False):
+def recover(results,decision=None,env=None,*,task_name="retry-impossible",allow_holdout=False,dollar_quota=False):
     if allow_holdout and decision!="B":
         raise ValueError("Frozen holdout decision policy requires scripted B")
     env=dict(os.environ if env is None else env)
@@ -96,7 +106,7 @@ def recover(results,decision=None,env=None,*,task_name="retry-impossible",allow_
         task=TASKS[task_name]
         record["requirements_v1"]=task["requirements"]
         record["v1_tests_hash"]=digest({"visible":task["test_source"],"hidden":task["hidden_test_source"]})
-        attempt=run_one(task,results,env,mode="guarded",allow_holdout=allow_holdout)
+        attempt=run_one(task,results,env,mode="guarded",allow_holdout=allow_holdout,dollar_quota=dollar_quota)
         phase_rows.append(attempt);record["phase_run_ids"].append(attempt["run_id"])
         record["attempt"]=attempt
         if attempt["outcome"]!="CONFLICT VERIFIED":
@@ -105,7 +115,7 @@ def recover(results,decision=None,env=None,*,task_name="retry-impossible",allow_
         report=attempt["conflict_report"]
         proof=verify_conflict(task["requirements"],report)
         record.update(witness=proof["witness"],conflict_report=report,conflict_validation=proof)
-        card=conflict_card(task["requirements"],proof,results,env)
+        card=conflict_card(task["requirements"],proof,results,env,dollar_quota=dollar_quota)
         phase_rows.append(card);record["phase_run_ids"].append(card["run_id"])
         record["conflict_card"]=card
         if card["status"]!="GENERATED":
@@ -121,10 +131,10 @@ def recover(results,decision=None,env=None,*,task_name="retry-impossible",allow_
         repair_task=build_task(v2)
         record["v2_tests_hash"]=digest({"visible":repair_task["test_source"],"hidden":repair_task["hidden_test_source"]})
         seed=(results/"raw"/attempt["run_id"]/"frozen"/"solution.py").read_bytes()
-        repair=run_one(repair_task,results,env,seed_solution=seed,mode="guarded",allow_holdout=allow_holdout)
+        repair=run_one(repair_task,results,env,seed_solution=seed,mode="guarded",allow_holdout=allow_holdout,dollar_quota=dollar_quota)
         phase_rows.append(repair);record["phase_run_ids"].append(repair["run_id"])
         record["repair"]=repair
-        record["status"]="RECOVERED" if repair["outcome"]=="PASS" else "RECHECK DID NOT PASS"
+        record["status"]="RECOVERED" if is_recovered(repair) else "RECHECK DID NOT PASS"
         return record
     except (ValueError,OSError,KeyError):
         record["status"]="HARNESS ERROR"
@@ -181,7 +191,7 @@ def resume_recovery(record_path,winner,env=None):
             record["v2_tests_hash"]=digest({"visible":repair_task["test_source"],"hidden":repair_task["hidden_test_source"]})
             repair=run_one(repair_task,results,env,seed_solution=seed,mode="guarded")
             record["repair"]=repair;record["phase_run_ids"].append(repair["run_id"])
-            record["status"]="RECOVERED" if repair["outcome"]=="PASS" else "RECHECK DID NOT PASS"
+            record["status"]="RECOVERED" if is_recovered(repair) else "RECHECK DID NOT PASS"
         except (ValueError,OSError,KeyError):
             record.update(status="HARNESS ERROR",reason="Live continuation stopped; inspect phase evidence")
         finally:

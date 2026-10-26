@@ -1,0 +1,26 @@
+{
+  "base_commit": "9e9bb84bc12d6ba8585f2b5ed23afafddef84fdf",
+  "uncommitted_at_run": true,
+  "files": {
+    "muse_guard/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "muse_guard/checker.py": "df52f91b9845c1f5943c3ad19bbf869abee12a96e088e78c3f6aa48daf279820",
+    "muse_guard/cli.py": "5723fca73e57f99c07ac612e54eebbacae6607eaf9c80b81e22c87c955c0cd5d",
+    "muse_guard/evidence.py": "9a0819aa50db7f55ae61e4ed48942f484ce358803cbe35b07d35b54c67334455",
+    "muse_guard/freeze.py": "239f8ea8fd5ec3255f55c503bfd6a148f7242c85be73cfefea830c395b8cd792",
+    "muse_guard/gateway.py": "e10f91211ed0bb8917468e720d2596da60024f9a01a3df4658397006fce2ae2e",
+    "muse_guard/isolation.py": "1a835be14c9a5f9101755ac05d54209222e81d93240872e132751d8d47322e16",
+    "muse_guard/legacy_tasks.py": "dc59703f2055e9fbc22cd458c08cacc2b104f46bf0f3ddb838e280057fbf517f",
+    "muse_guard/plain.py": "4cdf29799051ddc7a74151686861bfb9ab9b3493352eb650288be726c315bc3d",
+    "muse_guard/quality_gate.py": "a959071eede775b80cb071a0d3e151805267d5194ed1779f6c195dd934505ab5",
+    "muse_guard/recovery.py": "776c8225d18d01a72d91b070fd884d236b736a6ea69f6ca2ed9bf0089c4126ca",
+    "muse_guard/rule_checker.py": "6d62c7c1ff81c0ceb6eee15e728a446b9ab2f5f83df4828adf8e439b36aa9371",
+    "muse_guard/rules.py": "ebf24d2804c6b626f0d826966246f5c979ebf0e199d9e3eaf3557430c7cd3556",
+    "muse_guard/runner.py": "5c2635855a14af1544373cce5b7675d3be6e77d4192fd39320b29f0cba852d2f",
+    "muse_guard/tampering.py": "6655a0573c4df95b0a5ae1fb1f79b1b8015eff963e509dd92872f1f8e23b01d5",
+    "muse_guard/tasks.py": "0da34bfdd15ee76723c5c193e31a6378321641686dab261a2e21f132e4221f68",
+    "muse_guard/view.py": "f4f8e144ba0cb86f1f5656806454920e0e233eaa7beb5c17e0377c74e083148c",
+    "scripts/day5_pilot.py": "4229ce6a61fac2219c68a5dd15934ddf827d2052c43dd89df35e6ddab1a43e54",
+    "study/protocol.json": "7e896f403fbba9e8e0f08064770cb6245cd01a32b6209d7eb76a7b59cb201866"
+  },
+  "scope": "corrected-isolation pilot continuation; original unrun shipping entries only"
+}

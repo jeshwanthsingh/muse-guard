@@ -1,0 +1,23 @@
+{
+  "record": "recovery-289db424fb09-view-day5",
+  "record_source": "existing real Day3 refund recovery",
+  "viewport": [
+    1280,
+    720
+  ],
+  "isolated_browser": true,
+  "progress_steps": 5,
+  "selected_replay_choice": "B",
+  "original_export_message_sha256": "7999383c7d8d5b7ffe60d0a34450f0203068ff484fedbff5dd66c25d6fd48bd4",
+  "behavior_rows": 4,
+  "horizontal_overflow": false,
+  "evidence_download_matches": true,
+  "full_explanation_disclosure_tested": true,
+  "code_diff_disclosure_tested": true,
+  "screenshots": [
+    "output/playwright/day5-refund-overview-1280x720.png",
+    "output/playwright/day5-refund-decision-1280x720.png",
+    "output/playwright/day5-refund-behavior-1280x720.png",
+    "output/playwright/day5-refund-full.png"
+  ]
+}

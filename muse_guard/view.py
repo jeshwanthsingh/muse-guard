@@ -5,6 +5,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 import json
 from pathlib import Path
 import secrets
+import re
 import webbrowser
 
 from .recovery import frozen_solution,resume_recovery
@@ -46,6 +47,27 @@ def display_requirements(row):
     return {}
 
 
+TITLES={'retry':'HTTP retry policy','refund':'Refund policy','shipping':'Shipping policy','access':'Access policy',
+        'discount':'Discount policy','pricing':'Pricing policy','rate-limit':'Rate-limit policy','feature':'Feature flags',
+        'notification':'Notification policy','retention':'Data retention policy'}
+
+
+def progress(row):
+    attempt=row.get('attempt',row);repair=row.get('repair',{})
+    report=attempt.get('conflict_report',{})
+    final=repair or attempt
+    done=[bool(attempt.get('model_invoked')),report.get('conflict') is True,bool(row.get('decision')),
+          bool(repair.get('model_invoked')),bool(final.get('tests')) and final.get('outcome')!='HARNESS ERROR']
+    labels=[('attempt','Attempt'),('conflict','Conflict found'),('decision','You decide'),('repair','Repair'),('checked','Checked')]
+    return ''.join('<li class="step '+('complete' if complete else 'pending')+'" data-stage="'+key+'"><span aria-hidden="true">'+('✓' if complete else str(i+1))+'</span>'+label+'</li>' for i,((key,label),complete) in enumerate(zip(labels,done)))
+
+
+def behavior_table(row):
+    rows=row.get('display_evidence',{}).get('behavior',[])
+    if not rows:return '<tr><td colspan="3">Behavior observations unavailable for this record.</td></tr>'
+    return ''.join('<tr><th scope="row"><span class="input-kind">'+('Clash input' if case.get('witness') else 'Nearby input')+'</span><code>'+text(json.dumps(case['input'],sort_keys=True))+'</code></th><td>'+text(case['before'])+'</td><td>'+text(case['after'])+'</td></tr>' for case in rows)
+
+
 def render(row,*,diff_text="Repair diff unavailable for this record.",live=False,token=""):
     req=display_requirements(row)
     proof=row.get("conflict_validation",row.get("attempt",{}).get("conflict_validation",{}))
@@ -61,15 +83,33 @@ def render(row,*,diff_text="Repair diff unavailable for this record.",live=False
     diff='\n'.join('<span class="'+('add' if line.startswith('+') and not line.startswith('+++') else 'remove' if line.startswith('-') and not line.startswith('---') else '')+'">'+text(line)+'</span>' for line in diff_text.splitlines())
     active=live and row.get('status')=='AWAITING DECISION' and verified
     winner=row.get('decision',{}).get('winner')
-    buttons=''.join('<button type="button" data-winner="'+key+'"'+('' if active else ' disabled')+'>Rule '+key+' wins</button>' for key in ('A','B'))
+    buttons=''
+    for key in ('A','B'):
+        selected=not active and winner==key
+        buttons+='<button type="button" class="'+('selected' if selected else 'muted' if not active else '')+'" data-winner="'+key+'" aria-pressed="'+str(selected).lower()+'"'+('' if active else ' disabled')+'>'+('✓ ' if selected else '')+'Rule '+key+' wins'+('<span>Selected</span>' if selected else '')+'</button>'
+    message=row.get('display_evidence',{}).get('agent_message',row.get('attempt',row).get('agent_message',''))
+    snippet=message.strip()
+    if len(snippet)>320:
+        cut=snippet[:320]
+        end=max(cut.rfind('. '),cut.rfind('.\n'),cut.rfind('! '))
+        snippet=cut[:end+1] if end>=80 else cut.rsplit(' ',1)[0]
+    v2=row.get('requirements_v2')
+    version_change=('<table><thead><tr><th>Requirement</th><th>v1</th><th>Approved v2</th></tr></thead><tbody><tr><th scope="row">When the rules overlap</th><td>No priority; both actions required</td><td>Rule '+text(winner)+' takes precedence</td></tr><tr><th scope="row">Other inputs</th><td>Original rules</td><td>Original rules still apply</td></tr></tbody></table>' if v2 and winner else '<p>No approved v2 recorded.</p>')
     status=row.get('status',row.get('outcome','UNKNOWN'));verdict=final.get('outcome','Pending recheck')
     cost='Unknown' if row.get('cost_usd') is None else '$'+format(row['cost_usd'],'.5f')
     values={
         'context':('A requirements conflict, resolved with one decision' if row.get('status')=='RECOVERED' else 'Independent evidence from a Muse Code attempt'),
-        'title':text(row.get('task','Run evidence')),'mode':'Live decision' if live else 'Recorded run',
+        'title':text(TITLES.get(req.get('pair'),req.get('title',req.get('pair','Run evidence').replace('-',' ').title()))),
+        'task_id':text(row.get('task','')),'progress':progress(row),
+        'message_heading':'Muse Code stopped and asked' if row.get('attempt',row).get('conflict_report',{}).get('conflict') else 'Muse Code’s response',
+        'agent_message':text(snippet) if snippet else 'Session message unavailable for this record.',
+        'message_note':'Trimmed, unedited text from the Muse session export.' if snippet!=message.strip() else 'Unedited text from the Muse session export.' if message else 'No session-export text is attached.',
+        'version_change':version_change,'behavior':behavior_table(row),
+        'short_explanation':('The same input requires two different actions.' if verified else 'This report has no verified witness.'),
+        'mode':'Live decision' if live else 'Recorded run',
         'rules':rules or '<tr><td>No rules table in this record.</td></tr>',
         'badge':'<span class="badge">Verified by checker</span>' if verified else '<span class="pending">No verified witness recorded</span>',
-        'witness':text(json.dumps(witness,indent=2) if witness is not None else 'No witness recorded.'),
+        'witness':text(json.dumps(witness) if witness is not None else 'No witness recorded.'),
         'demands':demands,'card':text(card),'buttons':buttons,
         'decision_note':text(('Choose which rule takes precedence. This starts the real repair.' if active else 'Recorded choice: Rule '+winner+' wins.' if winner else 'Replay is read-only.' if not live else 'Decision submitted; see the run status.')),
         'diff':diff,'checks':check_rows or '<tr><td>No independent checks recorded yet.</td></tr>',
@@ -77,8 +117,7 @@ def render(row,*,diff_text="Repair diff unavailable for this record.",live=False
         'cost':cost,'token':text(token),'run_id':text(row.get('recovery_id',row.get('run_id',''))),
     }
     page=(ASSETS/'index.html').read_text()
-    for key,value in values.items():page=page.replace('@@'+key+'@@',value)
-    return page
+    return re.sub(r'@@([a-z_]+)@@',lambda match:values.get(match.group(1),match.group(0)),page)
 
 
 def create_server(record_path,*,live=False,env=None,port=0):

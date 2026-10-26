@@ -160,3 +160,50 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   Original Day3 manifest SHA-256 remains
   4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246.
   Post-commit verification passed; original data, scores and ledger are unchanged.
+
+## Day 5 — 2026-10-26
+
+- Used one-time permission to push day4 at 9e9bb84 normally; created day5 from it.
+  No merge/force push; all Day5 commits remain local.
+- Implemented the approved plain adapter. Repeated muse exec with the same session
+  ID preserves actual history; original v1 agent files remain unchanged by the
+  harness. Only normal B-wins chat is delivered. Independent v2 assertions use the
+  candidate's actual runtime rules, avoiding an accidental v2 interpreter gift.
+- Added exact before/after test inventories (including empty added/deleted files),
+  separate original-test tampering, and a shared PASS recovery criterion. Planted
+  paired edits have identical checker/recovery treatment in both modes.
+- Started the predeclared retry/refund/shipping dev-only pilot in both modes, with
+  12 steps/320k/300s. After the user delegated the cap strategy, added/tested a hard
+  remaining-dollar quota rather than resetting the October26 ledger. Actual token
+  usage and every known cost remain in per-phase JSON, including reminders.
+- Review caught a mistake: retained plain state was inside the harness checkout.
+  Stopped the pilot and moved it outside, with OS-enforced harness/secret read
+  denials. Early outcomes are explicitly exploratory, not a fair comparison.
+- The resumed shipping attempts exposed unsupported nested sandbox initialization.
+  Those raw TASK FAILURE rows are labeled infrastructure failures. The last plain
+  shipping attempt was quota-blocked and made no inference. Fixed the final code
+  with a single enforced outer authoring sandbox, throwaway-only writes and
+  gateway-only outbound traffic; the inner Muse sandbox is disabled only inside
+  that OS wrapper. Candidate checker confinement remains separate.
+- Final integration tests use the real Muse CLI and real shell tools with local
+  planted SSE responses, including a full same-session repair and hidden recheck.
+  No paid retry was made with the final fix because daily headroom is exhausted.
+- Confirmed Day5 cost $1.27727245; upper bound $1.29478145. One interrupted provider
+  request lacks a receipt; its remaining bound is $0.01750900. Shared daily upper
+  bound $4.99319850, below $5. No uncertainty deleted. No holdout/study calls.
+- Cost-only projection from completed pre-fix phases: about $38.13 with observed
+  caching, $61.00 with no cache at the same token volumes. Explicit arithmetic and
+  sample counts are in results/DAY5_STUDY_COST.json and results/DAY5_PILOT.md.
+  A clean final-code pilot remains required before a defensible study budget.
+- Polished the display-only viewer: five-step progress, actual trimmed export
+  quote, human title, compact conflict card/full-text disclosure, selected B choice,
+  v1-to-v2 requirements change and saved witness/nearby behavior observations.
+  Code diff is collapsed without blank padding. Fixed template-marker injection.
+- Captured overview, decision and behavior screenshots at 1280x720 in an isolated
+  headless browser. Discarded one unrelated shared-tab capture before any commit.
+  Evidence download matches the derived run record byte-for-byte.
+- Original results and both holdout manifests remain unchanged. Day5 runtime drift
+  explicitly blocks study use until a new reviewed freeze and clean pilot.
+- Final verification: 123 tests passed both locally and from a clean staged
+  snapshot without .env or results/raw. Privacy/gitleaks and exact-secret scans
+  passed. The full corrected two-turn Muse fixture uses local SSE only.
