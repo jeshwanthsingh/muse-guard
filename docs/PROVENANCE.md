@@ -1,4 +1,48 @@
-# Reuse and checker boundaries
+# Current provenance — Day 6 correction, 2026-10-26
+
+The original blanket README claim was inaccurate once Day1 reuse occurred. This
+correction supersedes that claim; the historical contribution entries and source
+record below are retained rather than rewritten.
+
+- **Copied on Day1:** seven Python ast-grep pattern definitions in
+  `docs/tampering-reference.yaml`, and detector diagnostic wording from
+  `apps/server/test-tampering.ts`. The first Python detector explicitly followed
+  that file's multiset-comparison design.
+- **Replaced on Day6:** deleted the entire copied reference file; wrote a fresh
+  active `muse_guard/detection_policy.json` and scope-aware AST detector. Test
+  ownership and occurrence ordinals now detect predicates moved between tests,
+  repeated assertions, bare/aliased skips and constant-success checks. Wording
+  and structure are new. The small legacy inventory helper was also rewritten
+  as a remaining-identities traversal instead of retaining its port description.
+- **Current relationship:** Unfoolable is a design reference only. Snapshot
+  validation, independent child observations and exact test inventory principles
+  informed the design; the audit found no other project-specific copied source
+  blocks under the checks described below. These are bounded audit findings,
+  not a mathematical proof of independent authorship.
+- **History and demo:** earlier Git commits intentionally retain the copied
+  material and old disclosures. The current demo must use the Day6 implementation,
+  not the removed fixture or an old checkout. Historical experiment records are
+  retained as evidence and are not rescored or presented as new event work.
+
+## Whole-repository comparison
+
+Compared every nonignored regular file in muse-guard against the local reference
+checkout at `c8eafe7d9ed7221c091023a91e5e21fe16df6d32`, including the tracked/working
+reference corpus. Methods: identical file hashes, five consecutive nonblank lines
+with normalized whitespace, Python string-literal matching (20+ characters), and
+manual review of the declared Day1 lineage and shorter detector diagnostics.
+The audit records coverage and fingerprints without republishing removed patterns.
+
+The actual copied fixture and detector wording are replaced. Other matches were:
+standard Apache-2.0 license text, two empty package-marker files, the macOS sandbox
+executable path, HTTP headers/MIME values, generic accessible span markup, a Markdown
+table separator and standard Git test options. Those standard/empty fragments are
+retained; their equality alone is not evidence that project code was copied.
+No license text is rewritten. Ignored secrets, generated raw sessions and Git object
+history are excluded from the source scan; historical commits are disclosed above.
+See `results/DAY6_PROVENANCE_AUDIT.json` for the before/after audit inventory.
+
+## Historical Day1 record (retained; current status is above)
 
 Source: Jeshwanth Singh's [Unfoolable](https://github.com/jeshwanthsingh/Unfoolable),
 Apache-2.0; local source revision `c8eafe7d9ed7221c091023a91e5e21fe16df6d32`.

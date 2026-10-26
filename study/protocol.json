@@ -37,5 +37,8 @@
   "plain_repair_hidden_checks": false,
   "study_runs_authorized": false,
   "plain_adapter_scope": "dev only; same-session exec continuation; original v1 agent files; actual runtime rules in final approved-v2 scoring",
-  "runtime_freeze_status": "Day5 runtime changed; prior manifests retained; new freeze required before holdouts"
+  "runtime_freeze_status": "Day6 current runtime awaiting clean pilot and reviewed freeze; old manifests retained",
+  "primary_results": "docs/PRIMARY_MEASURES.md",
+  "primary_results_preregistered_on": "2026-10-26",
+  "active_manifest": "study/MANIFEST-clean-2026-10-27.json"
 }

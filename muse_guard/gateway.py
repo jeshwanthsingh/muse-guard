@@ -211,8 +211,13 @@ class Gateway:
                         if owner.dollars:owner.dollars.settle(owner.events[-1]["usage"])
                         owner.persist_usage()  # actual usage durable before CLI receives output
                         self.reply(status,kind,body)
-                    except (ValueError, TypeError, AttributeError, OSError, urllib.error.URLError):
-                        owner.events.append({"blocked":True,"reason":"local policy or token count rejected request"})
+                    except (ValueError, TypeError, AttributeError, OSError, urllib.error.URLError) as error:
+                        kind=('shutdown' if owner.closing else 'budget' if isinstance(error,ValueError) and
+                              any(word in str(error).lower() for word in ('budget','quota','unresolved')) else 'policy')
+                        owner.events.append({"blocked":True,"block_kind":kind,"reason":{
+                            'shutdown':'Gateway stopped admission after the turn',
+                            'budget':'Request cannot fit a proved token/dollar allowance',
+                            'policy':'Local request validation rejected the request'}[kind]})
                         owner.persist_usage()
                         body = b'{"error":{"type":"budget_error","message":"Request refused by local token gate"}}'
                         self.reply(400,"application/json",body)

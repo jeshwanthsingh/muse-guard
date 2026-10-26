@@ -1,0 +1,656 @@
+{
+  "date": "2026-10-26",
+  "stage": "Day6 provenance correction",
+  "scope": "Current tracked and nonignored untracked regular files; ignored secrets/raw artifacts and Git history excluded. Final scan preceded creation of this report and verification receipt. Reference checkout read only.",
+  "methods": [
+    "SHA-256 identical files",
+    "Five consecutive nonblank lines, whitespace normalized, at least 150 characters",
+    "Python AST literal strings at least 20 characters against all reference UTF-8 text",
+    "Manual review of declared Day1 lineage and shorter diagnostics"
+  ],
+  "limitations": "Detects literal overlap and documented lineage, not all paraphrases, semantic derivation or legal eligibility. Historical commits intentionally retain original copied material.",
+  "reference_corpus_unchanged": true,
+  "before": {
+    "reference_revision": "c8eafe7d9ed7221c091023a91e5e21fe16df6d32",
+    "local_base": "d29e21136cb97ca2627b4e8d3808f6f602a334d2",
+    "local_files": 183,
+    "reference_files": 3302,
+    "reference_text_files": 2559,
+    "corpus_sha256": "489407a59526ea8b86933398012c37ebe4e1a9e511a76ba581ee4c85c96df96e",
+    "exact_files": [
+      {
+        "local": "muse_guard/__init__.py",
+        "source": [
+          "data/.gitkeep"
+        ]
+      },
+      {
+        "local": "tests/__init__.py",
+        "source": [
+          "data/.gitkeep"
+        ]
+      }
+    ],
+    "five_line_matches": [
+      {
+        "local": "LICENSE",
+        "source": "LICENSE",
+        "windows": 164,
+        "first_locations": [
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            5
+          ]
+        ]
+      },
+      {
+        "local": "LICENSE",
+        "source": "artifacts/core1/graph/GRAPHIFY-LICENSE",
+        "windows": 164,
+        "first_locations": [
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            6
+          ]
+        ]
+      },
+      {
+        "local": "docs/tampering-reference.yaml",
+        "source": "scripts/quality-gates/tampering.yaml",
+        "windows": 9,
+        "first_locations": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      }
+    ],
+    "python_literal_matches": [
+      {
+        "local": [
+          {
+            "path": "muse_guard/checker.py",
+            "line": 73
+          },
+          {
+            "path": "muse_guard/checker.py",
+            "line": 52
+          },
+          {
+            "path": "muse_guard/isolation.py",
+            "line": 25
+          },
+          {
+            "path": "muse_guard/isolation.py",
+            "line": 9
+          },
+          {
+            "path": "tests/test_day5.py",
+            "line": 102
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/oracle-execution.ts",
+            "line": 50
+          },
+          {
+            "path": "artifacts/bug1/example-context.json",
+            "line": 703
+          },
+          {
+            "path": "artifacts/bug1/initial-ui/example-context.json",
+            "line": 6395
+          },
+          {
+            "path": "artifacts/chat-polish/career-ticket.json",
+            "line": 331
+          },
+          {
+            "path": "artifacts/chat-polish/research-recheck.json",
+            "line": 152
+          },
+          {
+            "path": "artifacts/read-guard/career-live.json",
+            "line": 333
+          },
+          {
+            "path": "artifacts/read-guard/research-live.json",
+            "line": 154
+          },
+          {
+            "path": "artifacts/watchman/normal-ticket.json",
+            "line": 339
+          }
+        ],
+        "text_sha256": "41a9a3021907ff35b9b229250aa002843916fb46b6f141dbcc21fdecafa1020b",
+        "length": 21
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/runner.py",
+            "line": 412
+          }
+        ],
+        "source": [
+          {
+            "path": "artifacts/competitor-teardown/REPORT.md",
+            "line": 33
+          }
+        ],
+        "text_sha256": "2e7e398a84c7a7fd3d74445be0237db99913fa2465dd19e91f8164de74162a26",
+        "length": 31
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/tampering.py",
+            "line": 47
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/test-tampering.ts",
+            "line": 9
+          },
+          {
+            "path": "artifacts/honest-approvals/ui-proof.json",
+            "line": 22
+          },
+          {
+            "path": "artifacts/quality-gates/ui-proof.json",
+            "line": 22
+          }
+        ],
+        "text_sha256": "0515488a9d12678186772ac09dd938c8532b271dc35b71059287ed80827ebaf9",
+        "length": 40
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 143
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/application.ts",
+            "line": 139
+          }
+        ],
+        "text_sha256": "9697d0ac11f539825ff0975513363525068f1a1e21d226b6067f7cda6f84e8b1",
+        "length": 22
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 144
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/application.ts",
+            "line": 140
+          }
+        ],
+        "text_sha256": "8762581123975a661f9bbefd341f741e3fc8f09d4ff8e77f2b0ec15e42ca19f7",
+        "length": 23
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 151
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/static.ts",
+            "line": 18
+          },
+          {
+            "path": "apps/web/public/sw.js",
+            "line": 4
+          },
+          {
+            "path": "scripts/protected-verification/ui-observer.mjs",
+            "line": 43
+          }
+        ],
+        "text_sha256": "5e30ae15588f8f014141a57300f8f4b77a0491527336d05b413fc899e803db1a",
+        "length": 24
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 62
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/web/src/App.tsx",
+            "line": 32
+          },
+          {
+            "path": "apps/web/src/UnfoolableApp.tsx",
+            "line": 88
+          }
+        ],
+        "text_sha256": "a83eeb648ff47d3efe121b30409d6096f180e7f3de17ff55bc3b77e1ba73929e",
+        "length": 27
+      },
+      {
+        "local": [
+          {
+            "path": "tests/test_day4_protocol.py",
+            "line": 64
+          },
+          {
+            "path": "tests/test_freeze.py",
+            "line": 38
+          }
+        ],
+        "source": [
+          {
+            "path": "tests/oracle-source-relevance.test.ts",
+            "line": 7
+          }
+        ],
+        "text_sha256": "10c608348585a9228ce7de3de18c980bc8bcb04bd751bc109b48d59700a501ab",
+        "length": 20
+      },
+      {
+        "local": [
+          {
+            "path": "tests/test_day4_protocol.py",
+            "line": 64
+          },
+          {
+            "path": "tests/test_freeze.py",
+            "line": 38
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/build-workspace.ts",
+            "line": 17
+          },
+          {
+            "path": "apps/server/night-store.ts",
+            "line": 32
+          },
+          {
+            "path": "apps/server/repository.ts",
+            "line": 28
+          },
+          {
+            "path": "artifacts/rules1/summarize.py",
+            "line": 4
+          },
+          {
+            "path": "scripts/verification-v1-evidence.ts",
+            "line": 5
+          },
+          {
+            "path": "tests/helpers/verify-only-fixture.ts",
+            "line": 3
+          },
+          {
+            "path": "tests/oracle-source-relevance.test.ts",
+            "line": 7
+          },
+          {
+            "path": "tests/verification-v1-store.test.ts",
+            "line": 13
+          }
+        ],
+        "text_sha256": "c7eccb59ff9174c07e2f17ad8ef86ca9d848f1cbb9323133feb1251545ddc8a8",
+        "length": 24
+      }
+    ]
+  },
+  "after": {
+    "reference_revision": "c8eafe7d9ed7221c091023a91e5e21fe16df6d32",
+    "local_base": "d29e21136cb97ca2627b4e8d3808f6f602a334d2",
+    "local_files": 198,
+    "reference_files": 3302,
+    "reference_text_files": 2559,
+    "corpus_sha256": "489407a59526ea8b86933398012c37ebe4e1a9e511a76ba581ee4c85c96df96e",
+    "exact_files": [
+      {
+        "local": "muse_guard/__init__.py",
+        "source": [
+          "data/.gitkeep"
+        ]
+      },
+      {
+        "local": "tests/__init__.py",
+        "source": [
+          "data/.gitkeep"
+        ]
+      }
+    ],
+    "five_line_matches": [
+      {
+        "local": "LICENSE",
+        "source": "LICENSE",
+        "windows": 164,
+        "first_locations": [
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            5
+          ]
+        ]
+      },
+      {
+        "local": "LICENSE",
+        "source": "artifacts/core1/graph/GRAPHIFY-LICENSE",
+        "windows": 164,
+        "first_locations": [
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            6
+          ]
+        ]
+      }
+    ],
+    "python_literal_matches": [
+      {
+        "local": [
+          {
+            "path": "muse_guard/checker.py",
+            "line": 73
+          },
+          {
+            "path": "muse_guard/checker.py",
+            "line": 52
+          },
+          {
+            "path": "muse_guard/isolation.py",
+            "line": 25
+          },
+          {
+            "path": "muse_guard/isolation.py",
+            "line": 9
+          },
+          {
+            "path": "tests/test_day5.py",
+            "line": 102
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/oracle-execution.ts",
+            "line": 50
+          },
+          {
+            "path": "artifacts/bug1/example-context.json",
+            "line": 703
+          },
+          {
+            "path": "artifacts/bug1/initial-ui/example-context.json",
+            "line": 6395
+          },
+          {
+            "path": "artifacts/chat-polish/career-ticket.json",
+            "line": 331
+          },
+          {
+            "path": "artifacts/chat-polish/research-recheck.json",
+            "line": 152
+          },
+          {
+            "path": "artifacts/read-guard/career-live.json",
+            "line": 333
+          },
+          {
+            "path": "artifacts/read-guard/research-live.json",
+            "line": 154
+          },
+          {
+            "path": "artifacts/watchman/normal-ticket.json",
+            "line": 339
+          }
+        ],
+        "text_sha256": "41a9a3021907ff35b9b229250aa002843916fb46b6f141dbcc21fdecafa1020b",
+        "length": 21
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/runner.py",
+            "line": 414
+          }
+        ],
+        "source": [
+          {
+            "path": "artifacts/competitor-teardown/REPORT.md",
+            "line": 33
+          }
+        ],
+        "text_sha256": "2e7e398a84c7a7fd3d74445be0237db99913fa2465dd19e91f8164de74162a26",
+        "length": 31
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 157
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/application.ts",
+            "line": 139
+          }
+        ],
+        "text_sha256": "9697d0ac11f539825ff0975513363525068f1a1e21d226b6067f7cda6f84e8b1",
+        "length": 22
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 158
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/application.ts",
+            "line": 140
+          }
+        ],
+        "text_sha256": "8762581123975a661f9bbefd341f741e3fc8f09d4ff8e77f2b0ec15e42ca19f7",
+        "length": 23
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 165
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/static.ts",
+            "line": 18
+          },
+          {
+            "path": "apps/web/public/sw.js",
+            "line": 4
+          },
+          {
+            "path": "scripts/protected-verification/ui-observer.mjs",
+            "line": 43
+          }
+        ],
+        "text_sha256": "5e30ae15588f8f014141a57300f8f4b77a0491527336d05b413fc899e803db1a",
+        "length": 24
+      },
+      {
+        "local": [
+          {
+            "path": "muse_guard/view.py",
+            "line": 68
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/web/src/App.tsx",
+            "line": 32
+          },
+          {
+            "path": "apps/web/src/UnfoolableApp.tsx",
+            "line": 88
+          }
+        ],
+        "text_sha256": "a83eeb648ff47d3efe121b30409d6096f180e7f3de17ff55bc3b77e1ba73929e",
+        "length": 27
+      },
+      {
+        "local": [
+          {
+            "path": "tests/test_day4_protocol.py",
+            "line": 64
+          },
+          {
+            "path": "tests/test_day6_freeze.py",
+            "line": 18
+          },
+          {
+            "path": "tests/test_freeze.py",
+            "line": 38
+          }
+        ],
+        "source": [
+          {
+            "path": "tests/oracle-source-relevance.test.ts",
+            "line": 7
+          }
+        ],
+        "text_sha256": "10c608348585a9228ce7de3de18c980bc8bcb04bd751bc109b48d59700a501ab",
+        "length": 20
+      },
+      {
+        "local": [
+          {
+            "path": "tests/test_day4_protocol.py",
+            "line": 64
+          },
+          {
+            "path": "tests/test_day6_freeze.py",
+            "line": 18
+          },
+          {
+            "path": "tests/test_freeze.py",
+            "line": 38
+          }
+        ],
+        "source": [
+          {
+            "path": "apps/server/build-workspace.ts",
+            "line": 17
+          },
+          {
+            "path": "apps/server/night-store.ts",
+            "line": 32
+          },
+          {
+            "path": "apps/server/repository.ts",
+            "line": 28
+          },
+          {
+            "path": "artifacts/rules1/summarize.py",
+            "line": 4
+          },
+          {
+            "path": "scripts/verification-v1-evidence.ts",
+            "line": 5
+          },
+          {
+            "path": "tests/helpers/verify-only-fixture.ts",
+            "line": 3
+          },
+          {
+            "path": "tests/oracle-source-relevance.test.ts",
+            "line": 7
+          },
+          {
+            "path": "tests/verification-v1-store.test.ts",
+            "line": 13
+          }
+        ],
+        "text_sha256": "c7eccb59ff9174c07e2f17ad8ef86ca9d848f1cbb9323133feb1251545ddc8a8",
+        "length": 24
+      }
+    ]
+  },
+  "actions": [
+    {
+      "finding": "Seven copied Python ast-grep patterns in docs/tampering-reference.yaml",
+      "action": "Deleted fixture; wrote fresh active JSON semantic policy with seven rule IDs and new scoped AST implementation."
+    },
+    {
+      "finding": "Reused test-tampering diagnostic wording and multiset comparison implementation lineage",
+      "action": "Replaced implementation and diagnostics; tests exercise planted cheats, movement, duplicate removal and class omissions."
+    },
+    {
+      "finding": "Small inventory helper documented as ported comparison design",
+      "action": "Rewrote identity traversal freshly; preserved expected inventory behavior."
+    }
+  ],
+  "retained_standard_matches": [
+    "Apache-2.0 standard license text",
+    "Empty package markers",
+    "sandbox-exec system executable path",
+    "Markdown table separator",
+    "Standard HTTP security headers and HTML MIME type",
+    "Generic accessible span markup",
+    "Git configuration option names"
+  ],
+  "additional_identified_project_specific_copies": 0
+}

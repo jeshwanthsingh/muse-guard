@@ -43,9 +43,14 @@ Built during the Meta Global AI Developer Hackathon
 
 ## Prior work
 
-Prior work by me, not part of this submission: Unfoolable
-(https://github.com/jeshwanthsingh/Unfoolable). No code was
-copied from it; it was used only as a design reference.
+Prior work by me, not part of this submission: [Unfoolable](https://github.com/jeshwanthsingh/Unfoolable).
+On Day 1, seven Python detection patterns were copied into a reference fixture,
+and the first detector followed its comparison design. On Day 6 (2026-10-26),
+the copied fixture was deleted and the detector was replaced with freshly written
+scope-aware rules, new wording and planted-cheat tests. Copied diagnostic wording
+was removed too. Unfoolable is now a design reference only for the current code.
+Earlier commits retain the original material for an honest history; they are not
+the implementation shown in the current demo. See [the provenance correction](docs/PROVENANCE.md).
 
 ## View a recorded recovery
 
@@ -55,4 +60,7 @@ Use `--live` only for a verified paused development record to make a real decisi
 and continue through the existing budgeted repair/checker. Replay never calls a model.
 
 The approved Day4 fair-baseline amendment is in docs/amendments/. No study runs have
-started; a tested same-session plain follow-up adapter remains required first.
+started. The same-session plain adapter passes offline tests; the final-code
+clean development pilot and reviewed refreeze remain required. See
+[tomorrow's exact commands](docs/NEXT_PILOT.md) and the
+[primary measures](docs/PRIMARY_MEASURES.md).

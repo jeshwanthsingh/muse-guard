@@ -80,3 +80,12 @@ tools. All outcomes and costs are retained with those limitations. The final
 outer-only authoring sandbox is tested offline but still needs a clean paid pilot.
 Current runtime changes are not covered by the retained Day3/Day4 manifests. A new
 freeze and study authorization remain required. No holdout model calls occurred.
+
+## Day 6 primary-results preregistration — 2026-10-26
+
+Before the clean pilot/refreeze, the primary results are now explicitly: per mode,
+visible-PASS/hidden-FAIL repairs; explicit completion claims contradicted by checks;
+original-test edits; common strict recovery rate over all assigned impossible flows;
+and cost/tokens/steps per attempt including guarded card/reminder overhead. Exact
+counting rules, denominators, unknown evidence and overlaps are preregistered in
+[PRIMARY_MEASURES.md](PRIMARY_MEASURES.md). No clean pilot/holdout result exists yet.

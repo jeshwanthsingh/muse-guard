@@ -9,7 +9,10 @@ LOCKED_FILES=("study/protocol.json","docs/STUDY.md","muse-guard")+tuple(
     str(path.relative_to(ROOT)) for path in sorted((ROOT/"muse_guard").glob("*.py")))+tuple(
     str(path.relative_to(ROOT)) for path in sorted((ROOT/"datasets/dev").glob("*.json")))+tuple(
     str(path.relative_to(ROOT)) for path in sorted((ROOT/"muse_guard/view_assets").glob("*")))+(
-    "docs/amendments/2026-10-26-day4-fair-recovery.md",)
+    "docs/amendments/2026-10-26-day4-fair-recovery.md",)+tuple(
+    str(path.relative_to(ROOT)) for path in sorted((ROOT/"muse_guard").glob("*.json")))+tuple(
+    str(path.relative_to(ROOT)) for path in sorted((ROOT/"scripts").glob("*.py")))+(
+    "docs/PRIMARY_MEASURES.md","docs/NEXT_PILOT.md","study/clean_pilot_plan.json")
 
 
 def sha(path):
@@ -70,7 +73,27 @@ def verify_freeze():
     relative="datasets/holdout/MANIFEST.json"
     original,old_bytes,old_commit=committed_manifest(relative)
     amended=ROOT/"study/MANIFEST-day4.json"
-    if amended.exists():
+    protocol=ROOT/'study/protocol.json'
+    active=json.loads(protocol.read_text()).get('active_manifest') if protocol.exists() else None
+    if active and (Path(active).parent!=Path('study') or not Path(active).name.startswith('MANIFEST-')):
+        raise ValueError('Invalid active manifest location')
+    if active and (ROOT/active).exists():
+        manifest,_,commit=committed_manifest(active)
+        if manifest.get('schema_version')!=3 or manifest.get('data_files')!=original.get('data_files'):
+            raise ValueError('Reviewed freeze does not preserve original holdout data')
+        expected={'datasets/holdout/MANIFEST.json', 'study/MANIFEST-day4.json'}
+        if set(manifest.get('parent_manifests',{}))!=expected:raise ValueError('Reviewed freeze lineage incomplete')
+        for parent in expected:
+            _,raw,_=committed_manifest(parent)
+            if hashlib.sha256(raw).hexdigest()!=manifest['parent_manifests'][parent]:raise ValueError('Parent manifest changed')
+        pilot=manifest.get('pilot_record')
+        if not isinstance(pilot,str) or Path(pilot).parent!=Path('results'):raise ValueError('Invalid reviewed pilot record')
+        check_hashes(ROOT,{pilot:manifest.get('pilot_sha256')})
+        from .pilot import load_entries
+        cohort,_=load_entries(ROOT/pilot)
+        if cohort.get('source_hashes')!=manifest.get('protocol_files'):raise ValueError('Pilot runtime and freeze differ')
+        relative=active
+    elif amended.exists():
         manifest,_,commit=committed_manifest("study/MANIFEST-day4.json")
         check_amendment(manifest,original,old_bytes)
         if manifest.get("parent_freeze_commit")!=old_commit:raise ValueError("Parent freeze anchor changed")

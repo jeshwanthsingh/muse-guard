@@ -61,6 +61,7 @@ def conflict_card(req,proof,results,env,*,dollar_quota=False):
                 admissions=[event for event in gate.events if not event.get("blocked")]
                 row["model_invoked"]=bool(admissions)
                 row["budget_events"]=gate.events
+                row["budget_stop"]=any(e.get("blocked") and e.get("block_kind")=="budget" for e in gate.events)
                 if admissions and all(event.get("usage") is not None for event in admissions):
                     usage={key:sum(event["usage"][key] for event in admissions)
                            for key in ("input_tokens","output_tokens","cached_input_tokens")}

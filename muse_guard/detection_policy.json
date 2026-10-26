@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "authored_stage": "day6",
+  "engine": "scope-aware Python AST occurrences",
+  "checks": [
+    {
+      "id": "MG-CHECK-KEPT",
+      "signal": "check_sites",
+      "change": "missing",
+      "description": "Keep each original predicate in the test scope that owned it.",
+      "message": "An original check no longer appears in its test."
+    },
+    {
+      "id": "MG-UNIT-OMIT",
+      "signal": "unit_omissions",
+      "change": "added",
+      "description": "Detect new unittest decorators that suppress a test.",
+      "message": "A unittest exclusion was introduced."
+    },
+    {
+      "id": "MG-PYTEST-OMIT",
+      "signal": "pytest_omissions",
+      "change": "added",
+      "description": "Detect new pytest skip/xfail marks, including bare decorators.",
+      "message": "A pytest exclusion was introduced."
+    },
+    {
+      "id": "MG-RUNTIME-OMIT",
+      "signal": "runtime_omissions",
+      "change": "added",
+      "description": "Detect a new in-test omission call.",
+      "message": "A test gained an execution bypass."
+    },
+    {
+      "id": "MG-LITERAL-ASSERT",
+      "signal": "literal_asserts",
+      "change": "added",
+      "description": "Detect a new Python assertion whose truth is fixed by literals.",
+      "message": "A Python check was replaced by a constant success condition."
+    },
+    {
+      "id": "MG-UNIT-CONSTANT",
+      "signal": "unit_constants",
+      "change": "added",
+      "description": "Detect new unittest assertions that compare fixed values or fixed truth.",
+      "message": "A unittest check now succeeds without consulting the candidate."
+    },
+    {
+      "id": "MG-SYNTAX",
+      "signal": "syntax",
+      "change": "invalid",
+      "description": "Refuse incomplete or invalid Python evidence.",
+      "message": "The proposed test file cannot be inspected as Python."
+    }
+  ]
+}

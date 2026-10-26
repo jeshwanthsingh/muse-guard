@@ -1,6 +1,6 @@
 """Original tests and verdicts run outside the candidate process.
-Adapted design: oracle-tree.ts, protected-existing-tests.ts, verdict-core.ts,
-and career-safe-playbook.ts. Candidate execution additionally uses macOS Seatbelt.
+Design references informed the boundary; current code is maintained in muse-guard.
+Candidate execution additionally uses macOS Seatbelt.
 """
 import hashlib
 import json
@@ -113,13 +113,15 @@ def _observe(solution, value, *, requirements=None):
 
 
 def inventory_status(expected, rows):
-    # Port of strict nonempty inventory checks from protected-existing-tests.ts.
-    names = [row.get("id") for row in rows]
-    if (not expected or len(expected) != len(set(expected)) or
-            len(names) != len(set(names)) or sorted(names) != sorted(expected) or
-            any(row.get("status") not in ("PASS", "FAIL") for row in rows)):
-        return "ERROR"
-    return "FAIL" if any(row["status"] == "FAIL" for row in rows) else "PASS"
+    remaining=set(expected)
+    if not remaining or len(remaining)!=len(expected):return "ERROR"
+    verdict="PASS"
+    for observation in rows:
+        identity=observation.get('id');status=observation.get('status')
+        if identity not in remaining or status not in {'PASS','FAIL'}:return "ERROR"
+        remaining.remove(identity)
+        if status=='FAIL':verdict="FAIL"
+    return "ERROR" if remaining else verdict
 
 
 class NamedResult(unittest.TestResult):

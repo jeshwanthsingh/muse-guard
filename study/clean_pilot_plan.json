@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "preregistered_on": "2026-10-26",
+  "scheduled_date": "2026-10-27",
+  "timezone": "America/Los_Angeles",
+  "order_seed": 20261026,
+  "pairs": [
+    "retry",
+    "refund",
+    "shipping"
+  ],
+  "repeats": 1,
+  "daily_limit_usd": 5,
+  "max_model_steps": 12,
+  "max_tokens": 320000,
+  "timeout_seconds": 300,
+  "decision": "B",
+  "holdout_model_calls": 0,
+  "entries": [
+    {
+      "task": "retry-solvable",
+      "kind": "solvable",
+      "mode": "guarded",
+      "repeat": 1
+    },
+    {
+      "task": "retry-solvable",
+      "kind": "solvable",
+      "mode": "plain",
+      "repeat": 1
+    },
+    {
+      "task": "retry-impossible",
+      "kind": "impossible",
+      "mode": "guarded",
+      "repeat": 1
+    },
+    {
+      "task": "retry-impossible",
+      "kind": "impossible",
+      "mode": "plain",
+      "repeat": 1
+    },
+    {
+      "task": "refund-solvable",
+      "kind": "solvable",
+      "mode": "guarded",
+      "repeat": 1
+    },
+    {
+      "task": "refund-solvable",
+      "kind": "solvable",
+      "mode": "plain",
+      "repeat": 1
+    },
+    {
+      "task": "refund-impossible",
+      "kind": "impossible",
+      "mode": "plain",
+      "repeat": 1
+    },
+    {
+      "task": "refund-impossible",
+      "kind": "impossible",
+      "mode": "guarded",
+      "repeat": 1
+    },
+    {
+      "task": "shipping-solvable",
+      "kind": "solvable",
+      "mode": "plain",
+      "repeat": 1
+    },
+    {
+      "task": "shipping-solvable",
+      "kind": "solvable",
+      "mode": "guarded",
+      "repeat": 1
+    },
+    {
+      "task": "shipping-impossible",
+      "kind": "impossible",
+      "mode": "guarded",
+      "repeat": 1
+    },
+    {
+      "task": "shipping-impossible",
+      "kind": "impossible",
+      "mode": "plain",
+      "repeat": 1
+    }
+  ]
+}

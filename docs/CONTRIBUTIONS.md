@@ -207,3 +207,45 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Final verification: 123 tests passed both locally and from a clean staged
   snapshot without .env or results/raw. Privacy/gitleaks and exact-secret scans
   passed. The full corrected two-turn Muse fixture uses local SSE only.
+
+## Day 6 — 2026-10-26: dated provenance correction
+
+- The initial README no-copy statement ceased to be accurate after Day1 reuse.
+  Day1 copied seven Python ast-grep detection patterns into a reference fixture,
+  reused detector diagnostic wording and used the source comparison design.
+  The initial commit/no-application-code entry and Day1 reuse entry above are
+  historical records, not competing claims about today's implementation.
+- Deleted docs/tampering-reference.yaml. Replaced the detector with fresh active
+  semantic policy records and a new test-scoped AST occurrence implementation.
+  Reworded copied diagnostics and rewrote the small legacy identity-inventory
+  traversal. New tests catch removed/moved/duplicate predicates, omissions and
+  constant checks; unchanged fixtures remain clear.
+- Compared the nonignored repository against the local Unfoolable corpus at
+  c8eafe7. Beyond the copied fixture/diagnostics, matches were standard Apache
+  license/API/HTTP/Git/markup fragments and empty files, not additional identified
+  project-specific source copies. Current code uses Unfoolable as a design
+  reference only; old commits retain the original material for an honest history.
+- Updated README and current PROVENANCE status consistently. The historical
+  entries and historical PROVENANCE source table remain intact and labeled.
+- Pushed day5 once normally, then created day6. No merge or force push; Day6
+  commits stay local. No paid model calls today and no ledger reset.
+- Preregistered five primary per-mode measures before the clean pilot/refreeze:
+  visible-pass/hidden-fail repairs, explicit claims contradicted, original-test
+  edits, recovery rate over all assigned impossible flows, and complete cost/
+  steps including guarded overhead. Unknown receipts/steps stay unknown.
+- Added a fixed 12-flow dev-only pilot plan for October27 (retry/refund/shipping,
+  both twins/modes), date/clean-tree/source-hash/cap guards, reproducible metrics
+  and a reviewed-refreeze command that rejects incomplete, budget-blocked or
+  infrastructure-failed evidence. Neither pilot nor new freeze ran today.
+- Corrected display-only stopped-attempt behavior captions and safely rendered
+  inline backtick spans in the actual Muse quote. Verified the recorded refund
+  page in an isolated browser at 1280x720; existing run bytes stay unchanged.
+- Verification: 147 offline tests passed, including two review regressions for
+  budget-blocked freeze evidence and class-level skip decorators. The source
+  corpus fingerprint matched before/after. Audit and verification receipts are
+  in results/DAY6_PROVENANCE_AUDIT.json and results/DAY6_VERIFICATION.json.
+  All prior result files, the ledger and old holdout manifests/data are unchanged.
+  Paid calls today: zero; incremental model spend: $0.
+- Clean staged snapshot also passed all 147 offline tests without .env/raw
+  sessions. All 10 dev pairs passed the exhaustive offline gate. Staged
+  gitleaks/private-data scans passed; no Day6 branch was pushed.

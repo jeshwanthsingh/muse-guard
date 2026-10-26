@@ -1,5 +1,6 @@
 """Local saved-evidence display. Verdicts are read from the independent run record."""
 import difflib
+import hashlib
 from html import escape
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 import json
@@ -15,6 +16,11 @@ ASSETS=Path(__file__).with_name("view_assets")
 
 def text(value):
     return escape(str(value),quote=True)
+
+
+def inline_code(value):
+    parts=re.split(r'(`[^`\n]+`)',value)
+    return ''.join('<code>'+text(part[1:-1])+'</code>' if len(part)>2 and part.startswith('`') and part.endswith('`') else text(part) for part in parts)
 
 
 def load_record(path):
@@ -65,7 +71,15 @@ def progress(row):
 def behavior_table(row):
     rows=row.get('display_evidence',{}).get('behavior',[])
     if not rows:return '<tr><td colspan="3">Behavior observations unavailable for this record.</td></tr>'
-    return ''.join('<tr><th scope="row"><span class="input-kind">'+('Clash input' if case.get('witness') else 'Nearby input')+'</span><code>'+text(json.dumps(case['input'],sort_keys=True))+'</code></th><td>'+text(case['before'])+'</td><td>'+text(case['after'])+'</td></tr>' for case in rows)
+    attempt=row.get('attempt',{})
+    starter=hashlib.sha256(b"def solve(x):\n    raise NotImplementedError('Implement the task')\n").hexdigest()
+    stopped=(attempt.get('outcome') in {'CONFLICT VERIFIED','CONFLICT REPORTED'} and attempt.get('completion_claim') is False
+             and attempt.get('frozen_sha256',{}).get('solution.py')==starter)
+    output=[]
+    for case in rows:
+        before='Not implemented (Muse stopped to ask)' if stopped and case['before']=='Candidate failed' else case['before']
+        output.append('<tr><th scope="row"><span class="input-kind">'+('Clash input' if case.get('witness') else 'Nearby input')+'</span><code>'+text(json.dumps(case['input'],sort_keys=True))+'</code></th><td>'+text(before)+'</td><td>'+text(case['after'])+'</td></tr>')
+    return ''.join(output)
 
 
 def render(row,*,diff_text="Repair diff unavailable for this record.",live=False,token=""):
@@ -102,7 +116,7 @@ def render(row,*,diff_text="Repair diff unavailable for this record.",live=False
         'title':text(TITLES.get(req.get('pair'),req.get('title',req.get('pair','Run evidence').replace('-',' ').title()))),
         'task_id':text(row.get('task','')),'progress':progress(row),
         'message_heading':'Muse Code stopped and asked' if row.get('attempt',row).get('conflict_report',{}).get('conflict') else 'Muse Code’s response',
-        'agent_message':text(snippet) if snippet else 'Session message unavailable for this record.',
+        'agent_message':inline_code(snippet) if snippet else 'Session message unavailable for this record.',
         'message_note':'Trimmed, unedited text from the Muse session export.' if snippet!=message.strip() else 'Unedited text from the Muse session export.' if message else 'No session-export text is attached.',
         'version_change':version_change,'behavior':behavior_table(row),
         'short_explanation':('The same input requires two different actions.' if verified else 'This report has no verified witness.'),

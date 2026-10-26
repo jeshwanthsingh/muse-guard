@@ -200,7 +200,7 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
               "max_tokens":max_tokens,"max_model_steps":max_model_steps,"outcome": "HARNESS ERROR",
               "tokens": {"input":0,"output":0,"cached_input":0}, "cost_usd": 0,
               "cost_basis": "no model invocation", "time_seconds": 0,
-              "exit_code": None, "model_invoked": False, "tests": []}
+              "exit_code": None, "model_invoked": False, "tests": [],"main_steps":0,"expected_test_ids":task.get("expected_names",[])}
     try:
         if not env.get("META_API_KEY"):
             raise ValueError("META_API_KEY must be supplied through the environment")
@@ -286,7 +286,7 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
                 if any(p.is_symlink() for p in workspace.rglob('*')) or current!=continuation.get('frozen_sha256'):raise ValueError('Retained workspace changed between turns')
             # Persist an unknown-cost reservation before any inference. A hard
             # interruption cannot erase spend and allow the next invocation through.
-            record.update(tokens=None,cost_usd=None,cost_basis="run in progress; reservation unresolved")
+            record.update(tokens=None,cost_usd=None,main_steps=None,cost_basis="run in progress; reservation unresolved")
             (results / (run_id + ".json")).write_text(json.dumps(record,indent=2)+"\n")
             with Gateway(env["META_API_KEY"], token_limit=max_tokens, journal=raw / "provider-usage.json",dollar_limit=reservation if dollar_quota else None) as gateway:
                 args = [cli,"exec","--provider","meta","--model",MODEL,"--base-url",gateway.url,
@@ -298,6 +298,7 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
                     from .isolation import author_command
                     record['author_isolation']='outer macOS Seatbelt: harness/home-secret reads denied, writes only throwaway root, outbound only token gateway; Muse inner sandbox disabled to avoid unsupported nesting'
                     executed = run_process(author_command(args,write_root=root,gateway_url=gateway.url), workspace, clean, timeout=300)
+                    record['authoring_infrastructure_error']='sandbox enforcement unavailable' in executed.stdout
                     record["exit_code"] = executed.returncode
                     record["termination"]=("MODEL STEP LIMIT" if "model did not reach a terminal state within" in executed.stderr
                                            else "TURN COMPLETE" if executed.returncode==0 else "CLI ERROR")
@@ -312,6 +313,7 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
                 finally:
                     gateway.stop()
                     record["dollar_quota_usd"]=float(reservation) if dollar_quota else None
+                    record["budget_stop"]=any(e.get("blocked") and e.get("block_kind")=="budget" for e in gateway.events)
                     record["budget_events"] = gateway.events
                     record["reserved_tokens"] = gateway.budget.reserved_tokens
                     record["model_invoked"] = any(not event.get("blocked") for event in gateway.events)

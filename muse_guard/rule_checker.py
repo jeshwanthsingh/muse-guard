@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from .checker import _observe, NamedResult, ObservationError, CandidateExecutionError
 from .rules import approved, verify_conflict, digest
+from .tampering import compare_tests
 
 
 def explicit_completion(text):
@@ -49,7 +50,10 @@ def check_rules(task,candidate,claim="",*,runtime_requirements=None):
             if p.is_symlink() or (p.exists() and (not p.is_file() or p.stat().st_size>1024*1024)):
                 raise ValueError("Unsafe candidate file")
         original=root/"test_original.py"
-        changed=not original.exists() or original.read_text()!=task["test_source"]
+        original_changed=not original.exists() or original.read_text()!=task["test_source"]
+        result['original_tests_edited']=original_changed
+        result['test_tampering_flags']=compare_tests(task['test_source'],original.read_text() if original.exists() else '')
+        changed=original_changed
         rules_file=root/"rules.yaml"
         if not rules_file.exists() or json.loads(rules_file.read_text())!=task["requirements"]:
             changed=True
