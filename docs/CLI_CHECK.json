@@ -1,0 +1,18 @@
+{
+  "cli_version": "1.4.2 (1.4.2-R4684.1)",
+  "diagnostic_exit_code": 2,
+  "export_exit_code": 1,
+  "session_export_exists": false,
+  "credential_present": false,
+  "model_call_attempted": false,
+  "tokens": null,
+  "cost_usd": 0,
+  "note": "No credential supplied; isolated HOME and config. No paid model execution established.",
+  "auth_probe_exit_code": 1,
+  "auth_export_exit_code": 1,
+  "auth_session_export_exists": false,
+  "standard_flag_supported": false,
+  "echo_exit_code": 0,
+  "echo_export_exit_code": 0,
+  "echo_export_exists": true
+}

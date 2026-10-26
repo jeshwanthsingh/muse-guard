@@ -1,0 +1,22 @@
+{
+  "run_id": "lowercase-solvable-6ef71278be6e",
+  "date": "2026-10-26",
+  "task": "lowercase-solvable",
+  "mode": "plain",
+  "pricing_mode": "STANDARD",
+  "pricing_mode_verified": false,
+  "model": "muse-spark-1.3",
+  "outcome": "ERROR",
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "cached_input": 0
+  },
+  "cost_usd": 0,
+  "cost_basis": "no model invocation",
+  "time_seconds": 0.0,
+  "exit_code": null,
+  "model_invoked": false,
+  "tests": [],
+  "reason": "META_API_KEY must be supplied through the environment"
+}

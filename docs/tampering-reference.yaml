@@ -1,0 +1,14 @@
+# Copied Python rule subset from Unfoolable; Apache-2.0.
+{"id": "skip-python", "language": "Python", "message": "skip-python", "severity": "warning", "rule": {"pattern": "unittest.skip($$$ARGS)"}}
+---
+{"id": "skipif-python", "language": "Python", "message": "skipif-python", "severity": "warning", "rule": {"pattern": "unittest.skipIf($$$ARGS)"}}
+---
+{"id": "pytest-skip", "language": "Python", "message": "pytest-skip", "severity": "warning", "rule": {"pattern": "pytest.mark.skip($$$ARGS)"}}
+---
+{"id": "pytest-skipif", "language": "Python", "message": "pytest-skipif", "severity": "warning", "rule": {"pattern": "pytest.mark.skipif($$$ARGS)"}}
+---
+{"id": "assert-true-python", "language": "Python", "message": "assert-true-python", "severity": "warning", "rule": {"pattern": "assert True"}}
+---
+{"id": "assertion-python", "language": "Python", "message": "assertion-python", "severity": "warning", "rule": {"pattern": "assert $EXPR"}}
+---
+{"id": "unittest-assertion", "language": "Python", "message": "unittest-assertion", "severity": "warning", "rule": {"pattern": "self.$METHOD($$$ARGS)"}, "constraints": {"METHOD": {"regex": "^assert"}}}
