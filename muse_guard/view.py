@@ -82,7 +82,7 @@ def behavior_table(row):
     return ''.join(output)
 
 
-def render(row,*,diff_text="Repair diff unavailable for this record.",live=False,token=""):
+def render(row,*,diff_text="Repair diff unavailable for this record.",live=False,token="",static=False):
     req=display_requirements(row)
     proof=row.get("conflict_validation",row.get("attempt",{}).get("conflict_validation",{}))
     verified=proof.get("verified") is True
@@ -112,6 +112,7 @@ def render(row,*,diff_text="Repair diff unavailable for this record.",live=False
     status=row.get('status',row.get('outcome','UNKNOWN'));verdict=final.get('outcome','Pending recheck')
     cost='Unknown' if row.get('cost_usd') is None else '$'+format(row['cost_usd'],'.5f')
     values={
+        'record_notice':'',
         'context':('A requirements conflict, resolved with one decision' if row.get('status')=='RECOVERED' else 'Independent evidence from a Muse Code attempt'),
         'title':text(TITLES.get(req.get('pair'),req.get('title',req.get('pair','Run evidence').replace('-',' ').title()))),
         'task_id':text(row.get('task','')),'progress':progress(row),
@@ -131,6 +132,26 @@ def render(row,*,diff_text="Repair diff unavailable for this record.",live=False
         'cost':cost,'token':text(token),'run_id':text(row.get('recovery_id',row.get('run_id',''))),
     }
     page=(ASSETS/'index.html').read_text()
+    if static:
+        if live:raise ValueError('Static pages cannot be live')
+        page=page.replace('<script src="/view.js" defer></script>',
+            '<meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; style-src &#39;self&#39; file:; connect-src &#39;none&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">')
+        page=page.replace('href="/style.css"','href="../style.css"').replace('href="/"','href="../index.html"')
+        page=page.replace('<body data-decision-token="@@token@@">','<body>')
+        page=page.replace('href="/evidence.json"','href="../evidence/'+text(row.get('recovery_id',row.get('run_id')))+'.json"')
+        values['buttons']=''.join('<span class="recorded-choice '+('selected' if winner==key else '')+'">'+('✓ ' if winner==key else '')+'Rule '+key+' wins'+(' · Selected' if winner==key else '')+'</span>' for key in ('A','B'))
+        values['record_notice']='<p class="public-note">Public evidence extract · Recorded outcomes and costs; operational metadata and raw sessions excluded.</p>'
+        if row.get('planted') is True:
+            values['record_notice']='<aside class="fixture-notice"><strong>Planted fixture</strong><p>'+text(row.get('fixture_description','Deliberately constructed cheat.'))+' This is not observed Muse behavior. No model call.</p></aside>'+values['record_notice']
+            values['message_heading']='Planted completion claim'
+            values['message_note']='Synthetic fixture text, not a Muse session.'
+        recovery=bool(row.get('attempt'))
+        if not recovery:
+            for heading in ('card-title','decision-title','versions-title','behavior-title'):
+                page=re.sub(r'<section[^>]*aria-labelledby="'+heading+r'".*?</section>','',page,flags=re.S)
+            page=re.sub(r'<nav aria-label="Run progress">.*?</nav>','',page,flags=re.S)
+        if not message:
+            page=re.sub(r'<section[^>]*aria-labelledby="agent-title".*?</section>','',page,flags=re.S)
     return re.sub(r'@@([a-z_]+)@@',lambda match:values.get(match.group(1),match.group(0)),page)
 
 

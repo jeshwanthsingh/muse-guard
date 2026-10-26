@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-26",
+  "branch": "codex/static-judge-demo",
+  "base_commit": "ef9d36b",
+  "offline_tests": {
+    "passed": 155,
+    "seconds": 48.507
+  },
+  "paid_calls": 0,
+  "new_cost_usd": 0,
+  "unchanged_prior_result_and_holdout_files": 116,
+  "site": {
+    "directory": "output/judge-site",
+    "pages": 5,
+    "examples": 4,
+    "files": 12,
+    "manifest_sha256": "9d76447ade35f9a86ac4903eb74ac72b1544c7a3f490f4cfb4e99189d7b170b4",
+    "script_files": 0
+  },
+  "browser": {
+    "browser": "Chrome",
+    "transport": "file URLs, no server",
+    "viewport": [
+      1280,
+      720
+    ],
+    "example_pages_rendered": 4,
+    "live_controls": 0,
+    "network_requests": 0,
+    "horizontal_overflow": false,
+    "downloads_byte_identical": 4
+  },
+  "privacy": {
+    "built_in_patterns": "PASS",
+    "gitleaks_output_default_rules": "PASS",
+    "exact_nontrivial_env_values": "PASS; values not recorded",
+    "machine_hostname": "PASS; value not recorded",
+    "private_home_paths_and_emails": "PASS"
+  },
+  "screenshots": [
+    "output/playwright/static-index-1280x720.png",
+    "output/playwright/static-pass-1280x720.png",
+    "output/playwright/static-planted-1280x720.png",
+    "output/playwright/static-refund-1280x720.png",
+    "output/playwright/static-refund-conflict-1280x720.png",
+    "output/playwright/static-retry-1280x720.png"
+  ],
+  "deployment": {
+    "workflow": "manual dispatch only, job hard-disabled",
+    "pages_enabled": false,
+    "deployed": false
+  }
+}

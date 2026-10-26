@@ -64,3 +64,11 @@ started. The same-session plain adapter passes offline tests; the final-code
 clean development pilot and reviewed refreeze remain required. See
 [tomorrow's exact commands](docs/NEXT_PILOT.md) and the
 [primary measures](docs/PRIMARY_MEASURES.md).
+
+## Static judge demo
+
+Open `output/judge-site/index.html` for four recorded examples with downloadable
+public evidence: two recoveries, a solvable PASS and a clearly labeled planted
+cheat. Export other recorded selections with `muse-guard export-site <runs...>`.
+See [export instructions and privacy boundaries](docs/STATIC_DEMO.md).
+The GitHub Pages workflow is present but disabled; nothing has been deployed.

@@ -1,0 +1,41 @@
+name: Recorded judge demo (disabled)
+
+# Intentionally no push trigger. To publish later, explicitly authorize enabling
+# Pages in repository settings and change the job condition below.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Export recorded public evidence only
+        run: >-
+          python3 muse-guard export-site
+          demo/records/refund-recovery.json
+          demo/records/retry-recovery.json
+          demo/records/solvable-pass.json
+          demo/records/planted-cheat.json
+          --out _site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy static artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

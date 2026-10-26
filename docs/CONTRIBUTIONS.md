@@ -264,3 +264,27 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Verification: both environment regression tests and all 149 offline tests
   passed, including real-Muse same-session repair against a local fake provider.
   All 116 prior result/ledger/holdout files checked remain byte-identical.
+
+## Static judge demo — 2026-10-26
+
+- Created codex/static-judge-demo from day6 at ef9d36b. Local commits only.
+- Added export-site for a self-contained recorded-run index, run pages and public
+  evidence downloads. Reused the viewer presentation; static output contains no
+  scripts, live decision controls, runtime server or raw session files.
+- Prepared public extracts for historical refund/retry recoveries and a solvable
+  PASS. Added an offline checker-scored planted edited-test cheat, prominently
+  labeled synthetic and excluded from claims about observed Muse behavior.
+- Added allowlisted evidence projection, credential/path/hostname rejection,
+  relative links and output hash manifest. Exact current nontrivial .env values
+  and the machine hostname were checked against output without printing them.
+- Added a manually dispatched GitHub Pages template with a hard-disabled job.
+  No repository hosting settings changed, no deployment, push or merge.
+- Verified all four pages from file URLs at 1280x720 with zero network requests
+  and zero live controls. Fixed Chrome's local-file download behavior using an
+  inert data URL; all four actual downloads match the public JSON byte-for-byte.
+  Captured index, refund, retry, PASS and planted screenshots.
+- No model calls or spend; historical results, the ledger and holdouts preserved.
+- Final verification: 155 offline tests passed. Output passed default gitleaks,
+  exact nontrivial .env-value, hostname, private-path and email scans. All prior
+  116 result/ledger/holdout files checked remain byte-identical. See
+  results/STATIC_DEMO_VERIFICATION.json for the artifact/browser proof.

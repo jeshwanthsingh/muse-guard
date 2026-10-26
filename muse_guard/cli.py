@@ -33,7 +33,21 @@ def main():
     view=sub.add_parser('view');view.add_argument('record')
     view.add_argument('--live',action='store_true');view.add_argument('--port',type=int,default=0)
     view.add_argument('--no-open',action='store_true')
+    site=sub.add_parser('export-site',help='Export recorded runs as an offline public demo')
+    site.add_argument('records',nargs='+');site.add_argument('--out',type=Path,default=ROOT/'output/judge-site')
     args=parser.parse_args();results=ROOT/'results'
+    if args.command=='export-site':
+        from .site import export_site
+        paths=[]
+        for name in args.records:
+            path=Path(name).expanduser()
+            if not path.exists():
+                if path.name!=name:parser.error('Record path does not exist')
+                path=results/(name.removesuffix('.json')+'.json')
+            paths.append(path)
+        try:print(export_site(paths,args.out))
+        except (ValueError,OSError,KeyError,TypeError) as error:parser.error(str(error))
+        return
     if args.command=='view':
         from .view import serve
         path=Path(args.record).expanduser()
