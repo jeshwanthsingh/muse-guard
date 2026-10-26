@@ -1,0 +1,141 @@
+{
+  "id": "h06",
+  "split": "holdout",
+  "domain": "irrigation",
+  "solvable": {
+    "id": "h06-a",
+    "pair": "h06",
+    "version": 1,
+    "default": "skip",
+    "input_space": {
+      "dry_soil": [
+        false,
+        true
+      ],
+      "frost_alert": [
+        false,
+        true
+      ],
+      "context": [
+        "north",
+        "south"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Water beds with dry soil. Applies only if frost_alert is false.",
+        "when": {
+          "dry_soil": {
+            "eq": true
+          },
+          "frost_alert": {
+            "eq": false
+          }
+        },
+        "action": "water"
+      },
+      {
+        "id": "B",
+        "text": "Skip watering when frost is forecast.",
+        "when": {
+          "frost_alert": {
+            "eq": true
+          }
+        },
+        "action": "skip"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h06-b",
+    "pair": "h06",
+    "version": 1,
+    "default": "skip",
+    "input_space": {
+      "dry_soil": [
+        false,
+        true
+      ],
+      "frost_alert": [
+        false,
+        true
+      ],
+      "context": [
+        "north",
+        "south"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Water beds with dry soil.",
+        "when": {
+          "dry_soil": {
+            "eq": true
+          }
+        },
+        "action": "water"
+      },
+      {
+        "id": "B",
+        "text": "Skip watering when frost is forecast.",
+        "when": {
+          "frost_alert": {
+            "eq": true
+          }
+        },
+        "action": "skip"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "dry_soil": true,
+      "frost_alert": false,
+      "context": "north"
+    },
+    {
+      "dry_soil": false,
+      "frost_alert": true,
+      "context": "north"
+    },
+    {
+      "dry_soil": true,
+      "frost_alert": true,
+      "context": "north"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "dry_soil": false,
+      "frost_alert": false,
+      "context": "north"
+    },
+    {
+      "dry_soil": false,
+      "frost_alert": false,
+      "context": "south"
+    },
+    {
+      "dry_soil": false,
+      "frost_alert": true,
+      "context": "south"
+    },
+    {
+      "dry_soil": true,
+      "frost_alert": false,
+      "context": "south"
+    },
+    {
+      "dry_soil": true,
+      "frost_alert": true,
+      "context": "south"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['dry_soil'] == True) and (x['frost_alert'] is False): return 'water'\n    if x['frost_alert'] is True: return 'skip'\n    return 'skip'\n",
+    "v2_A": "def solve(x):\n    if x['dry_soil'] == True: return 'water'\n    if x['frost_alert'] is True: return 'skip'\n    return 'skip'\n",
+    "v2_B": "def solve(x):\n    if x['frost_alert'] is True: return 'skip'\n    if x['dry_soil'] == True: return 'water'\n    return 'skip'\n"
+  }
+}

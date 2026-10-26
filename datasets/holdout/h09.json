@@ -1,0 +1,141 @@
+{
+  "id": "h09",
+  "split": "holdout",
+  "domain": "document-signing",
+  "solvable": {
+    "id": "h09-a",
+    "pair": "h09",
+    "version": 1,
+    "default": "defer",
+    "input_space": {
+      "signature_due": [
+        false,
+        true
+      ],
+      "unverified_identity": [
+        false,
+        true
+      ],
+      "context": [
+        "lease",
+        "waiver"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Sign documents whose signature is due. Applies only if unverified_identity is false.",
+        "when": {
+          "signature_due": {
+            "eq": true
+          },
+          "unverified_identity": {
+            "eq": false
+          }
+        },
+        "action": "sign"
+      },
+      {
+        "id": "B",
+        "text": "Defer signing if identity is unverified.",
+        "when": {
+          "unverified_identity": {
+            "eq": true
+          }
+        },
+        "action": "defer"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h09-b",
+    "pair": "h09",
+    "version": 1,
+    "default": "defer",
+    "input_space": {
+      "signature_due": [
+        false,
+        true
+      ],
+      "unverified_identity": [
+        false,
+        true
+      ],
+      "context": [
+        "lease",
+        "waiver"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Sign documents whose signature is due.",
+        "when": {
+          "signature_due": {
+            "eq": true
+          }
+        },
+        "action": "sign"
+      },
+      {
+        "id": "B",
+        "text": "Defer signing if identity is unverified.",
+        "when": {
+          "unverified_identity": {
+            "eq": true
+          }
+        },
+        "action": "defer"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "signature_due": true,
+      "unverified_identity": false,
+      "context": "lease"
+    },
+    {
+      "signature_due": false,
+      "unverified_identity": true,
+      "context": "lease"
+    },
+    {
+      "signature_due": true,
+      "unverified_identity": true,
+      "context": "lease"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "signature_due": false,
+      "unverified_identity": false,
+      "context": "lease"
+    },
+    {
+      "signature_due": false,
+      "unverified_identity": false,
+      "context": "waiver"
+    },
+    {
+      "signature_due": false,
+      "unverified_identity": true,
+      "context": "waiver"
+    },
+    {
+      "signature_due": true,
+      "unverified_identity": false,
+      "context": "waiver"
+    },
+    {
+      "signature_due": true,
+      "unverified_identity": true,
+      "context": "waiver"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['signature_due'] == True) and (x['unverified_identity'] is False): return 'sign'\n    if x['unverified_identity'] is True: return 'defer'\n    return 'defer'\n",
+    "v2_A": "def solve(x):\n    if x['signature_due'] == True: return 'sign'\n    if x['unverified_identity'] is True: return 'defer'\n    return 'defer'\n",
+    "v2_B": "def solve(x):\n    if x['unverified_identity'] is True: return 'defer'\n    if x['signature_due'] == True: return 'sign'\n    return 'defer'\n"
+  }
+}

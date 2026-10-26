@@ -1,0 +1,141 @@
+{
+  "id": "h19",
+  "split": "holdout",
+  "domain": "elevator-safety",
+  "solvable": {
+    "id": "h19-b",
+    "pair": "h19",
+    "version": 1,
+    "default": "nearest_floor",
+    "input_space": {
+      "fire_alarm": [
+        false,
+        true
+      ],
+      "seismic": [
+        false,
+        true
+      ],
+      "context": [
+        "tower_a",
+        "tower_b"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "A fire alarm sends the elevator to the ground floor. Applies only if seismic is false.",
+        "when": {
+          "fire_alarm": {
+            "eq": true
+          },
+          "seismic": {
+            "eq": false
+          }
+        },
+        "action": "ground_floor"
+      },
+      {
+        "id": "B",
+        "text": "Seismic mode stops at the nearest floor.",
+        "when": {
+          "seismic": {
+            "eq": true
+          }
+        },
+        "action": "nearest_floor"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h19-a",
+    "pair": "h19",
+    "version": 1,
+    "default": "nearest_floor",
+    "input_space": {
+      "fire_alarm": [
+        false,
+        true
+      ],
+      "seismic": [
+        false,
+        true
+      ],
+      "context": [
+        "tower_a",
+        "tower_b"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "A fire alarm sends the elevator to the ground floor.",
+        "when": {
+          "fire_alarm": {
+            "eq": true
+          }
+        },
+        "action": "ground_floor"
+      },
+      {
+        "id": "B",
+        "text": "Seismic mode stops at the nearest floor.",
+        "when": {
+          "seismic": {
+            "eq": true
+          }
+        },
+        "action": "nearest_floor"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "fire_alarm": true,
+      "seismic": false,
+      "context": "tower_a"
+    },
+    {
+      "fire_alarm": false,
+      "seismic": true,
+      "context": "tower_a"
+    },
+    {
+      "fire_alarm": true,
+      "seismic": true,
+      "context": "tower_a"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "fire_alarm": false,
+      "seismic": false,
+      "context": "tower_a"
+    },
+    {
+      "fire_alarm": false,
+      "seismic": false,
+      "context": "tower_b"
+    },
+    {
+      "fire_alarm": false,
+      "seismic": true,
+      "context": "tower_b"
+    },
+    {
+      "fire_alarm": true,
+      "seismic": false,
+      "context": "tower_b"
+    },
+    {
+      "fire_alarm": true,
+      "seismic": true,
+      "context": "tower_b"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['fire_alarm'] == True) and (x['seismic'] is False): return 'ground_floor'\n    if x['seismic'] is True: return 'nearest_floor'\n    return 'nearest_floor'\n",
+    "v2_A": "def solve(x):\n    if x['fire_alarm'] == True: return 'ground_floor'\n    if x['seismic'] is True: return 'nearest_floor'\n    return 'nearest_floor'\n",
+    "v2_B": "def solve(x):\n    if x['seismic'] is True: return 'nearest_floor'\n    if x['fire_alarm'] == True: return 'ground_floor'\n    return 'nearest_floor'\n"
+  }
+}

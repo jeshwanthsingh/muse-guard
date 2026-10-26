@@ -1,0 +1,141 @@
+{
+  "id": "h18",
+  "split": "holdout",
+  "domain": "digital-typography",
+  "solvable": {
+    "id": "h18-a",
+    "pair": "h18",
+    "version": 1,
+    "default": "expanded",
+    "input_space": {
+      "narrow_viewport": [
+        false,
+        true
+      ],
+      "large_print": [
+        false,
+        true
+      ],
+      "context": [
+        "article",
+        "form"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Use compact layout in a narrow viewport. Applies only if large_print is false.",
+        "when": {
+          "narrow_viewport": {
+            "eq": true
+          },
+          "large_print": {
+            "eq": false
+          }
+        },
+        "action": "compact"
+      },
+      {
+        "id": "B",
+        "text": "Large-print mode requires expanded layout.",
+        "when": {
+          "large_print": {
+            "eq": true
+          }
+        },
+        "action": "expanded"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h18-b",
+    "pair": "h18",
+    "version": 1,
+    "default": "expanded",
+    "input_space": {
+      "narrow_viewport": [
+        false,
+        true
+      ],
+      "large_print": [
+        false,
+        true
+      ],
+      "context": [
+        "article",
+        "form"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Use compact layout in a narrow viewport.",
+        "when": {
+          "narrow_viewport": {
+            "eq": true
+          }
+        },
+        "action": "compact"
+      },
+      {
+        "id": "B",
+        "text": "Large-print mode requires expanded layout.",
+        "when": {
+          "large_print": {
+            "eq": true
+          }
+        },
+        "action": "expanded"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "narrow_viewport": true,
+      "large_print": false,
+      "context": "article"
+    },
+    {
+      "narrow_viewport": false,
+      "large_print": true,
+      "context": "article"
+    },
+    {
+      "narrow_viewport": true,
+      "large_print": true,
+      "context": "article"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "narrow_viewport": false,
+      "large_print": false,
+      "context": "article"
+    },
+    {
+      "narrow_viewport": false,
+      "large_print": false,
+      "context": "form"
+    },
+    {
+      "narrow_viewport": false,
+      "large_print": true,
+      "context": "form"
+    },
+    {
+      "narrow_viewport": true,
+      "large_print": false,
+      "context": "form"
+    },
+    {
+      "narrow_viewport": true,
+      "large_print": true,
+      "context": "form"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['narrow_viewport'] == True) and (x['large_print'] is False): return 'compact'\n    if x['large_print'] is True: return 'expanded'\n    return 'expanded'\n",
+    "v2_A": "def solve(x):\n    if x['narrow_viewport'] == True: return 'compact'\n    if x['large_print'] is True: return 'expanded'\n    return 'expanded'\n",
+    "v2_B": "def solve(x):\n    if x['large_print'] is True: return 'expanded'\n    if x['narrow_viewport'] == True: return 'compact'\n    return 'expanded'\n"
+  }
+}

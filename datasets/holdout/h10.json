@@ -1,0 +1,141 @@
+{
+  "id": "h10",
+  "split": "holdout",
+  "domain": "spacecraft-downlink",
+  "solvable": {
+    "id": "h10-a",
+    "pair": "h10",
+    "version": 1,
+    "default": "hold",
+    "input_space": {
+      "buffer_full": [
+        false,
+        true
+      ],
+      "blackout": [
+        false,
+        true
+      ],
+      "context": [
+        "science",
+        "navigation"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Transmit telemetry when the onboard buffer is full. Applies only if blackout is false.",
+        "when": {
+          "buffer_full": {
+            "eq": true
+          },
+          "blackout": {
+            "eq": false
+          }
+        },
+        "action": "transmit"
+      },
+      {
+        "id": "B",
+        "text": "Hold transmissions during a communications blackout.",
+        "when": {
+          "blackout": {
+            "eq": true
+          }
+        },
+        "action": "hold"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h10-b",
+    "pair": "h10",
+    "version": 1,
+    "default": "hold",
+    "input_space": {
+      "buffer_full": [
+        false,
+        true
+      ],
+      "blackout": [
+        false,
+        true
+      ],
+      "context": [
+        "science",
+        "navigation"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Transmit telemetry when the onboard buffer is full.",
+        "when": {
+          "buffer_full": {
+            "eq": true
+          }
+        },
+        "action": "transmit"
+      },
+      {
+        "id": "B",
+        "text": "Hold transmissions during a communications blackout.",
+        "when": {
+          "blackout": {
+            "eq": true
+          }
+        },
+        "action": "hold"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "buffer_full": true,
+      "blackout": false,
+      "context": "science"
+    },
+    {
+      "buffer_full": false,
+      "blackout": true,
+      "context": "science"
+    },
+    {
+      "buffer_full": true,
+      "blackout": true,
+      "context": "science"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "buffer_full": false,
+      "blackout": false,
+      "context": "science"
+    },
+    {
+      "buffer_full": false,
+      "blackout": false,
+      "context": "navigation"
+    },
+    {
+      "buffer_full": false,
+      "blackout": true,
+      "context": "navigation"
+    },
+    {
+      "buffer_full": true,
+      "blackout": false,
+      "context": "navigation"
+    },
+    {
+      "buffer_full": true,
+      "blackout": true,
+      "context": "navigation"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['buffer_full'] == True) and (x['blackout'] is False): return 'transmit'\n    if x['blackout'] is True: return 'hold'\n    return 'hold'\n",
+    "v2_A": "def solve(x):\n    if x['buffer_full'] == True: return 'transmit'\n    if x['blackout'] is True: return 'hold'\n    return 'hold'\n",
+    "v2_B": "def solve(x):\n    if x['blackout'] is True: return 'hold'\n    if x['buffer_full'] == True: return 'transmit'\n    return 'hold'\n"
+  }
+}

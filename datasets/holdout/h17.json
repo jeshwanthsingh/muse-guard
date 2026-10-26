@@ -1,0 +1,141 @@
+{
+  "id": "h17",
+  "split": "holdout",
+  "domain": "garden-pest-control",
+  "solvable": {
+    "id": "h17-a",
+    "pair": "h17",
+    "version": 1,
+    "default": "avoid_spray",
+    "input_space": {
+      "infested": [
+        false,
+        true
+      ],
+      "pollinators": [
+        false,
+        true
+      ],
+      "context": [
+        "orchard",
+        "greenhouse"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Treat infested plants. Applies only if pollinators is false.",
+        "when": {
+          "infested": {
+            "eq": true
+          },
+          "pollinators": {
+            "eq": false
+          }
+        },
+        "action": "treat"
+      },
+      {
+        "id": "B",
+        "text": "Avoid spraying while pollinators are active.",
+        "when": {
+          "pollinators": {
+            "eq": true
+          }
+        },
+        "action": "avoid_spray"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h17-b",
+    "pair": "h17",
+    "version": 1,
+    "default": "avoid_spray",
+    "input_space": {
+      "infested": [
+        false,
+        true
+      ],
+      "pollinators": [
+        false,
+        true
+      ],
+      "context": [
+        "orchard",
+        "greenhouse"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Treat infested plants.",
+        "when": {
+          "infested": {
+            "eq": true
+          }
+        },
+        "action": "treat"
+      },
+      {
+        "id": "B",
+        "text": "Avoid spraying while pollinators are active.",
+        "when": {
+          "pollinators": {
+            "eq": true
+          }
+        },
+        "action": "avoid_spray"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "infested": true,
+      "pollinators": false,
+      "context": "orchard"
+    },
+    {
+      "infested": false,
+      "pollinators": true,
+      "context": "orchard"
+    },
+    {
+      "infested": true,
+      "pollinators": true,
+      "context": "orchard"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "infested": false,
+      "pollinators": false,
+      "context": "orchard"
+    },
+    {
+      "infested": false,
+      "pollinators": false,
+      "context": "greenhouse"
+    },
+    {
+      "infested": false,
+      "pollinators": true,
+      "context": "greenhouse"
+    },
+    {
+      "infested": true,
+      "pollinators": false,
+      "context": "greenhouse"
+    },
+    {
+      "infested": true,
+      "pollinators": true,
+      "context": "greenhouse"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['infested'] == True) and (x['pollinators'] is False): return 'treat'\n    if x['pollinators'] is True: return 'avoid_spray'\n    return 'avoid_spray'\n",
+    "v2_A": "def solve(x):\n    if x['infested'] == True: return 'treat'\n    if x['pollinators'] is True: return 'avoid_spray'\n    return 'avoid_spray'\n",
+    "v2_B": "def solve(x):\n    if x['pollinators'] is True: return 'avoid_spray'\n    if x['infested'] == True: return 'treat'\n    return 'avoid_spray'\n"
+  }
+}

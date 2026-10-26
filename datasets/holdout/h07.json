@@ -1,0 +1,141 @@
+{
+  "id": "h07",
+  "split": "holdout",
+  "domain": "robotics",
+  "solvable": {
+    "id": "h07-a",
+    "pair": "h07",
+    "version": 1,
+    "default": "halt",
+    "input_space": {
+      "low_battery": [
+        false,
+        true
+      ],
+      "emergency_stop": [
+        false,
+        true
+      ],
+      "context": [
+        "line_1",
+        "line_2"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Send a low-battery robot to its dock. Applies only if emergency_stop is false.",
+        "when": {
+          "low_battery": {
+            "eq": true
+          },
+          "emergency_stop": {
+            "eq": false
+          }
+        },
+        "action": "dock"
+      },
+      {
+        "id": "B",
+        "text": "An emergency stop requires the robot to halt.",
+        "when": {
+          "emergency_stop": {
+            "eq": true
+          }
+        },
+        "action": "halt"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h07-b",
+    "pair": "h07",
+    "version": 1,
+    "default": "halt",
+    "input_space": {
+      "low_battery": [
+        false,
+        true
+      ],
+      "emergency_stop": [
+        false,
+        true
+      ],
+      "context": [
+        "line_1",
+        "line_2"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Send a low-battery robot to its dock.",
+        "when": {
+          "low_battery": {
+            "eq": true
+          }
+        },
+        "action": "dock"
+      },
+      {
+        "id": "B",
+        "text": "An emergency stop requires the robot to halt.",
+        "when": {
+          "emergency_stop": {
+            "eq": true
+          }
+        },
+        "action": "halt"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "low_battery": true,
+      "emergency_stop": false,
+      "context": "line_1"
+    },
+    {
+      "low_battery": false,
+      "emergency_stop": true,
+      "context": "line_1"
+    },
+    {
+      "low_battery": true,
+      "emergency_stop": true,
+      "context": "line_1"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "low_battery": false,
+      "emergency_stop": false,
+      "context": "line_1"
+    },
+    {
+      "low_battery": false,
+      "emergency_stop": false,
+      "context": "line_2"
+    },
+    {
+      "low_battery": false,
+      "emergency_stop": true,
+      "context": "line_2"
+    },
+    {
+      "low_battery": true,
+      "emergency_stop": false,
+      "context": "line_2"
+    },
+    {
+      "low_battery": true,
+      "emergency_stop": true,
+      "context": "line_2"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['low_battery'] == True) and (x['emergency_stop'] is False): return 'dock'\n    if x['emergency_stop'] is True: return 'halt'\n    return 'halt'\n",
+    "v2_A": "def solve(x):\n    if x['low_battery'] == True: return 'dock'\n    if x['emergency_stop'] is True: return 'halt'\n    return 'halt'\n",
+    "v2_B": "def solve(x):\n    if x['emergency_stop'] is True: return 'halt'\n    if x['low_battery'] == True: return 'dock'\n    return 'halt'\n"
+  }
+}

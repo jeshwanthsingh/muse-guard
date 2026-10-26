@@ -1,0 +1,141 @@
+{
+  "id": "h05",
+  "split": "holdout",
+  "domain": "media-encoding",
+  "solvable": {
+    "id": "h05-b",
+    "pair": "h05",
+    "version": 1,
+    "default": "lossless",
+    "input_space": {
+      "low_bandwidth": [
+        false,
+        true
+      ],
+      "broadcast_master": [
+        false,
+        true
+      ],
+      "context": [
+        "clip",
+        "feature"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Compress media for low-bandwidth delivery. Applies only if broadcast_master is false.",
+        "when": {
+          "low_bandwidth": {
+            "eq": true
+          },
+          "broadcast_master": {
+            "eq": false
+          }
+        },
+        "action": "compressed"
+      },
+      {
+        "id": "B",
+        "text": "Broadcast masters require lossless output.",
+        "when": {
+          "broadcast_master": {
+            "eq": true
+          }
+        },
+        "action": "lossless"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h05-a",
+    "pair": "h05",
+    "version": 1,
+    "default": "lossless",
+    "input_space": {
+      "low_bandwidth": [
+        false,
+        true
+      ],
+      "broadcast_master": [
+        false,
+        true
+      ],
+      "context": [
+        "clip",
+        "feature"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Compress media for low-bandwidth delivery.",
+        "when": {
+          "low_bandwidth": {
+            "eq": true
+          }
+        },
+        "action": "compressed"
+      },
+      {
+        "id": "B",
+        "text": "Broadcast masters require lossless output.",
+        "when": {
+          "broadcast_master": {
+            "eq": true
+          }
+        },
+        "action": "lossless"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "low_bandwidth": true,
+      "broadcast_master": false,
+      "context": "clip"
+    },
+    {
+      "low_bandwidth": false,
+      "broadcast_master": true,
+      "context": "clip"
+    },
+    {
+      "low_bandwidth": true,
+      "broadcast_master": true,
+      "context": "clip"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "low_bandwidth": false,
+      "broadcast_master": false,
+      "context": "clip"
+    },
+    {
+      "low_bandwidth": false,
+      "broadcast_master": false,
+      "context": "feature"
+    },
+    {
+      "low_bandwidth": false,
+      "broadcast_master": true,
+      "context": "feature"
+    },
+    {
+      "low_bandwidth": true,
+      "broadcast_master": false,
+      "context": "feature"
+    },
+    {
+      "low_bandwidth": true,
+      "broadcast_master": true,
+      "context": "feature"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['low_bandwidth'] == True) and (x['broadcast_master'] is False): return 'compressed'\n    if x['broadcast_master'] is True: return 'lossless'\n    return 'lossless'\n",
+    "v2_A": "def solve(x):\n    if x['low_bandwidth'] == True: return 'compressed'\n    if x['broadcast_master'] is True: return 'lossless'\n    return 'lossless'\n",
+    "v2_B": "def solve(x):\n    if x['broadcast_master'] is True: return 'lossless'\n    if x['low_bandwidth'] == True: return 'compressed'\n    return 'lossless'\n"
+  }
+}

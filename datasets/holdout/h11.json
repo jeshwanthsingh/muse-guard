@@ -1,0 +1,141 @@
+{
+  "id": "h11",
+  "split": "holdout",
+  "domain": "archival-replication",
+  "solvable": {
+    "id": "h11-a",
+    "pair": "h11",
+    "version": 1,
+    "default": "quarantine",
+    "input_space": {
+      "few_copies": [
+        false,
+        true
+      ],
+      "embargo": [
+        false,
+        true
+      ],
+      "context": [
+        "tape",
+        "object_store"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Replicate archives that have too few copies. Applies only if embargo is false.",
+        "when": {
+          "few_copies": {
+            "eq": true
+          },
+          "embargo": {
+            "eq": false
+          }
+        },
+        "action": "replicate"
+      },
+      {
+        "id": "B",
+        "text": "Quarantine embargoed archives.",
+        "when": {
+          "embargo": {
+            "eq": true
+          }
+        },
+        "action": "quarantine"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h11-b",
+    "pair": "h11",
+    "version": 1,
+    "default": "quarantine",
+    "input_space": {
+      "few_copies": [
+        false,
+        true
+      ],
+      "embargo": [
+        false,
+        true
+      ],
+      "context": [
+        "tape",
+        "object_store"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Replicate archives that have too few copies.",
+        "when": {
+          "few_copies": {
+            "eq": true
+          }
+        },
+        "action": "replicate"
+      },
+      {
+        "id": "B",
+        "text": "Quarantine embargoed archives.",
+        "when": {
+          "embargo": {
+            "eq": true
+          }
+        },
+        "action": "quarantine"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "few_copies": true,
+      "embargo": false,
+      "context": "tape"
+    },
+    {
+      "few_copies": false,
+      "embargo": true,
+      "context": "tape"
+    },
+    {
+      "few_copies": true,
+      "embargo": true,
+      "context": "tape"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "few_copies": false,
+      "embargo": false,
+      "context": "tape"
+    },
+    {
+      "few_copies": false,
+      "embargo": false,
+      "context": "object_store"
+    },
+    {
+      "few_copies": false,
+      "embargo": true,
+      "context": "object_store"
+    },
+    {
+      "few_copies": true,
+      "embargo": false,
+      "context": "object_store"
+    },
+    {
+      "few_copies": true,
+      "embargo": true,
+      "context": "object_store"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['few_copies'] == True) and (x['embargo'] is False): return 'replicate'\n    if x['embargo'] is True: return 'quarantine'\n    return 'quarantine'\n",
+    "v2_A": "def solve(x):\n    if x['few_copies'] == True: return 'replicate'\n    if x['embargo'] is True: return 'quarantine'\n    return 'quarantine'\n",
+    "v2_B": "def solve(x):\n    if x['embargo'] is True: return 'quarantine'\n    if x['few_copies'] == True: return 'replicate'\n    return 'quarantine'\n"
+  }
+}

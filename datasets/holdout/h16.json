@@ -1,0 +1,185 @@
+{
+  "id": "h16",
+  "split": "holdout",
+  "domain": "water-treatment",
+  "solvable": {
+    "id": "h16-b",
+    "pair": "h16",
+    "version": 1,
+    "default": "shutdown",
+    "input_space": {
+      "turbidity": [
+        0,
+        9,
+        10,
+        20
+      ],
+      "maintenance_lock": [
+        false,
+        true
+      ],
+      "context": [
+        "intake",
+        "reserve"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Filter water at turbidity ten or higher. Applies only if maintenance_lock is false.",
+        "when": {
+          "turbidity": {
+            "gte": 10
+          },
+          "maintenance_lock": {
+            "eq": false
+          }
+        },
+        "action": "filter"
+      },
+      {
+        "id": "B",
+        "text": "A maintenance lock requires shutdown.",
+        "when": {
+          "maintenance_lock": {
+            "eq": true
+          }
+        },
+        "action": "shutdown"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h16-a",
+    "pair": "h16",
+    "version": 1,
+    "default": "shutdown",
+    "input_space": {
+      "turbidity": [
+        0,
+        9,
+        10,
+        20
+      ],
+      "maintenance_lock": [
+        false,
+        true
+      ],
+      "context": [
+        "intake",
+        "reserve"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Filter water at turbidity ten or higher.",
+        "when": {
+          "turbidity": {
+            "gte": 10
+          }
+        },
+        "action": "filter"
+      },
+      {
+        "id": "B",
+        "text": "A maintenance lock requires shutdown.",
+        "when": {
+          "maintenance_lock": {
+            "eq": true
+          }
+        },
+        "action": "shutdown"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "turbidity": 10,
+      "maintenance_lock": false,
+      "context": "intake"
+    },
+    {
+      "turbidity": 0,
+      "maintenance_lock": true,
+      "context": "intake"
+    },
+    {
+      "turbidity": 10,
+      "maintenance_lock": true,
+      "context": "intake"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "turbidity": 0,
+      "maintenance_lock": false,
+      "context": "intake"
+    },
+    {
+      "turbidity": 0,
+      "maintenance_lock": false,
+      "context": "reserve"
+    },
+    {
+      "turbidity": 0,
+      "maintenance_lock": true,
+      "context": "reserve"
+    },
+    {
+      "turbidity": 9,
+      "maintenance_lock": false,
+      "context": "intake"
+    },
+    {
+      "turbidity": 9,
+      "maintenance_lock": false,
+      "context": "reserve"
+    },
+    {
+      "turbidity": 9,
+      "maintenance_lock": true,
+      "context": "intake"
+    },
+    {
+      "turbidity": 9,
+      "maintenance_lock": true,
+      "context": "reserve"
+    },
+    {
+      "turbidity": 10,
+      "maintenance_lock": false,
+      "context": "reserve"
+    },
+    {
+      "turbidity": 10,
+      "maintenance_lock": true,
+      "context": "reserve"
+    },
+    {
+      "turbidity": 20,
+      "maintenance_lock": false,
+      "context": "intake"
+    },
+    {
+      "turbidity": 20,
+      "maintenance_lock": false,
+      "context": "reserve"
+    },
+    {
+      "turbidity": 20,
+      "maintenance_lock": true,
+      "context": "intake"
+    },
+    {
+      "turbidity": 20,
+      "maintenance_lock": true,
+      "context": "reserve"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['turbidity'] >= 10) and (x['maintenance_lock'] is False): return 'filter'\n    if x['maintenance_lock'] is True: return 'shutdown'\n    return 'shutdown'\n",
+    "v2_A": "def solve(x):\n    if x['turbidity'] >= 10: return 'filter'\n    if x['maintenance_lock'] is True: return 'shutdown'\n    return 'shutdown'\n",
+    "v2_B": "def solve(x):\n    if x['maintenance_lock'] is True: return 'shutdown'\n    if x['turbidity'] >= 10: return 'filter'\n    return 'shutdown'\n"
+  }
+}

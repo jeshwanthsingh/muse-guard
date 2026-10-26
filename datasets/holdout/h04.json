@@ -1,0 +1,185 @@
+{
+  "id": "h04",
+  "split": "holdout",
+  "domain": "laboratory-samples",
+  "solvable": {
+    "id": "h04-b",
+    "pair": "h04",
+    "version": 1,
+    "default": "preserve",
+    "input_space": {
+      "temperature": [
+        0,
+        7,
+        8,
+        18
+      ],
+      "irreplaceable": [
+        false,
+        true
+      ],
+      "context": [
+        "serum",
+        "swab"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Discard samples at eight degrees or above. Applies only if irreplaceable is false.",
+        "when": {
+          "temperature": {
+            "gte": 8
+          },
+          "irreplaceable": {
+            "eq": false
+          }
+        },
+        "action": "discard"
+      },
+      {
+        "id": "B",
+        "text": "Preserve irreplaceable samples.",
+        "when": {
+          "irreplaceable": {
+            "eq": true
+          }
+        },
+        "action": "preserve"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h04-a",
+    "pair": "h04",
+    "version": 1,
+    "default": "preserve",
+    "input_space": {
+      "temperature": [
+        0,
+        7,
+        8,
+        18
+      ],
+      "irreplaceable": [
+        false,
+        true
+      ],
+      "context": [
+        "serum",
+        "swab"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Discard samples at eight degrees or above.",
+        "when": {
+          "temperature": {
+            "gte": 8
+          }
+        },
+        "action": "discard"
+      },
+      {
+        "id": "B",
+        "text": "Preserve irreplaceable samples.",
+        "when": {
+          "irreplaceable": {
+            "eq": true
+          }
+        },
+        "action": "preserve"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "temperature": 8,
+      "irreplaceable": false,
+      "context": "serum"
+    },
+    {
+      "temperature": 0,
+      "irreplaceable": true,
+      "context": "serum"
+    },
+    {
+      "temperature": 8,
+      "irreplaceable": true,
+      "context": "serum"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "temperature": 0,
+      "irreplaceable": false,
+      "context": "serum"
+    },
+    {
+      "temperature": 0,
+      "irreplaceable": false,
+      "context": "swab"
+    },
+    {
+      "temperature": 0,
+      "irreplaceable": true,
+      "context": "swab"
+    },
+    {
+      "temperature": 7,
+      "irreplaceable": false,
+      "context": "serum"
+    },
+    {
+      "temperature": 7,
+      "irreplaceable": false,
+      "context": "swab"
+    },
+    {
+      "temperature": 7,
+      "irreplaceable": true,
+      "context": "serum"
+    },
+    {
+      "temperature": 7,
+      "irreplaceable": true,
+      "context": "swab"
+    },
+    {
+      "temperature": 8,
+      "irreplaceable": false,
+      "context": "swab"
+    },
+    {
+      "temperature": 8,
+      "irreplaceable": true,
+      "context": "swab"
+    },
+    {
+      "temperature": 18,
+      "irreplaceable": false,
+      "context": "serum"
+    },
+    {
+      "temperature": 18,
+      "irreplaceable": false,
+      "context": "swab"
+    },
+    {
+      "temperature": 18,
+      "irreplaceable": true,
+      "context": "serum"
+    },
+    {
+      "temperature": 18,
+      "irreplaceable": true,
+      "context": "swab"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['temperature'] >= 8) and (x['irreplaceable'] is False): return 'discard'\n    if x['irreplaceable'] is True: return 'preserve'\n    return 'preserve'\n",
+    "v2_A": "def solve(x):\n    if x['temperature'] >= 8: return 'discard'\n    if x['irreplaceable'] is True: return 'preserve'\n    return 'preserve'\n",
+    "v2_B": "def solve(x):\n    if x['irreplaceable'] is True: return 'preserve'\n    if x['temperature'] >= 8: return 'discard'\n    return 'preserve'\n"
+  }
+}

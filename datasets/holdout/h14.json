@@ -1,0 +1,141 @@
+{
+  "id": "h14",
+  "split": "holdout",
+  "domain": "museum-loans",
+  "solvable": {
+    "id": "h14-b",
+    "pair": "h14",
+    "version": 1,
+    "default": "hold",
+    "input_space": {
+      "good_condition": [
+        false,
+        true
+      ],
+      "custody_dispute": [
+        false,
+        true
+      ],
+      "context": [
+        "painting",
+        "sculpture"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Release loan items in good condition. Applies only if custody_dispute is false.",
+        "when": {
+          "good_condition": {
+            "eq": true
+          },
+          "custody_dispute": {
+            "eq": false
+          }
+        },
+        "action": "release"
+      },
+      {
+        "id": "B",
+        "text": "Hold items with a custody dispute.",
+        "when": {
+          "custody_dispute": {
+            "eq": true
+          }
+        },
+        "action": "hold"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h14-a",
+    "pair": "h14",
+    "version": 1,
+    "default": "hold",
+    "input_space": {
+      "good_condition": [
+        false,
+        true
+      ],
+      "custody_dispute": [
+        false,
+        true
+      ],
+      "context": [
+        "painting",
+        "sculpture"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Release loan items in good condition.",
+        "when": {
+          "good_condition": {
+            "eq": true
+          }
+        },
+        "action": "release"
+      },
+      {
+        "id": "B",
+        "text": "Hold items with a custody dispute.",
+        "when": {
+          "custody_dispute": {
+            "eq": true
+          }
+        },
+        "action": "hold"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "good_condition": true,
+      "custody_dispute": false,
+      "context": "painting"
+    },
+    {
+      "good_condition": false,
+      "custody_dispute": true,
+      "context": "painting"
+    },
+    {
+      "good_condition": true,
+      "custody_dispute": true,
+      "context": "painting"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "good_condition": false,
+      "custody_dispute": false,
+      "context": "painting"
+    },
+    {
+      "good_condition": false,
+      "custody_dispute": false,
+      "context": "sculpture"
+    },
+    {
+      "good_condition": false,
+      "custody_dispute": true,
+      "context": "sculpture"
+    },
+    {
+      "good_condition": true,
+      "custody_dispute": false,
+      "context": "sculpture"
+    },
+    {
+      "good_condition": true,
+      "custody_dispute": true,
+      "context": "sculpture"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['good_condition'] == True) and (x['custody_dispute'] is False): return 'release'\n    if x['custody_dispute'] is True: return 'hold'\n    return 'hold'\n",
+    "v2_A": "def solve(x):\n    if x['good_condition'] == True: return 'release'\n    if x['custody_dispute'] is True: return 'hold'\n    return 'hold'\n",
+    "v2_B": "def solve(x):\n    if x['custody_dispute'] is True: return 'hold'\n    if x['good_condition'] == True: return 'release'\n    return 'hold'\n"
+  }
+}

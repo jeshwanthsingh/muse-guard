@@ -1,0 +1,141 @@
+{
+  "id": "h13",
+  "split": "holdout",
+  "domain": "audio-mixing",
+  "solvable": {
+    "id": "h13-b",
+    "pair": "h13",
+    "version": 1,
+    "default": "preserve_gain",
+    "input_space": {
+      "speech": [
+        false,
+        true
+      ],
+      "music_solo": [
+        false,
+        true
+      ],
+      "context": [
+        "podcast",
+        "film"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Duck the music under speech. Applies only if music_solo is false.",
+        "when": {
+          "speech": {
+            "eq": true
+          },
+          "music_solo": {
+            "eq": false
+          }
+        },
+        "action": "duck_music"
+      },
+      {
+        "id": "B",
+        "text": "A music solo must preserve its gain.",
+        "when": {
+          "music_solo": {
+            "eq": true
+          }
+        },
+        "action": "preserve_gain"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h13-a",
+    "pair": "h13",
+    "version": 1,
+    "default": "preserve_gain",
+    "input_space": {
+      "speech": [
+        false,
+        true
+      ],
+      "music_solo": [
+        false,
+        true
+      ],
+      "context": [
+        "podcast",
+        "film"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Duck the music under speech.",
+        "when": {
+          "speech": {
+            "eq": true
+          }
+        },
+        "action": "duck_music"
+      },
+      {
+        "id": "B",
+        "text": "A music solo must preserve its gain.",
+        "when": {
+          "music_solo": {
+            "eq": true
+          }
+        },
+        "action": "preserve_gain"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "speech": true,
+      "music_solo": false,
+      "context": "podcast"
+    },
+    {
+      "speech": false,
+      "music_solo": true,
+      "context": "podcast"
+    },
+    {
+      "speech": true,
+      "music_solo": true,
+      "context": "podcast"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "speech": false,
+      "music_solo": false,
+      "context": "podcast"
+    },
+    {
+      "speech": false,
+      "music_solo": false,
+      "context": "film"
+    },
+    {
+      "speech": false,
+      "music_solo": true,
+      "context": "film"
+    },
+    {
+      "speech": true,
+      "music_solo": false,
+      "context": "film"
+    },
+    {
+      "speech": true,
+      "music_solo": true,
+      "context": "film"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['speech'] == True) and (x['music_solo'] is False): return 'duck_music'\n    if x['music_solo'] is True: return 'preserve_gain'\n    return 'preserve_gain'\n",
+    "v2_A": "def solve(x):\n    if x['speech'] == True: return 'duck_music'\n    if x['music_solo'] is True: return 'preserve_gain'\n    return 'preserve_gain'\n",
+    "v2_B": "def solve(x):\n    if x['music_solo'] is True: return 'preserve_gain'\n    if x['speech'] == True: return 'duck_music'\n    return 'preserve_gain'\n"
+  }
+}

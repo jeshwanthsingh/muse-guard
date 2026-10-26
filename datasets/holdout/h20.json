@@ -1,0 +1,141 @@
+{
+  "id": "h20",
+  "split": "holdout",
+  "domain": "astronomy",
+  "solvable": {
+    "id": "h20-b",
+    "pair": "h20",
+    "version": 1,
+    "default": "pause",
+    "input_space": {
+      "clear_sky": [
+        false,
+        true
+      ],
+      "satellite_crossing": [
+        false,
+        true
+      ],
+      "context": [
+        "wide",
+        "narrow"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Expose the detector when the sky is clear. Applies only if satellite_crossing is false.",
+        "when": {
+          "clear_sky": {
+            "eq": true
+          },
+          "satellite_crossing": {
+            "eq": false
+          }
+        },
+        "action": "expose"
+      },
+      {
+        "id": "B",
+        "text": "Pause exposures during satellite crossings.",
+        "when": {
+          "satellite_crossing": {
+            "eq": true
+          }
+        },
+        "action": "pause"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h20-a",
+    "pair": "h20",
+    "version": 1,
+    "default": "pause",
+    "input_space": {
+      "clear_sky": [
+        false,
+        true
+      ],
+      "satellite_crossing": [
+        false,
+        true
+      ],
+      "context": [
+        "wide",
+        "narrow"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Expose the detector when the sky is clear.",
+        "when": {
+          "clear_sky": {
+            "eq": true
+          }
+        },
+        "action": "expose"
+      },
+      {
+        "id": "B",
+        "text": "Pause exposures during satellite crossings.",
+        "when": {
+          "satellite_crossing": {
+            "eq": true
+          }
+        },
+        "action": "pause"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "clear_sky": true,
+      "satellite_crossing": false,
+      "context": "wide"
+    },
+    {
+      "clear_sky": false,
+      "satellite_crossing": true,
+      "context": "wide"
+    },
+    {
+      "clear_sky": true,
+      "satellite_crossing": true,
+      "context": "wide"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "clear_sky": false,
+      "satellite_crossing": false,
+      "context": "wide"
+    },
+    {
+      "clear_sky": false,
+      "satellite_crossing": false,
+      "context": "narrow"
+    },
+    {
+      "clear_sky": false,
+      "satellite_crossing": true,
+      "context": "narrow"
+    },
+    {
+      "clear_sky": true,
+      "satellite_crossing": false,
+      "context": "narrow"
+    },
+    {
+      "clear_sky": true,
+      "satellite_crossing": true,
+      "context": "narrow"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['clear_sky'] == True) and (x['satellite_crossing'] is False): return 'expose'\n    if x['satellite_crossing'] is True: return 'pause'\n    return 'pause'\n",
+    "v2_A": "def solve(x):\n    if x['clear_sky'] == True: return 'expose'\n    if x['satellite_crossing'] is True: return 'pause'\n    return 'pause'\n",
+    "v2_B": "def solve(x):\n    if x['satellite_crossing'] is True: return 'pause'\n    if x['clear_sky'] == True: return 'expose'\n    return 'pause'\n"
+  }
+}

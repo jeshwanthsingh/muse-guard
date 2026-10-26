@@ -1,0 +1,141 @@
+{
+  "id": "h12",
+  "split": "holdout",
+  "domain": "warehouse-picking",
+  "solvable": {
+    "id": "h12-a",
+    "pair": "h12",
+    "version": 1,
+    "default": "robot_pick",
+    "input_space": {
+      "fragile": [
+        false,
+        true
+      ],
+      "automated_aisle": [
+        false,
+        true
+      ],
+      "context": [
+        "pallet",
+        "crate"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Fragile pallets require manual picking. Applies only if automated_aisle is false.",
+        "when": {
+          "fragile": {
+            "eq": true
+          },
+          "automated_aisle": {
+            "eq": false
+          }
+        },
+        "action": "manual_pick"
+      },
+      {
+        "id": "B",
+        "text": "An automated aisle requires robot picking.",
+        "when": {
+          "automated_aisle": {
+            "eq": true
+          }
+        },
+        "action": "robot_pick"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h12-b",
+    "pair": "h12",
+    "version": 1,
+    "default": "robot_pick",
+    "input_space": {
+      "fragile": [
+        false,
+        true
+      ],
+      "automated_aisle": [
+        false,
+        true
+      ],
+      "context": [
+        "pallet",
+        "crate"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Fragile pallets require manual picking.",
+        "when": {
+          "fragile": {
+            "eq": true
+          }
+        },
+        "action": "manual_pick"
+      },
+      {
+        "id": "B",
+        "text": "An automated aisle requires robot picking.",
+        "when": {
+          "automated_aisle": {
+            "eq": true
+          }
+        },
+        "action": "robot_pick"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "fragile": true,
+      "automated_aisle": false,
+      "context": "pallet"
+    },
+    {
+      "fragile": false,
+      "automated_aisle": true,
+      "context": "pallet"
+    },
+    {
+      "fragile": true,
+      "automated_aisle": true,
+      "context": "pallet"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "fragile": false,
+      "automated_aisle": false,
+      "context": "pallet"
+    },
+    {
+      "fragile": false,
+      "automated_aisle": false,
+      "context": "crate"
+    },
+    {
+      "fragile": false,
+      "automated_aisle": true,
+      "context": "crate"
+    },
+    {
+      "fragile": true,
+      "automated_aisle": false,
+      "context": "crate"
+    },
+    {
+      "fragile": true,
+      "automated_aisle": true,
+      "context": "crate"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['fragile'] == True) and (x['automated_aisle'] is False): return 'manual_pick'\n    if x['automated_aisle'] is True: return 'robot_pick'\n    return 'robot_pick'\n",
+    "v2_A": "def solve(x):\n    if x['fragile'] == True: return 'manual_pick'\n    if x['automated_aisle'] is True: return 'robot_pick'\n    return 'robot_pick'\n",
+    "v2_B": "def solve(x):\n    if x['automated_aisle'] is True: return 'robot_pick'\n    if x['fragile'] == True: return 'manual_pick'\n    return 'robot_pick'\n"
+  }
+}

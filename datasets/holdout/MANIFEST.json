@@ -1,0 +1,759 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-10-26",
+  "model_calls_on_holdouts_at_freeze": 0,
+  "holdout_pair_count": 20,
+  "holdout_task_count": 40,
+  "data_files": {
+    "datasets/holdout/h01.json": "40765590f6237019dd8db8e6b6405a42562192c3f811663e1d0d63fea1697d9b",
+    "datasets/holdout/h02.json": "41201ea75d6dfd808e892fbc6fb4d40e9985002840d73ea5ff7bae46924bc8ea",
+    "datasets/holdout/h03.json": "0753522848bb2ccda743f8ec131e19a84d89852889da596b0842fc1db45840d3",
+    "datasets/holdout/h04.json": "6c0b65eb56bc1d177ba175944ce0d5624c3d333ea333ee8d804cdb208bf927f4",
+    "datasets/holdout/h05.json": "b3959691c83ba091e523452bd4122744de877a25dac380ed9a04aadf3083b035",
+    "datasets/holdout/h06.json": "b8cc3c21444db43ad0b497465ae6776f004f9b234872eb56927b29c43485be28",
+    "datasets/holdout/h07.json": "4e3892a77447808d69837949e8397c1d55280abb5d0b3b10172d15aad3439649",
+    "datasets/holdout/h08.json": "e6cbdc46c95e5d2235a57a3843abf16f003380c8c880e7aee40310648284a047",
+    "datasets/holdout/h09.json": "cb5c8432f7324451a6d4c2000123c9c6e742fd370a3d37c75d38cd91ba2a4865",
+    "datasets/holdout/h10.json": "59e8ec4ea30a7c337341fe3fe94e887c7ac79a8a6ada1d3a95010621f2eaebaf",
+    "datasets/holdout/h11.json": "4e9254289f753eb75ec1be42e6339fddfce2920366c18c5b143bcd85039f0982",
+    "datasets/holdout/h12.json": "7e8788442738df00fabc121d7f5672cc137ec02c527213852dcd63ffcfeae56d",
+    "datasets/holdout/h13.json": "63ce7b83b5504e0a7d20b85ca2ad51dd24b7e5431fdd16d2e2f6d6c540a993fc",
+    "datasets/holdout/h14.json": "51826953e08d5da9e5b4b3b8208519de2de95c7e808d0cc0b5097fb6d8f0f017",
+    "datasets/holdout/h15.json": "2a9b05dfcbb66e8c1157cea7b130e49874cfc8d71a3f8c88e32189e0c282b696",
+    "datasets/holdout/h16.json": "bfbc885b9c71d5a56fe7d2c3f2d3dad972ff65dc8683815c2cb36b45a3bfef54",
+    "datasets/holdout/h17.json": "3b8dfc8124b6108e7e46d181a8d0906a9ddafdc1e278e438e14063a9da51df0c",
+    "datasets/holdout/h18.json": "6da704182a88b89ffda61b02bcca3fbaf020a49cb32722620ae277829ae759c2",
+    "datasets/holdout/h19.json": "5619be0ff1f8c8fb60c23d3b3aed68229e5b82010dae8807492c26ded7db8ca4",
+    "datasets/holdout/h20.json": "581f27cb9f7288495a70cd875a384a4e5c9deca069dc598a25da81fd5b1aa45b"
+  },
+  "protocol_files": {
+    "study/protocol.json": "331bbd0d5535b09199f01dbe52b02bf6e846a0fed2afeb5a8867be900f5d5f9d",
+    "docs/STUDY.md": "3ff67d701737d10e92ee59d8ac0a4329263ab442c7ade2d461bba0dff4fe8fe2",
+    "muse-guard": "d011e62804277eed847e13627d87b01d8a629fcb18694f53cce899de69e0ad5e",
+    "muse_guard/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "muse_guard/checker.py": "df52f91b9845c1f5943c3ad19bbf869abee12a96e088e78c3f6aa48daf279820",
+    "muse_guard/cli.py": "fadb0ce2232d59d5fc86c974a911bfbb29efa071c146cc5e8e90fea1da7d6a2c",
+    "muse_guard/freeze.py": "32e68270fd4f514cad58311e1cdd258ca01aee265c3a079ff2e5584ff3c3b77a",
+    "muse_guard/gateway.py": "1d6d75a5e2174f2194c06fc1d85c786a65281581b9a5133ccc8830da334e82a5",
+    "muse_guard/legacy_tasks.py": "dc59703f2055e9fbc22cd458c08cacc2b104f46bf0f3ddb838e280057fbf517f",
+    "muse_guard/quality_gate.py": "a959071eede775b80cb071a0d3e151805267d5194ed1779f6c195dd934505ab5",
+    "muse_guard/recovery.py": "e6b2cc527289825c35d924b345b6bbed2ef48dd2398fdc3c380d148da3390cbc",
+    "muse_guard/rule_checker.py": "ab6d935b85f303c2099e1792b8a3f0d7d71cbe15910de7c07c6f2e98e63aaa2d",
+    "muse_guard/rules.py": "ebf24d2804c6b626f0d826966246f5c979ebf0e199d9e3eaf3557430c7cd3556",
+    "muse_guard/runner.py": "9fdca02bb897ded95caf36f4ff6cacdfc4bd83db25b0b9c334b19de5ce13ab98",
+    "muse_guard/tampering.py": "6655a0573c4df95b0a5ae1fb1f79b1b8015eff963e509dd92872f1f8e23b01d5",
+    "muse_guard/tasks.py": "0da34bfdd15ee76723c5c193e31a6378321641686dab261a2e21f132e4221f68",
+    "datasets/dev/access.json": "1267661b85d9fc448497993e5ee90c4ab9d8037f2ce8bd386686b96607dd055f",
+    "datasets/dev/discount.json": "9787f6066a9fa3b9298eb9bf2e57bed2dea871d530ac6d3a2faaf46b0dc315eb",
+    "datasets/dev/feature.json": "eb314a9449d780dacf9945cbba14e0a14d2a308537db1858139b566387c9ef01",
+    "datasets/dev/notification.json": "18302ef1168796fee996caff91ae5b157bc14745293a96c0bd054f40d6047b54",
+    "datasets/dev/pricing.json": "c57eb0f42825413feb64980f72e9306daff226b2fc179c003b12efb1a943c56d",
+    "datasets/dev/rate-limit.json": "cd1911e704aa64cf6a408bbb0f4b036f2887a52b49c7e0446a415bd78adf9a0c",
+    "datasets/dev/refund.json": "0dc8751eab98a5ba386e548fc65c2bdb07e8f63e41d6c437453dbe2856139d00",
+    "datasets/dev/retention.json": "466df09e9e05d872e892e323e5510fafe2a7ac6422b11b4a4aedaac0d1a25716",
+    "datasets/dev/retry.json": "895e9bfb3d3056bb3f67b71028d23823f525442fd66918bef5f48cf2f07c80ec",
+    "datasets/dev/shipping.json": "783341f2a3362091675b1c8d746941b4acdab1a16fe2f7611a1b0f366ad84263"
+  },
+  "quality_gate": [
+    {
+      "pair": "h01",
+      "pair_sha256": "b427d34ce0c718bc3368508786ec0df6bb2747ea74cc8744388d18e211eb6c4f",
+      "input_count": 16,
+      "witness_count": 4,
+      "witness": {
+        "age_days": 60,
+        "escrow_lock": true,
+        "context": "edge"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 13,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h02",
+      "pair_sha256": "5a4318a9ebf25476a8d31399e33d6746f120ba76bef7491dd4f2c4b23d6a0b22",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "archival": true,
+        "interactive_form": true,
+        "context": "invoice"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h03",
+      "pair_sha256": "49289a354eecc13eaf8469e3f8fd4bb7de497ca6f59c019a95a50a65abc74cca",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "wheelchair": true,
+        "route_closed": true,
+        "context": "morning"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h04",
+      "pair_sha256": "11c25d7b0c0de3963b412fca5da6192e01ff54eb4fd50e1925bc051992d84269",
+      "input_count": 16,
+      "witness_count": 4,
+      "witness": {
+        "temperature": 8,
+        "irreplaceable": true,
+        "context": "serum"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 13,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h05",
+      "pair_sha256": "fedf14654c5e8c4eca8baa5c581fde929ca825d8b122ccd52bd2c62d08bbd022",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "low_bandwidth": true,
+        "broadcast_master": true,
+        "context": "clip"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h06",
+      "pair_sha256": "0bcb9ab52091084751d186cdab4dbf4c5d84f87ccb46f009a534c80217bdbb6c",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "dry_soil": true,
+        "frost_alert": true,
+        "context": "north"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h07",
+      "pair_sha256": "1728dca086ec15dc953123226f17b54e0599703359e63ef87d448384b5ea00ab",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "low_battery": true,
+        "emergency_stop": true,
+        "context": "line_1"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h08",
+      "pair_sha256": "b75d5d70bfab041cd41634c63dea15bd79d0b5d9ab2b7865ae43f6695cac6a3c",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "contains_nuts": true,
+        "chef_special": true,
+        "context": "lunch"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h09",
+      "pair_sha256": "b35393755114f1ab326a285cc5a51162f35901cec7deaacf071c134f06fb431e",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "signature_due": true,
+        "unverified_identity": true,
+        "context": "lease"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h10",
+      "pair_sha256": "fb58e96ba032a0fd07dd6efc9cc3c0d4d2db23ec6d21c57c9668186051a1ea84",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "buffer_full": true,
+        "blackout": true,
+        "context": "science"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h11",
+      "pair_sha256": "0a6f7ec01959243b827f6654016e4e8a5885c43fb76c448e7363ded099211023",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "few_copies": true,
+        "embargo": true,
+        "context": "tape"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h12",
+      "pair_sha256": "4f4408f487fbe0e726e822b733e804d0703c281abd2b4dbb7a256b5e164cba37",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "fragile": true,
+        "automated_aisle": true,
+        "context": "pallet"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h13",
+      "pair_sha256": "e129df1e00f367666800480cc64ac729440f7696d231ad6628adb4a15ba4613b",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "speech": true,
+        "music_solo": true,
+        "context": "podcast"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h14",
+      "pair_sha256": "cb7f29154e53cbb11df51fff6c808bb9f91f7811fd7dd9bfe5a74f40ae1a691a",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "good_condition": true,
+        "custody_dispute": true,
+        "context": "painting"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h15",
+      "pair_sha256": "1669b1dcac0bf1cd005612a482452a0fab3a21d31b1d093c65f72bb54ab1c4e6",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "all_correct": true,
+        "plagiarism_flag": true,
+        "context": "quiz"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h16",
+      "pair_sha256": "fcbd1814f98b8c988ee91b92bacd35755f7e898865cfb3307f56a888a1cf40fa",
+      "input_count": 16,
+      "witness_count": 4,
+      "witness": {
+        "turbidity": 10,
+        "maintenance_lock": true,
+        "context": "intake"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 13,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h17",
+      "pair_sha256": "5fb0e9fef9fa7418292647e2226381d1a62071bcd5775cb3d1ddfa2fcc4edf4d",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "infested": true,
+        "pollinators": true,
+        "context": "orchard"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h18",
+      "pair_sha256": "e1e464810fa908b19265f1f374fddb5b13fe452146cbba49d41107787ed9034f",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "narrow_viewport": true,
+        "large_print": true,
+        "context": "article"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h19",
+      "pair_sha256": "bc84b7022a7c75c3017d9c0b8c68b84bb64727260ebfd93169d4b250ff8d3992",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "fire_alarm": true,
+        "seismic": true,
+        "context": "tower_a"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h20",
+      "pair_sha256": "95e6ee4c9def96addaf667517e324eba9da2d3cd13665d44e2e5b9bc1743aea1",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "clear_sky": true,
+        "satellite_crossing": true,
+        "context": "wide"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    }
+  ]
+}

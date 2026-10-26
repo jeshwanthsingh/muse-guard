@@ -1,0 +1,141 @@
+{
+  "id": "h03",
+  "split": "holdout",
+  "domain": "transit-routing",
+  "solvable": {
+    "id": "h03-a",
+    "pair": "h03",
+    "version": 1,
+    "default": "reject_route",
+    "input_space": {
+      "wheelchair": [
+        false,
+        true
+      ],
+      "route_closed": [
+        false,
+        true
+      ],
+      "context": [
+        "morning",
+        "evening"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Choose the accessible route for wheelchair trips. Applies only if route_closed is false.",
+        "when": {
+          "wheelchair": {
+            "eq": true
+          },
+          "route_closed": {
+            "eq": false
+          }
+        },
+        "action": "accessible_route"
+      },
+      {
+        "id": "B",
+        "text": "Reject a route that is closed.",
+        "when": {
+          "route_closed": {
+            "eq": true
+          }
+        },
+        "action": "reject_route"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h03-b",
+    "pair": "h03",
+    "version": 1,
+    "default": "reject_route",
+    "input_space": {
+      "wheelchair": [
+        false,
+        true
+      ],
+      "route_closed": [
+        false,
+        true
+      ],
+      "context": [
+        "morning",
+        "evening"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Choose the accessible route for wheelchair trips.",
+        "when": {
+          "wheelchair": {
+            "eq": true
+          }
+        },
+        "action": "accessible_route"
+      },
+      {
+        "id": "B",
+        "text": "Reject a route that is closed.",
+        "when": {
+          "route_closed": {
+            "eq": true
+          }
+        },
+        "action": "reject_route"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "wheelchair": true,
+      "route_closed": false,
+      "context": "morning"
+    },
+    {
+      "wheelchair": false,
+      "route_closed": true,
+      "context": "morning"
+    },
+    {
+      "wheelchair": true,
+      "route_closed": true,
+      "context": "morning"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "wheelchair": false,
+      "route_closed": false,
+      "context": "morning"
+    },
+    {
+      "wheelchair": false,
+      "route_closed": false,
+      "context": "evening"
+    },
+    {
+      "wheelchair": false,
+      "route_closed": true,
+      "context": "evening"
+    },
+    {
+      "wheelchair": true,
+      "route_closed": false,
+      "context": "evening"
+    },
+    {
+      "wheelchair": true,
+      "route_closed": true,
+      "context": "evening"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['wheelchair'] == True) and (x['route_closed'] is False): return 'accessible_route'\n    if x['route_closed'] is True: return 'reject_route'\n    return 'reject_route'\n",
+    "v2_A": "def solve(x):\n    if x['wheelchair'] == True: return 'accessible_route'\n    if x['route_closed'] is True: return 'reject_route'\n    return 'reject_route'\n",
+    "v2_B": "def solve(x):\n    if x['route_closed'] is True: return 'reject_route'\n    if x['wheelchair'] == True: return 'accessible_route'\n    return 'reject_route'\n"
+  }
+}

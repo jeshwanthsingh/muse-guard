@@ -1,0 +1,141 @@
+{
+  "id": "h08",
+  "split": "holdout",
+  "domain": "restaurant-allergy",
+  "solvable": {
+    "id": "h08-a",
+    "pair": "h08",
+    "version": 1,
+    "default": "serve_dish",
+    "input_space": {
+      "contains_nuts": [
+        false,
+        true
+      ],
+      "chef_special": [
+        false,
+        true
+      ],
+      "context": [
+        "lunch",
+        "dinner"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Reject dishes containing nuts. Applies only if chef_special is false.",
+        "when": {
+          "contains_nuts": {
+            "eq": true
+          },
+          "chef_special": {
+            "eq": false
+          }
+        },
+        "action": "reject_dish"
+      },
+      {
+        "id": "B",
+        "text": "Serve the designated chef special.",
+        "when": {
+          "chef_special": {
+            "eq": true
+          }
+        },
+        "action": "serve_dish"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h08-b",
+    "pair": "h08",
+    "version": 1,
+    "default": "serve_dish",
+    "input_space": {
+      "contains_nuts": [
+        false,
+        true
+      ],
+      "chef_special": [
+        false,
+        true
+      ],
+      "context": [
+        "lunch",
+        "dinner"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Reject dishes containing nuts.",
+        "when": {
+          "contains_nuts": {
+            "eq": true
+          }
+        },
+        "action": "reject_dish"
+      },
+      {
+        "id": "B",
+        "text": "Serve the designated chef special.",
+        "when": {
+          "chef_special": {
+            "eq": true
+          }
+        },
+        "action": "serve_dish"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "contains_nuts": true,
+      "chef_special": false,
+      "context": "lunch"
+    },
+    {
+      "contains_nuts": false,
+      "chef_special": true,
+      "context": "lunch"
+    },
+    {
+      "contains_nuts": true,
+      "chef_special": true,
+      "context": "lunch"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "contains_nuts": false,
+      "chef_special": false,
+      "context": "lunch"
+    },
+    {
+      "contains_nuts": false,
+      "chef_special": false,
+      "context": "dinner"
+    },
+    {
+      "contains_nuts": false,
+      "chef_special": true,
+      "context": "dinner"
+    },
+    {
+      "contains_nuts": true,
+      "chef_special": false,
+      "context": "dinner"
+    },
+    {
+      "contains_nuts": true,
+      "chef_special": true,
+      "context": "dinner"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['contains_nuts'] == True) and (x['chef_special'] is False): return 'reject_dish'\n    if x['chef_special'] is True: return 'serve_dish'\n    return 'serve_dish'\n",
+    "v2_A": "def solve(x):\n    if x['contains_nuts'] == True: return 'reject_dish'\n    if x['chef_special'] is True: return 'serve_dish'\n    return 'serve_dish'\n",
+    "v2_B": "def solve(x):\n    if x['chef_special'] is True: return 'serve_dish'\n    if x['contains_nuts'] == True: return 'reject_dish'\n    return 'serve_dish'\n"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "h02",
+  "split": "holdout",
+  "domain": "document-rendering",
+  "solvable": {
+    "id": "h02-a",
+    "pair": "h02",
+    "version": 1,
+    "default": "editable",
+    "input_space": {
+      "archival": [
+        false,
+        true
+      ],
+      "interactive_form": [
+        false,
+        true
+      ],
+      "context": [
+        "invoice",
+        "agreement"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Flatten documents requested for archival output. Applies only if interactive_form is false.",
+        "when": {
+          "archival": {
+            "eq": true
+          },
+          "interactive_form": {
+            "eq": false
+          }
+        },
+        "action": "flatten"
+      },
+      {
+        "id": "B",
+        "text": "Interactive forms must remain editable.",
+        "when": {
+          "interactive_form": {
+            "eq": true
+          }
+        },
+        "action": "editable"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "h02-b",
+    "pair": "h02",
+    "version": 1,
+    "default": "editable",
+    "input_space": {
+      "archival": [
+        false,
+        true
+      ],
+      "interactive_form": [
+        false,
+        true
+      ],
+      "context": [
+        "invoice",
+        "agreement"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Flatten documents requested for archival output.",
+        "when": {
+          "archival": {
+            "eq": true
+          }
+        },
+        "action": "flatten"
+      },
+      {
+        "id": "B",
+        "text": "Interactive forms must remain editable.",
+        "when": {
+          "interactive_form": {
+            "eq": true
+          }
+        },
+        "action": "editable"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "archival": true,
+      "interactive_form": false,
+      "context": "invoice"
+    },
+    {
+      "archival": false,
+      "interactive_form": true,
+      "context": "invoice"
+    },
+    {
+      "archival": true,
+      "interactive_form": true,
+      "context": "invoice"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "archival": false,
+      "interactive_form": false,
+      "context": "invoice"
+    },
+    {
+      "archival": false,
+      "interactive_form": false,
+      "context": "agreement"
+    },
+    {
+      "archival": false,
+      "interactive_form": true,
+      "context": "agreement"
+    },
+    {
+      "archival": true,
+      "interactive_form": false,
+      "context": "agreement"
+    },
+    {
+      "archival": true,
+      "interactive_form": true,
+      "context": "agreement"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['archival'] == True) and (x['interactive_form'] is False): return 'flatten'\n    if x['interactive_form'] is True: return 'editable'\n    return 'editable'\n",
+    "v2_A": "def solve(x):\n    if x['archival'] == True: return 'flatten'\n    if x['interactive_form'] is True: return 'editable'\n    return 'editable'\n",
+    "v2_B": "def solve(x):\n    if x['interactive_form'] is True: return 'editable'\n    if x['archival'] == True: return 'flatten'\n    return 'editable'\n"
+  }
+}
