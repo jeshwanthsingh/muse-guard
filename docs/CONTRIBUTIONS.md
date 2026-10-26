@@ -155,3 +155,8 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   unchanged. New active manifest hash and local freeze commit follow below.
 - Clean-checkout verification also passed all 101 tests without .env or ignored
   results/raw artifacts. Staged privacy scan and gitleaks passed.
+- Amended freeze commit: 0f7f736d30d608871e14bf34b50dd3eb090ec122.
+  New manifest SHA-256: 18316b3e211dd6f1910ef7770d00a7447a6f0459fd4c0ea18d4cc7aecdbc8633.
+  Original Day3 manifest SHA-256 remains
+  4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246.
+  Post-commit verification passed; original data, scores and ledger are unchanged.

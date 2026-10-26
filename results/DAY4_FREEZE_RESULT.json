@@ -1,0 +1,19 @@
+{
+  "freeze_commit": "0f7f736d30d608871e14bf34b50dd3eb090ec122",
+  "manifest_sha256": "18316b3e211dd6f1910ef7770d00a7447a6f0459fd4c0ea18d4cc7aecdbc8633",
+  "manifest": "study/MANIFEST-day4.json",
+  "parent_freeze_commit": "1e111b8664b88e2a021d0397c15be43d55fdbb83",
+  "pairs": 20,
+  "tasks": 40,
+  "protocol": "UNCHANGED",
+  "day4_actual_model_cost_usd": 0,
+  "holdout_model_calls": 0,
+  "offline_tests_passed": 101,
+  "clean_checkout_tests_passed": 101,
+  "protected_checker_and_prompt_sources_unchanged": true,
+  "all_day3_records_unchanged": true,
+  "day3_pushed_commit": "f6f373ece44bd4a8867f04d0ee2b1db1ae6ca118",
+  "day4_push": false,
+  "study_ready": false,
+  "blocker": "Tested same-session plain follow-up adapter required before study"
+}

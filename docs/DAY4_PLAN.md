@@ -15,12 +15,12 @@ Execution: native in this session, per user approval. No study or paid model cal
   Test limits and pre-paid holdout refusal.
 - [x] Render refund recovery at 1280x720 in real browser; inspect all sections and
   evidence download, save screenshot. Live continuation uses offline fixtures only.
-- [ ] Preserve original manifest; add amended manifest with explicit lineage and
+- [x] Preserve original manifest; add amended manifest with explicit lineage and
   unchanged data hashes, anchor to its creation commit. Test old-manifest tamper,
   original-data drift and amended-protocol drift refusal.
-- [ ] Review complete diff; run final offline suite, privacy scan, gitleaks; commit
+- [x] Review complete diff; run final offline suite, privacy scan, gitleaks; commit
   locally, re-freeze after runtime settles, verify GitHub day3 and no day4 push.
-- [ ] Update contributions and final simple report including zero Day4 cost.
+- [x] Update contributions and final simple report including zero Day4 cost.
 
 Review focus: untrusted record HTML; localhost request forgery; duplicate approval;
 missing frozen artifacts; historical verdict preservation. Tests own each case.

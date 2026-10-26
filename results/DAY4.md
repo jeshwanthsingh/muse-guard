@@ -68,3 +68,7 @@ Exact proof is recorded in DAY4_FREEZE_RESULT.json after the local freeze commit
 
 The full suite also passed from a clean staged snapshot with no .env or
 results/raw directory (101 tests), proving the UI tests are portable.
+
+Amended freeze commit: `0f7f736d30d608871e14bf34b50dd3eb090ec122`.
+New manifest SHA-256: `18316b3e211dd6f1910ef7770d00a7447a6f0459fd4c0ea18d4cc7aecdbc8633`.
+Post-commit verification passed; old data, manifest, scores and ledger unchanged.
