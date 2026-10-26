@@ -115,3 +115,9 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Estimated the full registered study at about $26.80 from observed cache
   usage; no-cache sensitivity $45.82; absolute configured token bound
   $208.08. See results/STUDY_COST_ESTIMATE.json for explicit arithmetic.
+
+- Final freeze-only commit: 1e111b8664b88e2a021d0397c15be43d55fdbb83 (20 holdout files plus manifest only).
+  Manifest SHA-256: 4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246.
+  Freeze verification confirms all protocol hashes unchanged; zero holdout model calls.
+  Privacy checks and gitleaks passed after excluding one verified file-checksum false positive.
+- Final offline suite: 85 tests passed. Main remains unchanged; day3 remains local.

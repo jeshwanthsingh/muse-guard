@@ -60,3 +60,13 @@ The campaign is not run today; each future calendar day still has a $5 cap.
 The separate freeze-only commit and manifest SHA are recorded in FREEZE_RESULT.json.
 All prompts, labels, budgets and runtime/dev hashes are pinned before holdout model use.
 No page/web UI was built; that is a later display-only task.
+
+Freeze commit: `1e111b8664b88e2a021d0397c15be43d55fdbb83`.
+Manifest SHA-256: `4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246`.
+The commit contains only the 20 holdout pairs and manifest. Post-commit integrity
+verification passed with protocol UNCHANGED and zero holdout model calls.
+Gitleaks found one file-checksum false positive; its exact computed SHA-256 was
+verified and excluded, with the remaining scan clear.
+
+Final offline verification: 85 tests passed, including planted bad pairs,
+freeze drift controls, interactive decision handling, budget and sandbox regressions.

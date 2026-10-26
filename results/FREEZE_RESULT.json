@@ -1,0 +1,15 @@
+{
+  "freeze_commit": "1e111b8664b88e2a021d0397c15be43d55fdbb83",
+  "manifest_sha256": "4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246",
+  "pairs": 20,
+  "tasks": 40,
+  "protocol": "UNCHANGED",
+  "holdout_model_calls": 0,
+  "freeze_commit_files": 21,
+  "day3_actual_cost_usd": 1.86297685,
+  "shared_daily_upper_bound_usd": 3.6984170499999998,
+  "day2_pushed_commit": "6236e934b85aff726037ef9502aa0ace01245178",
+  "day3_push": false,
+  "scan_note": "gitleaks clean with one verified SHA-256 checksum false positive excluded",
+  "offline_tests_passed": 85
+}
