@@ -322,3 +322,40 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Privacy review: demo gitleaks scan clean; four staged generic-key alerts were
   verified file SHA-256 values in manifests/evidence. No private home paths,
   personal emails or local hostname appeared in the staged content.
+
+
+## Submission preparation — 2026-10-26
+
+- Created local codex/submission at 03b558b, with no push or merge. Rewrote the
+  judge README around preflight conflicts, developer decisions and independent
+  checks. Study/evaluation outcomes remain explicitly pending.
+- Added a submission-only exporter that changes the static index labels, plain
+  explanation, four-step strip and GitHub link. Frozen exporter/viewer code is
+  untouched. Re-exported output/submission-site; all evidence downloads remain
+  byte-identical to the earlier static demo. Captured index/refund at 1280x720.
+- Added a hash guard anchored to immutable 03b558b blobs for 103 protected study
+  and spec-evaluation files, including working tree, staged content and inventory.
+  Installed a branch-specific local pre-commit hook; provided its tracked template.
+- Pinned the official experiment runtime to day6 at ef9d36b. Added a standalone
+  wrapper that runs the unchanged pilot and creates commit/hash/result envelopes
+  for each new/changed result, without changing original hash-linked evidence.
+  Future holdout execution still requires pilot review/refreeze and authorization.
+- Built an isolated offline-tested Baseten Responses/Chat Completions bridge,
+  namespace-tool mapping, streamed response events, terminal usage and cache
+  accounting, unknown-usage refusal, and mock-tested HTTPS transport. Pinned the
+  hackathon model meta-models/muse-spark-open-1026 from the supplied grant email.
+  Kept the one-time credential link out of the repo and did not open it.
+- Confirmed planted Baseten/Meta keys, endpoint and arbitrary environment values
+  are absent from child and sandboxed candidate environments. Actual Muse Code
+  completed a tiny turn against local fake Baseten responses; no provider calls.
+- Preregistered the separate 10-dev-pair/two-backend exploratory comparison and
+  cost assumptions in docs/BASETEN_EXPLORATION.md. Live execution is BLOCKED pending
+  a verified Baseten pre-inference token counter and reviewed balanced executor.
+  The live HTTPS transport is implemented but only mock-tested; neither fake
+  responses nor public pricing establishes real hackathon billing/compatibility.
+- No paid model calls, pilot runs or holdout runs today; incremental spend $0.
+- Final verification: all 189 offline tests passed, including 13 submission tests.
+  All 103 guarded files and 120 prior result/ledger/study/holdout files are unchanged.
+  The static output passed gitleaks and private-data checks; browser loading made
+  no external requests and all four cards fit at 1280x720. See
+  results/SUBMISSION_VERIFICATION.json. The hook runs the guard before the commit.

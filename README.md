@@ -1,74 +1,54 @@
 # muse-guard
 
-When Meta's coding agent can't do a task honestly, it asks you
-instead of faking it, and an independent checker proves it.
+muse-guard catches requirement conflicts before your AI writes code, and proves every fix with checks the AI never sees.
 
-## What it is
+Requirements can contradict each other even when each sentence sounds reasonable.
+A coding agent may stop, guess which rule matters, or claim a fix that misses the real requirement.
+muse-guard makes the clash explicit, lets the developer decide, and checks the result independently.
 
-Recovery for conflicting coding requirements: explain the conflict, let the developer decide, then let Muse Code repair.
-An independent checker validates the witness and rechecks the approved implementation, including hidden inputs.
-
-## Recovery flow
-
-1. Muse Code returns a structured conflict report.
-2. A deterministic checker verifies one input where two rules require different actions.
-3. Muse Spark writes an advisory conflict card; the developer chooses a rule.
-4. The checker creates approved requirements v2 and regenerates tests.
-5. Muse Code repairs; separate sandboxed execution rechecks visible and hidden inputs.
-
-Day 1 Muse reported all three impossible-task conflicts without faking success.
-Recovery is the main experiment. Claim/tampering safety controls are explicitly
-**planted fixtures**, kept separate from observed model behavior.
-
-See [the Day 2 run](results/DAY2.md), [run instructions](docs/RUN.md), and the
-[preregistered study design](docs/STUDY.md). No full study has run yet.
-
-## One command
-
-```sh
-muse-guard run refund-impossible
-muse-guard run refund-impossible --decide B
+```text
+Spec → Clash found → You decide → Muse Code repairs → Independent checks
 ```
 
-After a verified conflict, the first command pauses for your decision; the second
-records a scripted choice. Both print an evidence summary and save the full record.
-See [run instructions](docs/RUN.md) for environment setup and the offline quality gate.
+Muse Spark proposes rules from English and explains clashes. A deterministic checker verifies conflicts over a small finite input space; the developer confirms the translation and chooses the winning rule. Muse Code writes and repairs code, then a separate checker runs visible and hidden checks. The new spec preflight and recorded recovery demo are separate entry points today.
 
-## Status
+| Meta tool | Role |
+|---|---|
+| Muse Code | Writes and repairs code |
+| Muse Spark | Turns English requirements into proposed rules and explains clashes |
+| Muse Spark Open via Baseten | Planned second agent backend; offline adapter only, live comparison pending |
 
-Work in progress.
+## Try it in 60 seconds
 
-Built during the Meta Global AI Developer Hackathon
-(Oct 26 - Nov 4, 2026).
+Requires Git and Python 3.11+; this demo needs no key and makes no model calls.
 
-## Prior work
+```sh
+git clone --branch codex/submission https://github.com/jeshwanthsingh/muse-guard.git
+cd muse-guard
+python3 -m http.server 8000 --bind 127.0.0.1 --directory output/submission-site
+```
 
-Prior work by me, not part of this submission: [Unfoolable](https://github.com/jeshwanthsingh/Unfoolable).
-On Day 1, seven Python detection patterns were copied into a reference fixture,
-and the first detector followed its comparison design. On Day 6 (2026-10-26),
-the copied fixture was deleted and the detector was replaced with freshly written
-scope-aware rules, new wording and planted-cheat tests. Copied diagnostic wording
-was removed too. Unfoolable is now a design reference only for the current code.
-Earlier commits retain the original material for an honest history; they are not
-the implementation shown in the current demo. See [the provenance correction](docs/PROVENANCE.md).
+Open **http://127.0.0.1:8000**. The submission branch is currently local only; the clone command becomes available after its separately approved push. In the existing local checkout, start at `cd ~/Projects/muse-guard` instead.
 
-## View a recorded recovery
+Try the clearly labeled fake-response spec example locally:
 
-`muse-guard view recovery-289db424fb09` opens a local replay with the rules,
-verified clash, recorded choice, repair diff, individual checks and JSON download.
-Use `--live` only for a verified paused development record to make a real decision
-and continue through the existing budgeted repair/checker. Replay never calls a model.
+```sh
+PATH="$PWD/spec_guard/bin:$PATH" muse-guard spec spec_eval/docs/refunds.md --response spec_eval/fake/refunds.json --accept-all
+```
 
-The approved Day4 fair-baseline amendment is in docs/amendments/. No study runs have
-started. The same-session plain adapter passes offline tests; the final-code
-clean development pilot and reviewed refreeze remain required. See
-[tomorrow's exact commands](docs/NEXT_PILOT.md) and the
-[primary measures](docs/PRIMARY_MEASURES.md).
+Open the printed `index.html` path. Without `--accept-all`, you review each translation yourself.
 
-## Static judge demo
+[Static recorded demo](output/submission-site/index.html) · [Spec instructions](docs/SPEC.md) · [Study plan](docs/STUDY.md)
 
-Open `output/judge-site/index.html` for four recorded examples with downloadable
-public evidence: two recoveries, a solvable PASS and a clearly labeled planted
-cheat. Export other recorded selections with `muse-guard export-site <runs...>`.
-See [export instructions and privacy boundaries](docs/STATIC_DEMO.md).
-The GitHub Pages workflow is present but disabled; nothing has been deployed.
+## Results
+
+**Study pending.** Clean pilot: pending. Spec extraction evaluation: pending. Baseten comparison: pending.
+The demo contains historical development recordings and a clearly labeled planted-cheat fixture; these are not completed-study results. No success rates are claimed.
+
+## Limits
+
+Small finite rule tables, a restricted condition language, and small samples. An exact quote does not prove that an English requirement was translated correctly: developer review remains essential. The candidate sandbox currently requires macOS. Hidden checks test the approved requirements; they are not a proof of correctness for arbitrary software.
+
+Built during the Meta Global AI Developer Hackathon (Oct 26–Nov 4, 2026).
+On Day 1, seven detection patterns were copied from my earlier Unfoolable project. They and copied diagnostic wording were replaced on Day 6; Unfoolable is now a design reference only for the current implementation. Earlier commits preserve that history.
+[Provenance](docs/PROVENANCE.md) · [Dated contributions](docs/CONTRIBUTIONS.md)

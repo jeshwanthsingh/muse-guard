@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-26",
+  "branch": "codex/submission",
+  "base_commit": "03b558b5259a6ec706d6a12cb7dd24a16942f434",
+  "official_study_runtime_commit": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "protected_guard": {
+    "protected_files": 103,
+    "base_commit": "03b558b5259a6ec706d6a12cb7dd24a16942f434",
+    "status": "UNCHANGED"
+  },
+  "prior_result_ledger_study_holdout_files_unchanged": 120,
+  "offline_tests_passed": 189,
+  "new_submission_tests_passed": 13,
+  "paid_provider_calls": 0,
+  "incremental_cost_usd": 0,
+  "baseten": {
+    "model": "meta-models/muse-spark-open-1026",
+    "actual_muse_with_fake_transport": "passed",
+    "https_transport": "mock-tested only",
+    "live_execution": "BLOCKED pending verified token counter and reviewed balanced executor"
+  },
+  "demo": {
+    "viewport": [
+      1280,
+      720
+    ],
+    "all_four_cards_fit": true,
+    "external_requests": 0,
+    "live_controls": 0,
+    "download_evidence_unchanged": true,
+    "gitleaks": "passed",
+    "privacy": "passed; public GitHub navigation link allowlisted",
+    "manifest_sha256": "d8b13b819e490e0fdc321ca553a22c6a6521cc4baec157b061e74a7fda3662e1"
+  },
+  "study_receipts": "original hash-linked records unchanged; new/changed results copied into exact-runtime provenance envelopes outside checkout"
+}

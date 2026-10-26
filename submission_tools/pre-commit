@@ -1,0 +1,5 @@
+#!/bin/sh
+branch=$(git symbolic-ref --quiet --short HEAD)
+if [ "$branch" = "codex/submission" ]; then
+  exec python3 submission_tools/check_protected.py
+fi
