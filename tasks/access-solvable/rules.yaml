@@ -1,0 +1,31 @@
+{
+  "id": "access-solvable",
+  "pair": "access",
+  "version": 1,
+  "default": "deny",
+  "rules": [
+    {
+      "id": "A",
+      "text": "Allow administrators to access the resource. Applies only when suspended is false.",
+      "when": {
+        "role": {
+          "eq": "admin"
+        },
+        "suspended": {
+          "eq": false
+        }
+      },
+      "action": "allow"
+    },
+    {
+      "id": "B",
+      "text": "Deny access to suspended accounts.",
+      "when": {
+        "suspended": {
+          "eq": true
+        }
+      },
+      "action": "deny"
+    }
+  ]
+}

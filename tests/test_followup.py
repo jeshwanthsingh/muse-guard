@@ -1,3 +1,4 @@
+"""Offline protocol and budget fixtures; these tests make no paid provider calls."""
 import json
 import os
 from pathlib import Path
@@ -72,14 +73,14 @@ class FollowupTests(unittest.TestCase):
         from datetime import datetime
         from zoneinfo import ZoneInfo
         from muse_guard.runner import run_one
-        from muse_guard.tasks import TASKS
+        from muse_guard.legacy_tasks import TASKS
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             day=datetime.now(ZoneInfo('America/Los_Angeles')).date().isoformat()
             (root/'prior.json').write_text(json.dumps({'run_id':'prior','date':day,'cost_usd':4.8}))
             row=run_one(TASKS['identity-solvable'],root,env={'META_API_KEY':'fixture'})
             self.assertFalse(row['model_invoked'])
-            self.assertEqual(row['outcome'],'ERROR')
+            self.assertEqual(row['outcome'],'HARNESS ERROR')
             self.assertIn('$5',row['reason'])
 
     def test_gateway_rejects_uncounted_conversation_context(self):
@@ -125,7 +126,7 @@ class FollowupTests(unittest.TestCase):
         from datetime import datetime
         from zoneinfo import ZoneInfo
         from muse_guard.runner import run_one
-        from muse_guard.tasks import TASKS
+        from muse_guard.legacy_tasks import TASKS
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             day=datetime.now(ZoneInfo('America/Los_Angeles')).date().isoformat()

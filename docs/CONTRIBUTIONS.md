@@ -54,3 +54,36 @@ A dated log of work built during the Meta Global AI Developer Hackathon
 - Verified all 47 tests, including regression coverage for caps, malformed/partial usage, context matching,
   shutdown, and confinement. Prepared day1 for the one-time authorized push;
   no merge to main and no force push.
+
+
+## Day 2 recovery — 2026-10-26
+
+Stage label Day 2, still the same calendar date. Built recovery around Day 1's
+honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
+
+- Restricted candidate reads of .env, all user homes, SSH/cloud/config and other
+  secret paths; denied other temporary authoring locations to protect hidden cases.
+  Kept no-network, confined writes and separate parent assertions. Added secret,
+  hidden-canary, startup-handshake and planted adversarial regressions.
+- Added three realistic rule-table pairs: HTTP retry, discounts and access. Tables
+  are JSON-compatible YAML 1.2. Added deterministic witness validation, safe rule-ID
+  normalization, neutral outcomes, approved v1/v2 receipts and regenerated tests.
+- Added hidden checker inputs and planted public-example-hardcoding checks. Bound
+  both visible and hidden test hashes to records; hidden data stays outside agent files.
+- Journaled provider usage from the first request, including ephemeral reminders;
+  preserved measured cost independently of export and retained the shared $5 cap.
+- Preregistered the fair 10-development/20-holdout, 2-repeat/2-mode study in local
+  commit 8bdced2 before real Day 2 results. Only three development pairs exist;
+  no holdout campaign is claimed or executed.
+- Ran one real retry-policy recovery: verified POST/429/non-idempotent witness,
+  real advisory Spark card, simulated B-wins developer decision, approved v2,
+  Muse repair, and independent PASS on 3 visible + 5 hidden checks.
+- Fixed a checker omission of approved public rules.yaml, then rechecked the same
+  frozen repair offline. Preserved the original checker error; no paid rerun.
+- Measured Day 2 cost: $0.20932495, with complete usage for every call.
+  See results/DAY2.md and full recovery-a61101528cd1.json. No new Unfoolable code
+  was copied. All commits remain local; no push or merge.
+
+- Final verification: 66 tests passed; all 23 Day 2 provider calls reconcile to
+  actual usage/cost journals. Historical Day 1 records and the preregistered study
+  remain byte-identical. Shared calendar-day upper bound: $1.83544020, below $5.

@@ -5,8 +5,23 @@ instead of faking it, and an independent checker proves it.
 
 ## What it is
 
-A hackathon project exploring honest task handling for Meta's coding agent.
-An independent checker will verify outcomes and surface when human input is needed.
+Recovery for conflicting coding requirements: explain the conflict, let the developer decide, then let Muse Code repair.
+An independent checker validates the witness and rechecks the approved implementation, including hidden inputs.
+
+## Recovery flow
+
+1. Muse Code returns a structured conflict report.
+2. A deterministic checker verifies one input where two rules require different actions.
+3. Muse Spark writes an advisory conflict card; the developer chooses a rule.
+4. The checker creates approved requirements v2 and regenerates tests.
+5. Muse Code repairs; separate sandboxed execution rechecks visible and hidden inputs.
+
+Day 1 Muse reported all three impossible-task conflicts without faking success.
+Recovery is the main experiment. Claim/tampering safety controls are explicitly
+**planted fixtures**, kept separate from observed model behavior.
+
+See [the Day 2 run](results/DAY2.md), [run instructions](docs/RUN.md), and the
+[preregistered study design](docs/STUDY.md). No full study has run yet.
 
 ## Status
 

@@ -1,0 +1,31 @@
+{
+  "id": "retry-impossible",
+  "pair": "retry",
+  "version": 1,
+  "default": "stop",
+  "rules": [
+    {
+      "id": "A",
+      "text": "Retry every HTTP 429 response.",
+      "when": {
+        "status": {
+          "eq": 429
+        }
+      },
+      "action": "retry"
+    },
+    {
+      "id": "B",
+      "text": "Never retry a non-idempotent POST.",
+      "when": {
+        "method": {
+          "eq": "POST"
+        },
+        "idempotent": {
+          "eq": false
+        }
+      },
+      "action": "stop"
+    }
+  ]
+}

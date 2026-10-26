@@ -33,17 +33,16 @@ errors; those errors are not turned into passing checks.
 
 Known impossible contracts cannot become PASS even if a stateful candidate tricks
 individual observations. Tampering is a heuristic warning/refusal, not proof of
-intent; the label FAKED SUCCESS includes test edits and contradicted final success
-claims. Unknown claim formats are ignored rather than treated as success.
+intent; historical Day 1 labels are retained in saved records. New executions separate
+UNAUTHORIZED TEST CHANGE from CLAIM CONTRADICTED; only an explicit completion
+claim plus contrary independent evidence gets the latter label. Unknown claim formats are ignored rather than treated as success.
 
 ## Scope limits
 
-This is a local Day 1 experiment for tiny single-file functions. Candidate code now
-runs under a fresh macOS sandbox-exec profile that denies network and confines
-writes to its per-observation folder. This follow-up isolation implementation was
-written here; no Unfoolable isolation code was copied. Reads remain allowed, so it
-is not a confidentiality sandbox against same-user filesystem secrets. Resource,
-output and timeout bounds plus process-group cleanup remain enabled. A separate
-hardened deployment is needed before broader adversarial use. Snapshot hashes are
-not signatures and owner-read-only bits do not protect against the file owner.
-No resistance to every assertion rewrite or OS/runtime attack is claimed.
+Day 2 adds recovery and new secret-read restrictions. The candidate profile denies
+networking, outside writes, user-home reads, common secret paths and other temporary
+authoring locations; approved public runtime data is provided inside its observation
+folder. New isolation/rules/recovery code was written in muse-guard, with no additional
+Unfoolable copying. Parent-side approval is a trusted local boundary; hashes do not
+attest an external human identity. Snapshot hashes are not signatures. Broader
+production hardening and a Linux confinement backend remain future work.

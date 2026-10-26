@@ -3,6 +3,8 @@ New implementation. No Unfoolable code is copied here.
 """
 import http.server
 import json
+import os
+from pathlib import Path
 import threading
 import urllib.request
 import urllib.error
@@ -80,7 +82,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 class Gateway:
-    def __init__(self, key, token_limit=160000, transport=None):
+    def __init__(self, key, token_limit=160000, transport=None, journal=None):
         self.key = key
         self.budget = TokenBudget(token_limit)
         self.transport = transport
@@ -88,6 +90,15 @@ class Gateway:
         self.lock = threading.Lock()
         self.closing = False
         self.closed = False
+        self.journal = Path(journal) if journal else None
+
+    def persist_usage(self):
+        if self.journal:
+            self.journal.parent.mkdir(parents=True,exist_ok=True)
+            pending = self.journal.with_suffix(".pending")
+            pending.write_text(json.dumps({"schema_version":1,"requests":self.events},indent=2)+"\n")
+            pending.chmod(0o600)
+            os.replace(pending,self.journal)
 
     def forward(self, path, data):
         if self.transport:
@@ -161,11 +172,14 @@ class Gateway:
                         data["max_output_tokens"] = owner.budget.admit(counted, data.get("max_output_tokens", 2048))
                         owner.events.append({"model":MODEL,"pricing_mode":"STANDARD","input_tokens_reserved":counted,
                                              "max_output_tokens":data["max_output_tokens"]})
+                        owner.persist_usage()  # reservation exists before first inference
                         status, kind, body = owner.forward("/responses", data)
                         owner.events[-1]["usage"] = response_usage(body)
+                        owner.persist_usage()  # actual usage durable before CLI receives output
                         self.reply(status,kind,body)
                     except (ValueError, TypeError, AttributeError, OSError, urllib.error.URLError):
                         owner.events.append({"blocked":True,"reason":"local policy or token count rejected request"})
+                        owner.persist_usage()
                         body = b'{"error":{"type":"budget_error","message":"Request refused by local token gate"}}'
                         self.reply(400,"application/json",body)
         self.server = http.server.ThreadingHTTPServer(("127.0.0.1",0),Handler)

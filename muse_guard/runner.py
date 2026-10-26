@@ -185,17 +185,17 @@ def save_total(results, day):
     return summary
 
 
-def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6):
+def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, seed_solution=None, mode="plain"):
     env = dict(os.environ if env is None else env)
     results = Path(results).resolve()
     results.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     run_id = task["id"] + "-" + uuid.uuid4().hex[:12]
     day = datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": "plain",
+    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": mode, "stage":"day2",
               "pricing_mode": "STANDARD", "pricing_mode_verified": False, "model": MODEL,
               "mode_control":"API gateway pins Standard model; isolated config; MUSE_CONTRIBUTOR_MODE=0",
-              "max_tokens":max_tokens,"max_model_steps":max_model_steps,"outcome": "ERROR",
+              "max_tokens":max_tokens,"max_model_steps":max_model_steps,"outcome": "HARNESS ERROR",
               "tokens": {"input":0,"output":0,"cached_input":0}, "cost_usd": 0,
               "cost_basis": "no model invocation", "time_seconds": 0,
               "exit_code": None, "model_invoked": False, "tests": []}
@@ -219,6 +219,8 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6):
             root = Path(directory)
             workspace = root / "agent"
             materialize(task, workspace)
+            if seed_solution is not None:
+                (workspace / "solution.py").write_bytes(seed_solution)
             (root / "home").mkdir()
             (root / "config").mkdir()
             clean = {"PATH": env.get("PATH", os.defpath), "HOME": str(root / "home"),
@@ -233,7 +235,7 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6):
             # interruption cannot erase spend and allow the next invocation through.
             record.update(tokens=None,cost_usd=None,cost_basis="run in progress; reservation unresolved")
             (results / (run_id + ".json")).write_text(json.dumps(record,indent=2)+"\n")
-            with Gateway(env["META_API_KEY"], token_limit=max_tokens) as gateway:
+            with Gateway(env["META_API_KEY"], token_limit=max_tokens, journal=raw / "provider-usage.json") as gateway:
                 args = [cli,"exec","--provider","meta","--model",MODEL,"--base-url",gateway.url,
                         "--preset","miniswe","--reasoning-effort","low",
                         "--max-model-steps",str(max_model_steps),"--max-tool-output-bytes","4096",
@@ -252,6 +254,12 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6):
                     record["reserved_tokens"] = gateway.budget.reserved_tokens
                     record["model_invoked"] = any(not event.get("blocked") for event in gateway.events)
                     record["pricing_mode_verified"] = record["model_invoked"]
+                    admissions = [event for event in gateway.events if not event.get("blocked")]
+                    if admissions and all(event.get("usage") is not None for event in admissions):
+                        measured = {key:sum(event["usage"][key] for event in admissions)
+                                    for key in ("input_tokens","output_tokens","cached_input_tokens")}
+                        record["tokens"],record["cost_usd"] = usage_from_export({"usage":measured})
+                        record["cost_basis"] = "durable provider usage for every request, including reminders"
                     exported = run_process([cli,"export","--session",session,"--out",str(raw / "session.json"),"--redacted"],
                                            workspace,clean,timeout=20)
                     record["export_exit_code"] = exported.returncode
@@ -288,7 +296,8 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6):
                             forwarded = sum(not event.get("blocked") for event in gateway.events)
                             if len(completed) != forwarded:
                                 tokens,cost = None,None
-                        record.update(tokens=tokens,cost_usd=cost,cost_basis="exported usage at published Standard rates")
+                        if record["cost_usd"] is None:
+                            record.update(tokens=tokens,cost_usd=cost,cost_basis="exported usage at published Standard rates")
                     elif record["model_invoked"]:
                         record.update(tokens=None,cost_usd=None,cost_basis="export unavailable; stop further paid runs")
                     if not record["model_invoked"]:
@@ -309,11 +318,11 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6):
                         record["cost_basis"] = "incomplete export; full enforced reservation retained"
                     if record["tokens"] is not None and record["model_invoked"]:
                         if record["tokens"]["input"] + record["tokens"]["output"] > max_tokens:
-                            record.update(outcome="ERROR",reason="Provider usage exceeded reserved token budget")
+                            record.update(outcome="HARNESS ERROR",reason="Provider usage exceeded reserved token budget")
     except (ValueError,OSError,subprocess.SubprocessError,ArithmeticError):
         import sys
         error = sys.exc_info()[1]
-        record["outcome"] = "ERROR"
+        record["outcome"] = "HARNESS ERROR"
         record["reason"] = str(error) if isinstance(error,ValueError) and not isinstance(error,json.JSONDecodeError) else "Execution or accounting could not be completed"
     finally:
         record["time_seconds"] = round(time.monotonic() - started,3)

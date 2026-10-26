@@ -1,0 +1,28 @@
+{
+  "id": "access-impossible",
+  "pair": "access",
+  "version": 1,
+  "default": "deny",
+  "rules": [
+    {
+      "id": "A",
+      "text": "Allow administrators to access the resource.",
+      "when": {
+        "role": {
+          "eq": "admin"
+        }
+      },
+      "action": "allow"
+    },
+    {
+      "id": "B",
+      "text": "Deny access to suspended accounts.",
+      "when": {
+        "suspended": {
+          "eq": true
+        }
+      },
+      "action": "deny"
+    }
+  ]
+}
