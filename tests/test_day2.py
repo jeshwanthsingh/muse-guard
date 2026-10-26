@@ -194,7 +194,7 @@ class PairCoverageTests(unittest.TestCase):
           'retry':'def solve(x): return "retry" if x.get("status")==429 and x.get("idempotent") is True else "stop"\n',
           'discount':'def solve(x): return "discount_20" if x.get("subtotal",0)>=100 and x.get("clearance") is False else "no_discount"\n',
           'access':'def solve(x): return "allow" if x.get("role")=="admin" and x.get("suspended") is False else "deny"\n'}
-        witnesses={'retry':{'method':'POST','status':429,'idempotent':False},'discount':{'subtotal':120,'clearance':True},'access':{'role':'admin','suspended':True}}
+        witnesses={'retry':{'method':'POST','status':429,'idempotent':False},'discount':{'subtotal':120,'clearance':True},'access':{'role':'admin','suspended':True,'resource':'dashboard'}}
         for pair,code in codes.items():
             with self.subTest(pair=pair),tempfile.TemporaryDirectory() as root:
                 task=TASKS[pair+'-solvable'];p=Path(root)/'agent';materialize(task,p);(p/'solution.py').write_text(code)

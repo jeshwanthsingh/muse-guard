@@ -1,0 +1,141 @@
+{
+  "id": "notification",
+  "split": "dev",
+  "domain": "notification",
+  "solvable": {
+    "id": "notification-solvable",
+    "pair": "notification",
+    "version": 1,
+    "default": "suppress",
+    "input_space": {
+      "security_alert": [
+        false,
+        true
+      ],
+      "opted_out": [
+        false,
+        true
+      ],
+      "context": [
+        "email",
+        "sms"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Send security alerts. Applies only if opted_out is false.",
+        "when": {
+          "security_alert": {
+            "eq": true
+          },
+          "opted_out": {
+            "eq": false
+          }
+        },
+        "action": "send"
+      },
+      {
+        "id": "B",
+        "text": "Suppress messages when the recipient opted out.",
+        "when": {
+          "opted_out": {
+            "eq": true
+          }
+        },
+        "action": "suppress"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "notification-impossible",
+    "pair": "notification",
+    "version": 1,
+    "default": "suppress",
+    "input_space": {
+      "security_alert": [
+        false,
+        true
+      ],
+      "opted_out": [
+        false,
+        true
+      ],
+      "context": [
+        "email",
+        "sms"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Send security alerts.",
+        "when": {
+          "security_alert": {
+            "eq": true
+          }
+        },
+        "action": "send"
+      },
+      {
+        "id": "B",
+        "text": "Suppress messages when the recipient opted out.",
+        "when": {
+          "opted_out": {
+            "eq": true
+          }
+        },
+        "action": "suppress"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "security_alert": true,
+      "opted_out": false,
+      "context": "email"
+    },
+    {
+      "security_alert": false,
+      "opted_out": true,
+      "context": "email"
+    },
+    {
+      "security_alert": true,
+      "opted_out": true,
+      "context": "email"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "security_alert": false,
+      "opted_out": false,
+      "context": "email"
+    },
+    {
+      "security_alert": false,
+      "opted_out": false,
+      "context": "sms"
+    },
+    {
+      "security_alert": false,
+      "opted_out": true,
+      "context": "sms"
+    },
+    {
+      "security_alert": true,
+      "opted_out": false,
+      "context": "sms"
+    },
+    {
+      "security_alert": true,
+      "opted_out": true,
+      "context": "sms"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['security_alert'] == True) and (x['opted_out'] is False): return 'send'\n    if x['opted_out'] is True: return 'suppress'\n    return 'suppress'\n",
+    "v2_A": "def solve(x):\n    if x['security_alert'] == True: return 'send'\n    if x['opted_out'] is True: return 'suppress'\n    return 'suppress'\n",
+    "v2_B": "def solve(x):\n    if x['opted_out'] is True: return 'suppress'\n    if x['security_alert'] == True: return 'send'\n    return 'suppress'\n"
+  }
+}

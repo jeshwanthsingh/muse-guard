@@ -1,0 +1,354 @@
+{
+  "model_calls": 0,
+  "pairs": [
+    {
+      "pair": "access",
+      "pair_sha256": "a1ca62c049a0ed1d837ff22b9424f2d284c0e6dc69d4b0ffb7ce6e40f044ed02",
+      "input_count": 12,
+      "witness_count": 2,
+      "witness": {
+        "role": "admin",
+        "suspended": true,
+        "resource": "dashboard"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 9,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 12,
+          "exhaustive_inputs": 12
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 12,
+          "exhaustive_inputs": 12
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 12,
+          "exhaustive_inputs": 12
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "discount",
+      "pair_sha256": "b4a366479a5af5dd5038fffa4d8a96cbc425d6a638ca1bbf2e74a676311385d3",
+      "input_count": 12,
+      "witness_count": 4,
+      "witness": {
+        "subtotal": 100,
+        "clearance": true
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 9,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 12,
+          "exhaustive_inputs": 12
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 12,
+          "exhaustive_inputs": 12
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 12,
+          "exhaustive_inputs": 12
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "feature",
+      "pair_sha256": "bdcbbb07294e020843f79d869cc0a46e364304a29db2c5fd46884a55881ed613",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "beta_member": true,
+        "incident": true,
+        "context": "mobile"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "notification",
+      "pair_sha256": "cedac67ba9b05d57a7f2755f8f3cc72a0af6e01fc4fe5660f4d5e626be5575fd",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "security_alert": true,
+        "opted_out": true,
+        "context": "email"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "pricing",
+      "pair_sha256": "b3bdfa9f2dc3b291020b459e18980220166f066977025849501605e96387afd2",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "member": true,
+        "regulated": true,
+        "context": "online"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "rate-limit",
+      "pair_sha256": "983304dbfa3a88a23c46266d7d1b0ca59bb43a2299f44905ef2de81a64295caf",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "over_limit": true,
+        "internal": true,
+        "context": "read"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "refund",
+      "pair_sha256": "93d361c898640ada4daaf107798f460602b8956c7ae623bd11d1585e6ef83da4",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "eligible": true,
+        "fraud_hold": true,
+        "context": "card"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "retention",
+      "pair_sha256": "aebd163d4b5fa87c24acc97d521e741d944a084ed01eab25bd1fdb24b3ae204c",
+      "input_count": 16,
+      "witness_count": 4,
+      "witness": {
+        "age_days": 30,
+        "legal_hold": true,
+        "context": "audit"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 13,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "retry",
+      "pair_sha256": "551f81e5b7cca411362ed286a8d6065e5e83726fffe3f1eb95577876805c864c",
+      "input_count": 24,
+      "witness_count": 1,
+      "witness": {
+        "method": "POST",
+        "status": 429,
+        "idempotent": false
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 21,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 24,
+          "exhaustive_inputs": 24
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 24,
+          "exhaustive_inputs": 24
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 24,
+          "exhaustive_inputs": 24
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "shipping",
+      "pair_sha256": "cc9b4b7b15637663f7b6a1eead8049819735feba0cf7f6750df76b13618b098d",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "express_requested": true,
+        "hazardous": true,
+        "context": "domestic"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    }
+  ]
+}

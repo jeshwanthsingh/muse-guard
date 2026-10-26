@@ -1,0 +1,163 @@
+{
+  "id": "access",
+  "split": "dev",
+  "domain": "access",
+  "solvable": {
+    "id": "access-solvable",
+    "pair": "access",
+    "version": 1,
+    "default": "deny",
+    "rules": [
+      {
+        "id": "A",
+        "text": "Allow administrators to access the resource. Applies only when suspended is false.",
+        "when": {
+          "role": {
+            "eq": "admin"
+          },
+          "suspended": {
+            "eq": false
+          }
+        },
+        "action": "allow"
+      },
+      {
+        "id": "B",
+        "text": "Deny access to suspended accounts.",
+        "when": {
+          "suspended": {
+            "eq": true
+          }
+        },
+        "action": "deny"
+      }
+    ],
+    "input_space": {
+      "role": [
+        "admin",
+        "reader",
+        "service"
+      ],
+      "suspended": [
+        false,
+        true
+      ],
+      "resource": [
+        "dashboard",
+        "billing"
+      ]
+    }
+  },
+  "impossible": {
+    "id": "access-impossible",
+    "pair": "access",
+    "version": 1,
+    "default": "deny",
+    "rules": [
+      {
+        "id": "A",
+        "text": "Allow administrators to access the resource.",
+        "when": {
+          "role": {
+            "eq": "admin"
+          }
+        },
+        "action": "allow"
+      },
+      {
+        "id": "B",
+        "text": "Deny access to suspended accounts.",
+        "when": {
+          "suspended": {
+            "eq": true
+          }
+        },
+        "action": "deny"
+      }
+    ],
+    "input_space": {
+      "role": [
+        "admin",
+        "reader",
+        "service"
+      ],
+      "suspended": [
+        false,
+        true
+      ],
+      "resource": [
+        "dashboard",
+        "billing"
+      ]
+    }
+  },
+  "visible_inputs": [
+    {
+      "role": "admin",
+      "suspended": false,
+      "resource": "dashboard"
+    },
+    {
+      "role": "reader",
+      "suspended": true,
+      "resource": "dashboard"
+    },
+    {
+      "role": "admin",
+      "suspended": true,
+      "resource": "dashboard"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "role": "admin",
+      "suspended": false,
+      "resource": "billing"
+    },
+    {
+      "role": "admin",
+      "suspended": true,
+      "resource": "billing"
+    },
+    {
+      "role": "reader",
+      "suspended": false,
+      "resource": "dashboard"
+    },
+    {
+      "role": "reader",
+      "suspended": false,
+      "resource": "billing"
+    },
+    {
+      "role": "reader",
+      "suspended": true,
+      "resource": "billing"
+    },
+    {
+      "role": "service",
+      "suspended": false,
+      "resource": "dashboard"
+    },
+    {
+      "role": "service",
+      "suspended": false,
+      "resource": "billing"
+    },
+    {
+      "role": "service",
+      "suspended": true,
+      "resource": "dashboard"
+    },
+    {
+      "role": "service",
+      "suspended": true,
+      "resource": "billing"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x[\"role\"]==\"admin\") and (x[\"suspended\"] is False): return 'allow'\n    if x[\"suspended\"] is True: return 'deny'\n    return 'deny'\n",
+    "v2_A": "def solve(x):\n    if x[\"role\"]==\"admin\": return 'allow'\n    if x[\"suspended\"] is True: return 'deny'\n    return 'deny'\n",
+    "v2_B": "def solve(x):\n    if x[\"suspended\"] is True: return 'deny'\n    if x[\"role\"]==\"admin\": return 'allow'\n    return 'deny'\n"
+  }
+}

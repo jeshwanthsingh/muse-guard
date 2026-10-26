@@ -20,7 +20,7 @@ def conflict_card(req,proof,results,env):
     started=time.monotonic()
     run_id="conflict-card-"+uuid.uuid4().hex[:12]
     day=datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    row={"run_id":run_id,"date":day,"stage":"day2","task":"retry-conflict-card","mode":"guarded-card",
+    row={"run_id":run_id,"date":day,"stage":"day3","task":req["id"]+"-conflict-card","mode":"guarded-card",
          "pricing_mode":"STANDARD","model":"muse-spark-1.3","cost_usd":None,"tokens":None,
          "status":"PENDING","reserved_cost_usd":0.068,"model_invoked":False}
     path=results/(run_id+".json")
@@ -66,24 +66,39 @@ def conflict_card(req,proof,results,env):
     return row
 
 
-def recover(results,decision,env=None):
+def choose_decision(rule_ids,decide=None,input_fn=None):
+    if decide is not None:
+        if decide not in rule_ids:raise ValueError("Choose one of the verified rule IDs")
+        return decide,"scripted developer CLI"
+    input_fn=input_fn or input
+    while True:
+        try:answer=input_fn("Choose "+" / ".join(rule_ids)+" (empty to stop): ").strip().upper()
+        except (EOFError,KeyboardInterrupt):return None,None
+        if not answer:return None,None
+        if answer in rule_ids:return answer,"interactive developer CLI"
+        print("Please choose a verified rule ID.")
+
+
+def recover(results,decision=None,env=None,*,task_name="retry-impossible",allow_holdout=False):
+    if allow_holdout and decision!="B":
+        raise ValueError("Frozen holdout decision policy requires scripted B")
     env=dict(os.environ if env is None else env)
     results=Path(results).resolve();results.mkdir(parents=True,exist_ok=True)
     start=time.monotonic()
     record={"recovery_id":"recovery-"+uuid.uuid4().hex[:12],"date":datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat(),
-            "mode":"guarded","exploratory":True,"study_holdout":False,"status":"STARTED","phase_run_ids":[]}
+            "mode":"guarded","task":task_name,"exploratory":not allow_holdout,"study_holdout":allow_holdout,"status":"STARTED","phase_run_ids":[]}
     target=results/(record["recovery_id"]+".json")
     target.write_text(json.dumps(record,indent=2)+"\n")
     phase_rows=[]
     try:
-        task=TASKS["retry-impossible"]
+        task=TASKS[task_name]
         record["requirements_v1"]=task["requirements"]
         record["v1_tests_hash"]=digest({"visible":task["test_source"],"hidden":task["hidden_test_source"]})
-        attempt=run_one(task,results,env,mode="guarded")
+        attempt=run_one(task,results,env,mode="guarded",allow_holdout=allow_holdout)
         phase_rows.append(attempt);record["phase_run_ids"].append(attempt["run_id"])
         record["attempt"]=attempt
         if attempt["outcome"]!="CONFLICT VERIFIED":
-            record["status"]="ATTEMPT DID NOT PRODUCE VERIFIED CONFLICT"
+            record["status"]=attempt["outcome"]
             return record
         report=attempt["conflict_report"]
         proof=verify_conflict(task["requirements"],report)
@@ -94,15 +109,24 @@ def recover(results,decision,env=None):
         if card["status"]!="GENERATED":
             record["status"]="CARD GENERATION FAILED"
             return record
-        v2=approve(task["requirements"],decision,report,confirmed=True)
+        print(card["text"],flush=True)
+        winner,source=choose_decision(proof["rules"],decision)
+        if winner is None:
+            record["status"]="AWAITING DECISION"
+            return record
+        v2=approve(task["requirements"],winner,report,confirmed=True,source=source)
         record.update(decision=v2["approval"]["decision"],requirements_v2=v2)
         repair_task=build_task(v2)
         record["v2_tests_hash"]=digest({"visible":repair_task["test_source"],"hidden":repair_task["hidden_test_source"]})
         seed=(results/"raw"/attempt["run_id"]/"frozen"/"solution.py").read_bytes()
-        repair=run_one(repair_task,results,env,seed_solution=seed,mode="guarded")
+        repair=run_one(repair_task,results,env,seed_solution=seed,mode="guarded",allow_holdout=allow_holdout)
         phase_rows.append(repair);record["phase_run_ids"].append(repair["run_id"])
         record["repair"]=repair
         record["status"]="RECOVERED" if repair["outcome"]=="PASS" else "RECHECK DID NOT PASS"
+        return record
+    except (ValueError,OSError,KeyError):
+        record["status"]="HARNESS ERROR"
+        record["reason"]="Recovery stopped; inspect phase records, credentials or budget"
         return record
     finally:
         record["time_seconds"]=round(time.monotonic()-start,3)
@@ -113,7 +137,7 @@ def recover(results,decision,env=None):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument("--decision",choices=["A","B"],required=True,help="Explicit simulated developer choice; recorded as simulated")
+    parser.add_argument("--decision",choices=["A","B"],help="Explicit scripted developer choice")
     parser.add_argument("--results",type=Path,default=Path("results"))
     args=parser.parse_args();args.results.mkdir(parents=True,exist_ok=True)
     with (args.results/".run.lock").open("w") as lock:

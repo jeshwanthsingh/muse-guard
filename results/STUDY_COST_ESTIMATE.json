@@ -1,0 +1,14 @@
+{
+  "initial_attempts": 240,
+  "guarded_recoveries_max": 60,
+  "dev_initial_runs_measured": 20,
+  "mean_initial_usd": 0.08375165999999999,
+  "measured_card_usd": 0.0024545,
+  "measured_repair_usd": 0.10925639999999999,
+  "observed_cache_planning_usd": 26.8030524,
+  "no_cache_same_token_volume_usd": 45.817428,
+  "token_limit_upper_bound_usd": 208.08,
+  "math": "240 * mean dev initial cost + 60 * (card + repair)",
+  "actual_study_runs": 0,
+  "holdout_model_calls": 0
+}

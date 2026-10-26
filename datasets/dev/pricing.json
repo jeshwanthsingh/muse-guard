@@ -1,0 +1,141 @@
+{
+  "id": "pricing",
+  "split": "dev",
+  "domain": "pricing",
+  "solvable": {
+    "id": "pricing-solvable",
+    "pair": "pricing",
+    "version": 1,
+    "default": "list_price",
+    "input_space": {
+      "member": [
+        false,
+        true
+      ],
+      "regulated": [
+        false,
+        true
+      ],
+      "context": [
+        "online",
+        "store"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Give members the member price. Applies only if regulated is false.",
+        "when": {
+          "member": {
+            "eq": true
+          },
+          "regulated": {
+            "eq": false
+          }
+        },
+        "action": "member_price"
+      },
+      {
+        "id": "B",
+        "text": "Regulated items must use list price.",
+        "when": {
+          "regulated": {
+            "eq": true
+          }
+        },
+        "action": "list_price"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "pricing-impossible",
+    "pair": "pricing",
+    "version": 1,
+    "default": "list_price",
+    "input_space": {
+      "member": [
+        false,
+        true
+      ],
+      "regulated": [
+        false,
+        true
+      ],
+      "context": [
+        "online",
+        "store"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Give members the member price.",
+        "when": {
+          "member": {
+            "eq": true
+          }
+        },
+        "action": "member_price"
+      },
+      {
+        "id": "B",
+        "text": "Regulated items must use list price.",
+        "when": {
+          "regulated": {
+            "eq": true
+          }
+        },
+        "action": "list_price"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "member": true,
+      "regulated": false,
+      "context": "online"
+    },
+    {
+      "member": false,
+      "regulated": true,
+      "context": "online"
+    },
+    {
+      "member": true,
+      "regulated": true,
+      "context": "online"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "member": false,
+      "regulated": false,
+      "context": "online"
+    },
+    {
+      "member": false,
+      "regulated": false,
+      "context": "store"
+    },
+    {
+      "member": false,
+      "regulated": true,
+      "context": "store"
+    },
+    {
+      "member": true,
+      "regulated": false,
+      "context": "store"
+    },
+    {
+      "member": true,
+      "regulated": true,
+      "context": "store"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['member'] == True) and (x['regulated'] is False): return 'member_price'\n    if x['regulated'] is True: return 'list_price'\n    return 'list_price'\n",
+    "v2_A": "def solve(x):\n    if x['member'] == True: return 'member_price'\n    if x['regulated'] is True: return 'list_price'\n    return 'list_price'\n",
+    "v2_B": "def solve(x):\n    if x['regulated'] is True: return 'list_price'\n    if x['member'] == True: return 'member_price'\n    return 'list_price'\n"
+  }
+}

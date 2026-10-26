@@ -124,11 +124,16 @@ class Gateway:
                 pass
 
             def reply(self, status, kind, body):
-                self.send_response(status)
-                self.send_header("Content-Type", kind)
-                self.send_header("Content-Length", str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
+                try:
+                    self.send_response(status)
+                    self.send_header("Content-Type", kind)
+                    self.send_header("Content-Length", str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
+                except (BrokenPipeError,ConnectionResetError):
+                    # Muse may cancel reminder clients after the main turn ends.
+                    # Actual provider usage was persisted before this write.
+                    return
 
             def do_GET(self):
                 if self.path not in ("/muse-code/models", "/v1/muse-code/models", "/models", "/v1/models"):

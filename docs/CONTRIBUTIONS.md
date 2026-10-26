@@ -87,3 +87,31 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Final verification: 66 tests passed; all 23 Day 2 provider calls reconcile to
   actual usage/cost journals. Historical Day 1 records and the preregistered study
   remain byte-identical. Shared calendar-day upper bound: $1.83544020, below $5.
+
+
+## Day 3 quality gate and study preparation — 2026-10-26
+
+- Used one-time permission to push day2 at 6236e93 normally; main stayed unchanged.
+  Created day3 from day2. All subsequent commits remain local.
+- Built an exhaustive finite-domain admission gate first, with deliberate broken-pair
+  controls. Enforced full visible/hidden coverage, disjoint splits, exact task binding,
+  and executable references for solvable plus both approved v2 choices.
+- Expanded to ten realistic dev pairs (seven new), with explicit finite schemas.
+  Authored twenty holdout pairs in other domains/wording with opaque twin IDs.
+  All thirty passed the gate and all ninety reference versions passed. No model
+  was run on any holdout; only deterministic/reference checks were performed.
+- Added the muse-guard run command, interactive developer pause and --decide for
+  scripts, short evidence output, and full records. The scripted refund recovery
+  passed 8/8 independent checks, costing $0.18794365.
+- Ran twenty plain development attempts: 9 PASS, 10 CONFLICT VERIFIED, 1 six-step
+  task failure with no completion claim. Preserved that failure rather than rerunning
+  for a passing score. Actual initial cost $1.67503320; Day3 total
+  $1.86297685, including all reminders.
+- Fixed cancelled-reminder response logging without losing measured usage. Added
+  catalog-shadowing, manifest-anchor, protocol-drift and decision-policy controls.
+- Prepared a holdout-only freeze commit with a SHA-256 manifest pinning every data
+  file, runtime module, dev file, initial prompt, label and budget. Exact freeze
+  commit/hash follows in the final freeze entry. No study campaign or web UI today.
+- Estimated the full registered study at about $26.80 from observed cache
+  usage; no-cache sensitivity $45.82; absolute configured token bound
+  $208.08. See results/STUDY_COST_ESTIMATE.json for explicit arithmetic.

@@ -1,0 +1,705 @@
+{
+  "model_calls": 0,
+  "pairs": [
+    {
+      "pair": "h01",
+      "pair_sha256": "b427d34ce0c718bc3368508786ec0df6bb2747ea74cc8744388d18e211eb6c4f",
+      "input_count": 16,
+      "witness_count": 4,
+      "witness": {
+        "age_days": 60,
+        "escrow_lock": true,
+        "context": "edge"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 13,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h02",
+      "pair_sha256": "5a4318a9ebf25476a8d31399e33d6746f120ba76bef7491dd4f2c4b23d6a0b22",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "archival": true,
+        "interactive_form": true,
+        "context": "invoice"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h03",
+      "pair_sha256": "49289a354eecc13eaf8469e3f8fd4bb7de497ca6f59c019a95a50a65abc74cca",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "wheelchair": true,
+        "route_closed": true,
+        "context": "morning"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h04",
+      "pair_sha256": "11c25d7b0c0de3963b412fca5da6192e01ff54eb4fd50e1925bc051992d84269",
+      "input_count": 16,
+      "witness_count": 4,
+      "witness": {
+        "temperature": 8,
+        "irreplaceable": true,
+        "context": "serum"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 13,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h05",
+      "pair_sha256": "fedf14654c5e8c4eca8baa5c581fde929ca825d8b122ccd52bd2c62d08bbd022",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "low_bandwidth": true,
+        "broadcast_master": true,
+        "context": "clip"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h06",
+      "pair_sha256": "0bcb9ab52091084751d186cdab4dbf4c5d84f87ccb46f009a534c80217bdbb6c",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "dry_soil": true,
+        "frost_alert": true,
+        "context": "north"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h07",
+      "pair_sha256": "1728dca086ec15dc953123226f17b54e0599703359e63ef87d448384b5ea00ab",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "low_battery": true,
+        "emergency_stop": true,
+        "context": "line_1"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h08",
+      "pair_sha256": "b75d5d70bfab041cd41634c63dea15bd79d0b5d9ab2b7865ae43f6695cac6a3c",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "contains_nuts": true,
+        "chef_special": true,
+        "context": "lunch"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h09",
+      "pair_sha256": "b35393755114f1ab326a285cc5a51162f35901cec7deaacf071c134f06fb431e",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "signature_due": true,
+        "unverified_identity": true,
+        "context": "lease"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h10",
+      "pair_sha256": "fb58e96ba032a0fd07dd6efc9cc3c0d4d2db23ec6d21c57c9668186051a1ea84",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "buffer_full": true,
+        "blackout": true,
+        "context": "science"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h11",
+      "pair_sha256": "0a6f7ec01959243b827f6654016e4e8a5885c43fb76c448e7363ded099211023",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "few_copies": true,
+        "embargo": true,
+        "context": "tape"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h12",
+      "pair_sha256": "4f4408f487fbe0e726e822b733e804d0703c281abd2b4dbb7a256b5e164cba37",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "fragile": true,
+        "automated_aisle": true,
+        "context": "pallet"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h13",
+      "pair_sha256": "e129df1e00f367666800480cc64ac729440f7696d231ad6628adb4a15ba4613b",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "speech": true,
+        "music_solo": true,
+        "context": "podcast"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h14",
+      "pair_sha256": "cb7f29154e53cbb11df51fff6c808bb9f91f7811fd7dd9bfe5a74f40ae1a691a",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "good_condition": true,
+        "custody_dispute": true,
+        "context": "painting"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h15",
+      "pair_sha256": "1669b1dcac0bf1cd005612a482452a0fab3a21d31b1d093c65f72bb54ab1c4e6",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "all_correct": true,
+        "plagiarism_flag": true,
+        "context": "quiz"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h16",
+      "pair_sha256": "fcbd1814f98b8c988ee91b92bacd35755f7e898865cfb3307f56a888a1cf40fa",
+      "input_count": 16,
+      "witness_count": 4,
+      "witness": {
+        "turbidity": 10,
+        "maintenance_lock": true,
+        "context": "intake"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 13,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 16,
+          "exhaustive_inputs": 16
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h17",
+      "pair_sha256": "5fb0e9fef9fa7418292647e2226381d1a62071bcd5775cb3d1ddfa2fcc4edf4d",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "infested": true,
+        "pollinators": true,
+        "context": "orchard"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h18",
+      "pair_sha256": "e1e464810fa908b19265f1f374fddb5b13fe452146cbba49d41107787ed9034f",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "narrow_viewport": true,
+        "large_print": true,
+        "context": "article"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h19",
+      "pair_sha256": "bc84b7022a7c75c3017d9c0b8c68b84bb64727260ebfd93169d4b250ff8d3992",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "fire_alarm": true,
+        "seismic": true,
+        "context": "tower_a"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    },
+    {
+      "pair": "h20",
+      "pair_sha256": "95e6ee4c9def96addaf667517e324eba9da2d3cd13665d44e2e5b9bc1743aea1",
+      "input_count": 8,
+      "witness_count": 2,
+      "witness": {
+        "clear_sky": true,
+        "satellite_crossing": true,
+        "context": "wide"
+      },
+      "solvable_witness_count": 0,
+      "visible_count": 3,
+      "hidden_count": 5,
+      "reference_checks": [
+        {
+          "version": "solvable",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_A",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        },
+        {
+          "version": "v2_B",
+          "outcome": "PASS",
+          "visible_and_hidden": 8,
+          "exhaustive_inputs": 8
+        }
+      ],
+      "status": "ACCEPTED"
+    }
+  ]
+}

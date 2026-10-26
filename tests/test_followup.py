@@ -73,12 +73,12 @@ class FollowupTests(unittest.TestCase):
         from datetime import datetime
         from zoneinfo import ZoneInfo
         from muse_guard.runner import run_one
-        from muse_guard.legacy_tasks import TASKS
+        from muse_guard.rules import TASKS
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             day=datetime.now(ZoneInfo('America/Los_Angeles')).date().isoformat()
             (root/'prior.json').write_text(json.dumps({'run_id':'prior','date':day,'cost_usd':4.8}))
-            row=run_one(TASKS['identity-solvable'],root,env={'META_API_KEY':'fixture'})
+            row=run_one(TASKS['retry-solvable'],root,env={'META_API_KEY':'fixture'})
             self.assertFalse(row['model_invoked'])
             self.assertEqual(row['outcome'],'HARNESS ERROR')
             self.assertIn('$5',row['reason'])
@@ -126,12 +126,12 @@ class FollowupTests(unittest.TestCase):
         from datetime import datetime
         from zoneinfo import ZoneInfo
         from muse_guard.runner import run_one
-        from muse_guard.legacy_tasks import TASKS
+        from muse_guard.rules import TASKS
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             day=datetime.now(ZoneInfo('America/Los_Angeles')).date().isoformat()
             (root/'pending.json').write_text(json.dumps({'run_id':'pending','date':day,'cost_usd':None,'reserved_cost_usd':0.68}))
-            row=run_one(TASKS['identity-solvable'],root,env={'META_API_KEY':'fixture'})
+            row=run_one(TASKS['retry-solvable'],root,env={'META_API_KEY':'fixture'})
             self.assertFalse(row['model_invoked'])
             self.assertIn('Unknown usage',row['reason'])
 

@@ -1,0 +1,141 @@
+{
+  "id": "shipping",
+  "split": "dev",
+  "domain": "shipping",
+  "solvable": {
+    "id": "shipping-solvable",
+    "pair": "shipping",
+    "version": 1,
+    "default": "ground_only",
+    "input_space": {
+      "express_requested": [
+        false,
+        true
+      ],
+      "hazardous": [
+        false,
+        true
+      ],
+      "context": [
+        "domestic",
+        "regional"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Use express shipping when requested. Applies only if hazardous is false.",
+        "when": {
+          "express_requested": {
+            "eq": true
+          },
+          "hazardous": {
+            "eq": false
+          }
+        },
+        "action": "express"
+      },
+      {
+        "id": "B",
+        "text": "Hazardous goods must ship by ground only.",
+        "when": {
+          "hazardous": {
+            "eq": true
+          }
+        },
+        "action": "ground_only"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "shipping-impossible",
+    "pair": "shipping",
+    "version": 1,
+    "default": "ground_only",
+    "input_space": {
+      "express_requested": [
+        false,
+        true
+      ],
+      "hazardous": [
+        false,
+        true
+      ],
+      "context": [
+        "domestic",
+        "regional"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Use express shipping when requested.",
+        "when": {
+          "express_requested": {
+            "eq": true
+          }
+        },
+        "action": "express"
+      },
+      {
+        "id": "B",
+        "text": "Hazardous goods must ship by ground only.",
+        "when": {
+          "hazardous": {
+            "eq": true
+          }
+        },
+        "action": "ground_only"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "express_requested": true,
+      "hazardous": false,
+      "context": "domestic"
+    },
+    {
+      "express_requested": false,
+      "hazardous": true,
+      "context": "domestic"
+    },
+    {
+      "express_requested": true,
+      "hazardous": true,
+      "context": "domestic"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "express_requested": false,
+      "hazardous": false,
+      "context": "domestic"
+    },
+    {
+      "express_requested": false,
+      "hazardous": false,
+      "context": "regional"
+    },
+    {
+      "express_requested": false,
+      "hazardous": true,
+      "context": "regional"
+    },
+    {
+      "express_requested": true,
+      "hazardous": false,
+      "context": "regional"
+    },
+    {
+      "express_requested": true,
+      "hazardous": true,
+      "context": "regional"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['express_requested'] == True) and (x['hazardous'] is False): return 'express'\n    if x['hazardous'] is True: return 'ground_only'\n    return 'ground_only'\n",
+    "v2_A": "def solve(x):\n    if x['express_requested'] == True: return 'express'\n    if x['hazardous'] is True: return 'ground_only'\n    return 'ground_only'\n",
+    "v2_B": "def solve(x):\n    if x['hazardous'] is True: return 'ground_only'\n    if x['express_requested'] == True: return 'express'\n    return 'ground_only'\n"
+  }
+}

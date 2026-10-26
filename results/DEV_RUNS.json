@@ -1,0 +1,28 @@
+{
+  "stage": "day3",
+  "mode": "plain",
+  "repeats": 1,
+  "study_results": false,
+  "run_ids": [
+    "access-impossible-v1-f2fc210d051b",
+    "access-solvable-v1-b15d1a5b99f4",
+    "discount-impossible-v1-8f3576554ea9",
+    "discount-solvable-v1-071ae36d5efc",
+    "feature-impossible-v1-830789a5d055",
+    "feature-solvable-v1-dff1760c9c69",
+    "notification-impossible-v1-3e45756ac48f",
+    "notification-solvable-v1-8b623e114410",
+    "pricing-impossible-v1-dac3f86f0875",
+    "pricing-solvable-v1-07fa535f975c",
+    "rate-limit-impossible-v1-4c218303bcfc",
+    "rate-limit-solvable-v1-8ddb35b4a356",
+    "refund-impossible-v1-8574016c0ee7",
+    "refund-solvable-v1-4c0c358c42bd",
+    "retention-impossible-v1-1cb0aae9a4eb",
+    "retention-solvable-v1-2fcd85b118a3",
+    "retry-impossible-v1-748a83882340",
+    "retry-solvable-v1-5ead5f577390",
+    "shipping-impossible-v1-fc14203fcc6e",
+    "shipping-solvable-v1-3dae4f9ef3ad"
+  ]
+}

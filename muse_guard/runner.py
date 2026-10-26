@@ -185,14 +185,14 @@ def save_total(results, day):
     return summary
 
 
-def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, seed_solution=None, mode="plain"):
+def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, seed_solution=None, mode="plain", allow_holdout=False):
     env = dict(os.environ if env is None else env)
     results = Path(results).resolve()
     results.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     run_id = task["id"] + "-" + uuid.uuid4().hex[:12]
     day = datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": mode, "stage":"day2",
+    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": mode, "stage":"day3",
               "pricing_mode": "STANDARD", "pricing_mode_verified": False, "model": MODEL,
               "mode_control":"API gateway pins Standard model; isolated config; MUSE_CONTRIBUTOR_MODE=0",
               "max_tokens":max_tokens,"max_model_steps":max_model_steps,"outcome": "HARNESS ERROR",
@@ -200,6 +200,18 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, se
               "cost_basis": "no model invocation", "time_seconds": 0,
               "exit_code": None, "model_invoked": False, "tests": []}
     try:
+        if not env.get("META_API_KEY"):
+            raise ValueError("META_API_KEY must be supplied through the environment")
+        if "input_space" not in task.get("requirements",{}):
+            raise ValueError("Only finite, admitted catalog tasks may invoke a model")
+        from .quality_gate import accept_task
+        record["quality_gate"]=accept_task(task)
+        if task.get("split")=="holdout":
+            from .freeze import verify_freeze
+            verify_freeze()
+            if not allow_holdout:raise ValueError("Holdout model runs require explicit future study authorization")
+            if max_tokens!=160000 or max_model_steps!=6:raise ValueError("Frozen study budgets cannot change")
+            if mode not in ("plain","guarded"):raise ValueError("Frozen study mode is invalid")
         if not env.get("META_API_KEY"):
             raise ValueError("META_API_KEY must be supplied through the environment")
         if type(max_tokens) is not int or not 0 < max_tokens <= 160000:
@@ -228,6 +240,8 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, se
                      "META_API_KEY":"proxy-only-no-provider-key", "MUSE_CONTRIBUTOR_MODE":"0", "LANG":"C.UTF-8"}
             version = run_process([cli,"--version"], workspace, clean, timeout=10)
             record["cli_version"] = version.stdout.strip()
+            if task.get("split")=="holdout" and record["cli_version"]!="Muse Code 1.4.2 (1.4.2-R4684.1)":
+                raise ValueError("Frozen study CLI version changed")
             raw = results / "raw" / run_id
             raw.mkdir(parents=True, exist_ok=False)
             session = str(uuid.uuid4())
@@ -244,6 +258,8 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, se
                 try:
                     executed = run_process(args, workspace, clean, timeout=180)
                     record["exit_code"] = executed.returncode
+                    record["termination"]=("MODEL STEP LIMIT" if "model did not reach a terminal state within" in executed.stderr
+                                           else "TURN COMPLETE" if executed.returncode==0 else "CLI ERROR")
                     (raw / "stdout.jsonl").write_text(executed.stdout)
                     (raw / "stderr.log").write_text(executed.stderr)
                     record["frozen_sha256"] = freeze(workspace, raw / "frozen")

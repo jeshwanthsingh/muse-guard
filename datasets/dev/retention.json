@@ -1,0 +1,185 @@
+{
+  "id": "retention",
+  "split": "dev",
+  "domain": "retention",
+  "solvable": {
+    "id": "retention-solvable",
+    "pair": "retention",
+    "version": 1,
+    "default": "retain",
+    "input_space": {
+      "age_days": [
+        0,
+        29,
+        30,
+        90
+      ],
+      "legal_hold": [
+        false,
+        true
+      ],
+      "context": [
+        "audit",
+        "analytics"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Delete records at least thirty days old. Applies only if legal_hold is false.",
+        "when": {
+          "age_days": {
+            "gte": 30
+          },
+          "legal_hold": {
+            "eq": false
+          }
+        },
+        "action": "delete"
+      },
+      {
+        "id": "B",
+        "text": "Retain records subject to legal hold.",
+        "when": {
+          "legal_hold": {
+            "eq": true
+          }
+        },
+        "action": "retain"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "retention-impossible",
+    "pair": "retention",
+    "version": 1,
+    "default": "retain",
+    "input_space": {
+      "age_days": [
+        0,
+        29,
+        30,
+        90
+      ],
+      "legal_hold": [
+        false,
+        true
+      ],
+      "context": [
+        "audit",
+        "analytics"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Delete records at least thirty days old.",
+        "when": {
+          "age_days": {
+            "gte": 30
+          }
+        },
+        "action": "delete"
+      },
+      {
+        "id": "B",
+        "text": "Retain records subject to legal hold.",
+        "when": {
+          "legal_hold": {
+            "eq": true
+          }
+        },
+        "action": "retain"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "age_days": 30,
+      "legal_hold": false,
+      "context": "audit"
+    },
+    {
+      "age_days": 0,
+      "legal_hold": true,
+      "context": "audit"
+    },
+    {
+      "age_days": 30,
+      "legal_hold": true,
+      "context": "audit"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "age_days": 0,
+      "legal_hold": false,
+      "context": "audit"
+    },
+    {
+      "age_days": 0,
+      "legal_hold": false,
+      "context": "analytics"
+    },
+    {
+      "age_days": 0,
+      "legal_hold": true,
+      "context": "analytics"
+    },
+    {
+      "age_days": 29,
+      "legal_hold": false,
+      "context": "audit"
+    },
+    {
+      "age_days": 29,
+      "legal_hold": false,
+      "context": "analytics"
+    },
+    {
+      "age_days": 29,
+      "legal_hold": true,
+      "context": "audit"
+    },
+    {
+      "age_days": 29,
+      "legal_hold": true,
+      "context": "analytics"
+    },
+    {
+      "age_days": 30,
+      "legal_hold": false,
+      "context": "analytics"
+    },
+    {
+      "age_days": 30,
+      "legal_hold": true,
+      "context": "analytics"
+    },
+    {
+      "age_days": 90,
+      "legal_hold": false,
+      "context": "audit"
+    },
+    {
+      "age_days": 90,
+      "legal_hold": false,
+      "context": "analytics"
+    },
+    {
+      "age_days": 90,
+      "legal_hold": true,
+      "context": "audit"
+    },
+    {
+      "age_days": 90,
+      "legal_hold": true,
+      "context": "analytics"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['age_days'] >= 30) and (x['legal_hold'] is False): return 'delete'\n    if x['legal_hold'] is True: return 'retain'\n    return 'retain'\n",
+    "v2_A": "def solve(x):\n    if x['age_days'] >= 30: return 'delete'\n    if x['legal_hold'] is True: return 'retain'\n    return 'retain'\n",
+    "v2_B": "def solve(x):\n    if x['legal_hold'] is True: return 'retain'\n    if x['age_days'] >= 30: return 'delete'\n    return 'retain'\n"
+  }
+}

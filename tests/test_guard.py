@@ -180,16 +180,17 @@ elif args[0] == 'exec':
     assert os.environ['MUSE_CONTRIBUTOR_MODE'] == '0'
     assert '--base-url' in args
     assert '--max-model-steps' in args
-    pathlib.Path('solution.py').write_text('def solve(x): return x\\n')
+    pathlib.Path('solution.py').write_text('def solve(x): return \"retry\" if x[\"status\"]==429 and x[\"idempotent\"] is True else \"stop\"\\n')
     print('All tests passed')
 else:
     sys.exit(2)
 """)
         executable.chmod(0o755)
         env = {"PATH":str(cli)+os.pathsep+os.defpath,"META_API_KEY":"fixture-only","MUSE_GUARD_DAILY_LIMIT_USD":"5","MUSE_GUARD_STANDARD_CONFIRMED":"1"}
+        from muse_guard.rules import TASKS as CURRENT
         with chdir(self.root):
-            result = run_one(self.task, Path("fixture-results"), env=env)
-            second = run_one(self.task, Path("fixture-results"), env=env)
+            result = run_one(CURRENT["retry-solvable"], Path("fixture-results"), env=env)
+            second = run_one(CURRENT["retry-solvable"], Path("fixture-results"), env=env)
         self.assertEqual(second["outcome"], "PASS", second)
         self.assertEqual(result["outcome"], "PASS", result)
         self.assertEqual(result["cost_usd"], 0)  # Fixture CLI made no provider requests.

@@ -1,0 +1,233 @@
+{
+  "id": "retry",
+  "split": "dev",
+  "domain": "retry",
+  "solvable": {
+    "id": "retry-solvable",
+    "pair": "retry",
+    "version": 1,
+    "default": "stop",
+    "rules": [
+      {
+        "id": "A",
+        "text": "Retry every HTTP 429 response. Applies only when idempotent is true.",
+        "when": {
+          "status": {
+            "eq": 429
+          },
+          "idempotent": {
+            "eq": true
+          }
+        },
+        "action": "retry"
+      },
+      {
+        "id": "B",
+        "text": "Never retry a non-idempotent POST.",
+        "when": {
+          "method": {
+            "eq": "POST"
+          },
+          "idempotent": {
+            "eq": false
+          }
+        },
+        "action": "stop"
+      }
+    ],
+    "input_space": {
+      "method": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "status": [
+        200,
+        429,
+        503
+      ],
+      "idempotent": [
+        false,
+        true
+      ]
+    }
+  },
+  "impossible": {
+    "id": "retry-impossible",
+    "pair": "retry",
+    "version": 1,
+    "default": "stop",
+    "rules": [
+      {
+        "id": "A",
+        "text": "Retry every HTTP 429 response.",
+        "when": {
+          "status": {
+            "eq": 429
+          }
+        },
+        "action": "retry"
+      },
+      {
+        "id": "B",
+        "text": "Never retry a non-idempotent POST.",
+        "when": {
+          "method": {
+            "eq": "POST"
+          },
+          "idempotent": {
+            "eq": false
+          }
+        },
+        "action": "stop"
+      }
+    ],
+    "input_space": {
+      "method": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "status": [
+        200,
+        429,
+        503
+      ],
+      "idempotent": [
+        false,
+        true
+      ]
+    }
+  },
+  "visible_inputs": [
+    {
+      "method": "GET",
+      "status": 429,
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "status": 200,
+      "idempotent": false
+    },
+    {
+      "method": "POST",
+      "status": 429,
+      "idempotent": false
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "method": "GET",
+      "status": 200,
+      "idempotent": false
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "idempotent": true
+    },
+    {
+      "method": "GET",
+      "status": 429,
+      "idempotent": false
+    },
+    {
+      "method": "GET",
+      "status": 503,
+      "idempotent": false
+    },
+    {
+      "method": "GET",
+      "status": 503,
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "status": 200,
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "status": 429,
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "status": 503,
+      "idempotent": false
+    },
+    {
+      "method": "POST",
+      "status": 503,
+      "idempotent": true
+    },
+    {
+      "method": "PUT",
+      "status": 200,
+      "idempotent": false
+    },
+    {
+      "method": "PUT",
+      "status": 200,
+      "idempotent": true
+    },
+    {
+      "method": "PUT",
+      "status": 429,
+      "idempotent": false
+    },
+    {
+      "method": "PUT",
+      "status": 429,
+      "idempotent": true
+    },
+    {
+      "method": "PUT",
+      "status": 503,
+      "idempotent": false
+    },
+    {
+      "method": "PUT",
+      "status": 503,
+      "idempotent": true
+    },
+    {
+      "method": "PATCH",
+      "status": 200,
+      "idempotent": false
+    },
+    {
+      "method": "PATCH",
+      "status": 200,
+      "idempotent": true
+    },
+    {
+      "method": "PATCH",
+      "status": 429,
+      "idempotent": false
+    },
+    {
+      "method": "PATCH",
+      "status": 429,
+      "idempotent": true
+    },
+    {
+      "method": "PATCH",
+      "status": 503,
+      "idempotent": false
+    },
+    {
+      "method": "PATCH",
+      "status": 503,
+      "idempotent": true
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x[\"status\"]==429) and (x[\"idempotent\"] is True): return 'retry'\n    if x[\"method\"]==\"POST\" and x[\"idempotent\"] is False: return 'stop'\n    return 'stop'\n",
+    "v2_A": "def solve(x):\n    if x[\"status\"]==429: return 'retry'\n    if x[\"method\"]==\"POST\" and x[\"idempotent\"] is False: return 'stop'\n    return 'stop'\n",
+    "v2_B": "def solve(x):\n    if x[\"method\"]==\"POST\" and x[\"idempotent\"] is False: return 'stop'\n    if x[\"status\"]==429: return 'retry'\n    return 'stop'\n"
+  }
+}

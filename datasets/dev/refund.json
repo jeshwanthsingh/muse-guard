@@ -1,0 +1,141 @@
+{
+  "id": "refund",
+  "split": "dev",
+  "domain": "refund",
+  "solvable": {
+    "id": "refund-solvable",
+    "pair": "refund",
+    "version": 1,
+    "default": "manual_review",
+    "input_space": {
+      "eligible": [
+        false,
+        true
+      ],
+      "fraud_hold": [
+        false,
+        true
+      ],
+      "context": [
+        "card",
+        "bank"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Refund eligible purchases. Applies only if fraud_hold is false.",
+        "when": {
+          "eligible": {
+            "eq": true
+          },
+          "fraud_hold": {
+            "eq": false
+          }
+        },
+        "action": "refund"
+      },
+      {
+        "id": "B",
+        "text": "Route fraud-held purchases to manual review.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "manual_review"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "refund-impossible",
+    "pair": "refund",
+    "version": 1,
+    "default": "manual_review",
+    "input_space": {
+      "eligible": [
+        false,
+        true
+      ],
+      "fraud_hold": [
+        false,
+        true
+      ],
+      "context": [
+        "card",
+        "bank"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Refund eligible purchases.",
+        "when": {
+          "eligible": {
+            "eq": true
+          }
+        },
+        "action": "refund"
+      },
+      {
+        "id": "B",
+        "text": "Route fraud-held purchases to manual review.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "manual_review"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "eligible": true,
+      "fraud_hold": false,
+      "context": "card"
+    },
+    {
+      "eligible": false,
+      "fraud_hold": true,
+      "context": "card"
+    },
+    {
+      "eligible": true,
+      "fraud_hold": true,
+      "context": "card"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "eligible": false,
+      "fraud_hold": false,
+      "context": "card"
+    },
+    {
+      "eligible": false,
+      "fraud_hold": false,
+      "context": "bank"
+    },
+    {
+      "eligible": false,
+      "fraud_hold": true,
+      "context": "bank"
+    },
+    {
+      "eligible": true,
+      "fraud_hold": false,
+      "context": "bank"
+    },
+    {
+      "eligible": true,
+      "fraud_hold": true,
+      "context": "bank"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['eligible'] == True) and (x['fraud_hold'] is False): return 'refund'\n    if x['fraud_hold'] is True: return 'manual_review'\n    return 'manual_review'\n",
+    "v2_A": "def solve(x):\n    if x['eligible'] == True: return 'refund'\n    if x['fraud_hold'] is True: return 'manual_review'\n    return 'manual_review'\n",
+    "v2_B": "def solve(x):\n    if x['fraud_hold'] is True: return 'manual_review'\n    if x['eligible'] == True: return 'refund'\n    return 'manual_review'\n"
+  }
+}

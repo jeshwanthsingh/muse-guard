@@ -1,0 +1,141 @@
+{
+  "id": "feature",
+  "split": "dev",
+  "domain": "feature",
+  "solvable": {
+    "id": "feature-solvable",
+    "pair": "feature",
+    "version": 1,
+    "default": "disable",
+    "input_space": {
+      "beta_member": [
+        false,
+        true
+      ],
+      "incident": [
+        false,
+        true
+      ],
+      "context": [
+        "mobile",
+        "desktop"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Enable the feature for beta members. Applies only if incident is false.",
+        "when": {
+          "beta_member": {
+            "eq": true
+          },
+          "incident": {
+            "eq": false
+          }
+        },
+        "action": "enable"
+      },
+      {
+        "id": "B",
+        "text": "Disable the feature during an incident.",
+        "when": {
+          "incident": {
+            "eq": true
+          }
+        },
+        "action": "disable"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "feature-impossible",
+    "pair": "feature",
+    "version": 1,
+    "default": "disable",
+    "input_space": {
+      "beta_member": [
+        false,
+        true
+      ],
+      "incident": [
+        false,
+        true
+      ],
+      "context": [
+        "mobile",
+        "desktop"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Enable the feature for beta members.",
+        "when": {
+          "beta_member": {
+            "eq": true
+          }
+        },
+        "action": "enable"
+      },
+      {
+        "id": "B",
+        "text": "Disable the feature during an incident.",
+        "when": {
+          "incident": {
+            "eq": true
+          }
+        },
+        "action": "disable"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "beta_member": true,
+      "incident": false,
+      "context": "mobile"
+    },
+    {
+      "beta_member": false,
+      "incident": true,
+      "context": "mobile"
+    },
+    {
+      "beta_member": true,
+      "incident": true,
+      "context": "mobile"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "beta_member": false,
+      "incident": false,
+      "context": "mobile"
+    },
+    {
+      "beta_member": false,
+      "incident": false,
+      "context": "desktop"
+    },
+    {
+      "beta_member": false,
+      "incident": true,
+      "context": "desktop"
+    },
+    {
+      "beta_member": true,
+      "incident": false,
+      "context": "desktop"
+    },
+    {
+      "beta_member": true,
+      "incident": true,
+      "context": "desktop"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['beta_member'] == True) and (x['incident'] is False): return 'enable'\n    if x['incident'] is True: return 'disable'\n    return 'disable'\n",
+    "v2_A": "def solve(x):\n    if x['beta_member'] == True: return 'enable'\n    if x['incident'] is True: return 'disable'\n    return 'disable'\n",
+    "v2_B": "def solve(x):\n    if x['incident'] is True: return 'disable'\n    if x['beta_member'] == True: return 'enable'\n    return 'disable'\n"
+  }
+}

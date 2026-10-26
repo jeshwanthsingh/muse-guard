@@ -1,0 +1,149 @@
+{
+  "id": "discount",
+  "split": "dev",
+  "domain": "discount",
+  "solvable": {
+    "id": "discount-solvable",
+    "pair": "discount",
+    "version": 1,
+    "default": "no_discount",
+    "rules": [
+      {
+        "id": "A",
+        "text": "Apply a 20 percent discount when subtotal is at least 100. Applies only when clearance is false.",
+        "when": {
+          "subtotal": {
+            "gte": 100
+          },
+          "clearance": {
+            "eq": false
+          }
+        },
+        "action": "discount_20"
+      },
+      {
+        "id": "B",
+        "text": "Never discount clearance items.",
+        "when": {
+          "clearance": {
+            "eq": true
+          }
+        },
+        "action": "no_discount"
+      }
+    ],
+    "input_space": {
+      "subtotal": [
+        40,
+        99,
+        100,
+        120,
+        250,
+        300
+      ],
+      "clearance": [
+        false,
+        true
+      ]
+    }
+  },
+  "impossible": {
+    "id": "discount-impossible",
+    "pair": "discount",
+    "version": 1,
+    "default": "no_discount",
+    "rules": [
+      {
+        "id": "A",
+        "text": "Apply a 20 percent discount when subtotal is at least 100.",
+        "when": {
+          "subtotal": {
+            "gte": 100
+          }
+        },
+        "action": "discount_20"
+      },
+      {
+        "id": "B",
+        "text": "Never discount clearance items.",
+        "when": {
+          "clearance": {
+            "eq": true
+          }
+        },
+        "action": "no_discount"
+      }
+    ],
+    "input_space": {
+      "subtotal": [
+        40,
+        99,
+        100,
+        120,
+        250,
+        300
+      ],
+      "clearance": [
+        false,
+        true
+      ]
+    }
+  },
+  "visible_inputs": [
+    {
+      "subtotal": 120,
+      "clearance": false
+    },
+    {
+      "subtotal": 40,
+      "clearance": true
+    },
+    {
+      "subtotal": 120,
+      "clearance": true
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "subtotal": 40,
+      "clearance": false
+    },
+    {
+      "subtotal": 99,
+      "clearance": false
+    },
+    {
+      "subtotal": 99,
+      "clearance": true
+    },
+    {
+      "subtotal": 100,
+      "clearance": false
+    },
+    {
+      "subtotal": 100,
+      "clearance": true
+    },
+    {
+      "subtotal": 250,
+      "clearance": false
+    },
+    {
+      "subtotal": 250,
+      "clearance": true
+    },
+    {
+      "subtotal": 300,
+      "clearance": false
+    },
+    {
+      "subtotal": 300,
+      "clearance": true
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x[\"subtotal\"]>=100) and (x[\"clearance\"] is False): return 'discount_20'\n    if x[\"clearance\"] is True: return 'no_discount'\n    return 'no_discount'\n",
+    "v2_A": "def solve(x):\n    if x[\"subtotal\"]>=100: return 'discount_20'\n    if x[\"clearance\"] is True: return 'no_discount'\n    return 'no_discount'\n",
+    "v2_B": "def solve(x):\n    if x[\"clearance\"] is True: return 'no_discount'\n    if x[\"subtotal\"]>=100: return 'discount_20'\n    return 'no_discount'\n"
+  }
+}

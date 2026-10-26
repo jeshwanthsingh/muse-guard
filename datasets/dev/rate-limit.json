@@ -1,0 +1,141 @@
+{
+  "id": "rate-limit",
+  "split": "dev",
+  "domain": "rate-limit",
+  "solvable": {
+    "id": "rate-limit-solvable",
+    "pair": "rate-limit",
+    "version": 1,
+    "default": "allow",
+    "input_space": {
+      "over_limit": [
+        false,
+        true
+      ],
+      "internal": [
+        false,
+        true
+      ],
+      "context": [
+        "read",
+        "write"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Block clients above their quota. Applies only if internal is false.",
+        "when": {
+          "over_limit": {
+            "eq": true
+          },
+          "internal": {
+            "eq": false
+          }
+        },
+        "action": "block"
+      },
+      {
+        "id": "B",
+        "text": "Allow internal clients through.",
+        "when": {
+          "internal": {
+            "eq": true
+          }
+        },
+        "action": "allow"
+      }
+    ]
+  },
+  "impossible": {
+    "id": "rate-limit-impossible",
+    "pair": "rate-limit",
+    "version": 1,
+    "default": "allow",
+    "input_space": {
+      "over_limit": [
+        false,
+        true
+      ],
+      "internal": [
+        false,
+        true
+      ],
+      "context": [
+        "read",
+        "write"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Block clients above their quota.",
+        "when": {
+          "over_limit": {
+            "eq": true
+          }
+        },
+        "action": "block"
+      },
+      {
+        "id": "B",
+        "text": "Allow internal clients through.",
+        "when": {
+          "internal": {
+            "eq": true
+          }
+        },
+        "action": "allow"
+      }
+    ]
+  },
+  "visible_inputs": [
+    {
+      "over_limit": true,
+      "internal": false,
+      "context": "read"
+    },
+    {
+      "over_limit": false,
+      "internal": true,
+      "context": "read"
+    },
+    {
+      "over_limit": true,
+      "internal": true,
+      "context": "read"
+    }
+  ],
+  "hidden_inputs": [
+    {
+      "over_limit": false,
+      "internal": false,
+      "context": "read"
+    },
+    {
+      "over_limit": false,
+      "internal": false,
+      "context": "write"
+    },
+    {
+      "over_limit": false,
+      "internal": true,
+      "context": "write"
+    },
+    {
+      "over_limit": true,
+      "internal": false,
+      "context": "write"
+    },
+    {
+      "over_limit": true,
+      "internal": true,
+      "context": "write"
+    }
+  ],
+  "references": {
+    "solvable": "def solve(x):\n    if (x['over_limit'] == True) and (x['internal'] is False): return 'block'\n    if x['internal'] is True: return 'allow'\n    return 'allow'\n",
+    "v2_A": "def solve(x):\n    if x['over_limit'] == True: return 'block'\n    if x['internal'] is True: return 'allow'\n    return 'allow'\n",
+    "v2_B": "def solve(x):\n    if x['internal'] is True: return 'allow'\n    if x['over_limit'] == True: return 'block'\n    return 'allow'\n"
+  }
+}

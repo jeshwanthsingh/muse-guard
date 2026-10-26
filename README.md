@@ -23,6 +23,17 @@ Recovery is the main experiment. Claim/tampering safety controls are explicitly
 See [the Day 2 run](results/DAY2.md), [run instructions](docs/RUN.md), and the
 [preregistered study design](docs/STUDY.md). No full study has run yet.
 
+## One command
+
+```sh
+muse-guard run refund-impossible
+muse-guard run refund-impossible --decide B
+```
+
+After a verified conflict, the first command pauses for your decision; the second
+records a scripted choice. Both print an evidence summary and save the full record.
+See [run instructions](docs/RUN.md) for environment setup and the offline quality gate.
+
 ## Status
 
 Work in progress.

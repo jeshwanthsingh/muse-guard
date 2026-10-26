@@ -52,6 +52,9 @@ def verify_conflict(req,report):
     if None in ids or len(set(ids))!=2 or any(key not in known for key in ids):
         return result
     witness=report.get("witness")
+    if "input_space" in req:
+        from .quality_gate import in_space
+        if not in_space(req,witness):return result
     if not isinstance(report.get("explanation"),str) or not report["explanation"].strip():
         return result
     if req.get("priority") or not all(matches(known[key],witness) for key in ids):
@@ -73,30 +76,34 @@ def approved(req):
         return False
     if req["version"]==1:
         return receipt.get("source")=="task author"
-    if req["version"]!=2 or receipt.get("source")!="simulated developer CLI":
+    if req["version"]!=2 or receipt.get("source") not in ("simulated developer CLI","interactive developer CLI","scripted developer CLI"):
         return False
     decision=req.get("decision",{})
     parent=req.get("parent_requirements",{})
     if (receipt.get("decision")!=decision or not approved(parent) or parent.get("version")!=1 or
             req.get("parent_hash")!=digest(parent) or decision.get("v1_hash")!=digest(parent) or
-            decision.get("winner") not in req.get("priority",[])[:1] or decision.get("simulated") is not True):
+            decision.get("winner") not in req.get("priority",[])[:1] or
+            decision.get("simulated") is not (receipt.get("source")=="simulated developer CLI") or
+            decision.get("source",receipt.get("source"))!=receipt.get("source")):
         return False
     proof=verify_conflict(parent,{"conflict":True,"rules":decision.get("rules"),
                                  "witness":decision.get("witness"),"explanation":"Recorded developer decision"})
     return proof["verified"]
 
 
-def approve(req,winner,report,*,confirmed=False):
+def approve(req,winner,report,*,confirmed=False,source="simulated developer CLI"):
+    if source not in ("simulated developer CLI","interactive developer CLI","scripted developer CLI"):
+        raise ValueError("Unknown developer decision source")
     proof=verify_conflict(req,report)
     winner=normalized(winner)
     if not confirmed or not approved(req) or not proof["verified"] or winner not in proof["rules"] or req["version"]!=1:
         raise ValueError("Explicit developer decision on verified v1 conflict required")
     out=copy.deepcopy(content(req))
     decision={"winner":winner,"scope":"winner takes precedence wherever these rules overlap",
-              "rules":proof["rules"],"witness":proof["witness"],"simulated":True,"v1_hash":digest(req)}
+              "rules":proof["rules"],"witness":proof["witness"],"simulated":source=="simulated developer CLI","source":source,"v1_hash":digest(req)}
     out.update(version=2,parent_hash=digest(req),parent_requirements=copy.deepcopy(req),decision=decision,
                priority=[winner]+[row["id"] for row in req["rules"] if row["id"]!=winner])
-    out["approval"]={"source":"simulated developer CLI","content_hash":digest(out),"decision":copy.deepcopy(decision)}
+    out["approval"]={"source":source,"content_hash":digest(out),"decision":copy.deepcopy(decision)}
     return out
 
 
@@ -128,20 +135,33 @@ def test_source(rows,layer):
     return "\n".join(lines)+"\n"
 
 
-def build_task(req):
+def build_task(req, *, samples=None):
     if not approved(req):
         raise ValueError("Unapproved or changed requirements cannot generate tests")
-    visible=cases(req,SAMPLES[req["pair"]]["visible"])
-    hidden=cases(req,SAMPLES[req["pair"]]["hidden"])
-    return {"id":req["id"]+f"-v{req['version']}","pair":req["pair"],"requirements":copy.deepcopy(req),
-            "visible_inputs":copy.deepcopy(SAMPLES[req["pair"]]["visible"]),"visible_cases":visible,"hidden_cases":hidden,
+    if samples is None:
+        samples=PAIRS[req["pair"]] if "input_space" in req else {"visible_inputs":SAMPLES[req["pair"]]["visible"],"hidden_inputs":SAMPLES[req["pair"]]["hidden"]}
+    visible=cases(req,samples["visible_inputs"])
+    hidden=cases(req,samples["hidden_inputs"])
+    return {"id":req["id"]+f"-v{req['version']}","pair":req["pair"],"split":samples.get("split","dev"),"requirements":copy.deepcopy(req),
+            "visible_inputs":copy.deepcopy(samples["visible_inputs"]),"visible_cases":visible,"hidden_cases":hidden,
             "test_source":test_source(visible,"visible"),"hidden_test_source":test_source(hidden,"hidden"),
             "expected_names":[f"OriginalTests.test_visible_{i:03d}" for i in range(len(visible))]+
                              [f"HiddenTests.test_hidden_{i:03d}" for i in range(len(hidden))]}
 
 
+PAIRS={}
 TASKS={}
-for path in sorted((Path(__file__).resolve().parents[1]/"tasks").glob("*/rules.yaml")):
-    req=json.loads(path.read_text()) # JSON is a deliberately restricted YAML 1.2 subset.
-    req["approval"]={"source":"task author","content_hash":digest(req)}
-    TASKS[path.parent.name]=build_task(req)
+for path in sorted((Path(__file__).resolve().parents[1]/"datasets").glob("*/*.json")):
+    if path.name=="MANIFEST.json":continue
+    if path.is_symlink():raise ValueError("Catalog symlinks are forbidden")
+    pair=json.loads(path.read_text())
+    if not isinstance(pair,dict) or "solvable" not in pair:continue
+    if path.parent.name not in ("dev","holdout") or pair.get("split")!=path.parent.name or pair.get("id")!=path.stem:
+        raise ValueError("Catalog source path and pair identity differ")
+    if pair["id"] in PAIRS:raise ValueError("Duplicate catalog pair ID")
+    PAIRS[pair["id"]]=pair
+    for label in ("solvable","impossible"):
+        req=copy.deepcopy(pair[label])
+        req["approval"]={"source":"task author","content_hash":digest(req)}
+        if req.get("pair")!=pair["id"] or req["id"] in TASKS:raise ValueError("Duplicate or mismatched catalog task ID")
+        TASKS[req["id"]]=build_task(req,samples=pair)
