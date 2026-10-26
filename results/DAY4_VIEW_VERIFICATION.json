@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-26",
+  "record": "recovery-289db424fb09",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "highlighted_rules": 2,
+  "disabled_replay_choices": 2,
+  "visible_checks": 3,
+  "hidden_checks": 5,
+  "horizontal_overflow": false,
+  "browser_console_errors": 0,
+  "evidence_download_matches_original": true,
+  "download_sha256": "1f193d00bc4f64474939b8063b8ce346f9010b451c104aed848008454f355052",
+  "local_offline_tests_passed": 101,
+  "day4_model_cost_usd": 0,
+  "holdout_model_calls": 0
+}

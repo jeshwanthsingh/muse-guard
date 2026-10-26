@@ -21,3 +21,14 @@ name solvability. Guarded study decisions use B; free A/B choice remains for dev
 After freeze, do not modify prompts, labels or budgets. Any necessary future protocol
 change must be disclosed as a new study rather than reported under this freeze.
 The web view is a later display-only task and must not change the frozen runner.
+
+## Approved Day 4 pre-holdout amendment
+
+The developer reviewed and approved docs/amendments/2026-10-26-day4-fair-recovery.md
+before commit. No holdout model runs occurred. The original twenty data files and
+datasets/holdout/MANIFEST.json remain byte-identical. The new active manifest is
+study/MANIFEST-day4.json; it includes the original manifest SHA and creation commit,
+unchanged data hashes, and the updated protocol/runtime/assets/amendment hashes.
+Both manifests are anchored to their own Git creation commits. Historical scores
+remain unchanged. This is a disclosed amended protocol, not silent drift under Day3.
+The same-session plain adapter remains a blocker before any study is run.

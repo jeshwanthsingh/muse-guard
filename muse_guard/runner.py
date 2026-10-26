@@ -185,14 +185,14 @@ def save_total(results, day):
     return summary
 
 
-def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, seed_solution=None, mode="plain", allow_holdout=False):
+def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, seed_solution=None, mode="plain", allow_holdout=False):
     env = dict(os.environ if env is None else env)
     results = Path(results).resolve()
     results.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     run_id = task["id"] + "-" + uuid.uuid4().hex[:12]
     day = datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": mode, "stage":"day3",
+    record = {"run_id": run_id, "date": day, "task": task["id"], "mode": mode, "stage":"day4",
               "pricing_mode": "STANDARD", "pricing_mode_verified": False, "model": MODEL,
               "mode_control":"API gateway pins Standard model; isolated config; MUSE_CONTRIBUTOR_MODE=0",
               "max_tokens":max_tokens,"max_model_steps":max_model_steps,"outcome": "HARNESS ERROR",
@@ -210,14 +210,16 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, se
             from .freeze import verify_freeze
             verify_freeze()
             if not allow_holdout:raise ValueError("Holdout model runs require explicit future study authorization")
-            if max_tokens!=160000 or max_model_steps!=6:raise ValueError("Frozen study budgets cannot change")
+            if not json.loads((Path(__file__).resolve().parents[1]/"study/protocol.json").read_text()).get("fair_plain_adapter_ready"):
+                raise ValueError("Study blocked: fair same-session plain continuation adapter is not ready")
+            if max_tokens!=320000 or max_model_steps!=12:raise ValueError("Frozen study budgets cannot change")
             if mode not in ("plain","guarded"):raise ValueError("Frozen study mode is invalid")
         if not env.get("META_API_KEY"):
             raise ValueError("META_API_KEY must be supplied through the environment")
-        if type(max_tokens) is not int or not 0 < max_tokens <= 160000:
-            raise ValueError("max_tokens must be between 1 and 160000")
-        if type(max_model_steps) is not int or not 0 < max_model_steps <= 6:
-            raise ValueError("max_model_steps must be between 1 and 6")
+        if type(max_tokens) is not int or not 0 < max_tokens <= 320000:
+            raise ValueError("max_tokens must be between 1 and 320000")
+        if type(max_model_steps) is not int or not 0 < max_model_steps <= 12:
+            raise ValueError("max_model_steps must be between 1 and 12")
         # All tokens are reserved at the highest allowed rate; cached input only
         # lowers actual spend. Exact preflight counts + enforced output caps bound
         # every request, including retries and auxiliary model requests.
@@ -256,7 +258,7 @@ def run_one(task, results, env=None, *, max_tokens=160000, max_model_steps=6, se
                         "--no-foreign-personal-context","--disable-web-tools","--approval-judge","off",
                         "--disable-approval","--workspace",str(workspace),"--session-id",session,"--json",prompt(task)]
                 try:
-                    executed = run_process(args, workspace, clean, timeout=180)
+                    executed = run_process(args, workspace, clean, timeout=300)
                     record["exit_code"] = executed.returncode
                     record["termination"]=("MODEL STEP LIMIT" if "model did not reach a terminal state within" in executed.stderr
                                            else "TURN COMPLETE" if executed.returncode==0 else "CLI ERROR")
@@ -351,8 +353,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", choices=[*TASKS, "all"], default="all")
     parser.add_argument("--results", type=Path, default=Path("results"))
-    parser.add_argument("--max-tokens", type=int, default=160000)
-    parser.add_argument("--max-model-steps", type=int, default=6)
+    parser.add_argument("--max-tokens", type=int, default=320000)
+    parser.add_argument("--max-model-steps", type=int, default=12)
     args = parser.parse_args()
     tasks = TASKS.values() if args.task == "all" else [TASKS[args.task]]
     # Serialize runs: shared accounting is not safe for concurrent invocations.

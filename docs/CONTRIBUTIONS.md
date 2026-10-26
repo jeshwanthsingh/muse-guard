@@ -121,3 +121,37 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   Freeze verification confirms all protocol hashes unchanged; zero holdout model calls.
   Privacy checks and gitleaks passed after excluding one verified file-checksum false positive.
 - Final offline suite: 85 tests passed. Main remains unchanged; day3 remains local.
+
+## Day 4 — 2026-10-26
+
+- Pushed day3 normally at f6f373e using one-time approval, then created day4 from
+  that exact head. No main merge or force push; Day4 commits stay local.
+- Read the original preregistration before other work: plain stopped after a
+  conflict while guarded alone got a decision and repair. Drafted a dated
+  fair-recovery amendment, showed it before commit, and received explicit approval.
+- Counted main steps from the 20 saved root session exports: 3 used four steps,
+  5 used five, and 12 used six. Nine of ten solvables used all six. Approved
+  matched ceilings are now 12 steps, 320,000 tokens and 300 seconds per attempt.
+- Plain's amended decision is normal chat in the SAME Muse session, without the
+  verified witness, v2 agent files or hidden checks during repair. Both modes
+  must receive the same B decision and final approved-v2 visible/hidden scoring;
+  plain test edits are a separate measure. The same-session adapter is still a
+  study blocker; the initial-only --plain path is not a fair recovery baseline.
+- Built muse-guard view <run> with recorded replay and explicitly opted-in live
+  continuation of a verified paused guarded development recovery. Rendered the
+  rules, verified clash/card, A/B choice, hash-bound diff, individual checks and
+  JSON download. Kept all checker/verdict logic unchanged.
+- Verified the real refund replay in a 1280x720 browser: two highlighted rules,
+  disabled replay choices, 8 checks, no horizontal overflow or browser errors.
+  The downloaded JSON matches the original byte-for-byte. Saved screenshots.
+- Fixed review findings: live mode is restricted to the canonical results ledger
+  and lock; diff fixtures no longer depend on ignored raw files; standalone
+  attempts resolve public rules only when their saved requirements hash matches.
+- Final local offline suite: 101 tests passed. No real key was loaded, no
+  authenticated model inference or study run occurred; Day4 model cost $0.00.
+  Pre-fix negative tests reached authentication with literal dummy credentials
+  and got 401; added explicit offline gateway sentinels to those regressions.
+- The amended freeze keeps every original holdout file and the Day3 manifest
+  unchanged. New active manifest hash and local freeze commit follow below.
+- Clean-checkout verification also passed all 101 tests without .env or ignored
+  results/raw artifacts. Staged privacy scan and gitleaks passed.

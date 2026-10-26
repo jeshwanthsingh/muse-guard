@@ -22,7 +22,8 @@ after a verified conflict it generates a card, pauses for A/B, creates approved 
 repairs, rechecks, and prints status/version/checks/cost/record path. Empty input,
 EOF or Ctrl-C at the choice leaves AWAITING DECISION with no v2 or repair. `--decide`
 records a scripted choice; it does not pretend an interactive human approved it.
-`--plain` performs only the initial attempt with the same checker/report permission.
+`--plain` is initial-only development debugging. It is not the amended fair-recovery baseline.
+The study is blocked until a tested same-session plain follow-up adapter is ready.
 
 ## Admission and datasets
 
@@ -66,8 +67,8 @@ exit codes. This is bounded macOS confinement, not proof against every OS attack
 
 The API boundary pins Standard Spark and holds the real key; Muse receives a dummy
 key. Input counting and output caps reserve every request, including reminders and
-retries, within 160,000 tokens and six main steps per run. Maximum reservation is
-$0.68 per attempt; advisory cards reserve at most $0.068. A pending record precedes
+retries, within 320,000 cumulative tokens and twelve main steps per attempt, with a
+300-second turn timeout. Maximum reservation is $1.36 per attempt; advisory cards reserve at most $0.068. A pending record precedes
 inference. Provider usage is journaled from the first request and reconciled before
 session export, including ephemeral reminders. Known cost and retained historical
 upper bounds stay distinct. Never delete uncertain spend to reset the cap.
@@ -78,4 +79,31 @@ UNAUTHORIZED TEST CHANGE, CONFLICT REPORTED, CONFLICT VERIFIED, CLAIM CONTRADICT
 and HARNESS ERROR remain separate. The shared ledger still carries Day 1 uncertain
 reservations because these work stages share calendar date 2026-10-26.
 
-Day3 commits stay local. The one-page run web view is future work, not built today.
+Day3 was pushed with one-time approval; Day4 stays local. No study runs today.
+
+## Local evidence view
+
+```sh
+muse-guard view recovery-289db424fb09
+# Or serve without opening a browser, on a chosen loopback port:
+muse-guard view results/recovery-289db424fb09.json --no-open --port 8765
+# Continue an existing verified AWAITING DECISION development record:
+muse-guard view <paused-recovery-id> --live
+```
+
+Replay is labeled Recorded run and decision buttons are disabled. It reads the saved
+verdict, checks and card; it does not rerun a model. Repair diffs require matching
+artifact hashes, otherwise the page explicitly says unavailable. Evidence download
+returns the original run JSON. Only the chosen record and static assets are served.
+
+Live mode requires environment credentials and an existing verified paused guarded
+development recovery. A button records the real choice and uses the existing v2
+approval, paid runner, shared budget and independent checker. Page load is free.
+Only one decision is accepted. The server binds 127.0.0.1, requires the local Origin
+and a per-server token for decision POSTs, and never sends credentials to the browser.
+A real live repair was not run on Day4; offline fixtures exercise this continuation.
+
+The approved Day4 protocol amendment and study/MANIFEST-day4.json supersede runtime
+hashes and limits from Day3 while retaining its original manifest and holdout bytes.
+Both study modes receive a B decision and are scored against the same approved-v2
+checker; plain does not see v2 files, verified witness or hidden checks during repair.

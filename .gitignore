@@ -8,3 +8,6 @@ results/raw/
 __pycache__/
 .DS_Store
 results/.run.lock
+
+# Local browser automation state (not run evidence)
+.playwright-cli/

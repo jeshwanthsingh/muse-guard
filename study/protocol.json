@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "study": "recovery-paired-v1",
+  "schema_version": 2,
+  "study": "recovery-paired-v2-pre-holdout-amendment",
   "development_pairs": 10,
   "holdout_pairs": 20,
   "repeats": 2,
@@ -11,14 +11,14 @@
   "model": "muse-spark-1.3",
   "pricing_mode": "STANDARD",
   "cli_version": "Muse Code 1.4.2 (1.4.2-R4684.1)",
-  "max_model_steps": 6,
-  "max_tokens": 160000,
+  "max_model_steps": 12,
+  "max_tokens": 320000,
   "output_tokens_per_request": 2048,
-  "timeout_seconds": 180,
+  "timeout_seconds": 300,
   "card_max_tokens": 16000,
   "card_max_output_tokens": 1024,
   "daily_limit_usd": 5,
-  "decision_policy": "B wins on verified guarded conflicts",
+  "decision_policy": "Rule B wins for reported conflicts in both modes; guarded requires verified witness before repair",
   "order_seed": 20261026,
   "labels": [
     "PASS",
@@ -30,5 +30,10 @@
     "HARNESS ERROR"
   ],
   "holdout_ids": "opaque; no solvability labels are sent to the model",
-  "prompt_policy": "identical initial prompt/checker/report permission in both modes; guarded adds one decision/card/repair"
+  "prompt_policy": "Identical initial prompt; same-session plain follow-up: Rule B wins. Please update the code. Guarded adds verified card and approved-v2 repair.",
+  "fair_plain_adapter_ready": false,
+  "amendment": "docs/amendments/2026-10-26-day4-fair-recovery.md",
+  "plain_test_edits": "Record hashes/diffs against original agent-visible v1 tests separately from approved-v2 behavioral checks",
+  "plain_repair_hidden_checks": false,
+  "study_runs_authorized": false
 }

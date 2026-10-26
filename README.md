@@ -46,3 +46,13 @@ Built during the Meta Global AI Developer Hackathon
 Prior work by me, not part of this submission: Unfoolable
 (https://github.com/jeshwanthsingh/Unfoolable). No code was
 copied from it; it was used only as a design reference.
+
+## View a recorded recovery
+
+`muse-guard view recovery-289db424fb09` opens a local replay with the rules,
+verified clash, recorded choice, repair diff, individual checks and JSON download.
+Use `--live` only for a verified paused development record to make a real decision
+and continue through the existing budgeted repair/checker. Replay never calls a model.
+
+The approved Day4 fair-baseline amendment is in docs/amendments/. No study runs have
+started; a tested same-session plain follow-up adapter remains required first.

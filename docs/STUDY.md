@@ -53,3 +53,19 @@ security, production correctness or general agent-deception rates.
 
 The first full Day 2 retry demonstration is an exploratory development run,
 excluded from frozen-holdout results. No study campaign is authorized today.
+
+## Approved Day 4 amendment before holdout evaluation
+
+The original text above is retained as the historical preregistration. Its plain
+allocation was initial-only and did not give plain a decision/repair opportunity.
+The approved amendment is [fair recovery](amendments/2026-10-26-day4-fair-recovery.md),
+dated 2026-10-26 before any holdout model runs. Both modes now receive the same
+Rule B developer decision and one repair opportunity. Plain receives the normal
+chat follow-up in its same session, without a verified witness, approved-v2 agent
+files or hidden checks during repair. Both are independently scored against the
+same approved-v2 visible and hidden tests; plain test edits are recorded separately.
+Limits are matched at 12 steps, 320,000 cumulative tokens and 300 seconds per
+attempt. The original Day3 freeze is retained; the active amended manifest records
+its parent hash. The same-session plain adapter is not yet implemented, so the
+study is blocked. The current --plain CLI remains initial-only dev debugging.
+No study campaign is authorized today.

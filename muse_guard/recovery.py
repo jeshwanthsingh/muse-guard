@@ -16,11 +16,13 @@ from .runner import run_one, reserve_budget, ledger_records, save_total, usage_f
 from .rules import TASKS, verify_conflict, approve, build_task, digest
 
 
+RESULTS_ROOT=Path(__file__).resolve().parents[1]/"results"
+
 def conflict_card(req,proof,results,env):
     started=time.monotonic()
     run_id="conflict-card-"+uuid.uuid4().hex[:12]
     day=datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    row={"run_id":run_id,"date":day,"stage":"day3","task":req["id"]+"-conflict-card","mode":"guarded-card",
+    row={"run_id":run_id,"date":day,"stage":"day4","task":req["id"]+"-conflict-card","mode":"guarded-card",
          "pricing_mode":"STANDARD","model":"muse-spark-1.3","cost_usd":None,"tokens":None,
          "status":"PENDING","reserved_cost_usd":0.068,"model_invoked":False}
     path=results/(run_id+".json")
@@ -133,6 +135,62 @@ def recover(results,decision=None,env=None,*,task_name="retry-impossible",allow_
         record["tokens"]={key:sum(row["tokens"][key] for row in phase_rows) for key in ("input","output","cached_input")} if all(row.get("tokens") is not None for row in phase_rows) else None
         record["cost_usd"]=float(sum((Decimal(str(row["cost_usd"])) for row in phase_rows),Decimal(0))) if all(row.get("cost_usd") is not None for row in phase_rows) else None
         target.write_text(json.dumps(record,indent=2)+"\n")
+
+
+def frozen_solution(results,attempt):
+    """Only consume the recorded, hash-bound candidate artifact."""
+    import hashlib,re
+    run_id=attempt.get("run_id","")
+    if not re.fullmatch(r"[A-Za-z0-9_-]+",run_id):raise ValueError("Invalid artifact identity")
+    root=Path(results).resolve()
+    path=root/"raw"/run_id/"frozen"/"solution.py"
+    if any(part.is_symlink() for part in (path,*path.parents) if part!=root.parent):
+        raise ValueError("Artifact symlinks are forbidden")
+    if not path.resolve().is_relative_to(root) or not path.is_file() or path.stat().st_size>1024*1024:
+        raise ValueError("Frozen solution unavailable")
+    data=path.read_bytes()
+    if hashlib.sha256(data).hexdigest()!=attempt.get("frozen_sha256",{}).get("solution.py"):
+        raise ValueError("Frozen solution changed")
+    return data
+
+
+def resume_recovery(record_path,winner,env=None):
+    """Continue a verified guarded pause. Callers cannot set the final verdict."""
+    record_path=Path(record_path).resolve();results=record_path.parent
+    if results!=RESULTS_ROOT.resolve():
+        raise ValueError("Live continuation requires the canonical repository results ledger")
+    with (results/".run.lock").open("a") as lock:
+        try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError:raise ValueError("Another run is active") from None
+        record=json.loads(record_path.read_text())
+        if record.get("status")!="AWAITING DECISION" or record.get("study_holdout"):
+            raise ValueError("Only a paused development recovery can continue")
+        task=TASKS[record["task"]]
+        if digest(record.get("requirements_v1"))!=digest(task["requirements"]):
+            raise ValueError("Recorded requirements changed")
+        proof=verify_conflict(task["requirements"],record.get("conflict_report"))
+        if not proof["verified"] or winner not in proof["rules"]:
+            raise ValueError("A verified conflict and valid developer choice are required")
+        seed=frozen_solution(results,record["attempt"])
+        v2=approve(task["requirements"],winner,record["conflict_report"],confirmed=True,source="interactive developer CLI")
+        record.update(status="REPAIRING",decision=v2["approval"]["decision"],requirements_v2=v2)
+        record_path.write_text(json.dumps(record,indent=2)+"\n")
+        started=time.monotonic()
+        try:
+            repair_task=build_task(v2)
+            record["v2_tests_hash"]=digest({"visible":repair_task["test_source"],"hidden":repair_task["hidden_test_source"]})
+            repair=run_one(repair_task,results,env,seed_solution=seed,mode="guarded")
+            record["repair"]=repair;record["phase_run_ids"].append(repair["run_id"])
+            record["status"]="RECOVERED" if repair["outcome"]=="PASS" else "RECHECK DID NOT PASS"
+        except (ValueError,OSError,KeyError):
+            record.update(status="HARNESS ERROR",reason="Live continuation stopped; inspect phase evidence")
+        finally:
+            rows=[record[key] for key in ("attempt","conflict_card","repair") if key in record]
+            record["cost_usd"]=float(sum((Decimal(str(row["cost_usd"])) for row in rows),Decimal(0))) if all(row.get("cost_usd") is not None for row in rows) else None
+            record["tokens"]={key:sum(row["tokens"][key] for row in rows) for key in ("input","output","cached_input")} if all(row.get("tokens") is not None for row in rows) else None
+            record["time_seconds"]=round(record.get("time_seconds",0)+time.monotonic()-started,3)
+            record_path.write_text(json.dumps(record,indent=2)+"\n")
+        return record
 
 
 def main():

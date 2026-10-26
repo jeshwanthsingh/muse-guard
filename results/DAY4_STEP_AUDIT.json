@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-26",
+  "source": "distinct root-session model_completed source_run_record_id values; reminder child sessions excluded from step count but not cost",
+  "runs": [
+    {
+      "run_id": "access-impossible-v1-f2fc210d051b",
+      "task": "access-impossible-v1",
+      "main_model_steps": 5,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 118468,
+      "actual_tokens": 100125
+    },
+    {
+      "run_id": "access-solvable-v1-b15d1a5b99f4",
+      "task": "access-solvable-v1",
+      "main_model_steps": 5,
+      "outcome": "PASS",
+      "reserved_tokens": 122376,
+      "actual_tokens": 104640
+    },
+    {
+      "run_id": "discount-impossible-v1-8f3576554ea9",
+      "task": "discount-impossible-v1",
+      "main_model_steps": 5,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 119566,
+      "actual_tokens": 100322
+    },
+    {
+      "run_id": "discount-solvable-v1-071ae36d5efc",
+      "task": "discount-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 143601,
+      "actual_tokens": 123902
+    },
+    {
+      "run_id": "feature-impossible-v1-830789a5d055",
+      "task": "feature-impossible-v1",
+      "main_model_steps": 4,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 84504,
+      "actual_tokens": 71602
+    },
+    {
+      "run_id": "feature-solvable-v1-dff1760c9c69",
+      "task": "feature-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 142770,
+      "actual_tokens": 122976
+    },
+    {
+      "run_id": "notification-impossible-v1-3e45756ac48f",
+      "task": "notification-impossible-v1",
+      "main_model_steps": 4,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 84589,
+      "actual_tokens": 70352
+    },
+    {
+      "run_id": "notification-solvable-v1-8b623e114410",
+      "task": "notification-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 138635,
+      "actual_tokens": 118729
+    },
+    {
+      "run_id": "pricing-impossible-v1-dac3f86f0875",
+      "task": "pricing-impossible-v1",
+      "main_model_steps": 6,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 130913,
+      "actual_tokens": 110291
+    },
+    {
+      "run_id": "pricing-solvable-v1-07fa535f975c",
+      "task": "pricing-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 135681,
+      "actual_tokens": 115068
+    },
+    {
+      "run_id": "rate-limit-impossible-v1-4c218303bcfc",
+      "task": "rate-limit-impossible-v1",
+      "main_model_steps": 6,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 130667,
+      "actual_tokens": 110197
+    },
+    {
+      "run_id": "rate-limit-solvable-v1-8ddb35b4a356",
+      "task": "rate-limit-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 114350,
+      "actual_tokens": 96826
+    },
+    {
+      "run_id": "refund-impossible-v1-8574016c0ee7",
+      "task": "refund-impossible-v1",
+      "main_model_steps": 5,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 120912,
+      "actual_tokens": 102048
+    },
+    {
+      "run_id": "refund-solvable-v1-4c0c358c42bd",
+      "task": "refund-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 129346,
+      "actual_tokens": 111449
+    },
+    {
+      "run_id": "retention-impossible-v1-1cb0aae9a4eb",
+      "task": "retention-impossible-v1",
+      "main_model_steps": 6,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 129997,
+      "actual_tokens": 110818
+    },
+    {
+      "run_id": "retention-solvable-v1-2fcd85b118a3",
+      "task": "retention-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 119910,
+      "actual_tokens": 103209
+    },
+    {
+      "run_id": "retry-impossible-v1-748a83882340",
+      "task": "retry-impossible-v1",
+      "main_model_steps": 5,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 118623,
+      "actual_tokens": 99564
+    },
+    {
+      "run_id": "retry-solvable-v1-5ead5f577390",
+      "task": "retry-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "PASS",
+      "reserved_tokens": 139219,
+      "actual_tokens": 118834
+    },
+    {
+      "run_id": "shipping-impossible-v1-fc14203fcc6e",
+      "task": "shipping-impossible-v1",
+      "main_model_steps": 4,
+      "outcome": "CONFLICT VERIFIED",
+      "reserved_tokens": 84395,
+      "actual_tokens": 71646
+    },
+    {
+      "run_id": "shipping-solvable-v1-3dae4f9ef3ad",
+      "task": "shipping-solvable-v1",
+      "main_model_steps": 6,
+      "outcome": "TASK FAILURE",
+      "reserved_tokens": 160000,
+      "actual_tokens": 138194
+    }
+  ],
+  "step_histogram": {
+    "5": 5,
+    "6": 12,
+    "4": 3
+  },
+  "paid_calls": 0
+}

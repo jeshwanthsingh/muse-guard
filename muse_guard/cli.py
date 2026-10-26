@@ -29,7 +29,19 @@ def main():
     run=sub.add_parser('run');run.add_argument('task',choices=sorted(TASKS))
     run.add_argument('--decide',choices=['A','B']);run.add_argument('--plain',action='store_true')
     run.add_argument('--allow-holdout',action='store_true',help='Only for a separately authorized future frozen study')
+    view=sub.add_parser('view');view.add_argument('record')
+    view.add_argument('--live',action='store_true');view.add_argument('--port',type=int,default=0)
+    view.add_argument('--no-open',action='store_true')
     args=parser.parse_args();results=ROOT/'results'
+    if args.command=='view':
+        from .view import serve
+        path=Path(args.record).expanduser()
+        if not path.exists():
+            if Path(args.record).name!=args.record:parser.error('Record path does not exist')
+            path=results/(args.record.removesuffix('.json')+'.json')
+        try:serve(path,live=args.live,port=args.port,open_browser=not args.no_open)
+        except (ValueError,OSError) as error:parser.error(str(error))
+        return
     if args.command=='gate':
         for pair in PAIRS.values():
             if args.split=='all' or pair['split']==args.split:
