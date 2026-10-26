@@ -1,0 +1,43 @@
+{
+  "kind": "fake Spark response; constructed fixture, not observed model output",
+  "model": "muse-spark-1.3",
+  "proposal": {
+    "input_space": {
+      "confirmed": [
+        false,
+        true
+      ],
+      "vip": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Unconfirmed bookings stay in the pending queue, VIP or not.",
+        "when": {
+          "confirmed": {
+            "eq": false
+          }
+        },
+        "action": "pending"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Confirmed bookings reserve a seat.",
+        "when": {
+          "confirmed": {
+            "eq": true
+          }
+        },
+        "action": "reserve"
+      }
+    ],
+    "default": {
+      "quote": "Use pending for any otherwise unmatched booking.",
+      "action": "pending"
+    },
+    "unconverted": []
+  }
+}

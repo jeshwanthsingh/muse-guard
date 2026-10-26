@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "authorship": "Hand-written ground truth, before real model evaluation",
+  "proposal": {
+    "input_space": {
+      "eligible": [
+        false,
+        true
+      ],
+      "fraud_hold": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Yep, every eligible order gets a refund.",
+        "when": {
+          "eligible": {
+            "eq": true
+          }
+        },
+        "action": "refund"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Fraud hold means manual review, always.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "review"
+      }
+    ],
+    "default": {
+      "quote": "If nothing above applies, reject the refund.",
+      "action": "reject"
+    },
+    "unconverted": []
+  },
+  "clashes": [
+    {
+      "witness": {
+        "eligible": true,
+        "fraud_hold": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "refund",
+        "review"
+      ]
+    }
+  ],
+  "action_aliases": {
+    "refund": [
+      "refund",
+      "issue_refund"
+    ],
+    "reject": [
+      "reject",
+      "reject_refund"
+    ],
+    "review": [
+      "review",
+      "manual_review"
+    ]
+  }
+}

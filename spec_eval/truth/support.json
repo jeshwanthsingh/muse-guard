@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "authorship": "Hand-written ground truth, before real model evaluation",
+  "proposal": {
+    "input_space": {
+      "outage": [
+        false,
+        true
+      ],
+      "paid": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Page the incident team whenever there is an outage.",
+        "when": {
+          "outage": {
+            "eq": true
+          }
+        },
+        "action": "page"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Paid customers get priority support when there is no outage.",
+        "when": {
+          "paid": {
+            "eq": true
+          },
+          "outage": {
+            "eq": false
+          }
+        },
+        "action": "priority"
+      }
+    ],
+    "default": {
+      "quote": "Everything else joins the normal queue.",
+      "action": "normal"
+    },
+    "unconverted": []
+  },
+  "clashes": [],
+  "action_aliases": {
+    "normal": [
+      "normal",
+      "normal_queue"
+    ],
+    "page": [
+      "page",
+      "page_incident_team"
+    ],
+    "priority": [
+      "priority",
+      "priority_support"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "fake Spark response; constructed fixture, not observed model output",
+  "model": "muse-spark-1.3",
+  "proposal": {
+    "input_space": {
+      "outage": [
+        false,
+        true
+      ],
+      "paid": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Page the incident team whenever there is an outage.",
+        "when": {
+          "outage": {
+            "eq": true
+          }
+        },
+        "action": "page"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Paid customers get priority support when there is no outage.",
+        "when": {
+          "paid": {
+            "eq": true
+          },
+          "outage": {
+            "eq": false
+          }
+        },
+        "action": "priority"
+      }
+    ],
+    "default": {
+      "quote": "Everything else joins the normal queue.",
+      "action": "normal"
+    },
+    "unconverted": []
+  }
+}

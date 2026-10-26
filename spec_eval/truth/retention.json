@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "authorship": "Hand-written ground truth, before real model evaluation",
+  "proposal": {
+    "input_space": {
+      "age_days": [
+        0,
+        30,
+        60
+      ],
+      "legal_hold": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Delete records once they are at least 30 days old.",
+        "when": {
+          "age_days": {
+            "gte": 30
+          }
+        },
+        "action": "delete"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Keep every record on legal hold.",
+        "when": {
+          "legal_hold": {
+            "eq": true
+          }
+        },
+        "action": "keep"
+      }
+    ],
+    "default": {
+      "quote": "Keep records when neither rule applies.",
+      "action": "keep"
+    },
+    "unconverted": []
+  },
+  "clashes": [
+    {
+      "witness": {
+        "age_days": 30,
+        "legal_hold": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "delete",
+        "keep"
+      ]
+    },
+    {
+      "witness": {
+        "age_days": 60,
+        "legal_hold": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "delete",
+        "keep"
+      ]
+    }
+  ],
+  "action_aliases": {
+    "delete": [
+      "delete",
+      "delete_record"
+    ],
+    "keep": [
+      "keep",
+      "retain"
+    ]
+  }
+}

@@ -288,3 +288,37 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   exact nontrivial .env-value, hostname, private-path and email scans. All prior
   116 result/ledger/holdout files checked remain byte-identical. See
   results/STATIC_DEMO_VERIFICATION.json for the artifact/browser proof.
+
+
+## Spec-to-rules extension — 2026-10-26
+
+- Created codex/spec-to-rules from codex/static-judge-demo at c997d14. Local only.
+- Added a separate spec_guard module and opt-in spec_guard/bin/muse-guard wrapper;
+  the original launcher, study runtime, prompts, budgets and labels are untouched.
+  Existing named-task commands delegate to the original launcher. Confirmed-file
+  runs use a separate adapter and never register tasks in the study catalog.
+- Built exact-sentence provenance checks, bounded finite-domain validation,
+  explicit developer confirmation/rejection, retained unconverted rows and
+  exhaustive clash witnesses. Saved source/proposal hashes, quotes and decisions.
+  Quote matching is not proof of semantic extraction correctness.
+- Added a static spec viewer with highlighted source sentences, review decisions,
+  unconverted items, clash cards and an evidence download. Its refund example is
+  explicitly a constructed fake Spark response, not observed model behavior.
+- Wrote eight natural-English evaluation docs, hand-written rule/default tables,
+  explicit expected clashes and fixed action aliases. Preregistered extraction
+  and clash measures in docs/SPEC_EVAL.md; a wrong extraction counts as failure.
+  The separate manifest fixes inputs/prompt/scoring before tomorrow's real run.
+- Added Standard-mode extraction with a shared daily $5 ledger, conservative
+  per-call reservation and actual provider usage accounting. Missing usage stops
+  further calls; today is blocked before key/network access. Fake-transport tests
+  cover exact cost and unresolved reservations. No paid calls or new model spend.
+- Verification: 174 offline tests passed, followed by all 21 spec tests after two
+  additional review/cost tests. The eight fake evaluation fixtures pass the
+  pipeline but provide no model-quality evidence. All 69 protected paths and
+  prior results/ledger/holdout/study files remain byte-identical to the base.
+- Inspected the viewer at 1280x720: no external requests, no live controls, exact
+  downloaded JSON, highlighted quotes and a verified refund clash. Screenshots
+  are in output/playwright/spec-*.png. See results/SPEC_VERIFICATION.json.
+- Privacy review: demo gitleaks scan clean; four staged generic-key alerts were
+  verified file SHA-256 values in manifests/evidence. No private home paths,
+  personal emails or local hostname appeared in the staged content.

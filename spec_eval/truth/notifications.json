@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "authorship": "Hand-written ground truth, before real model evaluation",
+  "proposal": {
+    "input_space": {
+      "urgent": [
+        false,
+        true
+      ],
+      "opted_out": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Urgent alerts must be sent.",
+        "when": {
+          "urgent": {
+            "eq": true
+          }
+        },
+        "action": "send"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Never send alerts to someone who opted out.",
+        "when": {
+          "opted_out": {
+            "eq": true
+          }
+        },
+        "action": "suppress"
+      }
+    ],
+    "default": {
+      "quote": "Other alerts should be suppressed.",
+      "action": "suppress"
+    },
+    "unconverted": []
+  },
+  "clashes": [
+    {
+      "witness": {
+        "urgent": true,
+        "opted_out": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "send",
+        "suppress"
+      ]
+    }
+  ],
+  "action_aliases": {
+    "send": [
+      "send",
+      "send_alert"
+    ],
+    "suppress": [
+      "suppress",
+      "suppress_alert"
+    ]
+  }
+}

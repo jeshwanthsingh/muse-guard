@@ -1,0 +1,46 @@
+{
+  "kind": "fake Spark response; constructed fixture, not observed model output",
+  "model": "muse-spark-1.3",
+  "proposal": {
+    "input_space": {
+      "member": [
+        false,
+        true
+      ],
+      "regulated": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Members get the discount only on non-regulated items.",
+        "when": {
+          "member": {
+            "eq": true
+          },
+          "regulated": {
+            "eq": false
+          }
+        },
+        "action": "discount"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Regulated items always use the standard price.",
+        "when": {
+          "regulated": {
+            "eq": true
+          }
+        },
+        "action": "standard"
+      }
+    ],
+    "default": {
+      "quote": "Use the standard price for everything else.",
+      "action": "standard"
+    },
+    "unconverted": []
+  }
+}

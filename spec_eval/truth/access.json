@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "authorship": "Hand-written ground truth, before real model evaluation",
+  "proposal": {
+    "input_space": {
+      "role": [
+        "admin",
+        "reader"
+      ],
+      "suspended": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Admins can open the dashboard, no extra checks.",
+        "when": {
+          "role": {
+            "eq": "admin"
+          }
+        },
+        "action": "allow"
+      },
+      {
+        "id": "B",
+        "quote": "Also, A suspended account must be denied dashboard access.",
+        "when": {
+          "suspended": {
+            "eq": true
+          }
+        },
+        "action": "deny"
+      }
+    ],
+    "default": {
+      "quote": "For anything not covered above, deny access.",
+      "action": "deny"
+    },
+    "unconverted": []
+  },
+  "clashes": [
+    {
+      "witness": {
+        "role": "admin",
+        "suspended": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "allow",
+        "deny"
+      ]
+    }
+  ],
+  "action_aliases": {
+    "allow": [
+      "allow",
+      "allow_access"
+    ],
+    "deny": [
+      "deny",
+      "deny_access"
+    ]
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-26",
+  "base_commit": "c997d14e4f0ff2a54474caff8987444af84d7a41",
+  "branch": "codex/spec-to-rules",
+  "paid_model_calls": 0,
+  "incremental_cost_usd": 0,
+  "verification": {
+    "existing_suite_and_initial_spec_tests": "174 passed",
+    "final_spec_tests": "21 passed (two additional coverage tests)",
+    "protected_paths_unchanged": 69,
+    "prior_result_ledger_holdout_study_files_unchanged": 119,
+    "manifest_sha256": "3435a2591a6bfa48fca9ee799fbd97ee487ba2d730e32673715c9ba4612cd095",
+    "browser": {
+      "viewport": [
+        1280,
+        720
+      ],
+      "external_requests": 0,
+      "live_controls": 0,
+      "confirmed_highlights": 3,
+      "verified_clashes": 1,
+      "download_json_matches": true
+    },
+    "privacy": {
+      "private_paths_emails_hostname": "none in staged files",
+      "demo_gitleaks": "clean",
+      "staged_gitleaks_findings": [
+        {
+          "file": "spec_eval/MANIFEST.json",
+          "source_file": "spec_eval/docs/access.md",
+          "classification": "verified file SHA-256, not credential"
+        },
+        {
+          "file": "spec_eval/MANIFEST.json",
+          "source_file": "spec_eval/fake/access.json",
+          "classification": "verified file SHA-256, not credential"
+        },
+        {
+          "file": "spec_eval/MANIFEST.json",
+          "source_file": "spec_eval/truth/access.json",
+          "classification": "verified file SHA-256, not credential"
+        },
+        {
+          "file": "results/SPEC_VERIFICATION.json",
+          "source_file": "datasets/dev/access.json",
+          "classification": "verified file SHA-256, not credential"
+        }
+      ]
+    }
+  },
+  "protected_baseline_sha256": {
+    "datasets/dev/access.json": "1267661b85d9fc448497993e5ee90c4ab9d8037f2ce8bd386686b96607dd055f",
+    "datasets/dev/discount.json": "9787f6066a9fa3b9298eb9bf2e57bed2dea871d530ac6d3a2faaf46b0dc315eb",
+    "datasets/dev/feature.json": "eb314a9449d780dacf9945cbba14e0a14d2a308537db1858139b566387c9ef01",
+    "datasets/dev/notification.json": "18302ef1168796fee996caff91ae5b157bc14745293a96c0bd054f40d6047b54",
+    "datasets/dev/pricing.json": "c57eb0f42825413feb64980f72e9306daff226b2fc179c003b12efb1a943c56d",
+    "datasets/dev/rate-limit.json": "cd1911e704aa64cf6a408bbb0f4b036f2887a52b49c7e0446a415bd78adf9a0c",
+    "datasets/dev/refund.json": "0dc8751eab98a5ba386e548fc65c2bdb07e8f63e41d6c437453dbe2856139d00",
+    "datasets/dev/retention.json": "466df09e9e05d872e892e323e5510fafe2a7ac6422b11b4a4aedaac0d1a25716",
+    "datasets/dev/retry.json": "895e9bfb3d3056bb3f67b71028d23823f525442fd66918bef5f48cf2f07c80ec",
+    "datasets/dev/shipping.json": "783341f2a3362091675b1c8d746941b4acdab1a16fe2f7611a1b0f366ad84263",
+    "datasets/holdout/MANIFEST.json": "4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246",
+    "datasets/holdout/h01.json": "40765590f6237019dd8db8e6b6405a42562192c3f811663e1d0d63fea1697d9b",
+    "datasets/holdout/h02.json": "41201ea75d6dfd808e892fbc6fb4d40e9985002840d73ea5ff7bae46924bc8ea",
+    "datasets/holdout/h03.json": "0753522848bb2ccda743f8ec131e19a84d89852889da596b0842fc1db45840d3",
+    "datasets/holdout/h04.json": "6c0b65eb56bc1d177ba175944ce0d5624c3d333ea333ee8d804cdb208bf927f4",
+    "datasets/holdout/h05.json": "b3959691c83ba091e523452bd4122744de877a25dac380ed9a04aadf3083b035",
+    "datasets/holdout/h06.json": "b8cc3c21444db43ad0b497465ae6776f004f9b234872eb56927b29c43485be28",
+    "datasets/holdout/h07.json": "4e3892a77447808d69837949e8397c1d55280abb5d0b3b10172d15aad3439649",
+    "datasets/holdout/h08.json": "e6cbdc46c95e5d2235a57a3843abf16f003380c8c880e7aee40310648284a047",
+    "datasets/holdout/h09.json": "cb5c8432f7324451a6d4c2000123c9c6e742fd370a3d37c75d38cd91ba2a4865",
+    "datasets/holdout/h10.json": "59e8ec4ea30a7c337341fe3fe94e887c7ac79a8a6ada1d3a95010621f2eaebaf",
+    "datasets/holdout/h11.json": "4e9254289f753eb75ec1be42e6339fddfce2920366c18c5b143bcd85039f0982",
+    "datasets/holdout/h12.json": "7e8788442738df00fabc121d7f5672cc137ec02c527213852dcd63ffcfeae56d",
+    "datasets/holdout/h13.json": "63ce7b83b5504e0a7d20b85ca2ad51dd24b7e5431fdd16d2e2f6d6c540a993fc",
+    "datasets/holdout/h14.json": "51826953e08d5da9e5b4b3b8208519de2de95c7e808d0cc0b5097fb6d8f0f017",
+    "datasets/holdout/h15.json": "2a9b05dfcbb66e8c1157cea7b130e49874cfc8d71a3f8c88e32189e0c282b696",
+    "datasets/holdout/h16.json": "bfbc885b9c71d5a56fe7d2c3f2d3dad972ff65dc8683815c2cb36b45a3bfef54",
+    "datasets/holdout/h17.json": "3b8dfc8124b6108e7e46d181a8d0906a9ddafdc1e278e438e14063a9da51df0c",
+    "datasets/holdout/h18.json": "6da704182a88b89ffda61b02bcca3fbaf020a49cb32722620ae277829ae759c2",
+    "datasets/holdout/h19.json": "5619be0ff1f8c8fb60c23d3b3aed68229e5b82010dae8807492c26ded7db8ca4",
+    "datasets/holdout/h20.json": "581f27cb9f7288495a70cd875a384a4e5c9deca069dc598a25da81fd5b1aa45b",
+    "docs/NEXT_PILOT.md": "41dc2eb91ca8c8dc5c8e8fe0e7fa55e755cbaca1cfd7e889904f3ad861e3bf4f",
+    "docs/PRIMARY_MEASURES.md": "21b0ab6dce6170add1dc8e1fbfb3a4f34186abfe263d8b21d44d004b67f20810",
+    "docs/STUDY.md": "c3b6f648e1c74c71765ece3a5c363bcff2b47eee3e8fab072eadb8039d44ce4f",
+    "docs/amendments/2026-10-26-day4-fair-recovery.md": "896444a15cd84435c3d5ce9978f2fcf4f22b9ff7975f55137df84d52a7912044",
+    "muse-guard": "d011e62804277eed847e13627d87b01d8a629fcb18694f53cce899de69e0ad5e",
+    "muse_guard/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "muse_guard/checker.py": "721ce23c545953e36f38d41f7cfd0e053e589ba1bd4bb1620d63a6e4bf9dc9a7",
+    "muse_guard/cli.py": "8078be593bbb7828d73b5469a9d52b30700cc98dfe9126e17c77128f199d5ef3",
+    "muse_guard/detection_policy.json": "336f932331ff0d66b0fe836472940746e606fdb0a4b92195f589ec239b75f57b",
+    "muse_guard/evidence.py": "9a0819aa50db7f55ae61e4ed48942f484ce358803cbe35b07d35b54c67334455",
+    "muse_guard/freeze.py": "b15027ef8ea7a7a816ed34efeab3a5c49c7b390f5828c022b993f762cc4107f6",
+    "muse_guard/gateway.py": "4b78d188f139070c8173758cc4f5cced8eaf27730331d964e930feedb28188c2",
+    "muse_guard/isolation.py": "4e94074aa08d26519b7c23deb10688ffb74e735ef5a1e40aca127155eebc8162",
+    "muse_guard/legacy_tasks.py": "dc59703f2055e9fbc22cd458c08cacc2b104f46bf0f3ddb838e280057fbf517f",
+    "muse_guard/metrics.py": "9220694fc82af1759bc80800d9d097a7976b19a91b65b0072c11c2653c6c3c15",
+    "muse_guard/pilot.py": "65001761b2731bbe2a13c0ab93ebcb15c0654acdf847b8acf7aa8121cdb7a132",
+    "muse_guard/plain.py": "822912957a2c4211adafdfc2d5d87759468a6e0daf39014b60e9632a700de0dc",
+    "muse_guard/quality_gate.py": "a959071eede775b80cb071a0d3e151805267d5194ed1779f6c195dd934505ab5",
+    "muse_guard/recovery.py": "da5f4c9782989b06052f49c67e29ec3d6d54d38e0468d6c09e62db16d5cfb167",
+    "muse_guard/rule_checker.py": "69c787fce6280926146b46de3ef2753e790d418729c9cb3878755f865b0bba98",
+    "muse_guard/rules.py": "ebf24d2804c6b626f0d826966246f5c979ebf0e199d9e3eaf3557430c7cd3556",
+    "muse_guard/runner.py": "699eb07daa74e4d8037b5424c4b1db8243cc20bfcc69c893af6292430d6b38d3",
+    "muse_guard/site.py": "bdf2b74463f5bee8c7542ad0d81d73ff59f7fa7b0181b2d6dbe534a6a5c60e4c",
+    "muse_guard/tampering.py": "be4d12293a41c8e5840062b104aa76ebddb8c768fce840ca7ebfbdbdfcc03b16",
+    "muse_guard/tasks.py": "0da34bfdd15ee76723c5c193e31a6378321641686dab261a2e21f132e4221f68",
+    "muse_guard/view.py": "116519890b437989384c437e3c31c80ac74a3f8c489079c146c42402a66a9d66",
+    "muse_guard/view_assets/index.html": "0bd01f18193d5b2601c5ccc7a9cc686f9396adcc91248e686b073f6cff582d19",
+    "muse_guard/view_assets/style.css": "be62a529418857f05afcde7cb83d840139e69869076488c1fa697d9c33b47536",
+    "muse_guard/view_assets/view.js": "cfcc2c59a1ba472f0b28f71bbd342411459c13c0d7991f4589d843020606c4fb",
+    "scripts/clean_pilot.py": "7499d469876b43b179aed6f987833ffc6bb85e4aad59a6f8be0510eab7324f4a",
+    "scripts/day5_pilot.py": "4229ce6a61fac2219c68a5dd15934ddf827d2052c43dd89df35e6ddab1a43e54",
+    "scripts/prepare_static_demo.py": "38bd4aab85195ec0fda4717a8c2fc614b171d10d8324905112ff5cbe806c7745",
+    "scripts/prepare_view.py": "f52b374888fa5b58ed6219ab8f1ed92a22df90b110facbbaafd085edd7353d7e",
+    "scripts/provenance_audit.py": "97bc0753148d92bcf07debf350a396d7f9d4bf6a9d411f80991370df4113d1de",
+    "scripts/reviewed_freeze.py": "66dbf1adad4b8d51f0111217ae7a37824bb8b090a17ce37461345c8f8afff29a",
+    "study/MANIFEST-day4.json": "18316b3e211dd6f1910ef7770d00a7447a6f0459fd4c0ea18d4cc7aecdbc8633",
+    "study/clean_pilot_plan.json": "e418342f857f3b1c82782e6d10e83774a9f2adb497124d6760a09e4e21ddad6c",
+    "study/protocol.json": "20e001b230ba4c5ff22dbc931154a7e9b8ea969ee1c2a2504f61b94dfdb01a7f"
+  },
+  "limitations": [
+    "All extraction responses used today are constructed fake fixtures. Real extraction quality and transport remain unmeasured.",
+    "Quote linkage and exhaustive checks do not prove English-to-rule semantic correctness.",
+    "Study runtime is unchanged from the starting branch; this does not assert that the older study freeze already matched that branch."
+  ]
+}

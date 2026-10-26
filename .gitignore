@@ -11,3 +11,7 @@ results/.run.lock
 
 # Local browser automation state (not run evidence)
 .playwright-cli/
+
+# Private local spec inputs and live evaluation artifacts
+/spec_runs/
+/spec_eval/results/

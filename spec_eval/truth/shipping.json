@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "authorship": "Hand-written ground truth, before real model evaluation",
+  "proposal": {
+    "input_space": {
+      "express": [
+        false,
+        true
+      ],
+      "hazardous": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Use express shipping when express is requested and the parcel is not hazardous.",
+        "when": {
+          "express": {
+            "eq": true
+          },
+          "hazardous": {
+            "eq": false
+          }
+        },
+        "action": "express"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Hazardous parcels go by ground.",
+        "when": {
+          "hazardous": {
+            "eq": true
+          }
+        },
+        "action": "ground"
+      }
+    ],
+    "default": {
+      "quote": "Otherwise use ground shipping.",
+      "action": "ground"
+    },
+    "unconverted": []
+  },
+  "clashes": [],
+  "action_aliases": {
+    "express": [
+      "express",
+      "express_shipping"
+    ],
+    "ground": [
+      "ground",
+      "ground_shipping"
+    ]
+  }
+}
