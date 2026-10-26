@@ -249,3 +249,18 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Clean staged snapshot also passed all 147 offline tests without .env/raw
   sessions. All 10 dev pairs passed the exhaustive offline gate. Staged
   gitleaks/private-data scans passed; no Day6 branch was pushed.
+
+### Day6 follow-up — 2026-10-26: child environment confirmation
+
+- Audited Muse version/exec/export and candidate process environment construction.
+  Removed the remaining inherited PATH and dummy META_API_KEY environment entry.
+  Muse now receives the non-secret gateway credential through documented stdin
+  auth; real provider credentials remain only in the trusted parent/gateway.
+- Added offline canary tests for arbitrary environment values, both API-key names,
+  interpreter options and all three Muse subprocess stages. A sandboxed candidate
+  prints its environment and returns it; the test confirms no planted key/value
+  reaches that process. No .env file or real key was read for these tests.
+- No paid calls or pilot/holdout runs; previous ledgers/results remain unchanged.
+- Verification: both environment regression tests and all 149 offline tests
+  passed, including real-Muse same-session repair against a local fake provider.
+  All 116 prior result/ledger/holdout files checked remain byte-identical.

@@ -24,10 +24,13 @@ MODEL = "muse-spark-1.3"
 RATES = {"input": 1.25, "cached_input": 0.15, "output": 4.25}
 
 
-def run_process(args, cwd, env, timeout=180, limit=1024 * 1024):
+def run_process(args, cwd, env, timeout=180, limit=1024 * 1024, input_data=None):
     """Bound output and terminate the whole process group before returning."""
-    with tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
-        process = subprocess.Popen(args, cwd=cwd, env=env, stdin=subprocess.DEVNULL,
+    with tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err, tempfile.TemporaryFile() as incoming:
+        if input_data is not None:
+            incoming.write(input_data)
+            incoming.seek(0)
+        process = subprocess.Popen(args, cwd=cwd, env=env, stdin=incoming if input_data is not None else subprocess.DEVNULL,
                                    stdout=out, stderr=err, start_new_session=True)
         start = time.monotonic()
         try:
@@ -270,9 +273,11 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
             (root / "home").mkdir(exist_ok=bool(continuation))
             (root / "config").mkdir(exist_ok=bool(continuation))
             (root / "tmp").mkdir(exist_ok=bool(continuation))
-            clean = {"PATH": env.get("PATH", os.defpath), "HOME": str(root / "home"),
+            # Construct, never filter/copy, the child environment. Parent .env values
+            # stay in the trusted harness; only Gateway receives the real key.
+            clean = {"PATH": os.defpath + ":/opt/homebrew/bin:/usr/local/bin", "HOME": str(root / "home"),
                      "XDG_CONFIG_HOME": str(root / "config"), "TMPDIR":str(root/"tmp"),"MUSE_NO_AUTO_UPDATE": "1",
-                     "META_API_KEY":"proxy-only-no-provider-key", "MUSE_CONTRIBUTOR_MODE":"0", "LANG":"C.UTF-8"}
+                     "MUSE_CONTRIBUTOR_MODE":"0", "LANG":"C.UTF-8"}
             version = run_process([cli,"--version"], workspace, clean, timeout=10)
             record["cli_version"] = version.stdout.strip()
             if task.get("split")=="holdout" and record["cli_version"]!="Muse Code 1.4.2 (1.4.2-R4684.1)":
@@ -289,7 +294,7 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
             record.update(tokens=None,cost_usd=None,main_steps=None,cost_basis="run in progress; reservation unresolved")
             (results / (run_id + ".json")).write_text(json.dumps(record,indent=2)+"\n")
             with Gateway(env["META_API_KEY"], token_limit=max_tokens, journal=raw / "provider-usage.json",dollar_limit=reservation if dollar_quota else None) as gateway:
-                args = [cli,"exec","--provider","meta","--model",MODEL,"--base-url",gateway.url,
+                args = [cli,"exec","--api-key-stdin","--provider","meta","--model",MODEL,"--base-url",gateway.url,
                         "--preset","miniswe","--reasoning-effort","low",
                         "--max-model-steps",str(max_model_steps),"--max-tool-output-bytes","4096",
                         "--no-foreign-personal-context","--disable-web-tools","--approval-judge","off",
@@ -297,7 +302,10 @@ def run_one(task, results, env=None, *, max_tokens=320000, max_model_steps=12, s
                 try:
                     from .isolation import author_command
                     record['author_isolation']='outer macOS Seatbelt: harness/home-secret reads denied, writes only throwaway root, outbound only token gateway; Muse inner sandbox disabled to avoid unsupported nesting'
-                    executed = run_process(author_command(args,write_root=root,gateway_url=gateway.url), workspace, clean, timeout=300)
+                    # Muse needs a credential even for our local proxy. Supply a fixed,
+                    # non-secret placeholder through stdin, never via its environment.
+                    executed = run_process(author_command(args,write_root=root,gateway_url=gateway.url), workspace, clean,
+                                           timeout=300,input_data=b"proxy-only-no-provider-key\n")
                     record['authoring_infrastructure_error']='sandbox enforcement unavailable' in executed.stdout
                     record["exit_code"] = executed.returncode
                     record["termination"]=("MODEL STEP LIMIT" if "model did not reach a terminal state within" in executed.stderr

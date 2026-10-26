@@ -145,3 +145,16 @@ It adds actual unedited export text, selected decision, approved-rules change an
 precomputed behavior observations. For a recovery without display observations,
 `python3 scripts/prepare_view.py results/<recovery>.json` creates a separate derived
 record using sandboxed observations. The HTTP viewer itself never executes code.
+
+## Day6 environment boundary (2026-10-26)
+
+The trusted parent reads META_API_KEY only for the provider gateway. Never pass
+os.environ, a sourced .env mapping, or parent PATH into Muse/candidate children.
+Muse version/exec/export environments are constructed from fixed public tool
+locations, throwaway HOME/config/tmp paths, language and fixed Muse control flags.
+META_API_KEY, MODEL_API_KEY and arbitrary application .env variables are absent.
+Muse exec uses --api-key-stdin with a fixed non-secret proxy placeholder; the
+actual provider key stays in the trusted parent/gateway and is never sent to Muse.
+Candidate observations use their own minimal environment and stricter sandbox.
+The environment canary tests require macOS and make no provider requests; the
+real-Muse integration tests use a local fake SSE provider only.
