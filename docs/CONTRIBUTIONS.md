@@ -503,3 +503,9 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Activated approved restart freeze c34a240 after ledger/thread/process preflight. Ran original order until detecting a restart-ledger root bug: records were written under Projects/study_runs and the excluded prior charge was omitted from its runtime total.
 - Stopped execution with SIGINT, without patch or retry. Two plain flows completed; a third guarded flow was interrupted. Preserved all originals and byte-identical structured evidence copies. RESTART_STOP_2026-10-27.md explains the defect, incomplete denominators and the guarded receipt omitted by the automatic summary.
 - Restart actual cost $0.21792675; total study spend including excluded attempt $0.32629155. No mode comparison or null result claimed. No push, merge, resume or extractor changes.
+
+### October 27 — executor path and interruption amendment, before dress rehearsals
+
+- Corrected the existing executor's root, added pre-call Git/path/budget reconciliation checks, and attached interrupted phases through registered IDs and finally blocks. Interrupted behavior stays unknown while usage remains counted.
+- Kept one execute path for DEV and holdout plans. Moved new runtime workspaces inside the repo while preserving secret/write sandbox boundaries; eight focused offline tests pass.
+- Prepared committed four-flow and SIGINT DEV plans under the shared $5 daily ledger. Both stopped study cohorts remain excluded with $0.32629155 charged. No third holdout draft or activation before successful rehearsals.

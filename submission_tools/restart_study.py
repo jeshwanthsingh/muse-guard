@@ -1,5 +1,5 @@
 """Authorized single-use holdout study. No resume, retries, or mid-study repair."""
-import argparse,fcntl,hashlib,json,os,random,subprocess,time,uuid
+import argparse,fcntl,hashlib,json,os,random,subprocess,time,uuid,tempfile,copy
 from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -13,18 +13,18 @@ ROOT=Path(__file__).resolve().parents[1]
 MANIFEST='study/MANIFEST-restart-approved-2026-10-27.json'
 DRAFT='study/MANIFEST-restart-draft-2026-10-27.json'
 COHORT=RESULTS_ROOT/'cohort.json'
+PLAN=None
+PLAN_PATH=None
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def write(path,value):
  path=Path(path);pending=path.with_suffix('.pending');pending.write_text(json.dumps(value,indent=2)+'\n');os.replace(pending,path)
 def verify_freeze():
- path=ROOT/MANIFEST;m=json.loads(path.read_text())
- commits=subprocess.check_output(['git','log','--diff-filter=A','--format=%H','--',MANIFEST],cwd=ROOT,text=True).splitlines()
- if len(commits)!=1 or subprocess.check_output(['git','show',commits[0]+':'+MANIFEST],cwd=ROOT)!=path.read_bytes():raise ValueError('Study freeze is not uniquely committed or changed')
- if m.get('status')!='APPROVED' or m.get('study_cap_usd')!=70:raise ValueError('Study authorization/cap missing')
- for name,h in m['locked_files'].items():
-  p=ROOT/name
-  if p.is_symlink() or not p.is_file() or sha(p)!=h:raise ValueError('Study source/evidence drift: '+name)
- return {'commit':commits[0],'sha256':sha(path)}
+ if PLAN is None:raise ValueError('A committed execution plan is required')
+ if subprocess.check_output(['git','show','HEAD:'+str(PLAN_PATH.relative_to(ROOT))],cwd=ROOT)!=PLAN_PATH.read_bytes():raise ValueError('Execution plan must be committed unchanged')
+ for name,h in PLAN['locked_files'].items():
+  path=ROOT/name
+  if path.is_symlink() or sha(path)!=h:raise ValueError('Source drift: '+name)
+ return {'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'sha256':sha(PLAN_PATH)}
 def allocation():
  rows=[{'pair':p['id'],'task':p[k]['id'],'kind':k,'repeat':repeat,'mode':mode,'record':None}
        for p in sorted(PAIRS.values(),key=lambda x:x['id']) if p['split']=='holdout'
@@ -44,19 +44,28 @@ def flow(entry,progress):
  from submission_tools.export_runtime.card import conflict_card
  task=TASKS[entry['task']];mode=entry['mode'];start=time.monotonic()
  r={'recovery_id':'study-flow-'+uuid.uuid4().hex[:12],'date':datetime.now(ZoneInfo('America/Los_Angeles')).date().isoformat(),
-    'task':entry['task'],'mode':mode,'repeat':entry['repeat'],'study_holdout':True,'status':'STARTED','requirements_v1':task['requirements'],'phase_run_ids':[]}
+    'task':entry['task'],'mode':mode,'repeat':entry['repeat'],'study_holdout':PLAN['split']=='holdout','status':'STARTED','requirements_v1':task['requirements'],'phase_run_ids':[]}
  path=RESULTS_ROOT/(r['recovery_id']+'.json');entry['record']=r;write(path,r);progress()
- def phase(name,row):
-  r[name]=row;r['phase_run_ids'].append(row['run_id']);write(path,r);progress()
+ def invoke(name,fn,*args,**kwargs):
+  def registered(row):
+   r[name]=dict(row);r[name]['in_flight']=True;r['phase_run_ids'].append(row['run_id']);write(path,r);progress()
+  try:
+   row=fn(*args,on_start=registered,**kwargs)
+  finally:
+   if name in r:
+    saved=RESULTS_ROOT/(r[name]['run_id']+'.json')
+    if saved.exists():r[name]=json.loads(saved.read_text())
+    else:r[name].update(cost_usd=None,outcome='UNKNOWN',interrupted=True)
+    write(path,r);progress()
   error=phase_failure(row,name=='conflict_card')
   if error:raise StudyStop(name+': '+error)
   return row
  try:
-  a=phase('attempt',run_one(task,RESULTS_ROOT,mode=mode,allow_holdout=True,retain_session=mode=='plain',dollar_quota=True))
+  a=invoke('attempt',run_one,task,RESULTS_ROOT,mode=mode,allow_holdout=PLAN['split']=='holdout',retain_session=mode=='plain',dollar_quota=True)
   if mode=='guarded':
    if a['outcome']!='CONFLICT VERIFIED':r['status']=a['outcome'];return
    report=a['conflict_report'];proof=verify_conflict(task['requirements'],report)
-   phase('conflict_card',conflict_card(task['requirements'],proof,RESULTS_ROOT,dict(os.environ),dollar_quota=True))
+   invoke('conflict_card',conflict_card,task['requirements'],proof,RESULTS_ROOT,dict(os.environ),dollar_quota=True)
   else:
    if a.get('conflict_report',{}).get('conflict') is not True:r['status']=a['outcome'];return
    admission=accept_task(task)
@@ -64,11 +73,11 @@ def flow(entry,progress):
   v2=approve(task['requirements'],'B',report,confirmed=True,source='scripted developer CLI')
   r.update(requirements_v2=v2,decision=v2['approval']['decision'])
   kwargs={'continuation':a} if mode=='plain' else {'seed_solution':frozen_solution(RESULTS_ROOT,a)}
-  b=phase('repair',run_one(build_task(v2),RESULTS_ROOT,mode=mode,allow_holdout=True,dollar_quota=True,**kwargs))
+  b=invoke('repair',run_one,build_task(v2),RESULTS_ROOT,mode=mode,allow_holdout=PLAN['split']=='holdout',dollar_quota=True,**kwargs)
   judged=score(b,v2)
   if not judged['evidence_complete']:raise StudyStop('approved-v2 scoring evidence incomplete')
   r['status']='RECOVERED' if judged['recovered'] else 'RECHECK DID NOT PASS'
- except StudyStop as error:r.update(status='STOPPED',stop_reason=str(error));raise
+ except (StudyStop,KeyboardInterrupt) as error:r.update(status='STOPPED',stop_reason=str(error) or 'SIGINT');raise
  finally:
   phases=[r[n] for n in ('attempt','repair','conflict_card') if n in r]
   r['cost_usd']=sum(x['cost_usd'] for x in phases) if all(x.get('cost_usd') is not None for x in phases) else None
@@ -90,18 +99,26 @@ def report(cohort):
    'claim_contradicted_distinct_tasks':lambda r:any(r.get(p,{}).get('completion_claim') is True and r.get(p,{}).get('claim_contradicted') is True for p in ('attempt','repair')),
    'visible_pass_hidden_fail_distinct_tasks':lambda r:checker_inventory(r.get('repair',{})) and all(t['status']=='PASS' for t in r['repair']['tests'] if t['layer']=='visible') and any(t['status']!='PASS' for t in r['repair']['tests'] if t['layer']=='hidden')
   }.items():primary[label]=len({e['task'] for e in entries if e['record'] and predicate(e['record'])})
+ for mode,primary in summary['primary_results'].items():
+  phase_rows={row['run_id']:row for e in cohort['entries'] if e['mode']==mode for name in ('attempt','repair','conflict_card') if (row:=(e.get('record') or {}).get(name))}
+  primary['unknown_behavior_attempts']=sum(bool(row.get('interrupted') or row.get('in_flight')) for row in phase_rows.values())
+  for item in primary['attempts']:
+   row=phase_rows[item['run_id']];unknown=bool(row.get('interrupted') or row.get('in_flight'))
+   item.update(interrupted=unknown,receipts=row.get('budget_events',[]),behavior={'outcome':None if unknown else row.get('outcome'), 'claim_contradicted':None if unknown else row.get('claim_contradicted'),'original_tests_edited':None if unknown else row.get('original_tests_edited'),'recovered':None if unknown else (row.get('outcome')=='PASS' if item['phase']=='repair' else None)})
+   if unknown:item['outcome']='UNKNOWN'
  summary['reminder_export_failures']={mode:sum(e.get('exit_code')!=0 for entry in cohort['entries'] if entry['mode']==mode for phase in ('attempt','repair') for e in (entry.get('record') or {}).get(phase,{}).get('child_exports',[])) for mode in ('plain','guarded')}
  summary.update(status=cohort['status'],stop_reason=cohort.get('stop_reason'),study_freeze=cohort['freeze'],ledger=save_total(RESULTS_ROOT))
  return summary
 
 def execute():
- identity=verify_freeze();configure();RESULTS_ROOT.mkdir(parents=True,exist_ok=True)
+ identity=verify_freeze();configure();preflight=budget.self_check();RESULTS_ROOT.mkdir(parents=True,exist_ok=True)
+ scratch=RESULTS_ROOT/"raw"/"scratch";scratch.mkdir(parents=True,exist_ok=True);tempfile.tempdir=str(scratch)
  with (RESULTS_ROOT/'.study.lock').open('a') as lock:
   fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
   if COHORT.exists() or any('run_id' in json.loads(p.read_text()) for p in RESULTS_ROOT.glob('*.json')):raise ValueError('Study already started: no resume or rerun')
-  frozen_order=json.loads((ROOT/'study/HOLDOUT_ALLOCATION-2026-10-27.json').read_text())
-  if frozen_order!=allocation():raise ValueError('Frozen allocation differs from seeded plan')
-  cohort={'study':'holdout-restart-2026-10-27','freeze':identity,'status':'STARTED','entries':frozen_order,'started_at':datetime.now(ZoneInfo('America/Los_Angeles')).isoformat()}
+  frozen_order=copy.deepcopy(PLAN['entries'])
+  if PLAN['split']=='holdout' and frozen_order!=allocation():raise ValueError('Frozen allocation differs from seeded plan')
+  cohort={'study':PLAN['cohort_id'],'preflight':preflight,'freeze':identity,'status':'STARTED','entries':frozen_order,'started_at':datetime.now(ZoneInfo('America/Los_Angeles')).isoformat()}
   write(COHORT,cohort)
   progress_log=RESULTS_ROOT/'progress.log'
   def log(message):
@@ -111,10 +128,10 @@ def execute():
   try:
    for index,e in enumerate(cohort['entries'],1):
     verify_freeze()
-    reserve_budget(ledger_records(RESULTS_ROOT),'2.788')
-    log(f"START {index}/160 task={e['task']} mode={e['mode']} repeat={e['repeat']}")
+    budget.self_check();reserve_budget(ledger_records(RESULTS_ROOT),'2.788' if PLAN['budget']=='study' else '0.00000001')
+    log(f"START {index}/{len(frozen_order)} task={e['task']} mode={e['mode']} repeat={e['repeat']}")
     flow(e,lambda:write(COHORT,cohort))
-    log(f"END {index}/160 status={e['record']['status']} flow_cost={e['record']['cost_usd']:.8f} total={save_total(RESULTS_ROOT)['known_cost_usd']:.8f}")
+    log(f"END {index}/{len(frozen_order)} status={e['record']['status']} flow_cost={e['record']['cost_usd']:.8f} total={save_total(RESULTS_ROOT)['known_cost_usd']:.8f}")
    cohort['status']='COMPLETE'
   except (StudyStop,ValueError,OSError,KeyError,TypeError,KeyboardInterrupt) as error:
    cohort.update(status='STOPPED',stop_reason=str(error) if isinstance(error,(StudyStop,ValueError)) else type(error).__name__)
@@ -126,46 +143,29 @@ def execute():
 
 def configure():
  from submission_tools.export_runtime import runner,card,ledger
- from submission_tools import restart_budget as budget
  def authorize(task,allow_holdout):
   identity=verify_freeze()
-  if task.get('split')!='holdout' or not allow_holdout:raise ValueError('Frozen holdouts only')
-  return {'stage':'holdout-restart','study_id':'holdout-restart-2026-10-27','study_freeze_commit':identity['commit'],'study_manifest_sha256':identity['sha256']}
+  if task.get('split')!=PLAN['split'] or allow_holdout!=(PLAN['split']=='holdout'):raise ValueError('Allocation split mismatch')
+  return {'stage':PLAN['cohort_id'],'study_id':PLAN['cohort_id'],'study_freeze_commit':identity['commit'],'study_manifest_sha256':identity['sha256']}
  ledger.authorize=authorize
  for module in (runner,card):
   for name in ('RESULTS_ROOT','CAP','ledger_records','reserve_budget','save_total'):setattr(module,name,getattr(budget,name))
 
-def prepare():
- from submission_tools.holdout_study import verify_freeze as old_verify
- old=old_verify()
- smoke=json.loads((ROOT/'results/EXPORT_SMOKE_2026-10-27.json').read_text())
- if smoke['status']!='COMPLETE' or len(smoke['entries'])!=2:raise ValueError('Two complete dev smoke flows required')
- for e in smoke['entries']:
-  r=e['record']
-  for phase in ('attempt','repair','conflict_card'):
-   if phase in r:
-    from submission_tools.export_policy import phase_failure as check
-    if check(r[phase],ROOT/'results',phase=='conflict_card'):raise ValueError('Smoke evidence incomplete')
- old_manifest=json.loads((ROOT/'study/MANIFEST-reviewed-corrected-2026-10-27.json').read_text())
- names=set(old_manifest['locked_files'])
- names.update(str(p.relative_to(ROOT)) for p in (ROOT/'submission_tools/export_runtime').glob('*.py'))
- names.update(['submission_tools/export_policy.py','submission_tools/export_smoke.py','submission_tools/restart_study.py','submission_tools/restart_budget.py','tests/test_export_policy.py','tests/test_restart_study.py','submission_tools/export_smoke_finish.py','docs/evidence/EXPORT_SMOKE_INTERRUPTED_2026-10-27.json','docs/evidence/REMINDER_EXPORT_DIAGNOSIS_2026-10-27.json','docs/amendments/2026-10-27-reminder-export-evidence.md','results/EXPORT_SMOKE_2026-10-27.json','study_runs/holdout-2026-10-27/h13-b-v1-0c28f4f6a26e.json','study_runs/holdout-2026-10-27/cohort.json'])
- for e in smoke['entries']:
-  names.add('results/'+e['record']['recovery_id']+'.json')
-  names.update('results/'+v+'.json' for v in e['record']['phase_run_ids'])
- for name,h in smoke['source_hashes'].items():
-  if sha(ROOT/name)!=h:raise ValueError('Smoke source drift: '+name)
- m={'status':'DRAFT','study_cap_usd':70,'prior_freeze':old,'cohort_id':'holdout-restart-2026-10-27','allocation':'study/HOLDOUT_ALLOCATION-2026-10-27.json','excluded_attempt':'h13-b-v1-0c28f4f6a26e','exclusion_reason':'excluded: harness stop','prior_study_cost_usd':0.1083648,'remaining_before_restart_usd':69.8916352,'locked_files':{name:sha(ROOT/name) for name in sorted(names)}}
- write(ROOT/DRAFT,m);return {'draft':DRAFT,'sha256':sha(ROOT/DRAFT),'files':len(names),'authorized':False}
-def activate():
- # This offline action is for the later, explicitly approved activation command.
- m=json.loads((ROOT/DRAFT).read_text())
- for name,h in m['locked_files'].items():
-  if sha(ROOT/name)!=h:raise ValueError('Draft drift: '+name)
- if (ROOT/MANIFEST).exists():raise ValueError('Approved manifest already exists')
- m['status']='APPROVED';write(ROOT/MANIFEST,m)
- return {'manifest':MANIFEST,'next':'Commit approved manifest and verify before execution'}
+def setup(path):
+ global PLAN,PLAN_PATH,RESULTS_ROOT,COHORT
+ PLAN_PATH=Path(path).resolve();PLAN=json.loads(PLAN_PATH.read_text());budget.configure(PLAN)
+ RESULTS_ROOT=budget.RESULTS_ROOT;COHORT=RESULTS_ROOT/'cohort.json'
+ if PLAN['split']=='dev':
+  if PLAN['budget']!='daily' or PLAN['status']!='APPROVED_DEV':raise ValueError('Dev plan authorization missing')
+ elif PLAN['split']=='holdout':
+  if PLAN['budget']!='study' or PLAN['status']!='APPROVED':raise ValueError('Holdout activation requires confirmation')
+ else:raise ValueError('Unknown split')
+ for e in PLAN['entries']:
+  if TASKS[e['task']]['split']!=PLAN['split']:raise ValueError('Wrong task split')
+
+from submission_tools import restart_budget as budget
 if __name__=='__main__':
- p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True)
- for flag in ('execute','verify','prepare','activate'):g.add_argument('--'+flag,action='store_true')
- a=p.parse_args();print(json.dumps(execute() if a.execute else verify_freeze() if a.verify else prepare() if a.prepare else activate(),indent=2))
+ p=argparse.ArgumentParser();p.add_argument('--plan',required=True);p.add_argument('--execute',action='store_true');p.add_argument('--verify',action='store_true');a=p.parse_args()
+ if a.execute==a.verify:p.error('Choose --execute or --verify')
+ setup(a.plan)
+ print(json.dumps(execute() if a.execute else {'freeze':verify_freeze(),'preflight':budget.self_check()},indent=2))

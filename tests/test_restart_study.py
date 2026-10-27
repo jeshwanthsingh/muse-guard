@@ -1,25 +1,46 @@
-import json,tempfile,unittest
-from decimal import Decimal
+import copy,json,tempfile,unittest,subprocess,os
 from pathlib import Path
 from unittest.mock import patch
-from submission_tools import restart_study as study,restart_budget as budget
-class RestartTests(unittest.TestCase):
- def test_order_identical(self):
-  rows=json.loads((study.ROOT/'study/HOLDOUT_ALLOCATION-2026-10-27.json').read_text())
-  self.assertEqual(rows,study.allocation());self.assertEqual(len(rows),160)
- def test_prior_cost_and_no_midnight_reset(self):
+from submission_tools import restart_study as s,restart_budget as b
+ROOT=Path(__file__).resolve().parents[1]
+class RehearsalTests(unittest.TestCase):
+ def test_actual_repository_root(self):
+  self.assertEqual(b.ROOT,ROOT);b.validate_root()
+ def test_wrong_root_rejected(self):
+  with patch.object(b,'ROOT',ROOT.parent):
+   with self.assertRaises(ValueError):b.validate_root()
+ def test_outside_output_rejected(self):
+  with self.assertRaises(ValueError):b.configure({'budget':'daily','output':'../outside'})
+ def test_symlink_output_rejected(self):
+  with tempfile.TemporaryDirectory(dir=ROOT/'results/raw') as d:
+   link=Path(d)/'escape';link.symlink_to('/private/tmp',target_is_directory=True)
+   with self.assertRaises(ValueError):b.inside(link/'cohort.json')
+ def test_mismatched_running_total_aborts(self):
   with tempfile.TemporaryDirectory() as d:
-   root=Path(d);old=root/'old';new=root/'new';old.mkdir();new.mkdir()
-   (old/'one.json').write_text(json.dumps({'run_id':'old','cost_usd':.1083648,'date':'2026-10-27'}))
-   (new/'two.json').write_text(json.dumps({'run_id':'new','cost_usd':68,'date':'2026-10-28'}))
-   with patch.object(budget,'PRIOR_ROOT',old),patch.object(budget,'RESULTS_ROOT',new):
-    rows=budget.ledger_records(new);self.assertEqual(len(rows),2)
-    budget.reserve_budget(rows,'1.8916352')
-    with self.assertRaises(ValueError):budget.reserve_budget(rows,'1.8916353')
- def test_unapproved_restart_blocked(self):
-  with patch.object(study,'MANIFEST','study/nonexistent-restart-manifest.json'):
-   with self.assertRaises(FileNotFoundError):study.verify_freeze()
- def test_stop_after_first_fault_no_retry(self):
-  with tempfile.TemporaryDirectory() as d,patch.object(study,'RESULTS_ROOT',Path(d)),patch.object(budget,'RESULTS_ROOT',Path(d)),patch.object(study,'COHORT',Path(d)/'cohort.json'),patch.object(study,'verify_freeze',return_value={}),patch.object(study,'configure'),patch.object(study,'flow',side_effect=study.StudyStop('mock infrastructure fault')) as run:
-   result=study.execute();self.assertEqual(run.call_count,1);self.assertEqual(result['status'],'STOPPED')
+   total=Path(d)/'total.json';total.write_text('{"known_cost_usd":0}')
+   with patch.object(b,'validate_root'),patch.object(b,'inside',side_effect=lambda p:p),patch.object(b,'TOTAL',total),patch.object(b,'ledger_records',return_value=[{'cost_usd':.32629155}]):
+    with self.assertRaisesRegex(ValueError,'differs'):b.self_check()
+ def test_receipt_cost_unknown_aborts(self):
+  with self.assertRaises(ValueError):b.cost_sum([{'cost_usd':None}])
+ def test_interrupted_phase_attached_and_summarized(self):
+  from submission_tools.export_runtime import runner
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);entry={'task':'refund-impossible','mode':'plain','kind':'impossible','repeat':1,'record':None}
+   def interrupted(task,results,**kw):
+    row={'run_id':'interrupted-fixture','cost_usd':.01,'tokens':{'input':1,'output':1,'cached_input':0},'main_steps':None,'interrupted':True,'outcome':'UNKNOWN','original_tests_edited':None,'budget_events':[{'usage':{'input_tokens':1,'output_tokens':1,'cached_input_tokens':0}}]}
+    kw['on_start'](row);(root/'interrupted-fixture.json').write_text(json.dumps(row));raise KeyboardInterrupt()
+   with patch.object(s,'RESULTS_ROOT',root),patch.object(s,'PLAN',{'split':'dev'}),patch.object(runner,'run_one',side_effect=interrupted),patch.object(s,'save_total',return_value={'known_cost_usd':.01}):
+    with self.assertRaises(KeyboardInterrupt):s.flow(entry,lambda:None)
+    self.assertEqual(entry['record']['attempt']['cost_usd'],.01)
+    out=s.report({'entries':[entry],'status':'STOPPED','freeze':{}})['primary_results']['plain']
+    self.assertEqual(out['known_cost_usd'],.01);self.assertEqual(out['unknown_behavior_attempts'],1)
+    self.assertIsNone(out['attempts'][0]['behavior']['original_tests_edited']);self.assertTrue(out['attempts'][0]['receipts'])
+ def test_sandbox_repo_workspace_secret_and_write_boundary(self):
+  from submission_tools.export_policy import author_command
+  with tempfile.TemporaryDirectory(dir=ROOT/'results/raw') as d:
+   root=Path(d);work=root/'work';work.mkdir();secret=root/'.env';secret.write_text('FAKE_TEST_VALUE')
+   code='from pathlib import Path; import sys; Path("inside").write_text("ok"); denied=0\nfor p in sys.argv[1:]:\n try: Path(p).read_text() if p.endswith(".env") else Path(p).write_text("bad")\n except PermissionError: denied+=1\nprint(denied)'
+   import sys
+   result=subprocess.run(author_command([sys.executable,'-c',code,str(secret),str(root/'outside')],write_root=work),cwd=work,capture_output=True,text=True)
+   self.assertEqual(result.returncode,0,result.stderr);self.assertEqual(result.stdout.strip(),'2');self.assertTrue((work/'inside').exists())
 if __name__=='__main__':unittest.main()

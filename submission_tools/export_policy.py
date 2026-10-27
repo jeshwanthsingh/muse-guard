@@ -40,3 +40,18 @@ def phase_failure(row, results, card=False):
         if row['tokens']!={'input':totals['input_tokens'],'output':totals['output_tokens'],'cached_input':totals['cached_input_tokens']}:return 'provider token mismatch'
     except (OSError,ValueError,KeyError,TypeError):return 'incomplete provider journal'
     return None
+
+
+def author_command(args,*,harness=None,write_root=None,gateway_url=None):
+    # Permit only this throwaway subtree inside the otherwise unreadable repo.
+    from muse_guard.isolation import author_command as original
+    harness=Path(harness or Path(__file__).resolve().parents[1]).resolve()
+    work=Path(write_root).resolve()
+    if not work.is_relative_to(harness):raise ValueError('Author workspace outside repo')
+    command=original(args,harness=harness,write_root=work,gateway_url=gateway_url)
+    own='(subpath '+json.dumps(str(work))+')'
+    denied='(subpath '+json.dumps(str(harness))+')'
+    command[2]=command[2].replace(denied,'(require-all '+denied+' (require-not '+own+'))')
+    home='(subpath '+json.dumps(str(Path.home().resolve()))+')'
+    command[2]=command[2].replace('(deny file-write* '+home+')','(deny file-write* (require-all '+home+' (require-not '+own+')))')
+    return command

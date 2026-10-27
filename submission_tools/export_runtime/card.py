@@ -22,13 +22,14 @@ from submission_tools.export_runtime.ledger import RESULTS_ROOT, CAP
 def is_recovered(repair):
     return repair.get('outcome')=='PASS'
 
-def conflict_card(req,proof,results,env,*,dollar_quota=False):
+def conflict_card(req,proof,results,env,*,dollar_quota=False,on_start=None):
     started=time.monotonic()
     run_id="conflict-card-"+uuid.uuid4().hex[:12]
     day=datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
     row={"run_id":run_id,"date":day,"stage":"holdout-study","task":req["id"]+"-conflict-card","mode":"guarded-card",
          "pricing_mode":"STANDARD","model":"muse-spark-1.3","cost_usd":None,"tokens":None,
          "status":"PENDING","reserved_cost_usd":0.068,"model_invoked":False}
+    if on_start:on_start(row)
     path=results/(run_id+".json")
     allowance=Decimal('0.068')
     if dollar_quota:
@@ -69,6 +70,9 @@ def conflict_card(req,proof,results,env,*,dollar_quota=False):
                     row["tokens"],row["cost_usd"]=usage_from_export({"usage":usage})
                 elif not admissions:
                     row.update(tokens={"input":0,"output":0,"cached_input":0},cost_usd=0)
+    except KeyboardInterrupt:
+        row.update(interrupted=True,status="UNKNOWN")
+        raise
     except (ValueError,OSError,KeyError):
         row["status"]="HARNESS ERROR"
     finally:
