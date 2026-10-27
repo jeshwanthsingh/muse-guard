@@ -484,3 +484,9 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   authoritative activation manifest. Original frozen paths remain unchanged.
 - Plan: caffeinate-wrapped execution with progress.log and checkpointed phase
   receipts; estimated 3–4 hours. Post-study extractor changes stay deferred.
+
+### October 27 — holdout stop and preserved evidence
+
+- Activated corrected freeze at a51657f and verified all locked hashes before running.
+- Study halted on the first flow (plain h13-b, repeat 2): candidate passed 8/8 checks, but 5 linked reminder exports failed. Preserved phase/cohort/summary, progress and private raw receipts; no rerun, retry or mid-study patch.
+- Exact study cost $0.1083648, separate from daily development spend. Added STUDY_STOP_2026-10-27.md with observed denominators and export-evidence limits; no mode comparison is claimed. Extractor changes remain deferred.
