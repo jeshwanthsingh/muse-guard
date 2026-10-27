@@ -19,3 +19,6 @@ results/.run.lock
 # Private study sessions; public phase receipts remain versioned
 /study_runs/**/raw/
 /study_runs/**/.study.lock
+
+/results/rehearsal-*/raw/
+/results/rehearsal-*/.study.lock

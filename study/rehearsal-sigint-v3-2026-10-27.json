@@ -1,0 +1,51 @@
+{
+  "cohort_id": "rehearsal-sigint-v3-2026-10-27",
+  "status": "APPROVED_DEV",
+  "split": "dev",
+  "budget": "daily",
+  "output": "results/rehearsal-sigint-v3-2026-10-27",
+  "entries": [
+    {
+      "task": "refund-impossible",
+      "mode": "plain",
+      "kind": "impossible",
+      "repeat": 1,
+      "record": null
+    }
+  ],
+  "locked_files": {
+    "muse_guard/isolation.py": "4e94074aa08d26519b7c23deb10688ffb74e735ef5a1e40aca127155eebc8162",
+    "muse_guard/pilot.py": "65001761b2731bbe2a13c0ab93ebcb15c0654acdf847b8acf7aa8121cdb7a132",
+    "muse_guard/metrics.py": "9220694fc82af1759bc80800d9d097a7976b19a91b65b0072c11c2653c6c3c15",
+    "muse_guard/runner.py": "699eb07daa74e4d8037b5424c4b1db8243cc20bfcc69c893af6292430d6b38d3",
+    "muse_guard/gateway.py": "4b78d188f139070c8173758cc4f5cced8eaf27730331d964e930feedb28188c2",
+    "muse_guard/tasks.py": "0da34bfdd15ee76723c5c193e31a6378321641686dab261a2e21f132e4221f68",
+    "muse_guard/recovery.py": "da5f4c9782989b06052f49c67e29ec3d6d54d38e0468d6c09e62db16d5cfb167",
+    "muse_guard/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "muse_guard/rules.py": "ebf24d2804c6b626f0d826966246f5c979ebf0e199d9e3eaf3557430c7cd3556",
+    "muse_guard/site.py": "bdf2b74463f5bee8c7542ad0d81d73ff59f7fa7b0181b2d6dbe534a6a5c60e4c",
+    "muse_guard/view.py": "116519890b437989384c437e3c31c80ac74a3f8c489079c146c42402a66a9d66",
+    "muse_guard/cli.py": "8078be593bbb7828d73b5469a9d52b30700cc98dfe9126e17c77128f199d5ef3",
+    "muse_guard/legacy_tasks.py": "dc59703f2055e9fbc22cd458c08cacc2b104f46bf0f3ddb838e280057fbf517f",
+    "muse_guard/plain.py": "822912957a2c4211adafdfc2d5d87759468a6e0daf39014b60e9632a700de0dc",
+    "muse_guard/freeze.py": "b15027ef8ea7a7a816ed34efeab3a5c49c7b390f5828c022b993f762cc4107f6",
+    "muse_guard/quality_gate.py": "a959071eede775b80cb071a0d3e151805267d5194ed1779f6c195dd934505ab5",
+    "muse_guard/tampering.py": "be4d12293a41c8e5840062b104aa76ebddb8c768fce840ca7ebfbdbdfcc03b16",
+    "muse_guard/rule_checker.py": "69c787fce6280926146b46de3ef2753e790d418729c9cb3878755f865b0bba98",
+    "muse_guard/evidence.py": "9a0819aa50db7f55ae61e4ed48942f484ce358803cbe35b07d35b54c67334455",
+    "muse_guard/checker.py": "721ce23c545953e36f38d41f7cfd0e053e589ba1bd4bb1620d63a6e4bf9dc9a7",
+    "submission_tools/export_runtime/runner.py": "98a573a92d8169bc05c6265e46788e651e8460d9b3dc951f3edd43f845f6ebc7",
+    "submission_tools/export_runtime/ledger.py": "d9a6c367f27ea30f2728eb32861bc837aa809f87f69b17a473bdb6dc43d56b86",
+    "submission_tools/export_runtime/__init__.py": "beb884c5cdce0d1cae07dc31273c495b319696156e293e9052ce4e723cbac0b3",
+    "submission_tools/export_runtime/card.py": "0b1d2f8bab24bf886bb6386d02770a7272fbdc86ef41e06e85d28e8a836991e0",
+    "submission_tools/restart_study.py": "020d89508d95886da7db8d7d56889ca2f7ea8b9c6365e7d3bcd520970207992c",
+    "submission_tools/restart_budget.py": "db59554da7a10c641172139e426d25cbe3998f0e10d504f490d7d148df7633e5",
+    "submission_tools/export_policy.py": "ba5c683c090f45de8570b64b58a8bc170055bcdc91edd896e8e1ddcd8af8a1c5",
+    "submission_tools/settlement.py": "ca6b1eba9e0fba70491c731d07e8a0fa461783368d055e0707213b85a2623809",
+    "submission_tools/holdout_study.py": "f69222ba0dc703776cb07d6918631bcc552ff61086d3dc4b64c336e4f860b0ae",
+    "submission_tools/study_runtime/ledger.py": "ee41ef36c13d7cff71d15f8294c4be27b158ec5e19a3a1e69f7df8e309bb4f3c",
+    "submission_tools/behavior_score.py": "5da4e3108c541a5e4b3548770e73784f36cf63c343ae9eef16496dcfb009d88f",
+    "docs/amendments/2026-10-27-executor-paths-and-interruptions.md": "8b7f6258979355f6f3717c3e20f19f581cbdc529ef04f6931c5bd9ea14877405",
+    "tests/test_restart_study.py": "1cadf714439ea09a95243611b233de75b4439a47cd31bf1a9b2acf7968c15385"
+  }
+}

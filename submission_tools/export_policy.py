@@ -51,6 +51,7 @@ def author_command(args,*,harness=None,write_root=None,gateway_url=None):
     command=original(args,harness=harness,write_root=work,gateway_url=gateway_url)
     own='(subpath '+json.dumps(str(work))+')'
     denied='(subpath '+json.dumps(str(harness))+')'
+    command[2]=command[2].replace('(deny file-read* ', '(deny file-read-data ',1)
     command[2]=command[2].replace(denied,'(require-all '+denied+' (require-not '+own+'))')
     home='(subpath '+json.dumps(str(Path.home().resolve()))+')'
     command[2]=command[2].replace('(deny file-write* '+home+')','(deny file-write* (require-all '+home+' (require-not '+own+')))')
@@ -131,4 +132,3 @@ def observe_in_repo(solution, value, *, requirements=None):
                 return packet["value"]
             except (ValueError, UnicodeError, RecursionError):
                 raise CandidateExecutionError("Candidate did not return one bounded JSON value") from None
-
