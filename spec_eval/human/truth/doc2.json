@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "authorship": "written by an independent AI (Claude), reviewed by the user",
+  "key_authorship": "Codex draft corrected and approved by user before extraction",
+  "whitespace_policy": "collapse whitespace in each paragraph and in quotes; punctuation/words unchanged",
+  "proposal": {
+    "input_space": {
+      "perishable": [
+        false,
+        true
+      ],
+      "resident_away": [
+        false,
+        true
+      ],
+      "needs_signature": [
+        false,
+        true
+      ],
+      "oversized": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "If it's perishable and the resident is away, return it to the sender.",
+        "when": {
+          "perishable": {
+            "eq": true
+          },
+          "resident_away": {
+            "eq": true
+          }
+        },
+        "action": "return_to_sender"
+      },
+      {
+        "id": "B",
+        "quote": "If it's perishable and the resident is home, notify the resident right away.",
+        "when": {
+          "perishable": {
+            "eq": true
+          },
+          "resident_away": {
+            "eq": false
+          }
+        },
+        "action": "notify_resident"
+      },
+      {
+        "id": "C",
+        "quote": "For anything that isn't perishable: if it needs a signature, hold it at the front desk.",
+        "when": {
+          "perishable": {
+            "eq": false
+          },
+          "needs_signature": {
+            "eq": true
+          }
+        },
+        "action": "hold_at_desk"
+      },
+      {
+        "id": "D",
+        "quote": "Non-perishable packages that don't need a signature go in a locker, unless they're oversized.",
+        "when": {
+          "perishable": {
+            "eq": false
+          },
+          "needs_signature": {
+            "eq": false
+          },
+          "oversized": {
+            "eq": false
+          }
+        },
+        "action": "put_in_locker"
+      },
+      {
+        "id": "E",
+        "quote": "Oversized ones get held at the desk too.",
+        "when": {
+          "perishable": {
+            "eq": false
+          },
+          "needs_signature": {
+            "eq": false
+          },
+          "oversized": {
+            "eq": true
+          }
+        },
+        "action": "hold_at_desk"
+      }
+    ],
+    "unconverted": []
+  },
+  "clashes": [],
+  "supporting_sources": {
+    "E": [
+      "Non-perishable packages that don't need a signature go in a locker, unless they're oversized."
+    ]
+  },
+  "action_aliases": {
+    "return_to_sender": [
+      "return_to_sender",
+      "return"
+    ],
+    "notify_resident": [
+      "notify_resident",
+      "notify",
+      "notify_immediately"
+    ],
+    "hold_at_desk": [
+      "hold_at_desk",
+      "hold_at_front_desk",
+      "hold_front_desk",
+      "hold"
+    ],
+    "put_in_locker": [
+      "put_in_locker",
+      "locker",
+      "place_in_locker"
+    ]
+  },
+  "field_aliases": {
+    "perishable": [
+      "perishable",
+      "is_perishable"
+    ],
+    "resident_away": [
+      "resident_away",
+      "is_resident_away",
+      "away"
+    ],
+    "needs_signature": [
+      "needs_signature",
+      "requires_signature",
+      "signature_required"
+    ],
+    "oversized": [
+      "oversized",
+      "is_oversized"
+    ]
+  }
+}

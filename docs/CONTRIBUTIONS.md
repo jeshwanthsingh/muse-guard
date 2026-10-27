@@ -439,3 +439,18 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   flow only, with linked original/corrective evidence and supplemental gate.
 - The agent's explicit refusal remains separate evidence; gateway contribution
   does not prove why it refused. No automatic study or $70 allowance enabled.
+
+## 2026-10-27 — Corrective dev result and separate-set freeze
+
+- Authorized single plain shipping rerun on correction commit 5a5d40e recovered:
+  5-step conflict report ($0.06802715), 4-step passing repair ($0.06090415),
+  $0.12893130 total. No gateway blocks or original-test edits. Supplemental gate
+  passes; original cohort and gate remain unchanged/failing, reported alongside
+  corrected evidence. No claim that the fix alone caused the improved behavior.
+- Applied the user's pre-registration edit removing “no matter what” from doc1.
+  User confirmed unconditional A/B, four clashes; doc2 scoped oversized, zero
+  clashes; Claude-authored/user-reviewed provenance. Recorded wording rationale.
+- Froze the separate set, its approved keys, aliases/whitespace policy, optional-
+  fallback scorer, tests and dependencies before any extraction. Original eight
+  docs/scorer/manifest unchanged. Future study $70 cap remains unenabled pending
+  user confirmation; only the human-reviewed extraction set is next authorized.

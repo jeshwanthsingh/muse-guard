@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "authorship": "written by an independent AI (Claude), reviewed by the user",
+  "key_authorship": "Codex draft corrected and approved by user before extraction",
+  "whitespace_policy": "collapse whitespace in each paragraph and in quotes; punctuation/words unchanged",
+  "proposal": {
+    "input_space": {
+      "posting_over_30_days": [
+        false,
+        true
+      ],
+      "top_company": [
+        false,
+        true
+      ],
+      "applied_over_3_weeks": [
+        false,
+        true
+      ],
+      "heard_back": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "If the posting is more than 30 days old, mark it stale.",
+        "when": {
+          "posting_over_30_days": {
+            "eq": true
+          }
+        },
+        "action": "stale"
+      },
+      {
+        "id": "B",
+        "quote": "Anything at one of my top companies stays active.",
+        "when": {
+          "top_company": {
+            "eq": true
+          }
+        },
+        "action": "active"
+      },
+      {
+        "id": "C",
+        "quote": "If it's been over 3 weeks and I haven't heard back, send a follow-up, but only for postings that aren't stale and aren't at a top company.",
+        "when": {
+          "posting_over_30_days": {
+            "eq": false
+          },
+          "top_company": {
+            "eq": false
+          },
+          "applied_over_3_weeks": {
+            "eq": true
+          },
+          "heard_back": {
+            "eq": false
+          }
+        },
+        "action": "follow_up"
+      }
+    ],
+    "default": {
+      "quote": "Otherwise, just wait.",
+      "action": "wait"
+    },
+    "unconverted": []
+  },
+  "clashes": [
+    {
+      "witness": {
+        "posting_over_30_days": true,
+        "top_company": true,
+        "applied_over_3_weeks": false,
+        "heard_back": false
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "stale",
+        "active"
+      ]
+    },
+    {
+      "witness": {
+        "posting_over_30_days": true,
+        "top_company": true,
+        "applied_over_3_weeks": false,
+        "heard_back": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "stale",
+        "active"
+      ]
+    },
+    {
+      "witness": {
+        "posting_over_30_days": true,
+        "top_company": true,
+        "applied_over_3_weeks": true,
+        "heard_back": false
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "stale",
+        "active"
+      ]
+    },
+    {
+      "witness": {
+        "posting_over_30_days": true,
+        "top_company": true,
+        "applied_over_3_weeks": true,
+        "heard_back": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "stale",
+        "active"
+      ]
+    }
+  ],
+  "supporting_sources": {
+    "C": [
+      "For top companies I follow up myself, so the tracker shouldn't."
+    ]
+  },
+  "action_aliases": {
+    "stale": [
+      "stale",
+      "mark_stale"
+    ],
+    "active": [
+      "active",
+      "keep_active",
+      "stay_active",
+      "mark_active"
+    ],
+    "follow_up": [
+      "follow_up",
+      "send_follow_up",
+      "send_followup",
+      "followup"
+    ],
+    "wait": [
+      "wait"
+    ]
+  },
+  "field_aliases": {
+    "posting_over_30_days": [
+      "posting_over_30_days",
+      "over_30_days",
+      "posting_older_than_30_days",
+      "posting_age_over_30_days"
+    ],
+    "top_company": [
+      "top_company",
+      "is_top_company"
+    ],
+    "applied_over_3_weeks": [
+      "applied_over_3_weeks",
+      "over_3_weeks",
+      "over_3_weeks_since_applied",
+      "application_over_3_weeks"
+    ],
+    "heard_back": [
+      "heard_back",
+      "has_heard_back"
+    ]
+  }
+}
