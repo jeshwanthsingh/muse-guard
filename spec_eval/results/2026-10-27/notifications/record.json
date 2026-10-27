@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "kind": "spec review",
+  "doc": "Notification policy, including the marketing note at the bottom.\n\nInputs are urgent and opted_out; both can only be true or false for this rollout.\n\nUrgent alerts must be sent.\nAlso, Never send alerts to someone who opted out.\nOther alerts should be suppressed.\n",
+  "doc_sha256": "9501b826c7f0fe57eb219bf38c14511ecb80f65b97c2c16c5ed0a5aa722157c0",
+  "model": "muse-spark-1.3",
+  "response_kind": "real",
+  "proposal": {
+    "input_space": {
+      "urgent": [
+        true,
+        false
+      ],
+      "opted_out": [
+        true,
+        false
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Urgent alerts must be sent.",
+        "when": {
+          "urgent": {
+            "eq": true
+          }
+        },
+        "action": "send"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Never send alerts to someone who opted out.",
+        "when": {
+          "opted_out": {
+            "eq": true
+          }
+        },
+        "action": "suppress"
+      },
+      {
+        "id": "C",
+        "quote": "Other alerts should be suppressed.",
+        "when": {
+          "urgent": {
+            "eq": false
+          }
+        },
+        "action": "suppress"
+      }
+    ],
+    "unconverted": []
+  },
+  "proposal_sha256": "df6e378e740d36e87e814b95cc452df6450f72c341d2440ac3e5b615d3680531",
+  "validation": {
+    "input_space": {
+      "urgent": [
+        true,
+        false
+      ],
+      "opted_out": [
+        true,
+        false
+      ]
+    },
+    "items": [
+      {
+        "key": "rule-1",
+        "kind": "rule",
+        "proposal": {
+          "id": "A",
+          "quote": "Urgent alerts must be sent.",
+          "when": {
+            "urgent": {
+              "eq": true
+            }
+          },
+          "action": "send"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "rule-2",
+        "kind": "rule",
+        "proposal": {
+          "id": "B",
+          "quote": "Also, Never send alerts to someone who opted out.",
+          "when": {
+            "opted_out": {
+              "eq": true
+            }
+          },
+          "action": "suppress"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "rule-3",
+        "kind": "rule",
+        "proposal": {
+          "id": "C",
+          "quote": "Other alerts should be suppressed.",
+          "when": {
+            "urgent": {
+              "eq": false
+            }
+          },
+          "action": "suppress"
+        },
+        "errors": [],
+        "valid": true
+      }
+    ],
+    "errors": [],
+    "unconverted": [
+      {
+        "quote": "Notification policy, including the marketing note at the bottom.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      },
+      {
+        "quote": "Inputs are urgent and opted_out; both can only be true or false for this rollout.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "key": "rule-1",
+      "decision": "confirmed"
+    },
+    {
+      "key": "rule-2",
+      "decision": "confirmed"
+    },
+    {
+      "key": "rule-3",
+      "decision": "confirmed"
+    }
+  ],
+  "confirmed": {
+    "id": "spec-9501b826c7f0",
+    "pair": "spec-9501b826c7f0",
+    "version": 1,
+    "input_space": {
+      "urgent": [
+        true,
+        false
+      ],
+      "opted_out": [
+        true,
+        false
+      ]
+    },
+    "default": "__UNSPECIFIED__",
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Urgent alerts must be sent.",
+        "when": {
+          "urgent": {
+            "eq": true
+          }
+        },
+        "action": "send",
+        "text": "Urgent alerts must be sent."
+      },
+      {
+        "id": "B",
+        "quote": "Also, Never send alerts to someone who opted out.",
+        "when": {
+          "opted_out": {
+            "eq": true
+          }
+        },
+        "action": "suppress",
+        "text": "Also, Never send alerts to someone who opted out."
+      },
+      {
+        "id": "C",
+        "quote": "Other alerts should be suppressed.",
+        "when": {
+          "urgent": {
+            "eq": false
+          }
+        },
+        "action": "suppress",
+        "text": "Other alerts should be suppressed."
+      }
+    ],
+    "default_source": null,
+    "spec_origin": {
+      "doc_sha256": "9501b826c7f0fe57eb219bf38c14511ecb80f65b97c2c16c5ed0a5aa722157c0",
+      "model": "muse-spark-1.3",
+      "response_kind": "real"
+    }
+  },
+  "confirmed_sha256": "86339dbf4f75384b7e76ae4843e8443607d765c9fa79526efd374ba2314fa662",
+  "clashes": [
+    {
+      "verified": true,
+      "witness": {
+        "urgent": true,
+        "opted_out": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "send",
+        "suppress"
+      ],
+      "quotes": [
+        "Urgent alerts must be sent.",
+        "Also, Never send alerts to someone who opted out."
+      ]
+    }
+  ],
+  "uncovered_inputs": [],
+  "cost": {
+    "run_id": "spec-extract-8398bc1d3809",
+    "date": "2026-10-27",
+    "stage": "spec feature, outside study",
+    "model": "muse-spark-1.3",
+    "pricing_mode": "STANDARD",
+    "cost_usd": 0.00355275,
+    "model_invoked": true,
+    "max_tokens": 6144,
+    "provider_calls": 1,
+    "time_seconds": 3.009,
+    "tokens": {
+      "input": 299,
+      "output": 748,
+      "cached_input": 0
+    }
+  }
+}

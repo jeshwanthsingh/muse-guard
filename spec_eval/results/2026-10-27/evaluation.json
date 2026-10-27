@@ -1,0 +1,293 @@
+{
+  "kind": "real extraction evaluation",
+  "status": "COMPLETE",
+  "entries": [
+    {
+      "document": "refunds",
+      "measures": {
+        "rules_correctly_extracted": 3,
+        "ground_truth_rules": 3,
+        "wrong_rules": 0,
+        "missing_rules": 0,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 1,
+        "ground_truth_clashes": 1,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": true
+      },
+      "cost": {
+        "run_id": "spec-extract-0f0f9aa823cd",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.00210925,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 2.03,
+        "tokens": {
+          "input": 307,
+          "output": 406,
+          "cached_input": 0
+        }
+      }
+    },
+    {
+      "document": "access",
+      "measures": {
+        "rules_correctly_extracted": 3,
+        "ground_truth_rules": 3,
+        "wrong_rules": 0,
+        "missing_rules": 0,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 1,
+        "ground_truth_clashes": 1,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": true
+      },
+      "cost": {
+        "run_id": "spec-extract-4661afc81575",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.00357075,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 3.008,
+        "tokens": {
+          "input": 310,
+          "output": 749,
+          "cached_input": 0
+        }
+      }
+    },
+    {
+      "document": "shipping",
+      "measures": {
+        "rules_correctly_extracted": 3,
+        "ground_truth_rules": 3,
+        "wrong_rules": 0,
+        "missing_rules": 0,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 0,
+        "ground_truth_clashes": 0,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": true
+      },
+      "cost": {
+        "run_id": "spec-extract-f440f1f5b4f5",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.003478,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 3.511,
+        "tokens": {
+          "input": 297,
+          "output": 731,
+          "cached_input": 0
+        }
+      }
+    },
+    {
+      "document": "notifications",
+      "measures": {
+        "rules_correctly_extracted": 2,
+        "ground_truth_rules": 3,
+        "wrong_rules": 1,
+        "missing_rules": 1,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 1,
+        "ground_truth_clashes": 1,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": false
+      },
+      "cost": {
+        "run_id": "spec-extract-8398bc1d3809",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.00355275,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 3.009,
+        "tokens": {
+          "input": 299,
+          "output": 748,
+          "cached_input": 0
+        }
+      }
+    },
+    {
+      "document": "retention",
+      "measures": {
+        "rules_correctly_extracted": 3,
+        "ground_truth_rules": 3,
+        "wrong_rules": 0,
+        "missing_rules": 0,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 2,
+        "ground_truth_clashes": 2,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": true
+      },
+      "cost": {
+        "run_id": "spec-extract-ba49e2432989",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.002933,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 3.009,
+        "tokens": {
+          "input": 320,
+          "output": 596,
+          "cached_input": 0
+        }
+      }
+    },
+    {
+      "document": "bookings",
+      "measures": {
+        "rules_correctly_extracted": 2,
+        "ground_truth_rules": 3,
+        "wrong_rules": 1,
+        "missing_rules": 1,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 0,
+        "ground_truth_clashes": 0,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": false
+      },
+      "cost": {
+        "run_id": "spec-extract-d3b5c4641ba3",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.003477,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 3.009,
+        "tokens": {
+          "input": 303,
+          "output": 729,
+          "cached_input": 0
+        }
+      }
+    },
+    {
+      "document": "pricing",
+      "measures": {
+        "rules_correctly_extracted": 3,
+        "ground_truth_rules": 3,
+        "wrong_rules": 0,
+        "missing_rules": 0,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 0,
+        "ground_truth_clashes": 0,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": true
+      },
+      "cost": {
+        "run_id": "spec-extract-93713550f584",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.00448825,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 3.509,
+        "tokens": {
+          "input": 296,
+          "output": 969,
+          "cached_input": 0
+        }
+      }
+    },
+    {
+      "document": "support",
+      "measures": {
+        "rules_correctly_extracted": 3,
+        "ground_truth_rules": 3,
+        "wrong_rules": 0,
+        "missing_rules": 0,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted_reports": 0,
+        "clashes_found": 0,
+        "ground_truth_clashes": 0,
+        "missed_clashes": 0,
+        "false_clashes": 0,
+        "extraction_success": true
+      },
+      "cost": {
+        "run_id": "spec-extract-a2bd111a3776",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.003845,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 4.011,
+        "tokens": {
+          "input": 305,
+          "output": 815,
+          "cached_input": 0
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "3435a2591a6bfa48fca9ee799fbd97ee487ba2d730e32673715c9ba4612cd095",
+  "completed_call_cost_usd": 0.027454,
+  "cost_complete": true,
+  "totals": {
+    "rules_correctly_extracted": 22,
+    "ground_truth_rules": 24,
+    "wrong_rules": 2,
+    "missing_rules": 2,
+    "clashes_found": 5,
+    "ground_truth_clashes": 5,
+    "missed_clashes": 0,
+    "false_clashes": 0,
+    "successful_documents": 6,
+    "documents": 8
+  }
+}

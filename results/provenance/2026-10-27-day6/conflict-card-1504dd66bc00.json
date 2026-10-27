@@ -1,0 +1,43 @@
+{
+  "runtime_commit": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "runtime_branch": "day6",
+  "result_file": "conflict-card-1504dd66bc00.json",
+  "original_sha256": "964fb6286d84a7bbe69280eb25cc5c3fef02777354ce7b381a5cace6dfc02ff3",
+  "record_kind": "provenance envelope; original result retained unchanged",
+  "result": {
+    "run_id": "conflict-card-1504dd66bc00",
+    "date": "2026-10-27",
+    "stage": "day5",
+    "task": "refund-impossible-conflict-card",
+    "mode": "guarded-card",
+    "pricing_mode": "STANDARD",
+    "model": "muse-spark-1.3",
+    "cost_usd": 0.00234825,
+    "tokens": {
+      "input": 165,
+      "output": 504,
+      "cached_input": 0
+    },
+    "status": "GENERATED",
+    "reserved_cost_usd": 0.068,
+    "model_invoked": true,
+    "text": "Conflict card\n\nConcrete input: eligible = true, fraud_hold = true, context = card\n\nRule A - \"Refund eligible purchases.\" triggers because eligible is true, requiring action: refund\n\nRule B - \"Route fraud-held purchases to manual review.\" triggers because fraud_hold is true, requiring action: manual_review\n\nIncompatible actions: refund vs manual_review - the same purchase cannot both be refunded automatically and routed to manual review.\n\nQuestion for developer: For this input, which rule wins?",
+    "advisory_only": true,
+    "budget_events": [
+      {
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "input_tokens_reserved": 322,
+        "max_output_tokens": 1024,
+        "usage": {
+          "input_tokens": 165,
+          "output_tokens": 504,
+          "cached_input_tokens": 0
+        }
+      }
+    ],
+    "budget_stop": false,
+    "time_seconds": 3.52,
+    "cost_basis": "all terminal provider usage, persisted from first request"
+  }
+}

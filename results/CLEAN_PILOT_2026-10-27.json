@@ -1,0 +1,222 @@
+{
+  "schema": 1,
+  "date": "2026-10-27",
+  "plan_sha256": "e418342f857f3b1c82782e6d10e83774a9f2adb497124d6760a09e4e21ddad6c",
+  "source_revision": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "source_hashes": {
+    "study/protocol.json": "20e001b230ba4c5ff22dbc931154a7e9b8ea969ee1c2a2504f61b94dfdb01a7f",
+    "docs/STUDY.md": "c3b6f648e1c74c71765ece3a5c363bcff2b47eee3e8fab072eadb8039d44ce4f",
+    "muse-guard": "d011e62804277eed847e13627d87b01d8a629fcb18694f53cce899de69e0ad5e",
+    "muse_guard/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "muse_guard/checker.py": "721ce23c545953e36f38d41f7cfd0e053e589ba1bd4bb1620d63a6e4bf9dc9a7",
+    "muse_guard/cli.py": "5723fca73e57f99c07ac612e54eebbacae6607eaf9c80b81e22c87c955c0cd5d",
+    "muse_guard/evidence.py": "9a0819aa50db7f55ae61e4ed48942f484ce358803cbe35b07d35b54c67334455",
+    "muse_guard/freeze.py": "b15027ef8ea7a7a816ed34efeab3a5c49c7b390f5828c022b993f762cc4107f6",
+    "muse_guard/gateway.py": "4b78d188f139070c8173758cc4f5cced8eaf27730331d964e930feedb28188c2",
+    "muse_guard/isolation.py": "4e94074aa08d26519b7c23deb10688ffb74e735ef5a1e40aca127155eebc8162",
+    "muse_guard/legacy_tasks.py": "dc59703f2055e9fbc22cd458c08cacc2b104f46bf0f3ddb838e280057fbf517f",
+    "muse_guard/metrics.py": "9220694fc82af1759bc80800d9d097a7976b19a91b65b0072c11c2653c6c3c15",
+    "muse_guard/pilot.py": "65001761b2731bbe2a13c0ab93ebcb15c0654acdf847b8acf7aa8121cdb7a132",
+    "muse_guard/plain.py": "822912957a2c4211adafdfc2d5d87759468a6e0daf39014b60e9632a700de0dc",
+    "muse_guard/quality_gate.py": "a959071eede775b80cb071a0d3e151805267d5194ed1779f6c195dd934505ab5",
+    "muse_guard/recovery.py": "da5f4c9782989b06052f49c67e29ec3d6d54d38e0468d6c09e62db16d5cfb167",
+    "muse_guard/rule_checker.py": "69c787fce6280926146b46de3ef2753e790d418729c9cb3878755f865b0bba98",
+    "muse_guard/rules.py": "ebf24d2804c6b626f0d826966246f5c979ebf0e199d9e3eaf3557430c7cd3556",
+    "muse_guard/runner.py": "699eb07daa74e4d8037b5424c4b1db8243cc20bfcc69c893af6292430d6b38d3",
+    "muse_guard/tampering.py": "be4d12293a41c8e5840062b104aa76ebddb8c768fce840ca7ebfbdbdfcc03b16",
+    "muse_guard/tasks.py": "0da34bfdd15ee76723c5c193e31a6378321641686dab261a2e21f132e4221f68",
+    "muse_guard/view.py": "25503b18f32e02d53b78477fc3f5a8476716a2c2224e8d3092608be6146058e1",
+    "datasets/dev/access.json": "1267661b85d9fc448497993e5ee90c4ab9d8037f2ce8bd386686b96607dd055f",
+    "datasets/dev/discount.json": "9787f6066a9fa3b9298eb9bf2e57bed2dea871d530ac6d3a2faaf46b0dc315eb",
+    "datasets/dev/feature.json": "eb314a9449d780dacf9945cbba14e0a14d2a308537db1858139b566387c9ef01",
+    "datasets/dev/notification.json": "18302ef1168796fee996caff91ae5b157bc14745293a96c0bd054f40d6047b54",
+    "datasets/dev/pricing.json": "c57eb0f42825413feb64980f72e9306daff226b2fc179c003b12efb1a943c56d",
+    "datasets/dev/rate-limit.json": "cd1911e704aa64cf6a408bbb0f4b036f2887a52b49c7e0446a415bd78adf9a0c",
+    "datasets/dev/refund.json": "0dc8751eab98a5ba386e548fc65c2bdb07e8f63e41d6c437453dbe2856139d00",
+    "datasets/dev/retention.json": "466df09e9e05d872e892e323e5510fafe2a7ac6422b11b4a4aedaac0d1a25716",
+    "datasets/dev/retry.json": "895e9bfb3d3056bb3f67b71028d23823f525442fd66918bef5f48cf2f07c80ec",
+    "datasets/dev/shipping.json": "783341f2a3362091675b1c8d746941b4acdab1a16fe2f7611a1b0f366ad84263",
+    "muse_guard/view_assets/index.html": "a19c26fa6e6390f884233bf9da1b6c5e5c8bfdc52dc54493274918996164b683",
+    "muse_guard/view_assets/style.css": "be62a529418857f05afcde7cb83d840139e69869076488c1fa697d9c33b47536",
+    "muse_guard/view_assets/view.js": "cfcc2c59a1ba472f0b28f71bbd342411459c13c0d7991f4589d843020606c4fb",
+    "docs/amendments/2026-10-26-day4-fair-recovery.md": "896444a15cd84435c3d5ce9978f2fcf4f22b9ff7975f55137df84d52a7912044",
+    "muse_guard/detection_policy.json": "336f932331ff0d66b0fe836472940746e606fdb0a4b92195f589ec239b75f57b",
+    "scripts/clean_pilot.py": "7499d469876b43b179aed6f987833ffc6bb85e4aad59a6f8be0510eab7324f4a",
+    "scripts/day5_pilot.py": "4229ce6a61fac2219c68a5dd15934ddf827d2052c43dd89df35e6ddab1a43e54",
+    "scripts/prepare_view.py": "f52b374888fa5b58ed6219ab8f1ed92a22df90b110facbbaafd085edd7353d7e",
+    "scripts/provenance_audit.py": "97bc0753148d92bcf07debf350a396d7f9d4bf6a9d411f80991370df4113d1de",
+    "scripts/reviewed_freeze.py": "66dbf1adad4b8d51f0111217ae7a37824bb8b090a17ce37461345c8f8afff29a",
+    "docs/PRIMARY_MEASURES.md": "21b0ab6dce6170add1dc8e1fbfb3a4f34186abfe263d8b21d44d004b67f20810",
+    "docs/NEXT_PILOT.md": "41dc2eb91ca8c8dc5c8e8fe0e7fa55e755cbaca1cfd7e889904f3ad861e3bf4f",
+    "study/clean_pilot_plan.json": "e418342f857f3b1c82782e6d10e83774a9f2adb497124d6760a09e4e21ddad6c"
+  },
+  "status": "FINISHED",
+  "holdout_model_calls": 0,
+  "entries": [
+    {
+      "task": "retry-solvable",
+      "kind": "solvable",
+      "mode": "guarded",
+      "repeat": 1,
+      "record_id": "recovery-feb2c606ee98",
+      "stop_reason": null,
+      "record_sha256": "3a6b3bb3bba39c0c8a9d30c17fb94d72dc588357f13c3c2d5d2e63dc1a49c9cc",
+      "phase_sha256": {
+        "retry-solvable-v1-b1c870b54bdc": "fbf7626f80d99b039fe341091a4d82f47827adffb077413874f50c50b342737f"
+      }
+    },
+    {
+      "task": "retry-solvable",
+      "kind": "solvable",
+      "mode": "plain",
+      "repeat": 1,
+      "record_id": "plain-recovery-eeee71fb10cf",
+      "stop_reason": null,
+      "record_sha256": "826b4496efbe5868d45a76d63d7572afb2f220c1f33250036faaba68242e5ad4",
+      "phase_sha256": {
+        "retry-solvable-v1-5cf4275e7eda": "5d6f352add94b885b16f5f26e5d1ab9e261b40f82e7a723ba2b001d6c7f4340f"
+      }
+    },
+    {
+      "task": "retry-impossible",
+      "kind": "impossible",
+      "mode": "guarded",
+      "repeat": 1,
+      "record_id": "recovery-ec7c84fb8f56",
+      "stop_reason": null,
+      "record_sha256": "b5d9373e20135752b50a9a606d830ab1eff8e585876ff45fbb9053872bfa21ad",
+      "phase_sha256": {
+        "retry-impossible-v1-2606904fa16a": "6f9a86276dd65a444226cb56d7de294d6d37db4fae3ad8e8949d81f11345ecaa",
+        "conflict-card-fd84158faf28": "f5b1c521a7c931bdae89c34b757eb2b7b2bfe65639ca9f4b5d6f72213d7af063",
+        "retry-impossible-v2-95d45e4b1229": "f4584325d51c634fb16cbf1d547b14a40a50ce4e08c9ec2468ba3fb058b4c580"
+      }
+    },
+    {
+      "task": "retry-impossible",
+      "kind": "impossible",
+      "mode": "plain",
+      "repeat": 1,
+      "record_id": "plain-recovery-570fbae50239",
+      "stop_reason": null,
+      "record_sha256": "7950326567aa2bf2ee7ac1e714c45494e3626403153bb279d15b2a173db4baf7",
+      "phase_sha256": {
+        "retry-impossible-v1-b7df19ed7257": "0cd2c20e146fe69db273da07d499622a9d4ca0bac02cc8d84b2f6cd3dc2e4778",
+        "retry-impossible-v2-d93b0ad97ec3": "ad837a41ab31deaf1725b3e9f42190cd1340238e85f378273ab30bcb5777f35a"
+      }
+    },
+    {
+      "task": "refund-solvable",
+      "kind": "solvable",
+      "mode": "guarded",
+      "repeat": 1,
+      "record_id": "recovery-a7faeea751c6",
+      "stop_reason": null,
+      "record_sha256": "aa9cca52263999b3b5b8d65845d2871fbc9bc04b3859204a4f6740d8f063c8e1",
+      "phase_sha256": {
+        "refund-solvable-v1-bfc5a247b10c": "b3f383a7bde6bfc0c47a698bee6d4249bea9065425e78754d8184f29a1592827"
+      }
+    },
+    {
+      "task": "refund-solvable",
+      "kind": "solvable",
+      "mode": "plain",
+      "repeat": 1,
+      "record_id": "plain-recovery-5c0a0c48d176",
+      "stop_reason": null,
+      "record_sha256": "02e75f07f847a4d76eb928bff0e5f63314aec109af531f13cc9062bedf3de8b4",
+      "phase_sha256": {
+        "refund-solvable-v1-91c1fd2c04e3": "2f0e9cb35d6ea49d752d30c88431ebb73188d5c2d3a9418e81ef629d51344c36"
+      }
+    },
+    {
+      "task": "refund-impossible",
+      "kind": "impossible",
+      "mode": "plain",
+      "repeat": 1,
+      "record_id": "plain-recovery-8ad81fd253b5",
+      "stop_reason": null,
+      "record_sha256": "98d39e5a769bd38d8d27f5033b61daaa94a151454797802aecc2d2887dbd27c6",
+      "phase_sha256": {
+        "refund-impossible-v1-31346dc25425": "746f979721e783ffc71042fc9a4852df79f864b0f08d48de705493f807058705",
+        "refund-impossible-v2-ccafdfbb164d": "96719d8fead1567e7a36d52465511af800320e94012370b267491f3ad847dbfe"
+      }
+    },
+    {
+      "task": "refund-impossible",
+      "kind": "impossible",
+      "mode": "guarded",
+      "repeat": 1,
+      "record_id": "recovery-e82abc5e6919",
+      "stop_reason": null,
+      "record_sha256": "aa7c6f2417748db221ad08bbeab91efe83ac6bd8b7722dadaa8a2decd2c24484",
+      "phase_sha256": {
+        "refund-impossible-v1-b56d2d2ff29a": "21e91f8aa80061c1f0fcacf7d7c76987b05eb9fef3dcdf8f666f69fd43296a84",
+        "conflict-card-1504dd66bc00": "964fb6286d84a7bbe69280eb25cc5c3fef02777354ce7b381a5cace6dfc02ff3",
+        "refund-impossible-v2-a0cff4b74b03": "c92be28ddac2f4faf9de387e1898071d37794b9baa757b46d834ac01cf9d30d0"
+      }
+    },
+    {
+      "task": "shipping-solvable",
+      "kind": "solvable",
+      "mode": "plain",
+      "repeat": 1,
+      "record_id": "plain-recovery-f44d8a690270",
+      "stop_reason": null,
+      "record_sha256": "6b271aab587e7f6f9cc6a011b36d62e3f5950bad1230724b0073ca76b58ae0a8",
+      "phase_sha256": {
+        "shipping-solvable-v1-785e3a9e4de0": "8d7c458997d0e200d4836735bae75efc083aa4bf206aa8475aed20a1059edaba"
+      }
+    },
+    {
+      "task": "shipping-solvable",
+      "kind": "solvable",
+      "mode": "guarded",
+      "repeat": 1,
+      "record_id": "recovery-6c3480d145c7",
+      "stop_reason": null,
+      "record_sha256": "8ec8cc8ed453d84a4db2156917eca678dee1f00c2748bf03128219a7a5a78d19",
+      "phase_sha256": {
+        "shipping-solvable-v1-ed980daa1850": "c6c6d19ed5d4c806e269278d2a6a2bd54713a8042086ea7b09967f5f29b5d7ea"
+      }
+    },
+    {
+      "task": "shipping-impossible",
+      "kind": "impossible",
+      "mode": "guarded",
+      "repeat": 1,
+      "record_id": "recovery-1f354a7100ea",
+      "stop_reason": null,
+      "record_sha256": "248abea3af6788fa0b6a9091ab377ba59de73f2d30db0b1a234662a510afea27",
+      "phase_sha256": {
+        "shipping-impossible-v1-147a5cc15655": "53ed1b0e5c0a8711f4144329b1922e9ba9f3a0d2d95a7e52edc8a3815b9ae74f",
+        "conflict-card-e19c313636c9": "ddbdec455d04f34a8f60fb0fee6c619671860521b15bc139b2365e510cfe50f6",
+        "shipping-impossible-v2-e416261caa5f": "35d1a45f997a9f32cf6ff89271d548317d0b9fc15fb451bb37f8648e24f8fce9"
+      }
+    },
+    {
+      "task": "shipping-impossible",
+      "kind": "impossible",
+      "mode": "plain",
+      "repeat": 1,
+      "record_id": "plain-recovery-83461dad2ec9",
+      "stop_reason": null,
+      "record_sha256": "b8905cd41c5a439cb0d12a8060c4f67feb99157d339acff4c4b125aa58901d5b",
+      "phase_sha256": {
+        "shipping-impossible-v1-2e11e499480c": "a2332acbe72d717a9c864ddb4886bfcc35358548e750a889a4f64a101c65b203",
+        "shipping-impossible-v2-3c5f60d5f05a": "ff3cffbac265f0566f5dd494a846e2e1789bc240059b18b15465a509d8182c83"
+      }
+    }
+  ],
+  "ledger": {
+    "date": "2026-10-27",
+    "limit_usd": 5,
+    "known_cost_usd": 1.54628355,
+    "fully_accounted_cost_usd": 1.54628355,
+    "observed_partial_cost_usd": 0.0,
+    "unknown_usage": false,
+    "reserved_unknown_usd": 0.0,
+    "total_upper_bound_usd": 1.54628355,
+    "run_count": 21,
+    "can_start": true
+  }
+}

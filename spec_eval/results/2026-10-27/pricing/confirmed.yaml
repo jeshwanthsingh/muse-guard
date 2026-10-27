@@ -1,0 +1,52 @@
+{
+  "id": "spec-544ffcd7a252",
+  "pair": "spec-544ffcd7a252",
+  "version": 1,
+  "input_space": {
+    "member": [
+      true,
+      false
+    ],
+    "regulated": [
+      true,
+      false
+    ]
+  },
+  "default": "standard_price",
+  "rules": [
+    {
+      "id": "A",
+      "quote": "Members get the discount only on non-regulated items.",
+      "when": {
+        "member": {
+          "eq": true
+        },
+        "regulated": {
+          "eq": false
+        }
+      },
+      "action": "discount",
+      "text": "Members get the discount only on non-regulated items."
+    },
+    {
+      "id": "B",
+      "quote": "Also, Regulated items always use the standard price.",
+      "when": {
+        "regulated": {
+          "eq": true
+        }
+      },
+      "action": "standard_price",
+      "text": "Also, Regulated items always use the standard price."
+    }
+  ],
+  "default_source": {
+    "quote": "Use the standard price for everything else.",
+    "action": "standard_price"
+  },
+  "spec_origin": {
+    "doc_sha256": "544ffcd7a2525b008f37b39483fa4c07185b71c6e2e8d66021f6f0ae91647efe",
+    "model": "muse-spark-1.3",
+    "response_kind": "real"
+  }
+}

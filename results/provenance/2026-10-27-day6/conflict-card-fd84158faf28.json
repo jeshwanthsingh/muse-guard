@@ -1,0 +1,43 @@
+{
+  "runtime_commit": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "runtime_branch": "day6",
+  "result_file": "conflict-card-fd84158faf28.json",
+  "original_sha256": "f5b1c521a7c931bdae89c34b757eb2b7b2bfe65639ca9f4b5d6f72213d7af063",
+  "record_kind": "provenance envelope; original result retained unchanged",
+  "result": {
+    "run_id": "conflict-card-fd84158faf28",
+    "date": "2026-10-27",
+    "stage": "day5",
+    "task": "retry-impossible-conflict-card",
+    "mode": "guarded-card",
+    "pricing_mode": "STANDARD",
+    "model": "muse-spark-1.3",
+    "cost_usd": 0.00255625,
+    "tokens": {
+      "input": 175,
+      "output": 550,
+      "cached_input": 0
+    },
+    "status": "GENERATED",
+    "reserved_cost_usd": 0.068,
+    "model_invoked": true,
+    "text": "Conflict card for a POST with status 429 that is non-idempotent.\n\nThis input matches both rules:\nRule A - \"Retry every HTTP 429 response.\" - requires action retry.\nRule B - \"Never retry a non-idempotent POST.\" - requires action stop.\n\nRetry and stop are incompatible, both cannot be done.\n\nWhich rule wins for this input?",
+    "advisory_only": true,
+    "budget_events": [
+      {
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "input_tokens_reserved": 332,
+        "max_output_tokens": 1024,
+        "usage": {
+          "input_tokens": 175,
+          "output_tokens": 550,
+          "cached_input_tokens": 0
+        }
+      }
+    ],
+    "budget_stop": false,
+    "time_seconds": 3.024,
+    "cost_basis": "all terminal provider usage, persisted from first request"
+  }
+}

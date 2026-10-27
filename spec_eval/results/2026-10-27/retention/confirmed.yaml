@@ -1,0 +1,50 @@
+{
+  "id": "spec-1eee2680b11f",
+  "pair": "spec-1eee2680b11f",
+  "version": 1,
+  "input_space": {
+    "age_days": [
+      0,
+      30,
+      60
+    ],
+    "legal_hold": [
+      false,
+      true
+    ]
+  },
+  "default": "keep",
+  "rules": [
+    {
+      "id": "A",
+      "quote": "Delete records once they are at least 30 days old.",
+      "when": {
+        "age_days": {
+          "gte": 30
+        }
+      },
+      "action": "delete",
+      "text": "Delete records once they are at least 30 days old."
+    },
+    {
+      "id": "B",
+      "quote": "Also, Keep every record on legal hold.",
+      "when": {
+        "legal_hold": {
+          "eq": true
+        }
+      },
+      "action": "keep",
+      "text": "Also, Keep every record on legal hold."
+    }
+  ],
+  "default_source": {
+    "quote": "Keep records when neither rule applies.",
+    "action": "keep"
+  },
+  "spec_origin": {
+    "doc_sha256": "1eee2680b11f630265c39dbdde0f3c164e57b8b15fe4bc8f5c02d87876eb4d36",
+    "model": "muse-spark-1.3",
+    "response_kind": "real"
+  }
+}

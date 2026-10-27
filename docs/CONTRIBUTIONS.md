@@ -388,3 +388,28 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   No paid calls; incremental model spend $0. See results/REVIEW_FIX_VERIFICATION.json.
 - Tomorrow's separate real spec command and post-pilot freeze procedure are in
   docs/CONTINUOUS.md. The official pilot stays on exact Day6 ef9d36b.
+
+## 2026-10-27 — Real pilot, continuous flow and extraction evaluation
+
+- Ran NEXT_PILOT preflight (149 tests and all 10 dev quality gates) and the
+  12-flow clean pilot once on exact day6 ef9d36b. Saved original per-phase results
+  and 35 hash-linked provenance envelopes with the exact runtime commit.
+- Solvable: 6/6 passed. Impossible: all 6 verified conflicts; guarded recovery
+  3/3, plain 2/3. No contradicted claims or original-test edits. The failed plain
+  shipping repair honestly declined completion and recorded gateway blocks.
+- Freeze eligibility failed on those blocks; the supplemental preparer refused.
+  Added a blocked freeze review, not a reviewed manifest. No freeze commit or
+  holdout run. Original protocols, outcomes and frozen paths are unchanged.
+- Ran the real continuous refund flow on submission after individual user
+  confirmation of A, B and fallback. User delegated priority selection; assistant
+  chose B. Independent approved-v2 checks passed all four inputs. Saved the
+  full run/viewer and separate delegation receipt; no automatic acceptance flags.
+- User clarified the two human-written docs have not been authored. Evaluated
+  the original eight-doc corpus unchanged, once each. Six extraction successes;
+  two rubric failures retained. Found 5/5 clashes, none missed or false. Future
+  human-written evaluation remains a separate preregistration.
+- Actual spend: pilot $1.54628355, continuous $0.07367885,
+  spec evaluation $0.02745400; total
+  $1.64741640, all accounted, below the shared $5 cap.
+  Per-attempt costs/steps, tables, limitations and study estimate are in
+  docs/OCT27_RESULTS.md. No push or merge.

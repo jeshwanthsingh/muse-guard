@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "kind": "spec review",
+  "doc": "Triage notes, not a polished product spec.\n\nWe get outage and paid as true-or-false flags; there are no other inputs yet.\n\nPage the incident team whenever there is an outage.\nAlso, Paid customers get priority support when there is no outage.\nEverything else joins the normal queue.\n",
+  "doc_sha256": "0c1e3a67b389649ab2960b7fc5d949d4ebaa00300177265cb1943b70c061e549",
+  "model": "muse-spark-1.3",
+  "response_kind": "real",
+  "proposal": {
+    "input_space": {
+      "outage": [
+        true,
+        false
+      ],
+      "paid": [
+        true,
+        false
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Page the incident team whenever there is an outage.",
+        "when": {
+          "outage": {
+            "eq": true
+          }
+        },
+        "action": "page_incident_team"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Paid customers get priority support when there is no outage.",
+        "when": {
+          "paid": {
+            "eq": true
+          },
+          "outage": {
+            "eq": false
+          }
+        },
+        "action": "priority_support"
+      }
+    ],
+    "default": {
+      "quote": "Everything else joins the normal queue.",
+      "action": "normal_queue"
+    },
+    "unconverted": []
+  },
+  "proposal_sha256": "a117c77680d270644e18864dbfaf0670489deb21f7ee5ff6b01a6d840ecd663a",
+  "validation": {
+    "input_space": {
+      "outage": [
+        true,
+        false
+      ],
+      "paid": [
+        true,
+        false
+      ]
+    },
+    "items": [
+      {
+        "key": "rule-1",
+        "kind": "rule",
+        "proposal": {
+          "id": "A",
+          "quote": "Page the incident team whenever there is an outage.",
+          "when": {
+            "outage": {
+              "eq": true
+            }
+          },
+          "action": "page_incident_team"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "rule-2",
+        "kind": "rule",
+        "proposal": {
+          "id": "B",
+          "quote": "Also, Paid customers get priority support when there is no outage.",
+          "when": {
+            "paid": {
+              "eq": true
+            },
+            "outage": {
+              "eq": false
+            }
+          },
+          "action": "priority_support"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "default",
+        "kind": "default",
+        "proposal": {
+          "quote": "Everything else joins the normal queue.",
+          "action": "normal_queue"
+        },
+        "errors": [],
+        "valid": true
+      }
+    ],
+    "errors": [],
+    "unconverted": [
+      {
+        "quote": "Triage notes, not a polished product spec.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      },
+      {
+        "quote": "We get outage and paid as true-or-false flags; there are no other inputs yet.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "key": "rule-1",
+      "decision": "confirmed"
+    },
+    {
+      "key": "rule-2",
+      "decision": "confirmed"
+    },
+    {
+      "key": "default",
+      "decision": "confirmed"
+    }
+  ],
+  "confirmed": {
+    "id": "spec-0c1e3a67b389",
+    "pair": "spec-0c1e3a67b389",
+    "version": 1,
+    "input_space": {
+      "outage": [
+        true,
+        false
+      ],
+      "paid": [
+        true,
+        false
+      ]
+    },
+    "default": "normal_queue",
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Page the incident team whenever there is an outage.",
+        "when": {
+          "outage": {
+            "eq": true
+          }
+        },
+        "action": "page_incident_team",
+        "text": "Page the incident team whenever there is an outage."
+      },
+      {
+        "id": "B",
+        "quote": "Also, Paid customers get priority support when there is no outage.",
+        "when": {
+          "paid": {
+            "eq": true
+          },
+          "outage": {
+            "eq": false
+          }
+        },
+        "action": "priority_support",
+        "text": "Also, Paid customers get priority support when there is no outage."
+      }
+    ],
+    "default_source": {
+      "quote": "Everything else joins the normal queue.",
+      "action": "normal_queue"
+    },
+    "spec_origin": {
+      "doc_sha256": "0c1e3a67b389649ab2960b7fc5d949d4ebaa00300177265cb1943b70c061e549",
+      "model": "muse-spark-1.3",
+      "response_kind": "real"
+    }
+  },
+  "confirmed_sha256": "847dd4ab7a380d50ef4bba9a0cfe83a15dcdd947634afd67a76b7326d55004a9",
+  "clashes": [],
+  "uncovered_inputs": [],
+  "cost": {
+    "run_id": "spec-extract-a2bd111a3776",
+    "date": "2026-10-27",
+    "stage": "spec feature, outside study",
+    "model": "muse-spark-1.3",
+    "pricing_mode": "STANDARD",
+    "cost_usd": 0.003845,
+    "model_invoked": true,
+    "max_tokens": 6144,
+    "provider_calls": 1,
+    "time_seconds": 4.011,
+    "tokens": {
+      "input": 305,
+      "output": 815,
+      "cached_input": 0
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "spec-080afcd0f53f",
+  "pair": "spec-080afcd0f53f",
+  "version": 1,
+  "input_space": {
+    "eligible": [
+      true,
+      false
+    ],
+    "fraud_hold": [
+      true,
+      false
+    ]
+  },
+  "default": "reject",
+  "rules": [
+    {
+      "id": "A",
+      "quote": "Yep, every eligible order gets a refund.",
+      "when": {
+        "eligible": {
+          "eq": true
+        }
+      },
+      "action": "refund",
+      "text": "Yep, every eligible order gets a refund."
+    },
+    {
+      "id": "B",
+      "quote": "Also, Fraud hold means manual review, always.",
+      "when": {
+        "fraud_hold": {
+          "eq": true
+        }
+      },
+      "action": "manual_review",
+      "text": "Also, Fraud hold means manual review, always."
+    }
+  ],
+  "default_source": {
+    "quote": "If nothing above applies, reject the refund.",
+    "action": "reject"
+  },
+  "spec_origin": {
+    "doc_sha256": "080afcd0f53f229768ebf22f036b71520af77ee4762fb870f0137133e0a1bc7f",
+    "model": "muse-spark-1.3",
+    "response_kind": "real"
+  }
+}

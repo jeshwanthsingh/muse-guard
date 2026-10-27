@@ -1,0 +1,19 @@
+{
+  "runtime_commit": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "runtime_branch": "day6",
+  "result_file": "total.json",
+  "original_sha256": "48da34336cb03000631bd9039712033992a57e34194f77642627f5cbffc959d2",
+  "record_kind": "provenance envelope; original result retained unchanged",
+  "result": {
+    "date": "2026-10-27",
+    "limit_usd": 5,
+    "known_cost_usd": 1.54628355,
+    "fully_accounted_cost_usd": 1.54628355,
+    "observed_partial_cost_usd": 0.0,
+    "unknown_usage": false,
+    "reserved_unknown_usd": 0.0,
+    "total_upper_bound_usd": 1.54628355,
+    "run_count": 21,
+    "can_start": true
+  }
+}

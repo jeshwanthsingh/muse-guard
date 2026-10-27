@@ -1,0 +1,240 @@
+{
+  "schema": 1,
+  "kind": "spec review",
+  "doc": "Cleanup rules from two teams; nobody has reconciled these yet.\n\nFor this small rollout age_days is one of 0, 30 or 60, and legal_hold is true or false; that is the entire input space.\n\nDelete records once they are at least 30 days old.\nAlso, Keep every record on legal hold.\nKeep records when neither rule applies.\n",
+  "doc_sha256": "1eee2680b11f630265c39dbdde0f3c164e57b8b15fe4bc8f5c02d87876eb4d36",
+  "model": "muse-spark-1.3",
+  "response_kind": "real",
+  "proposal": {
+    "input_space": {
+      "age_days": [
+        0,
+        30,
+        60
+      ],
+      "legal_hold": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Delete records once they are at least 30 days old.",
+        "when": {
+          "age_days": {
+            "gte": 30
+          }
+        },
+        "action": "delete"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Keep every record on legal hold.",
+        "when": {
+          "legal_hold": {
+            "eq": true
+          }
+        },
+        "action": "keep"
+      }
+    ],
+    "default": {
+      "quote": "Keep records when neither rule applies.",
+      "action": "keep"
+    },
+    "unconverted": []
+  },
+  "proposal_sha256": "e5cab19dab1f3d0097cce06f9fb60459949d31f750a5b11372eae36790b1e6b3",
+  "validation": {
+    "input_space": {
+      "age_days": [
+        0,
+        30,
+        60
+      ],
+      "legal_hold": [
+        false,
+        true
+      ]
+    },
+    "items": [
+      {
+        "key": "rule-1",
+        "kind": "rule",
+        "proposal": {
+          "id": "A",
+          "quote": "Delete records once they are at least 30 days old.",
+          "when": {
+            "age_days": {
+              "gte": 30
+            }
+          },
+          "action": "delete"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "rule-2",
+        "kind": "rule",
+        "proposal": {
+          "id": "B",
+          "quote": "Also, Keep every record on legal hold.",
+          "when": {
+            "legal_hold": {
+              "eq": true
+            }
+          },
+          "action": "keep"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "default",
+        "kind": "default",
+        "proposal": {
+          "quote": "Keep records when neither rule applies.",
+          "action": "keep"
+        },
+        "errors": [],
+        "valid": true
+      }
+    ],
+    "errors": [],
+    "unconverted": [
+      {
+        "quote": "Cleanup rules from two teams; nobody has reconciled these yet.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      },
+      {
+        "quote": "For this small rollout age_days is one of 0, 30 or 60, and legal_hold is true or false; that is the entire input space.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "key": "rule-1",
+      "decision": "confirmed"
+    },
+    {
+      "key": "rule-2",
+      "decision": "confirmed"
+    },
+    {
+      "key": "default",
+      "decision": "confirmed"
+    }
+  ],
+  "confirmed": {
+    "id": "spec-1eee2680b11f",
+    "pair": "spec-1eee2680b11f",
+    "version": 1,
+    "input_space": {
+      "age_days": [
+        0,
+        30,
+        60
+      ],
+      "legal_hold": [
+        false,
+        true
+      ]
+    },
+    "default": "keep",
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Delete records once they are at least 30 days old.",
+        "when": {
+          "age_days": {
+            "gte": 30
+          }
+        },
+        "action": "delete",
+        "text": "Delete records once they are at least 30 days old."
+      },
+      {
+        "id": "B",
+        "quote": "Also, Keep every record on legal hold.",
+        "when": {
+          "legal_hold": {
+            "eq": true
+          }
+        },
+        "action": "keep",
+        "text": "Also, Keep every record on legal hold."
+      }
+    ],
+    "default_source": {
+      "quote": "Keep records when neither rule applies.",
+      "action": "keep"
+    },
+    "spec_origin": {
+      "doc_sha256": "1eee2680b11f630265c39dbdde0f3c164e57b8b15fe4bc8f5c02d87876eb4d36",
+      "model": "muse-spark-1.3",
+      "response_kind": "real"
+    }
+  },
+  "confirmed_sha256": "b00813b2c11642883214a4abe061a15bbab6cf67815ffe5bca363da6e5e0603a",
+  "clashes": [
+    {
+      "verified": true,
+      "witness": {
+        "age_days": 30,
+        "legal_hold": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "delete",
+        "keep"
+      ],
+      "quotes": [
+        "Delete records once they are at least 30 days old.",
+        "Also, Keep every record on legal hold."
+      ]
+    },
+    {
+      "verified": true,
+      "witness": {
+        "age_days": 60,
+        "legal_hold": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "delete",
+        "keep"
+      ],
+      "quotes": [
+        "Delete records once they are at least 30 days old.",
+        "Also, Keep every record on legal hold."
+      ]
+    }
+  ],
+  "uncovered_inputs": [],
+  "cost": {
+    "run_id": "spec-extract-ba49e2432989",
+    "date": "2026-10-27",
+    "stage": "spec feature, outside study",
+    "model": "muse-spark-1.3",
+    "pricing_mode": "STANDARD",
+    "cost_usd": 0.002933,
+    "model_invoked": true,
+    "max_tokens": 6144,
+    "provider_calls": 1,
+    "time_seconds": 3.009,
+    "tokens": {
+      "input": 320,
+      "output": 596,
+      "cached_input": 0
+    }
+  }
+}

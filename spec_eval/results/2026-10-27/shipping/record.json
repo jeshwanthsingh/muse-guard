@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "kind": "spec review",
+  "doc": "Shipping handoff; the old wording was confusing.\n\nWe only receive express and hazardous, each either true or false.\n\nUse express shipping when express is requested and the parcel is not hazardous.\nAlso, Hazardous parcels go by ground.\nOtherwise use ground shipping.\n",
+  "doc_sha256": "4050dec959876a4b2582a93f1efe91757734f700e79a1ec5004b7e101a6fbc7c",
+  "model": "muse-spark-1.3",
+  "response_kind": "real",
+  "proposal": {
+    "input_space": {
+      "express": [
+        true,
+        false
+      ],
+      "hazardous": [
+        true,
+        false
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Use express shipping when express is requested and the parcel is not hazardous.",
+        "when": {
+          "express": {
+            "eq": true
+          },
+          "hazardous": {
+            "eq": false
+          }
+        },
+        "action": "express_shipping"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Hazardous parcels go by ground.",
+        "when": {
+          "hazardous": {
+            "eq": true
+          }
+        },
+        "action": "ground_shipping"
+      }
+    ],
+    "default": {
+      "quote": "Otherwise use ground shipping.",
+      "action": "ground_shipping"
+    },
+    "unconverted": []
+  },
+  "proposal_sha256": "de1ad1bfe00252ff3f86b4cc0ad0dc9cadd90914a502892137f6114624831567",
+  "validation": {
+    "input_space": {
+      "express": [
+        true,
+        false
+      ],
+      "hazardous": [
+        true,
+        false
+      ]
+    },
+    "items": [
+      {
+        "key": "rule-1",
+        "kind": "rule",
+        "proposal": {
+          "id": "A",
+          "quote": "Use express shipping when express is requested and the parcel is not hazardous.",
+          "when": {
+            "express": {
+              "eq": true
+            },
+            "hazardous": {
+              "eq": false
+            }
+          },
+          "action": "express_shipping"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "rule-2",
+        "kind": "rule",
+        "proposal": {
+          "id": "B",
+          "quote": "Also, Hazardous parcels go by ground.",
+          "when": {
+            "hazardous": {
+              "eq": true
+            }
+          },
+          "action": "ground_shipping"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "default",
+        "kind": "default",
+        "proposal": {
+          "quote": "Otherwise use ground shipping.",
+          "action": "ground_shipping"
+        },
+        "errors": [],
+        "valid": true
+      }
+    ],
+    "errors": [],
+    "unconverted": [
+      {
+        "quote": "Shipping handoff; the old wording was confusing.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      },
+      {
+        "quote": "We only receive express and hazardous, each either true or false.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "key": "rule-1",
+      "decision": "confirmed"
+    },
+    {
+      "key": "rule-2",
+      "decision": "confirmed"
+    },
+    {
+      "key": "default",
+      "decision": "confirmed"
+    }
+  ],
+  "confirmed": {
+    "id": "spec-4050dec95987",
+    "pair": "spec-4050dec95987",
+    "version": 1,
+    "input_space": {
+      "express": [
+        true,
+        false
+      ],
+      "hazardous": [
+        true,
+        false
+      ]
+    },
+    "default": "ground_shipping",
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Use express shipping when express is requested and the parcel is not hazardous.",
+        "when": {
+          "express": {
+            "eq": true
+          },
+          "hazardous": {
+            "eq": false
+          }
+        },
+        "action": "express_shipping",
+        "text": "Use express shipping when express is requested and the parcel is not hazardous."
+      },
+      {
+        "id": "B",
+        "quote": "Also, Hazardous parcels go by ground.",
+        "when": {
+          "hazardous": {
+            "eq": true
+          }
+        },
+        "action": "ground_shipping",
+        "text": "Also, Hazardous parcels go by ground."
+      }
+    ],
+    "default_source": {
+      "quote": "Otherwise use ground shipping.",
+      "action": "ground_shipping"
+    },
+    "spec_origin": {
+      "doc_sha256": "4050dec959876a4b2582a93f1efe91757734f700e79a1ec5004b7e101a6fbc7c",
+      "model": "muse-spark-1.3",
+      "response_kind": "real"
+    }
+  },
+  "confirmed_sha256": "ab7520da70eeef29d3230bdb298ebb0f2916ff904a61f0dba22cf3ac6f8593ad",
+  "clashes": [],
+  "uncovered_inputs": [],
+  "cost": {
+    "run_id": "spec-extract-f440f1f5b4f5",
+    "date": "2026-10-27",
+    "stage": "spec feature, outside study",
+    "model": "muse-spark-1.3",
+    "pricing_mode": "STANDARD",
+    "cost_usd": 0.003478,
+    "model_invoked": true,
+    "max_tokens": 6144,
+    "provider_calls": 1,
+    "time_seconds": 3.511,
+    "tokens": {
+      "input": 297,
+      "output": 731,
+      "cached_input": 0
+    }
+  }
+}

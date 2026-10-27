@@ -1,0 +1,17 @@
+{
+  "run_id": "spec-extract-f440f1f5b4f5",
+  "date": "2026-10-27",
+  "stage": "spec feature, outside study",
+  "model": "muse-spark-1.3",
+  "pricing_mode": "STANDARD",
+  "cost_usd": 0.003478,
+  "model_invoked": true,
+  "max_tokens": 6144,
+  "provider_calls": 1,
+  "time_seconds": 3.511,
+  "tokens": {
+    "input": 297,
+    "output": 731,
+    "cached_input": 0
+  }
+}

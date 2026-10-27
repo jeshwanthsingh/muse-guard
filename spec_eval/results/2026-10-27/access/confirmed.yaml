@@ -1,0 +1,49 @@
+{
+  "id": "spec-3bbadf7cb904",
+  "pair": "spec-3bbadf7cb904",
+  "version": 1,
+  "input_space": {
+    "role": [
+      "admin",
+      "reader"
+    ],
+    "suspended": [
+      true,
+      false
+    ]
+  },
+  "default": "deny",
+  "rules": [
+    {
+      "id": "A",
+      "quote": "Admins can open the dashboard, no extra checks.",
+      "when": {
+        "role": {
+          "eq": "admin"
+        }
+      },
+      "action": "allow",
+      "text": "Admins can open the dashboard, no extra checks."
+    },
+    {
+      "id": "B",
+      "quote": "Also, A suspended account must be denied dashboard access.",
+      "when": {
+        "suspended": {
+          "eq": true
+        }
+      },
+      "action": "deny",
+      "text": "Also, A suspended account must be denied dashboard access."
+    }
+  ],
+  "default_source": {
+    "quote": "For anything not covered above, deny access.",
+    "action": "deny"
+  },
+  "spec_origin": {
+    "doc_sha256": "3bbadf7cb9047d3885a7e7cc4587f25ee62ce2aa5fc055d9e9647945892acd50",
+    "model": "muse-spark-1.3",
+    "response_kind": "real"
+  }
+}

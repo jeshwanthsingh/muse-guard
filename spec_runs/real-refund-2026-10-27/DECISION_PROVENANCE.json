@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-27",
+  "source": "user replies in this chat",
+  "confirmed_translations": [
+    "A",
+    "B",
+    "default"
+  ],
+  "decision_delegated": true,
+  "delegation_text": "you choose",
+  "assistant_selected": "B",
+  "reason": "Hold fraud-flagged requests for manual review before refund",
+  "run_sha256": "1cec2a48c1dc16d0d2ce232b3dc18ad4d8007bf4534aa0e855884a38354946e7"
+}

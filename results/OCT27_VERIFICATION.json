@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-27",
+  "day6_runtime": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "submission_runtime": "c284fdaec29c96cb816751d431b96f5721b6ec07",
+  "day6_preflight_tests": 149,
+  "protected_files_unchanged": 103,
+  "pilot_flows": 12,
+  "pilot_usage_complete": true,
+  "spec_original_manifest_verified": true,
+  "real_continuous_outcome": "PASS",
+  "real_continuous_inputs": 4,
+  "gitleaks_findings": {
+    "count": 2,
+    "review": "Both values equal SHA-256 of immutable Day6 datasets/dev/access.json; no secrets"
+  },
+  "private_environment_values_and_paths_scan": "PASS",
+  "freeze_eligible": false,
+  "freeze_created": false,
+  "holdout_model_calls": 0,
+  "paid_total_usd": 1.6474164
+}

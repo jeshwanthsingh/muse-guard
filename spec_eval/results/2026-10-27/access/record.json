@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "kind": "spec review",
+  "doc": "Permissions scratchpad \u2014 please use this as written.\n\nThe role is either admin or reader; suspended is just true or false, with no other inputs in this version.\n\nAdmins can open the dashboard, no extra checks.\nAlso, A suspended account must be denied dashboard access.\nFor anything not covered above, deny access.\n",
+  "doc_sha256": "3bbadf7cb9047d3885a7e7cc4587f25ee62ce2aa5fc055d9e9647945892acd50",
+  "model": "muse-spark-1.3",
+  "response_kind": "real",
+  "proposal": {
+    "input_space": {
+      "role": [
+        "admin",
+        "reader"
+      ],
+      "suspended": [
+        true,
+        false
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Admins can open the dashboard, no extra checks.",
+        "when": {
+          "role": {
+            "eq": "admin"
+          }
+        },
+        "action": "allow"
+      },
+      {
+        "id": "B",
+        "quote": "Also, A suspended account must be denied dashboard access.",
+        "when": {
+          "suspended": {
+            "eq": true
+          }
+        },
+        "action": "deny"
+      }
+    ],
+    "default": {
+      "quote": "For anything not covered above, deny access.",
+      "action": "deny"
+    },
+    "unconverted": []
+  },
+  "proposal_sha256": "7489df13a629f5d442d5202ad0b1cfb27e1bc75091d1ce5d7e93f4ef11f9d4fd",
+  "validation": {
+    "input_space": {
+      "role": [
+        "admin",
+        "reader"
+      ],
+      "suspended": [
+        true,
+        false
+      ]
+    },
+    "items": [
+      {
+        "key": "rule-1",
+        "kind": "rule",
+        "proposal": {
+          "id": "A",
+          "quote": "Admins can open the dashboard, no extra checks.",
+          "when": {
+            "role": {
+              "eq": "admin"
+            }
+          },
+          "action": "allow"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "rule-2",
+        "kind": "rule",
+        "proposal": {
+          "id": "B",
+          "quote": "Also, A suspended account must be denied dashboard access.",
+          "when": {
+            "suspended": {
+              "eq": true
+            }
+          },
+          "action": "deny"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "default",
+        "kind": "default",
+        "proposal": {
+          "quote": "For anything not covered above, deny access.",
+          "action": "deny"
+        },
+        "errors": [],
+        "valid": true
+      }
+    ],
+    "errors": [],
+    "unconverted": [
+      {
+        "quote": "Permissions scratchpad \u2014 please use this as written.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      },
+      {
+        "quote": "The role is either admin or reader; suspended is just true or false, with no other inputs in this version.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "key": "rule-1",
+      "decision": "confirmed"
+    },
+    {
+      "key": "rule-2",
+      "decision": "confirmed"
+    },
+    {
+      "key": "default",
+      "decision": "confirmed"
+    }
+  ],
+  "confirmed": {
+    "id": "spec-3bbadf7cb904",
+    "pair": "spec-3bbadf7cb904",
+    "version": 1,
+    "input_space": {
+      "role": [
+        "admin",
+        "reader"
+      ],
+      "suspended": [
+        true,
+        false
+      ]
+    },
+    "default": "deny",
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Admins can open the dashboard, no extra checks.",
+        "when": {
+          "role": {
+            "eq": "admin"
+          }
+        },
+        "action": "allow",
+        "text": "Admins can open the dashboard, no extra checks."
+      },
+      {
+        "id": "B",
+        "quote": "Also, A suspended account must be denied dashboard access.",
+        "when": {
+          "suspended": {
+            "eq": true
+          }
+        },
+        "action": "deny",
+        "text": "Also, A suspended account must be denied dashboard access."
+      }
+    ],
+    "default_source": {
+      "quote": "For anything not covered above, deny access.",
+      "action": "deny"
+    },
+    "spec_origin": {
+      "doc_sha256": "3bbadf7cb9047d3885a7e7cc4587f25ee62ce2aa5fc055d9e9647945892acd50",
+      "model": "muse-spark-1.3",
+      "response_kind": "real"
+    }
+  },
+  "confirmed_sha256": "8d6d63f01b875b7185c572d343a17bd4fb612e0e7349af759482b676a4d89e61",
+  "clashes": [
+    {
+      "verified": true,
+      "witness": {
+        "role": "admin",
+        "suspended": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "allow",
+        "deny"
+      ],
+      "quotes": [
+        "Admins can open the dashboard, no extra checks.",
+        "Also, A suspended account must be denied dashboard access."
+      ]
+    }
+  ],
+  "uncovered_inputs": [],
+  "cost": {
+    "run_id": "spec-extract-4661afc81575",
+    "date": "2026-10-27",
+    "stage": "spec feature, outside study",
+    "model": "muse-spark-1.3",
+    "pricing_mode": "STANDARD",
+    "cost_usd": 0.00357075,
+    "model_invoked": true,
+    "max_tokens": 6144,
+    "provider_calls": 1,
+    "time_seconds": 3.008,
+    "tokens": {
+      "input": 310,
+      "output": 749,
+      "cached_input": 0
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "kind": "spec review",
+  "doc": "Refund notes, copied from our support chat.\n\nFor now, eligible and fraud_hold are the only inputs, and both are booleans (true or false).\n\nYep, every eligible order gets a refund.\nAlso, Fraud hold means manual review, always.\nIf nothing above applies, reject the refund.\n",
+  "doc_sha256": "080afcd0f53f229768ebf22f036b71520af77ee4762fb870f0137133e0a1bc7f",
+  "model": "muse-spark-1.3",
+  "response_kind": "real",
+  "proposal": {
+    "input_space": {
+      "eligible": [
+        true,
+        false
+      ],
+      "fraud_hold": [
+        true,
+        false
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Yep, every eligible order gets a refund.",
+        "when": {
+          "eligible": {
+            "eq": true
+          }
+        },
+        "action": "refund"
+      },
+      {
+        "id": "B",
+        "quote": "Also, Fraud hold means manual review, always.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "manual_review"
+      }
+    ],
+    "default": {
+      "quote": "If nothing above applies, reject the refund.",
+      "action": "reject"
+    },
+    "unconverted": []
+  },
+  "proposal_sha256": "fc5625d6eb90248b731d6335da024462a96fc444b96c23a1bfe9a5814049b3f8",
+  "validation": {
+    "input_space": {
+      "eligible": [
+        true,
+        false
+      ],
+      "fraud_hold": [
+        true,
+        false
+      ]
+    },
+    "items": [
+      {
+        "key": "rule-1",
+        "kind": "rule",
+        "proposal": {
+          "id": "A",
+          "quote": "Yep, every eligible order gets a refund.",
+          "when": {
+            "eligible": {
+              "eq": true
+            }
+          },
+          "action": "refund"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "rule-2",
+        "kind": "rule",
+        "proposal": {
+          "id": "B",
+          "quote": "Also, Fraud hold means manual review, always.",
+          "when": {
+            "fraud_hold": {
+              "eq": true
+            }
+          },
+          "action": "manual_review"
+        },
+        "errors": [],
+        "valid": true
+      },
+      {
+        "key": "default",
+        "kind": "default",
+        "proposal": {
+          "quote": "If nothing above applies, reject the refund.",
+          "action": "reject"
+        },
+        "errors": [],
+        "valid": true
+      }
+    ],
+    "errors": [],
+    "unconverted": [
+      {
+        "quote": "Refund notes, copied from our support chat.",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      },
+      {
+        "quote": "For now, eligible and fraud_hold are the only inputs, and both are booleans (true or false).",
+        "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "key": "rule-1",
+      "decision": "confirmed"
+    },
+    {
+      "key": "rule-2",
+      "decision": "confirmed"
+    },
+    {
+      "key": "default",
+      "decision": "confirmed"
+    }
+  ],
+  "confirmed": {
+    "id": "spec-080afcd0f53f",
+    "pair": "spec-080afcd0f53f",
+    "version": 1,
+    "input_space": {
+      "eligible": [
+        true,
+        false
+      ],
+      "fraud_hold": [
+        true,
+        false
+      ]
+    },
+    "default": "reject",
+    "rules": [
+      {
+        "id": "A",
+        "quote": "Yep, every eligible order gets a refund.",
+        "when": {
+          "eligible": {
+            "eq": true
+          }
+        },
+        "action": "refund",
+        "text": "Yep, every eligible order gets a refund."
+      },
+      {
+        "id": "B",
+        "quote": "Also, Fraud hold means manual review, always.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "manual_review",
+        "text": "Also, Fraud hold means manual review, always."
+      }
+    ],
+    "default_source": {
+      "quote": "If nothing above applies, reject the refund.",
+      "action": "reject"
+    },
+    "spec_origin": {
+      "doc_sha256": "080afcd0f53f229768ebf22f036b71520af77ee4762fb870f0137133e0a1bc7f",
+      "model": "muse-spark-1.3",
+      "response_kind": "real"
+    }
+  },
+  "confirmed_sha256": "7dfe1242c88f1bf4225dfd4a2251b10c6d9d88a85552cc63bfd444f2d225e48b",
+  "clashes": [
+    {
+      "verified": true,
+      "witness": {
+        "eligible": true,
+        "fraud_hold": true
+      },
+      "rules": [
+        "A",
+        "B"
+      ],
+      "actions": [
+        "refund",
+        "manual_review"
+      ],
+      "quotes": [
+        "Yep, every eligible order gets a refund.",
+        "Also, Fraud hold means manual review, always."
+      ]
+    }
+  ],
+  "uncovered_inputs": [],
+  "cost": {
+    "run_id": "spec-extract-0f0f9aa823cd",
+    "date": "2026-10-27",
+    "stage": "spec feature, outside study",
+    "model": "muse-spark-1.3",
+    "pricing_mode": "STANDARD",
+    "cost_usd": 0.00210925,
+    "model_invoked": true,
+    "max_tokens": 6144,
+    "provider_calls": 1,
+    "time_seconds": 2.03,
+    "tokens": {
+      "input": 307,
+      "output": 406,
+      "cached_input": 0
+    }
+  }
+}
