@@ -1,0 +1,22 @@
+START plain
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "<repo>/submission_tools/export_smoke.py", line 76, in <module>
+    print(json.dumps(execute(),indent=2))
+                     ~~~~~~~^^
+  File "<repo>/submission_tools/export_smoke.py", line 66, in execute
+    flow(e,lambda:write(REPORT,report))
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>/submission_tools/export_smoke.py", line 40, in flow
+    b=phase('repair',run_one(build_task(v2),RESULTS_ROOT,mode=mode,allow_holdout=False,dollar_quota=True,**kwargs))
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>/submission_tools/export_runtime/runner.py", line 371, in run_one
+    save_total(results,day)
+    ~~~~~~~~~~^^^^^^^^^^^^^
+  File "<repo>/muse_guard/runner.py", line 179, in save_total
+    rows = ledger_records(results, day)
+  File "<repo>/muse_guard/runner.py", line 175, in ledger_records
+    return [row for row in rows if row.get("date") == day and "run_id" in row]
+                                   ^^^^^^^
+AttributeError: 'list' object has no attribute 'get'

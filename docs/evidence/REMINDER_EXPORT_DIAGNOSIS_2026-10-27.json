@@ -1,0 +1,37 @@
+[
+  {
+    "session_id": "2a926940-02ea-41ed-a2dc-7715dc0494e8",
+    "exit_code": 1,
+    "stderr": "export failed: no retained session log found for session 2a926940-02ea-41ed-a2dc-7715dc0494e8\nRecovery: pass --session <path> pointing at a session.jsonl file\n",
+    "stdout": "",
+    "matching_logs": []
+  },
+  {
+    "session_id": "5e9e7ad6-38de-46c1-9c48-1b140adfafde",
+    "exit_code": 1,
+    "stderr": "export failed: no retained session log found for session 5e9e7ad6-38de-46c1-9c48-1b140adfafde\nRecovery: pass --session <path> pointing at a session.jsonl file\n",
+    "stdout": "",
+    "matching_logs": []
+  },
+  {
+    "session_id": "779bb794-e2d4-4694-a401-0aa883ba38a4",
+    "exit_code": 1,
+    "stderr": "export failed: no retained session log found for session 779bb794-e2d4-4694-a401-0aa883ba38a4\nRecovery: pass --session <path> pointing at a session.jsonl file\n",
+    "stdout": "",
+    "matching_logs": []
+  },
+  {
+    "session_id": "a38f4288-06ca-41b7-8751-bf74633ce712",
+    "exit_code": 1,
+    "stderr": "export failed: no retained session log found for session a38f4288-06ca-41b7-8751-bf74633ce712\nRecovery: pass --session <path> pointing at a session.jsonl file\n",
+    "stdout": "",
+    "matching_logs": []
+  },
+  {
+    "session_id": "f84532d3-866c-4784-bf4c-892b932db837",
+    "exit_code": 1,
+    "stderr": "export failed: no retained session log found for session f84532d3-866c-4784-bf4c-892b932db837\nRecovery: pass --session <path> pointing at a session.jsonl file\n",
+    "stdout": "",
+    "matching_logs": []
+  }
+]

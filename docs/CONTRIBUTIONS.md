@@ -490,3 +490,10 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Activated corrected freeze at a51657f and verified all locked hashes before running.
 - Study halted on the first flow (plain h13-b, repeat 2): candidate passed 8/8 checks, but 5 linked reminder exports failed. Preserved phase/cohort/summary, progress and private raw receipts; no rerun, retry or mid-study patch.
 - Exact study cost $0.1083648, separate from daily development spend. Added STUDY_STOP_2026-10-27.md with observed denominators and export-evidence limits; no mode comparison is claimed. Extractor changes remain deferred.
+
+### October 27 — reminder export diagnosis and restart preparation
+
+- Re-exported the five failed reminder IDs without model calls; each lacks a retained session log. Saved complete stderr/exit codes. Root-export/main-step evidence and provider-journal accounting make reminder exports supplementary under the newly shown amendment.
+- Added a versioned runner that saves full export diagnostics and requires root success plus complete reconciled provider receipts. Historical frozen code and interrupted holdout remain unchanged.
+- Ran exactly two DEV refund recovery flows (plain and guarded), both recovered, $0.40174065 combined. Disclosed a diagnostic-file bookkeeping exception after the completed plain repair; recovered its saved receipt without repeating a paid call, then ran only the unstarted guarded flow. See EXPORT_SMOKE_2026-10-27.md.
+- Prepared an inactive restart draft for the exact original 160 assignments/order. Excluded prior h13-b remains charged to the $70 allowance; $69.8916352 remains. No holdout restart, activation, push or merge. Added exact approval-gated commands and a 3–5 hour estimate, including the observed smoke timings.
