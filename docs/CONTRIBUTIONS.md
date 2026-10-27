@@ -497,3 +497,9 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Added a versioned runner that saves full export diagnostics and requires root success plus complete reconciled provider receipts. Historical frozen code and interrupted holdout remain unchanged.
 - Ran exactly two DEV refund recovery flows (plain and guarded), both recovered, $0.40174065 combined. Disclosed a diagnostic-file bookkeeping exception after the completed plain repair; recovered its saved receipt without repeating a paid call, then ran only the unstarted guarded flow. See EXPORT_SMOKE_2026-10-27.md.
 - Prepared an inactive restart draft for the exact original 160 assignments/order. Excluded prior h13-b remains charged to the $70 allowance; $69.8916352 remains. No holdout restart, activation, push or merge. Added exact approval-gated commands and a 3–5 hour estimate, including the observed smoke timings.
+
+### October 27 — approved restart activation and infrastructure stop
+
+- Activated approved restart freeze c34a240 after ledger/thread/process preflight. Ran original order until detecting a restart-ledger root bug: records were written under Projects/study_runs and the excluded prior charge was omitted from its runtime total.
+- Stopped execution with SIGINT, without patch or retry. Two plain flows completed; a third guarded flow was interrupted. Preserved all originals and byte-identical structured evidence copies. RESTART_STOP_2026-10-27.md explains the defect, incomplete denominators and the guarded receipt omitted by the automatic summary.
+- Restart actual cost $0.21792675; total study spend including excluded attempt $0.32629155. No mode comparison or null result claimed. No push, merge, resume or extractor changes.

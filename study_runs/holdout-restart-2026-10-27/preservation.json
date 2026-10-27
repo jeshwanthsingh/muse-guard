@@ -1,0 +1,18 @@
+{
+  "source_location": "sibling Projects/study_runs/holdout-restart-2026-10-27",
+  "copies_byte_identical": true,
+  "sha256": {
+    "study-flow-ca50625cfa1e.json": "2cc143227f478ed6483010c48ce5d18c133b84a09f6a70f8248a5356f343acfb",
+    "total.json": "8e7b062aadfa7a47b51967bc274536383c045ac351d23960ee3ac83b273b551f",
+    "summary.json": "c12b9f3ac35f5f1b08e5ee9f3b462be7e37921101838439de1aab39e686b4cd4",
+    "study-flow-feaed56ebcbd.json": "be4bd1799f892b5fb3961a53e93fef561efd871c0f7d55ce8d9c26404253f0ea",
+    "study-flow-68a02ac2b9fc.json": "667b4c7408076123847efc03a4bc4accc6207674096386cb6a48873a4444d2ef",
+    "cohort.json": "b28813564c2827db2eba077ccde2f516e14359669ddff2c5b07d91e1356736ad",
+    "h07-a-v1-417cf8b7630d.json": "09a307edb713c0131b1ed67f96fdd27e22892e8b060324f5b40f2e074a597627",
+    "h01-b-v1-cebbeabbb748.json": "f75fef797f66f55afcc5925d164a3812670c91bc91a77bb925e4da93f375949a",
+    "h13-b-v1-f36f0b886e99.json": "74a777d2f67bdcd8bcd2a8083fa30819bf7bd906a3b2abfe259b349c36970006",
+    "progress.log": "4f49fec8c7219d36c2fbacfe67df111a0a28b38dd334470fc30b6acb11521189",
+    "h01-b-v2-1d8e61f8d6db.json": "a67a115f7338d0a71169338ab2a4b1186047e0137028a78e909aca502689264d"
+  },
+  "raw_preserved_at_original_location": true
+}

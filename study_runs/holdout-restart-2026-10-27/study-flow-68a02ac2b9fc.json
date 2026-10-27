@@ -1,0 +1,61 @@
+{
+  "recovery_id": "study-flow-68a02ac2b9fc",
+  "date": "2026-10-27",
+  "task": "h07-a",
+  "mode": "guarded",
+  "repeat": 2,
+  "study_holdout": true,
+  "status": "STARTED",
+  "requirements_v1": {
+    "id": "h07-a",
+    "pair": "h07",
+    "version": 1,
+    "default": "halt",
+    "input_space": {
+      "low_battery": [
+        false,
+        true
+      ],
+      "emergency_stop": [
+        false,
+        true
+      ],
+      "context": [
+        "line_1",
+        "line_2"
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "text": "Send a low-battery robot to its dock. Applies only if emergency_stop is false.",
+        "when": {
+          "low_battery": {
+            "eq": true
+          },
+          "emergency_stop": {
+            "eq": false
+          }
+        },
+        "action": "dock"
+      },
+      {
+        "id": "B",
+        "text": "An emergency stop requires the robot to halt.",
+        "when": {
+          "emergency_stop": {
+            "eq": true
+          }
+        },
+        "action": "halt"
+      }
+    ],
+    "approval": {
+      "source": "task author",
+      "content_hash": "b53f8c0e77c6624ebb5909b64fbe589bcf62d074798adaca87788098ee92f67f"
+    }
+  },
+  "phase_run_ids": [],
+  "cost_usd": 0,
+  "time_seconds": 3.305
+}
