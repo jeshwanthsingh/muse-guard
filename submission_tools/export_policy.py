@@ -55,3 +55,80 @@ def author_command(args,*,harness=None,write_root=None,gateway_url=None):
     home='(subpath '+json.dumps(str(Path.home().resolve()))+')'
     command[2]=command[2].replace('(deny file-write* '+home+')','(deny file-write* (require-all '+home+' (require-not '+own+')))')
     return command
+
+# Original candidate subprocess/check semantics, with only the own-scratch
+# exception needed when scratch is beneath the otherwise denied user home.
+import os,platform,signal,sys,tempfile
+from muse_guard.checker import CHILD,ObservationError,CandidateExecutionError
+def observe_in_repo(solution, value, *, requirements=None):
+    with tempfile.TemporaryDirectory(prefix="muse-check-child-") as directory:
+        isolated_solution = Path(directory) / "solution.py"
+        isolated_solution.write_bytes(solution.read_bytes())
+        if requirements is not None:
+            # Public, approved data only. Never copy candidate-supplied rules or
+            # hidden cases into the execution folder.
+            (Path(directory) / "rules.yaml").write_text(json.dumps(requirements,indent=2,allow_nan=False)+"\n")
+        with tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
+            env = {"PATH": os.defpath, "HOME": directory, "TMPDIR": directory, "LANG": "C.UTF-8"}
+            if platform.system() != "Darwin" or not Path("/usr/bin/sandbox-exec").exists():
+                raise ObservationError("macOS sandbox-exec is required; unconfined execution refused")
+            # Fresh policy written here; no copied Unfoolable sandbox code.
+            # Read public runtime files, but explicit Seatbelt denies take
+            # precedence for every user home and common secret names anywhere.
+            # Candidate env contains no provider credentials; key memory remains
+            # in the separate parent/gateway process (no Mach/process-info grants).
+            scratch = str(Path(directory).resolve())
+            home = str(Path.home().resolve())
+            profile = ("(version 1)(deny default)(allow process-exec)(allow process-fork)"
+                       "(allow sysctl-read)(allow file-read*)"
+                       "(deny file-read* (require-all (require-any (subpath \"/Users\") (subpath \"/private/var/root\")"
+                       " (subpath " + json.dumps(home) + ")) (require-not (subpath " + json.dumps(scratch) + "))))"
+                       "(deny file-read* (regex #\".*[.]env([.].*)?$\")"
+                       " (regex #\".*/[.](ssh|aws|config|gnupg|kube|docker|azure)(/.*)?$\")"
+                       " (regex #\".*/[.](netrc|npmrc|pypirc|git-credentials|boto)$\"))"
+                       "(deny file-read-data (require-all"
+                       " (require-any (subpath \"/private/tmp\") (subpath \"/private/var/tmp\") (subpath \"/private/var/folders\"))"
+                       " (require-not (subpath " + json.dumps(scratch) + "))))"
+                       "(allow file-write* (subpath " + json.dumps(scratch) + "))")
+            start_reader,start_writer=os.pipe()
+            command = ["/usr/bin/sandbox-exec", "-p", profile, sys.executable, "-I", "-B", "-c", CHILD, str(isolated_solution),str(start_writer)]
+            try:
+                process = subprocess.Popen(command,cwd=directory,env=env,stdin=subprocess.PIPE,
+                                           stdout=out,stderr=err,start_new_session=True,pass_fds=(start_writer,))
+            except OSError:
+                os.close(start_reader);os.close(start_writer)
+                raise
+            os.close(start_writer)
+            timed_out=False
+            try:
+                process.communicate(json.dumps(value).encode(), timeout=1)
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid, signal.SIGKILL)
+                process.communicate()
+                timed_out=True
+            finally:
+                # Reap same-process-group descendants even if the leader exited early.
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+            try:
+                started=os.read(start_reader,1)==b"1"
+            finally:
+                os.close(start_reader)
+            if not started:
+                raise ObservationError("Sandbox/Python launcher could not start")
+            if timed_out:
+                raise CandidateExecutionError("Candidate timeout")
+            if process.returncode != 0:
+                raise CandidateExecutionError("Candidate process failed")
+            out.seek(0)
+            data = out.read(65537)
+            try:
+                packet = json.loads(data)
+                if len(data) > 65536 or not isinstance(packet, dict) or set(packet) != {"value"}:
+                    raise ValueError()
+                return packet["value"]
+            except (ValueError, UnicodeError, RecursionError):
+                raise CandidateExecutionError("Candidate did not return one bounded JSON value") from None
+

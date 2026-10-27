@@ -43,4 +43,18 @@ class RehearsalTests(unittest.TestCase):
    import sys
    result=subprocess.run(author_command([sys.executable,'-c',code,str(secret),str(root/'outside')],write_root=work),cwd=work,capture_output=True,text=True)
    self.assertEqual(result.returncode,0,result.stderr);self.assertEqual(result.stdout.strip(),'2');self.assertTrue((work/'inside').exists())
+ def test_reference_gate_with_repo_scratch(self):
+  from muse_guard import checker,rule_checker
+  from muse_guard.quality_gate import accept_task
+  from muse_guard.rules import TASKS
+  from submission_tools.export_policy import observe_in_repo
+  with tempfile.TemporaryDirectory(dir=ROOT/'results/raw') as d,patch.object(tempfile,'tempdir',d),patch.object(checker,'_observe',observe_in_repo),patch.object(rule_checker,'_observe',observe_in_repo):
+   for name in ('refund-solvable','refund-impossible'):
+    self.assertEqual(accept_task(TASKS[name])['status'],'ACCEPTED')
+ def test_candidate_cannot_read_repo_env_in_repo_scratch(self):
+  from submission_tools.export_policy import observe_in_repo
+  with tempfile.TemporaryDirectory(dir=ROOT/'results/raw') as d,patch.object(tempfile,'tempdir',d):
+   p=Path(d);(p/'.env').write_text('FAKE');source=p/'solution.py'
+   source.write_text('def solve(x):\n try:\n  open('+repr(str(p/'.env'))+').read()\n  return False\n except PermissionError: return True\n')
+   self.assertTrue(observe_in_repo(source,{}))
 if __name__=='__main__':unittest.main()

@@ -142,6 +142,9 @@ def execute():
  return summary
 
 def configure():
+ from muse_guard import checker,rule_checker
+ from submission_tools.export_policy import observe_in_repo
+ checker._observe=observe_in_repo;rule_checker._observe=observe_in_repo
  from submission_tools.export_runtime import runner,card,ledger
  def authorize(task,allow_holdout):
   identity=verify_freeze()
