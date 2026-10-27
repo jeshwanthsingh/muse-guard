@@ -413,3 +413,29 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   $1.64741640, all accounted, below the shared $5 cap.
   Per-attempt costs/steps, tables, limitations and study estimate are in
   docs/OCT27_RESULTS.md. No push or merge.
+
+## 2026-10-27 — Separate external-authored spec set (draft only)
+
+- Reconstructed doc1/doc2 at the requested spec_eval/human paths from user-pasted
+  text because the files were absent locally. User identifies Claude as document
+  author and themselves as reviewer; no human-authorship claim is made.
+- Drafted keys and a separate preregistration for review. Flagged the explicit
+  top-company exception, oversized-package scope and missing-fallback scorer
+  limitation before freezing. Proposed readings have no clashes; the literal
+  unconditional job-rule alternative has four and needs user resolution.
+- No freeze, paid extraction, answer-key approval or new results claimed.
+
+## 2026-10-27 — Shipping gateway correction, before corrective rerun
+
+- Offline replay proved that a known $0.01749250 provider response exceeded the
+  $0.01736525 per-request estimate by $0.00012725. The provider reported 2120
+  output tokens against a requested 2048. The old settlement marked known usage
+  unresolved and rejected five later requests despite ample phase allowance.
+- Added an outside-freeze settlement adapter: reconcile known usage against the
+  reserved phase allowance, journal estimate overruns, retain token/dollar caps
+  and unknown-usage refusal. Original runtime/results remain unchanged.
+- Added exact-receipt replay, HTTP continuation, quota, unknown-usage and token
+  overrun regressions. Dated amendment authorizes one fresh plain shipping dev
+  flow only, with linked original/corrective evidence and supplemental gate.
+- The agent's explicit refusal remains separate evidence; gateway contribution
+  does not prove why it refused. No automatic study or $70 allowance enabled.
