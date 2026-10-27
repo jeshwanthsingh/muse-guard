@@ -15,3 +15,7 @@ results/.run.lock
 # Private local spec inputs and live evaluation artifacts
 /spec_runs/
 /spec_eval/results/
+
+# Private study sessions; public phase receipts remain versioned
+/study_runs/**/raw/
+/study_runs/**/.study.lock

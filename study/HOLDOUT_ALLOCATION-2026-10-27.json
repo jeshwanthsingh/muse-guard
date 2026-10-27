@@ -1,0 +1,1282 @@
+[
+  {
+    "pair": "h13",
+    "task": "h13-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h13",
+    "task": "h13-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h15",
+    "task": "h15-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h13",
+    "task": "h13-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h17",
+    "task": "h17-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h13",
+    "task": "h13-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h06",
+    "task": "h06-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h13",
+    "task": "h13-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h10",
+    "task": "h10-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h14",
+    "task": "h14-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h13",
+    "task": "h13-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h20",
+    "task": "h20-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-b",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h02",
+    "task": "h02-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h09",
+    "task": "h09-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h07",
+    "task": "h07-a",
+    "kind": "solvable",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h11",
+    "task": "h11-b",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h12",
+    "task": "h12-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h19",
+    "task": "h19-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h13",
+    "task": "h13-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h01",
+    "task": "h01-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h03",
+    "task": "h03-b",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h18",
+    "task": "h18-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h13",
+    "task": "h13-a",
+    "kind": "impossible",
+    "repeat": 2,
+    "mode": "guarded",
+    "record": null
+  },
+  {
+    "pair": "h16",
+    "task": "h16-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h05",
+    "task": "h05-b",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h08",
+    "task": "h08-a",
+    "kind": "solvable",
+    "repeat": 2,
+    "mode": "plain",
+    "record": null
+  },
+  {
+    "pair": "h04",
+    "task": "h04-a",
+    "kind": "impossible",
+    "repeat": 1,
+    "mode": "guarded",
+    "record": null
+  }
+]

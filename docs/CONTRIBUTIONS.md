@@ -469,3 +469,18 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   an uncommitted draft outside the repo for user review. No study freeze commit,
   holdout calls, push/merge or $70 study-budget activation. Detailed evidence in
   docs/OCT27_CORRECTION_AND_EXTERNAL_EVAL.md.
+
+## 2026-10-27 — Authorized corrected holdout study activation
+
+- User approved the corrected freeze and separate one-time $70 study cap, with
+  no retries/reruns and immediate stop on infrastructure failure. Retained the
+  reviewed draft, original cohort and corrected gate evidence.
+- Added an outside-protected-path study executor and all-date ledger, preserving
+  frozen prompts/tasks/checking and plain/guarded protocols. Fixed 160-flow
+  allocation at seed 20261026, committed before any real holdout call.
+- Offline checks cover exact allocation, dollar boundary, no midnight reset,
+  unknown-usage refusal, first-fault stop, no resume and corrected settlement.
+  Bind all execution/scoring dependencies and unchanged holdouts into the new
+  authoritative activation manifest. Original frozen paths remain unchanged.
+- Plan: caffeinate-wrapped execution with progress.log and checkpointed phase
+  receipts; estimated 3–4 hours. Post-study extractor changes stay deferred.

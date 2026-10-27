@@ -1,0 +1,56 @@
+{
+  "status": "DRAFT FOR USER REVIEW \u2014 not an active or approved study freeze",
+  "date": "2026-10-27",
+  "original_gate_passes": false,
+  "supplemental_corrected_gate_passes": true,
+  "base_pilot_runtime_commit": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "correction_runtime_commit": "5a5d40e7a2c185bc45d1b1dc3bf234388b34630a",
+  "original_pilot_sha256": "7c201f5ac66f9b682f8f5a9d92ef39f4d977040f9869a43ab272e118b6c3753c",
+  "correction_sha256": "da25b60411f1f88c0974dbe625b780331f2a6f8f13825d9293e52521ca7749c1",
+  "corrected_gate_sha256": "fe9cd39df294502f8889b74872255374b2e0e60c1d8eef76a1d4001c9e7bae13",
+  "correction_files": {
+    "submission_tools/settlement.py": "ca6b1eba9e0fba70491c731d07e8a0fa461783368d055e0707213b85a2623809",
+    "submission_tools/shipping_rerun.py": "55d23764efe7645c4cf08bffb1d3efa80ed500436356776116cea07e68d0ea33",
+    "docs/amendments/2026-10-27-known-usage-settlement.md": "c4d2612bfa2cd780a1b0a4ee54b1e4d91592b9c1dbaafd042d79fab19dda73fb"
+  },
+  "behavior_scoring_files": {
+    "submission_tools/behavior_score.py": "5da4e3108c541a5e4b3548770e73784f36cf63c343ae9eef16496dcfb009d88f",
+    "docs/amendments/2026-10-26-behavior-only-recovery.md": "68e991e8ea19756a69ddaa49092d87e73c36891fe33f50911956990048bfe7f6"
+  },
+  "parent_manifests": {
+    "datasets/holdout/MANIFEST.json": "4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246",
+    "study/MANIFEST-day4.json": "18316b3e211dd6f1910ef7770d00a7447a6f0459fd4c0ea18d4cc7aecdbc8633"
+  },
+  "holdout_data_files": {
+    "datasets/holdout/h01.json": "40765590f6237019dd8db8e6b6405a42562192c3f811663e1d0d63fea1697d9b",
+    "datasets/holdout/h02.json": "41201ea75d6dfd808e892fbc6fb4d40e9985002840d73ea5ff7bae46924bc8ea",
+    "datasets/holdout/h03.json": "0753522848bb2ccda743f8ec131e19a84d89852889da596b0842fc1db45840d3",
+    "datasets/holdout/h04.json": "6c0b65eb56bc1d177ba175944ce0d5624c3d333ea333ee8d804cdb208bf927f4",
+    "datasets/holdout/h05.json": "b3959691c83ba091e523452bd4122744de877a25dac380ed9a04aadf3083b035",
+    "datasets/holdout/h06.json": "b8cc3c21444db43ad0b497465ae6776f004f9b234872eb56927b29c43485be28",
+    "datasets/holdout/h07.json": "4e3892a77447808d69837949e8397c1d55280abb5d0b3b10172d15aad3439649",
+    "datasets/holdout/h08.json": "e6cbdc46c95e5d2235a57a3843abf16f003380c8c880e7aee40310648284a047",
+    "datasets/holdout/h09.json": "cb5c8432f7324451a6d4c2000123c9c6e742fd370a3d37c75d38cd91ba2a4865",
+    "datasets/holdout/h10.json": "59e8ec4ea30a7c337341fe3fe94e887c7ac79a8a6ada1d3a95010621f2eaebaf",
+    "datasets/holdout/h11.json": "4e9254289f753eb75ec1be42e6339fddfce2920366c18c5b143bcd85039f0982",
+    "datasets/holdout/h12.json": "7e8788442738df00fabc121d7f5672cc137ec02c527213852dcd63ffcfeae56d",
+    "datasets/holdout/h13.json": "63ce7b83b5504e0a7d20b85ca2ad51dd24b7e5431fdd16d2e2f6d6c540a993fc",
+    "datasets/holdout/h14.json": "51826953e08d5da9e5b4b3b8208519de2de95c7e808d0cc0b5097fb6d8f0f017",
+    "datasets/holdout/h15.json": "2a9b05dfcbb66e8c1157cea7b130e49874cfc8d71a3f8c88e32189e0c282b696",
+    "datasets/holdout/h16.json": "bfbc885b9c71d5a56fe7d2c3f2d3dad972ff65dc8683815c2cb36b45a3bfef54",
+    "datasets/holdout/h17.json": "3b8dfc8124b6108e7e46d181a8d0906a9ddafdc1e278e438e14063a9da51df0c",
+    "datasets/holdout/h18.json": "6da704182a88b89ffda61b02bcca3fbaf020a49cb32722620ae277829ae759c2",
+    "datasets/holdout/h19.json": "5619be0ff1f8c8fb60c23d3b3aed68229e5b82010dae8807492c26ded7db8ca4",
+    "datasets/holdout/h20.json": "581f27cb9f7288495a70cd875a384a4e5c9deca069dc598a25da81fd5b1aa45b"
+  },
+  "holdout_model_calls": 0,
+  "study_started": false,
+  "study_authorized": false,
+  "proposed_study_cap_usd": 70,
+  "proposed_cap_separate_from_daily_usd": 5,
+  "study_cap_enabled": false,
+  "remaining_requirements": [
+    "User review/confirmation of corrected freeze and study",
+    "Implement and verify a separate one-time $70 study ledger before any study request"
+  ]
+}
