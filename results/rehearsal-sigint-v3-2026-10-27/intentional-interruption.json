@@ -1,0 +1,7 @@
+{
+  "signal": "SIGINT",
+  "pid": 36020,
+  "trigger": "provider receipt observed; PID identified with pgrep after ps matcher failed",
+  "receipts_observed": 6,
+  "intentional": true
+}

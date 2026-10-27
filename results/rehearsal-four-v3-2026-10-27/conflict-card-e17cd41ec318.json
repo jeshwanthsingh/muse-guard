@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-e17cd41ec318",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "refund-impossible-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.002361,
+  "tokens": {
+    "input": 165,
+    "output": 507,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card:\n\nConcrete input: eligible = true, fraud_hold = true, context = card.\n\nRule A - \"Refund eligible purchases.\" triggers on this input and requires action: refund.\nRule B - \"Route fraud-held purchases to manual review.\" triggers on this input and requires action: manual_review.\n\nThe required actions refund and manual_review are incompatible for this input.\n\nWhich rule wins for this case?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 322,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 165,
+        "output_tokens": 507,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.002361,
+        "request_reserved_usd": 0.0047545,
+        "phase_spent_usd": 0.002361,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 3.034,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

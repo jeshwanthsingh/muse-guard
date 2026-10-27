@@ -1,0 +1,9 @@
+{
+  "budget": "daily",
+  "limit_usd": 5.0,
+  "known_cost_usd": 2.6756084,
+  "unknown_usage": false,
+  "run_count": 49,
+  "can_start": true,
+  "date": "2026-10-27"
+}

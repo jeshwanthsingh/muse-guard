@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "rehearsal-four-v3-2026-10-27: source hashes": true,
+    "rehearsal-four-v3-2026-10-27: progress exists": true,
+    "rehearsal-four-v3-2026-10-27: all artifact paths inside repo": true,
+    "rehearsal-four-v3-2026-10-27: workspaces inside repo": true,
+    "rehearsal-four-v3-2026-10-27: every phase attached and receipts exact": true,
+    "rehearsal-four-v3-2026-10-27: summary includes all phase costs": true,
+    "four flows complete": true,
+    "rehearsal-sigint-v3-2026-10-27: source hashes": true,
+    "rehearsal-sigint-v3-2026-10-27: progress exists": true,
+    "rehearsal-sigint-v3-2026-10-27: all artifact paths inside repo": true,
+    "rehearsal-sigint-v3-2026-10-27: workspaces inside repo": true,
+    "rehearsal-sigint-v3-2026-10-27: every phase attached and receipts exact": true,
+    "rehearsal-sigint-v3-2026-10-27: summary includes all phase costs": true,
+    "intentional SIGINT stops": true,
+    "interrupted behavior unknown": true,
+    "daily total includes prior charges": true,
+    "study total includes both excluded cohorts": true,
+    "offline root/path/budget negative checks and sandbox tests": true
+  },
+  "all_pass": true,
+  "rehearsal_cost_usd": 0.52975695
+}

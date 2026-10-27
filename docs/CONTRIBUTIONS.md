@@ -509,3 +509,9 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Corrected the existing executor's root, added pre-call Git/path/budget reconciliation checks, and attached interrupted phases through registered IDs and finally blocks. Interrupted behavior stays unknown while usage remains counted.
 - Kept one execute path for DEV and holdout plans. Moved new runtime workspaces inside the repo while preserving secret/write sandbox boundaries; eight focused offline tests pass.
 - Prepared committed four-flow and SIGINT DEV plans under the shared $5 daily ledger. Both stopped study cohorts remain excluded with $0.32629155 charged. No third holdout draft or activation before successful rehearsals.
+
+### October 27 — completed DEV dress rehearsals, third holdout draft only
+
+- Preserved two $0 startup failures; fixed repo-local sandbox scratch compatibility offline. Final unchanged v3 executor completed four DEV flows (two PASS, two RECOVERED), then stopped correctly on intentional SIGINT with its in-flight receipt included and behavior unknown.
+- Verified paths, committed-source identity, progress logs, complete receipts, and prior-charge reconciliation. Ten offline tests and the artifact checklist pass. Paid rehearsal spend $0.52975695; daily total $2.72015180.
+- Prepared only a third-cohort draft with the original 160 holdout rows/order. Both stopped cohorts remain excluded with $0.32629155 charged; $69.67370845 remains. No holdout activation/calls, push or merge.

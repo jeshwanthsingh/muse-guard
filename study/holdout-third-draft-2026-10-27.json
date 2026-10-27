@@ -1,0 +1,1504 @@
+{
+  "cohort_id": "holdout-third-2026-10-27",
+  "status": "DRAFT",
+  "split": "holdout",
+  "budget": "study",
+  "output": "study_runs/holdout-third-2026-10-27",
+  "entries": [
+    {
+      "pair": "h13",
+      "task": "h13-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h13",
+      "task": "h13-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h15",
+      "task": "h15-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h13",
+      "task": "h13-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h17",
+      "task": "h17-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h13",
+      "task": "h13-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h06",
+      "task": "h06-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h13",
+      "task": "h13-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h10",
+      "task": "h10-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h14",
+      "task": "h14-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h13",
+      "task": "h13-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h20",
+      "task": "h20-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-b",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h02",
+      "task": "h02-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h09",
+      "task": "h09-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h07",
+      "task": "h07-a",
+      "kind": "solvable",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h11",
+      "task": "h11-b",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h12",
+      "task": "h12-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h19",
+      "task": "h19-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h13",
+      "task": "h13-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h01",
+      "task": "h01-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h03",
+      "task": "h03-b",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h18",
+      "task": "h18-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h13",
+      "task": "h13-a",
+      "kind": "impossible",
+      "repeat": 2,
+      "mode": "guarded",
+      "record": null
+    },
+    {
+      "pair": "h16",
+      "task": "h16-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h05",
+      "task": "h05-b",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h08",
+      "task": "h08-a",
+      "kind": "solvable",
+      "repeat": 2,
+      "mode": "plain",
+      "record": null
+    },
+    {
+      "pair": "h04",
+      "task": "h04-a",
+      "kind": "impossible",
+      "repeat": 1,
+      "mode": "guarded",
+      "record": null
+    }
+  ],
+  "locked_files": {
+    "datasets/dev/access.json": "1267661b85d9fc448497993e5ee90c4ab9d8037f2ce8bd386686b96607dd055f",
+    "datasets/dev/discount.json": "9787f6066a9fa3b9298eb9bf2e57bed2dea871d530ac6d3a2faaf46b0dc315eb",
+    "datasets/dev/feature.json": "eb314a9449d780dacf9945cbba14e0a14d2a308537db1858139b566387c9ef01",
+    "datasets/dev/notification.json": "18302ef1168796fee996caff91ae5b157bc14745293a96c0bd054f40d6047b54",
+    "datasets/dev/pricing.json": "c57eb0f42825413feb64980f72e9306daff226b2fc179c003b12efb1a943c56d",
+    "datasets/dev/rate-limit.json": "cd1911e704aa64cf6a408bbb0f4b036f2887a52b49c7e0446a415bd78adf9a0c",
+    "datasets/dev/refund.json": "0dc8751eab98a5ba386e548fc65c2bdb07e8f63e41d6c437453dbe2856139d00",
+    "datasets/dev/retention.json": "466df09e9e05d872e892e323e5510fafe2a7ac6422b11b4a4aedaac0d1a25716",
+    "datasets/dev/retry.json": "895e9bfb3d3056bb3f67b71028d23823f525442fd66918bef5f48cf2f07c80ec",
+    "datasets/dev/shipping.json": "783341f2a3362091675b1c8d746941b4acdab1a16fe2f7611a1b0f366ad84263",
+    "datasets/holdout/MANIFEST.json": "4e452571fa48c30c11fa4f334b24c94f60db6aef89ec4910b86c06a5ab76a246",
+    "datasets/holdout/h01.json": "40765590f6237019dd8db8e6b6405a42562192c3f811663e1d0d63fea1697d9b",
+    "datasets/holdout/h02.json": "41201ea75d6dfd808e892fbc6fb4d40e9985002840d73ea5ff7bae46924bc8ea",
+    "datasets/holdout/h03.json": "0753522848bb2ccda743f8ec131e19a84d89852889da596b0842fc1db45840d3",
+    "datasets/holdout/h04.json": "6c0b65eb56bc1d177ba175944ce0d5624c3d333ea333ee8d804cdb208bf927f4",
+    "datasets/holdout/h05.json": "b3959691c83ba091e523452bd4122744de877a25dac380ed9a04aadf3083b035",
+    "datasets/holdout/h06.json": "b8cc3c21444db43ad0b497465ae6776f004f9b234872eb56927b29c43485be28",
+    "datasets/holdout/h07.json": "4e3892a77447808d69837949e8397c1d55280abb5d0b3b10172d15aad3439649",
+    "datasets/holdout/h08.json": "e6cbdc46c95e5d2235a57a3843abf16f003380c8c880e7aee40310648284a047",
+    "datasets/holdout/h09.json": "cb5c8432f7324451a6d4c2000123c9c6e742fd370a3d37c75d38cd91ba2a4865",
+    "datasets/holdout/h10.json": "59e8ec4ea30a7c337341fe3fe94e887c7ac79a8a6ada1d3a95010621f2eaebaf",
+    "datasets/holdout/h11.json": "4e9254289f753eb75ec1be42e6339fddfce2920366c18c5b143bcd85039f0982",
+    "datasets/holdout/h12.json": "7e8788442738df00fabc121d7f5672cc137ec02c527213852dcd63ffcfeae56d",
+    "datasets/holdout/h13.json": "63ce7b83b5504e0a7d20b85ca2ad51dd24b7e5431fdd16d2e2f6d6c540a993fc",
+    "datasets/holdout/h14.json": "51826953e08d5da9e5b4b3b8208519de2de95c7e808d0cc0b5097fb6d8f0f017",
+    "datasets/holdout/h15.json": "2a9b05dfcbb66e8c1157cea7b130e49874cfc8d71a3f8c88e32189e0c282b696",
+    "datasets/holdout/h16.json": "bfbc885b9c71d5a56fe7d2c3f2d3dad972ff65dc8683815c2cb36b45a3bfef54",
+    "datasets/holdout/h17.json": "3b8dfc8124b6108e7e46d181a8d0906a9ddafdc1e278e438e14063a9da51df0c",
+    "datasets/holdout/h18.json": "6da704182a88b89ffda61b02bcca3fbaf020a49cb32722620ae277829ae759c2",
+    "datasets/holdout/h19.json": "5619be0ff1f8c8fb60c23d3b3aed68229e5b82010dae8807492c26ded7db8ca4",
+    "datasets/holdout/h20.json": "581f27cb9f7288495a70cd875a384a4e5c9deca069dc598a25da81fd5b1aa45b",
+    "docs/NEXT_PILOT.md": "41dc2eb91ca8c8dc5c8e8fe0e7fa55e755cbaca1cfd7e889904f3ad861e3bf4f",
+    "docs/PRIMARY_MEASURES.md": "21b0ab6dce6170add1dc8e1fbfb3a4f34186abfe263d8b21d44d004b67f20810",
+    "docs/SPEC_EVAL.md": "c141805cafddf16013286510a1bbc3e6ba25342f32c1d5fc60cef7626f4af6e7",
+    "docs/STUDY.md": "c3b6f648e1c74c71765ece3a5c363bcff2b47eee3e8fab072eadb8039d44ce4f",
+    "docs/STUDY_ACTIVATION_2026-10-27.md": "4f015817d18215b43146526897fc5fc9e8681a3532bbd516c8f2cb798b3b09a9",
+    "docs/amendments/2026-10-26-behavior-only-recovery.md": "68e991e8ea19756a69ddaa49092d87e73c36891fe33f50911956990048bfe7f6",
+    "docs/amendments/2026-10-26-day4-fair-recovery.md": "896444a15cd84435c3d5ce9978f2fcf4f22b9ff7975f55137df84d52a7912044",
+    "docs/amendments/2026-10-27-executor-paths-and-interruptions.md": "8b7f6258979355f6f3717c3e20f19f581cbdc529ef04f6931c5bd9ea14877405",
+    "docs/amendments/2026-10-27-known-usage-settlement.md": "c4d2612bfa2cd780a1b0a4ee54b1e4d91592b9c1dbaafd042d79fab19dda73fb",
+    "docs/evidence/DRESS_REHEARSAL_CHECKLIST_2026-10-27.json": "716df6989d18295f0523740e6c705b8d917f2831d917a2ac8fce602b5b2a7f43",
+    "muse-guard": "d011e62804277eed847e13627d87b01d8a629fcb18694f53cce899de69e0ad5e",
+    "muse_guard/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "muse_guard/checker.py": "721ce23c545953e36f38d41f7cfd0e053e589ba1bd4bb1620d63a6e4bf9dc9a7",
+    "muse_guard/cli.py": "8078be593bbb7828d73b5469a9d52b30700cc98dfe9126e17c77128f199d5ef3",
+    "muse_guard/detection_policy.json": "336f932331ff0d66b0fe836472940746e606fdb0a4b92195f589ec239b75f57b",
+    "muse_guard/evidence.py": "9a0819aa50db7f55ae61e4ed48942f484ce358803cbe35b07d35b54c67334455",
+    "muse_guard/freeze.py": "b15027ef8ea7a7a816ed34efeab3a5c49c7b390f5828c022b993f762cc4107f6",
+    "muse_guard/gateway.py": "4b78d188f139070c8173758cc4f5cced8eaf27730331d964e930feedb28188c2",
+    "muse_guard/isolation.py": "4e94074aa08d26519b7c23deb10688ffb74e735ef5a1e40aca127155eebc8162",
+    "muse_guard/legacy_tasks.py": "dc59703f2055e9fbc22cd458c08cacc2b104f46bf0f3ddb838e280057fbf517f",
+    "muse_guard/metrics.py": "9220694fc82af1759bc80800d9d097a7976b19a91b65b0072c11c2653c6c3c15",
+    "muse_guard/pilot.py": "65001761b2731bbe2a13c0ab93ebcb15c0654acdf847b8acf7aa8121cdb7a132",
+    "muse_guard/plain.py": "822912957a2c4211adafdfc2d5d87759468a6e0daf39014b60e9632a700de0dc",
+    "muse_guard/quality_gate.py": "a959071eede775b80cb071a0d3e151805267d5194ed1779f6c195dd934505ab5",
+    "muse_guard/recovery.py": "da5f4c9782989b06052f49c67e29ec3d6d54d38e0468d6c09e62db16d5cfb167",
+    "muse_guard/rule_checker.py": "69c787fce6280926146b46de3ef2753e790d418729c9cb3878755f865b0bba98",
+    "muse_guard/rules.py": "ebf24d2804c6b626f0d826966246f5c979ebf0e199d9e3eaf3557430c7cd3556",
+    "muse_guard/runner.py": "699eb07daa74e4d8037b5424c4b1db8243cc20bfcc69c893af6292430d6b38d3",
+    "muse_guard/site.py": "bdf2b74463f5bee8c7542ad0d81d73ff59f7fa7b0181b2d6dbe534a6a5c60e4c",
+    "muse_guard/tampering.py": "be4d12293a41c8e5840062b104aa76ebddb8c768fce840ca7ebfbdbdfcc03b16",
+    "muse_guard/tasks.py": "0da34bfdd15ee76723c5c193e31a6378321641686dab261a2e21f132e4221f68",
+    "muse_guard/view.py": "116519890b437989384c437e3c31c80ac74a3f8c489079c146c42402a66a9d66",
+    "muse_guard/view_assets/index.html": "0bd01f18193d5b2601c5ccc7a9cc686f9396adcc91248e686b073f6cff582d19",
+    "muse_guard/view_assets/style.css": "be62a529418857f05afcde7cb83d840139e69869076488c1fa697d9c33b47536",
+    "muse_guard/view_assets/view.js": "cfcc2c59a1ba472f0b28f71bbd342411459c13c0d7991f4589d843020606c4fb",
+    "results/CLEAN_PILOT_2026-10-27.json": "7c201f5ac66f9b682f8f5a9d92ef39f4d977040f9869a43ab272e118b6c3753c",
+    "results/OCT27_SHIPPING_CORRECTED_GATE.json": "fe9cd39df294502f8889b74872255374b2e0e60c1d8eef76a1d4001c9e7bae13",
+    "results/OCT27_SHIPPING_CORRECTION.json": "da25b60411f1f88c0974dbe625b780331f2a6f8f13825d9293e52521ca7749c1",
+    "results/conflict-card-1504dd66bc00.json": "964fb6286d84a7bbe69280eb25cc5c3fef02777354ce7b381a5cace6dfc02ff3",
+    "results/conflict-card-e19c313636c9.json": "ddbdec455d04f34a8f60fb0fee6c619671860521b15bc139b2365e510cfe50f6",
+    "results/conflict-card-fd84158faf28.json": "f5b1c521a7c931bdae89c34b757eb2b7b2bfe65639ca9f4b5d6f72213d7af063",
+    "results/plain-recovery-570fbae50239.json": "7950326567aa2bf2ee7ac1e714c45494e3626403153bb279d15b2a173db4baf7",
+    "results/plain-recovery-5c0a0c48d176.json": "02e75f07f847a4d76eb928bff0e5f63314aec109af531f13cc9062bedf3de8b4",
+    "results/plain-recovery-83461dad2ec9.json": "b8905cd41c5a439cb0d12a8060c4f67feb99157d339acff4c4b125aa58901d5b",
+    "results/plain-recovery-8ad81fd253b5.json": "98d39e5a769bd38d8d27f5033b61daaa94a151454797802aecc2d2887dbd27c6",
+    "results/plain-recovery-e25c8376e263.json": "0bf1e658da9160cfa24561d6407bd0c8a66b48728ba557f31a4f1e9c229c35f7",
+    "results/plain-recovery-eeee71fb10cf.json": "826b4496efbe5868d45a76d63d7572afb2f220c1f33250036faaba68242e5ad4",
+    "results/plain-recovery-f44d8a690270.json": "6b271aab587e7f6f9cc6a011b36d62e3f5950bad1230724b0073ca76b58ae0a8",
+    "results/recovery-1f354a7100ea.json": "248abea3af6788fa0b6a9091ab377ba59de73f2d30db0b1a234662a510afea27",
+    "results/recovery-6c3480d145c7.json": "8ec8cc8ed453d84a4db2156917eca678dee1f00c2748bf03128219a7a5a78d19",
+    "results/recovery-a7faeea751c6.json": "aa9cca52263999b3b5b8d65845d2871fbc9bc04b3859204a4f6740d8f063c8e1",
+    "results/recovery-e82abc5e6919.json": "aa7c6f2417748db221ad08bbeab91efe83ac6bd8b7722dadaa8a2decd2c24484",
+    "results/recovery-ec7c84fb8f56.json": "b5d9373e20135752b50a9a606d830ab1eff8e585876ff45fbb9053872bfa21ad",
+    "results/recovery-feb2c606ee98.json": "3a6b3bb3bba39c0c8a9d30c17fb94d72dc588357f13c3c2d5d2e63dc1a49c9cc",
+    "results/refund-impossible-v1-31346dc25425.json": "746f979721e783ffc71042fc9a4852df79f864b0f08d48de705493f807058705",
+    "results/refund-impossible-v1-b56d2d2ff29a.json": "21e91f8aa80061c1f0fcacf7d7c76987b05eb9fef3dcdf8f666f69fd43296a84",
+    "results/refund-impossible-v2-a0cff4b74b03.json": "c92be28ddac2f4faf9de387e1898071d37794b9baa757b46d834ac01cf9d30d0",
+    "results/refund-impossible-v2-ccafdfbb164d.json": "96719d8fead1567e7a36d52465511af800320e94012370b267491f3ad847dbfe",
+    "results/refund-solvable-v1-91c1fd2c04e3.json": "2f0e9cb35d6ea49d752d30c88431ebb73188d5c2d3a9418e81ef629d51344c36",
+    "results/refund-solvable-v1-bfc5a247b10c.json": "b3f383a7bde6bfc0c47a698bee6d4249bea9065425e78754d8184f29a1592827",
+    "results/rehearsal-four-v3-2026-10-27/cohort.json": "7bed6bffacd3da44952ac346a63fe9d61f1dd53d43abba924e17f9905ea9bad5",
+    "results/rehearsal-four-v3-2026-10-27/conflict-card-e17cd41ec318.json": "82941a6336cceb937362ab8cc2a44d37e12eeea65df2cd8ed6ee7505c292b9ec",
+    "results/rehearsal-four-v3-2026-10-27/refund-impossible-v1-b46f9c771aa5.json": "7a4c233cb74a135f2a44478f6c38d1f183ad586ca2c938617556b48687399191",
+    "results/rehearsal-four-v3-2026-10-27/refund-impossible-v1-fab5dcea858c.json": "4d63f8afa6adaff3e720574ef86ad56f4040bc7d96f99ece147859d7239ec870",
+    "results/rehearsal-four-v3-2026-10-27/refund-impossible-v2-528837015c29.json": "15b227672d55e90d4096442024f00311922f5783a774991bce9c56c3b339b09c",
+    "results/rehearsal-four-v3-2026-10-27/refund-impossible-v2-d868acb27516.json": "d4cd090106e5bc38c38f8df5d84e89ee4dafb3c63d56bc81bcacdcf4f29853d1",
+    "results/rehearsal-four-v3-2026-10-27/refund-solvable-v1-5f149ae14965.json": "da6a9280fa02a67cb69a83ccab782eb42f7857927f92defc9fd8536107161dce",
+    "results/rehearsal-four-v3-2026-10-27/refund-solvable-v1-f2e1cde1f8e9.json": "25971634261d49f542bb030b5f87884dbf4725030a0e72b632133307cbc277a7",
+    "results/rehearsal-four-v3-2026-10-27/study-flow-6c9664d75733.json": "4aed7bf777773cf3c1fb41a4246de804fd811693829fe5d8d691614b76c5abea",
+    "results/rehearsal-four-v3-2026-10-27/study-flow-7844f57cb276.json": "db6c7ec37beec2f26cbc8e664ed06a339e6c45586eab67c0c9a6325f0fa062c0",
+    "results/rehearsal-four-v3-2026-10-27/study-flow-8fbd1735e9b8.json": "a9c57e36433e1fe2fb3d42290881acb5aa5893e29ff36daeb48e723815190741",
+    "results/rehearsal-four-v3-2026-10-27/study-flow-ba736640321a.json": "40c44c8ef19587803cd6d73c6182a6a30409328ed578ddfb8622f9be9770613f",
+    "results/rehearsal-four-v3-2026-10-27/summary.json": "be6c3ebc224a3bb5a8060d83b0e984ae1c6514ab173b33e0e1224c86b77569a6",
+    "results/rehearsal-sigint-v3-2026-10-27/cohort.json": "0f72b093d00ad916fbbfcf0579d3e40841d5d8f2f95ad9008a6621d59f384bd1",
+    "results/rehearsal-sigint-v3-2026-10-27/intentional-interruption.json": "78f411ddb4b75f51d71101af82869025c599e1750d5b5ef677c723000cbc5837",
+    "results/rehearsal-sigint-v3-2026-10-27/refund-impossible-v1-98551889a8cc.json": "8f4e44f63dc912c58424ed1920957e0b6580be6cd55d10607c415e103adf28dd",
+    "results/rehearsal-sigint-v3-2026-10-27/study-flow-b199f12d228d.json": "ca2f040d5b6bcd88dffa4402de9fa54056da2192739e793e335ff2836de6a9dc",
+    "results/rehearsal-sigint-v3-2026-10-27/summary.json": "e4757bd559abc6eb99e997907e7a18abc69d28e5e3161cf8d67f5e319cc499c1",
+    "results/retry-impossible-v1-2606904fa16a.json": "6f9a86276dd65a444226cb56d7de294d6d37db4fae3ad8e8949d81f11345ecaa",
+    "results/retry-impossible-v1-b7df19ed7257.json": "0cd2c20e146fe69db273da07d499622a9d4ca0bac02cc8d84b2f6cd3dc2e4778",
+    "results/retry-impossible-v2-95d45e4b1229.json": "f4584325d51c634fb16cbf1d547b14a40a50ce4e08c9ec2468ba3fb058b4c580",
+    "results/retry-impossible-v2-d93b0ad97ec3.json": "ad837a41ab31deaf1725b3e9f42190cd1340238e85f378273ab30bcb5777f35a",
+    "results/retry-solvable-v1-5cf4275e7eda.json": "5d6f352add94b885b16f5f26e5d1ab9e261b40f82e7a723ba2b001d6c7f4340f",
+    "results/retry-solvable-v1-b1c870b54bdc.json": "fbf7626f80d99b039fe341091a4d82f47827adffb077413874f50c50b342737f",
+    "results/shipping-impossible-v1-147a5cc15655.json": "53ed1b0e5c0a8711f4144329b1922e9ba9f3a0d2d95a7e52edc8a3815b9ae74f",
+    "results/shipping-impossible-v1-29dfab615ce6.json": "cb4af9a9c27a3ecd52b30998e73ae734c993f0f93b68c9c8b4e0a5a6bc7db06d",
+    "results/shipping-impossible-v1-2e11e499480c.json": "a2332acbe72d717a9c864ddb4886bfcc35358548e750a889a4f64a101c65b203",
+    "results/shipping-impossible-v2-3c5f60d5f05a.json": "ff3cffbac265f0566f5dd494a846e2e1789bc240059b18b15465a509d8182c83",
+    "results/shipping-impossible-v2-58cd9ddbe88b.json": "5531c42c67852367cf138dda31fd5dd53417542d01c6aeb93eab9a9bbb1ca64b",
+    "results/shipping-impossible-v2-e416261caa5f.json": "35d1a45f997a9f32cf6ff89271d548317d0b9fc15fb451bb37f8648e24f8fce9",
+    "results/shipping-solvable-v1-785e3a9e4de0.json": "8d7c458997d0e200d4836735bae75efc083aa4bf206aa8475aed20a1059edaba",
+    "results/shipping-solvable-v1-ed980daa1850.json": "c6c6d19ed5d4c806e269278d2a6a2bd54713a8042086ea7b09967f5f29b5d7ea",
+    "scripts/clean_pilot.py": "7499d469876b43b179aed6f987833ffc6bb85e4aad59a6f8be0510eab7324f4a",
+    "scripts/day5_pilot.py": "4229ce6a61fac2219c68a5dd15934ddf827d2052c43dd89df35e6ddab1a43e54",
+    "scripts/prepare_static_demo.py": "38bd4aab85195ec0fda4717a8c2fc614b171d10d8324905112ff5cbe806c7745",
+    "scripts/prepare_view.py": "f52b374888fa5b58ed6219ab8f1ed92a22df90b110facbbaafd085edd7353d7e",
+    "scripts/provenance_audit.py": "97bc0753148d92bcf07debf350a396d7f9d4bf6a9d411f80991370df4113d1de",
+    "scripts/reviewed_freeze.py": "66dbf1adad4b8d51f0111217ae7a37824bb8b090a17ce37461345c8f8afff29a",
+    "spec_eval/MANIFEST.json": "3435a2591a6bfa48fca9ee799fbd97ee487ba2d730e32673715c9ba4612cd095",
+    "spec_eval/docs/access.md": "3bbadf7cb9047d3885a7e7cc4587f25ee62ce2aa5fc055d9e9647945892acd50",
+    "spec_eval/docs/bookings.md": "0c4d92b16e46740f1784d31f4271206b1ac4ba4e77ee91ee3a859cac27a851a3",
+    "spec_eval/docs/notifications.md": "9501b826c7f0fe57eb219bf38c14511ecb80f65b97c2c16c5ed0a5aa722157c0",
+    "spec_eval/docs/pricing.md": "544ffcd7a2525b008f37b39483fa4c07185b71c6e2e8d66021f6f0ae91647efe",
+    "spec_eval/docs/refunds.md": "080afcd0f53f229768ebf22f036b71520af77ee4762fb870f0137133e0a1bc7f",
+    "spec_eval/docs/retention.md": "1eee2680b11f630265c39dbdde0f3c164e57b8b15fe4bc8f5c02d87876eb4d36",
+    "spec_eval/docs/shipping.md": "4050dec959876a4b2582a93f1efe91757734f700e79a1ec5004b7e101a6fbc7c",
+    "spec_eval/docs/support.md": "0c1e3a67b389649ab2960b7fc5d949d4ebaa00300177265cb1943b70c061e549",
+    "spec_eval/fake/access.json": "edbc05c20929c4ed70b230848df37ebc473e666c16baa3af317d7f65d24c547d",
+    "spec_eval/fake/bookings.json": "c9af056bad69693b3d5f67d6273d0c2f018a7fe3f6592104895f9fec91b54e0c",
+    "spec_eval/fake/notifications.json": "031ad89743618b927b735c6271bdd2d0dfd746ba06e6c7d7df87daf3415b9c09",
+    "spec_eval/fake/pricing.json": "e911eb548480e5724ac838cd7dae47603545a1a5411d1c422cd8d81ea9a6ce22",
+    "spec_eval/fake/refunds.json": "6729afa5d5cf2192b73dc59d430465660348df30cc38fab471edf0f47297bb00",
+    "spec_eval/fake/retention.json": "1c6c4f6f5d32e086cc5187542b887bd3d3dc49a81d04a2964c64c3a3d9f65838",
+    "spec_eval/fake/shipping.json": "36e240e66186f95cc37d78d7e3824c4c8c599bc80d547262c729f19f3b0d82a8",
+    "spec_eval/fake/support.json": "c0b6e5d487f126faf03e6cc50362093c4bb9eacb454b7462ae64bf2fdf78b0f6",
+    "spec_eval/truth/access.json": "da86aac36d20fdcb65acc7dfd991fdd1d3dc8ec4fcd6c3247b4bec13005b9a5f",
+    "spec_eval/truth/bookings.json": "18d64de6b6d23b8f38dc6dee8b8a057613813af5227149dfb9a686ddc727e802",
+    "spec_eval/truth/notifications.json": "ff1239a0d880c5683bd6cf8c77a12e48061694e8b90777b8e6c05fc476ca46bb",
+    "spec_eval/truth/pricing.json": "2998e51b6ce8688b6dd1033001b764bd7962af1088753e5a45af6f775773e4be",
+    "spec_eval/truth/refunds.json": "730ebd00b4a19a453d75b679a0c6c9c951a0ad19260777728570f10071fe4a8b",
+    "spec_eval/truth/retention.json": "09587e0bbaefc16166faa94ff50661067c21dc49e44d78a1b6542330935177f0",
+    "spec_eval/truth/shipping.json": "d532ac7943f565fb46af1b2b5ec619beed12025ef4744b9c3fbe560ab9784584",
+    "spec_eval/truth/support.json": "39a8bb5817099bb4b5bc84c1ece49c6667e10f7d801e01b7b3fd130520645630",
+    "spec_guard/__init__.py": "9952a06645eb7e5c37e7690cd7439bd45ba98c32bb9246596674503f97ce1a8a",
+    "spec_guard/bin/muse-guard": "40a73575e3229a8c31be0aaef3ff82e29a9f9572dfedc3bf97264c23bc74cf27",
+    "spec_guard/cli.py": "23b8a6de56699928ade0f03b13b2db50e1391f4d996feb078ecae5a60c579b24",
+    "spec_guard/core.py": "539b911cd8b2df78d62b56005938cf83a72fe664abb7d6287ce7fc745986c842",
+    "spec_guard/evaluation.py": "5919ad4541fe9b46d62373ff13a21bf87a3ad76bd39e3cc3fab2d10e0d0b9b52",
+    "spec_guard/provider.py": "9a1850db2e241f50b7ef590c7d5e76460e05bcd2f8a6f93c5ea75ca97a94136f",
+    "spec_guard/run.py": "9d3e8008ce05f54fdc4053b7bfb37b6bc624eb4d1b4a5911e5603e6701219355",
+    "spec_guard/view.py": "639710952b0c0af4bc59975679c9bcb8b798924eddbd3f7ad2fca4ec2e5e9a78",
+    "study/CORRECTED_FREEZE_REVIEWED_DRAFT-2026-10-27.json": "ffe31f094baad67e7be63c14c312aa3971f905767b817dbef8615e9dc8fbf003",
+    "study/HOLDOUT_ALLOCATION-2026-10-27.json": "6d259fc2e3990e6b8eb1a0ccbb36e24022f840f914acf860cf6bf1c71ad4a445",
+    "study/MANIFEST-day4.json": "18316b3e211dd6f1910ef7770d00a7447a6f0459fd4c0ea18d4cc7aecdbc8633",
+    "study/clean_pilot_plan.json": "e418342f857f3b1c82782e6d10e83774a9f2adb497124d6760a09e4e21ddad6c",
+    "study/protocol.json": "20e001b230ba4c5ff22dbc931154a7e9b8ea969ee1c2a2504f61b94dfdb01a7f",
+    "study_runs/holdout-2026-10-27/cohort.json": "0d9038a65d3e77da8724d8e1b830b0e7994c38cf9c9efdd8c75e743e94e28b39",
+    "study_runs/holdout-2026-10-27/h13-b-v1-0c28f4f6a26e.json": "f442cdfd8c4bdb87cceae3ec9b7ad5822d4d7d440fae7482b6afe52082b41866",
+    "study_runs/holdout-2026-10-27/study-flow-3b7c909d66e0.json": "040ee9842c509eee5d3e4d2c5437494ed182205a8120472230121775128bacbf",
+    "study_runs/holdout-2026-10-27/summary.json": "e117e06f4f8b8a9281e7449118ebf9dee62261ea1fd0994d6b55d54403274104",
+    "study_runs/holdout-restart-2026-10-27/cohort.json": "b28813564c2827db2eba077ccde2f516e14359669ddff2c5b07d91e1356736ad",
+    "study_runs/holdout-restart-2026-10-27/h01-b-v1-cebbeabbb748.json": "f75fef797f66f55afcc5925d164a3812670c91bc91a77bb925e4da93f375949a",
+    "study_runs/holdout-restart-2026-10-27/h01-b-v2-1d8e61f8d6db.json": "a67a115f7338d0a71169338ab2a4b1186047e0137028a78e909aca502689264d",
+    "study_runs/holdout-restart-2026-10-27/h07-a-v1-417cf8b7630d.json": "09a307edb713c0131b1ed67f96fdd27e22892e8b060324f5b40f2e074a597627",
+    "study_runs/holdout-restart-2026-10-27/h13-b-v1-f36f0b886e99.json": "74a777d2f67bdcd8bcd2a8083fa30819bf7bd906a3b2abfe259b349c36970006",
+    "study_runs/holdout-restart-2026-10-27/preservation.json": "5a2ab24fca966e29dcf52d378faac8b20c51044b6018764c4fb965d866188777",
+    "study_runs/holdout-restart-2026-10-27/study-flow-68a02ac2b9fc.json": "667b4c7408076123847efc03a4bc4accc6207674096386cb6a48873a4444d2ef",
+    "study_runs/holdout-restart-2026-10-27/study-flow-ca50625cfa1e.json": "2cc143227f478ed6483010c48ce5d18c133b84a09f6a70f8248a5356f343acfb",
+    "study_runs/holdout-restart-2026-10-27/study-flow-feaed56ebcbd.json": "be4bd1799f892b5fb3961a53e93fef561efd871c0f7d55ce8d9c26404253f0ea",
+    "study_runs/holdout-restart-2026-10-27/summary.json": "c12b9f3ac35f5f1b08e5ee9f3b462be7e37921101838439de1aab39e686b4cd4",
+    "submission_tools/behavior_score.py": "5da4e3108c541a5e4b3548770e73784f36cf63c343ae9eef16496dcfb009d88f",
+    "submission_tools/export_policy.py": "ba5c683c090f45de8570b64b58a8bc170055bcdc91edd896e8e1ddcd8af8a1c5",
+    "submission_tools/export_runtime/__init__.py": "beb884c5cdce0d1cae07dc31273c495b319696156e293e9052ce4e723cbac0b3",
+    "submission_tools/export_runtime/card.py": "0b1d2f8bab24bf886bb6386d02770a7272fbdc86ef41e06e85d28e8a836991e0",
+    "submission_tools/export_runtime/ledger.py": "d9a6c367f27ea30f2728eb32861bc837aa809f87f69b17a473bdb6dc43d56b86",
+    "submission_tools/export_runtime/runner.py": "98a573a92d8169bc05c6265e46788e651e8460d9b3dc951f3edd43f845f6ebc7",
+    "submission_tools/holdout_study.py": "f69222ba0dc703776cb07d6918631bcc552ff61086d3dc4b64c336e4f860b0ae",
+    "submission_tools/restart_budget.py": "db59554da7a10c641172139e426d25cbe3998f0e10d504f490d7d148df7633e5",
+    "submission_tools/restart_study.py": "020d89508d95886da7db8d7d56889ca2f7ea8b9c6365e7d3bcd520970207992c",
+    "submission_tools/settlement.py": "ca6b1eba9e0fba70491c731d07e8a0fa461783368d055e0707213b85a2623809",
+    "submission_tools/shipping_rerun.py": "55d23764efe7645c4cf08bffb1d3efa80ed500436356776116cea07e68d0ea33",
+    "submission_tools/study_runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "submission_tools/study_runtime/card.py": "227694b66bf8251c582e218cdd6155adcf8f24b9b9b04157aea2679057e886bf",
+    "submission_tools/study_runtime/ledger.py": "ee41ef36c13d7cff71d15f8294c4be27b158ec5e19a3a1e69f7df8e309bb4f3c",
+    "submission_tools/study_runtime/runner.py": "d8c009bde2c958dc460fa48a98708d9e82281c02d7ed89ef16f590b94a98e050",
+    "tests/test_holdout_study.py": "7d4f413b1d649c3534e7bfcfbaa3f42cf7a2f6bca52a2781ecc300d6931b3898",
+    "tests/test_restart_study.py": "1cadf714439ea09a95243611b233de75b4439a47cd31bf1a9b2acf7968c15385",
+    "tests/test_settlement.py": "d9617c9b5b4ed1887c62ed2efd20ff252de5811dd7a295a193f8df17c0a656e3"
+  },
+  "excluded_cohorts": [
+    {
+      "id": "holdout-2026-10-27",
+      "reason": "excluded: harness stop",
+      "cost_usd": 0.1083648
+    },
+    {
+      "id": "holdout-restart-2026-10-27",
+      "reason": "excluded: harness stop",
+      "cost_usd": 0.21792675
+    }
+  ],
+  "prior_study_cost_usd": 0.32629155,
+  "remaining_study_cap_usd": 69.67370845
+}
