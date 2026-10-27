@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "date": "2026-10-27",
+  "kind": "authorized single dev-flow corrective rerun",
+  "status": "FINISHED",
+  "original_pilot_sha256": "7c201f5ac66f9b682f8f5a9d92ef39f4d977040f9869a43ab272e118b6c3753c",
+  "original_record_id": "plain-recovery-83461dad2ec9",
+  "runtime_commit": "5a5d40e7a2c185bc45d1b1dc3bf234388b34630a",
+  "base_pilot_runtime_commit": "ef9d36b0e4cf546d45cae469fb61d5d69f27a80e",
+  "correction_files": {
+    "submission_tools/settlement.py": "ca6b1eba9e0fba70491c731d07e8a0fa461783368d055e0707213b85a2623809",
+    "submission_tools/shipping_rerun.py": "55d23764efe7645c4cf08bffb1d3efa80ed500436356776116cea07e68d0ea33",
+    "docs/amendments/2026-10-27-known-usage-settlement.md": "c4d2612bfa2cd780a1b0a4ee54b1e4d91592b9c1dbaafd042d79fab19dda73fb"
+  },
+  "original_results_overwritten": false,
+  "holdout_calls": 0,
+  "record_id": "plain-recovery-e25c8376e263",
+  "record_sha256": "0bf1e658da9160cfa24561d6407bd0c8a66b48728ba557f31a4f1e9c229c35f7",
+  "phase_sha256": {
+    "shipping-impossible-v1-29dfab615ce6": "cb4af9a9c27a3ecd52b30998e73ae734c993f0f93b68c9c8b4e0a5a6bc7db06d",
+    "shipping-impossible-v2-58cd9ddbe88b": "5531c42c67852367cf138dda31fd5dd53417542d01c6aeb93eab9a9bbb1ca64b"
+  }
+}

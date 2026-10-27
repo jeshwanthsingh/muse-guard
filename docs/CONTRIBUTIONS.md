@@ -454,3 +454,18 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
   fallback scorer, tests and dependencies before any extraction. Original eight
   docs/scorer/manifest unchanged. Future study $70 cap remains unenabled pending
   user confirmation; only the human-reviewed extraction set is next authorized.
+
+## 2026-10-27 — Separate-set results, original scores retained
+
+- Ran each frozen Claude-authored/user-reviewed doc once. Doc2 passes 5/5 rules
+  with zero clashes and no fallback. Doc1 fails the fixed representation rubric:
+  1/4 correct, 3 wrong/missing, 0/4 matched clashes, 4 missed/unmatched. Raw
+  output nevertheless recognizes the four stale/active witnesses using yes/no
+  strings and out-of-list names. Reported this distinction, not a semantic
+  conflict-detection failure claim; no post-hoc aliases, rescoring or retry.
+- Separate set cost $0.01230650; corrective flow $0.12893130; today
+  $1.78865420, all accounted below $5. Original eight unchanged.
+- Supplemental corrected gate passes; original gate remains failing. Prepared
+  an uncommitted draft outside the repo for user review. No study freeze commit,
+  holdout calls, push/merge or $70 study-budget activation. Detailed evidence in
+  docs/OCT27_CORRECTION_AND_EXTERNAL_EVAL.md.

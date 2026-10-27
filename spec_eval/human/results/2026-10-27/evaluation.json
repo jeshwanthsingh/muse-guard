@@ -1,0 +1,1128 @@
+{
+  "set": "Claude-authored, user-reviewed; separate from original eight",
+  "status": "COMPLETE",
+  "entries": [
+    {
+      "document": "doc1",
+      "source_sha256": "f1d9546e924749598be5500b41054b3de0bf22d275008657d5d529aef59aac7f",
+      "proposal": {
+        "input_space": {
+          "over_30_days_old": [
+            "yes",
+            "no"
+          ],
+          "is_top_company": [
+            "yes",
+            "no"
+          ],
+          "over_3_weeks_since_applied": [
+            "yes",
+            "no"
+          ],
+          "heard_back": [
+            "yes",
+            "no"
+          ]
+        },
+        "rules": [
+          {
+            "id": "A",
+            "quote": "If the posting is more than 30 days old, mark it stale.",
+            "when": {
+              "over_30_days_old": {
+                "eq": "yes"
+              }
+            },
+            "action": "mark_stale"
+          },
+          {
+            "id": "B",
+            "quote": "Anything at one of my top companies stays active.",
+            "when": {
+              "is_top_company": {
+                "eq": "yes"
+              }
+            },
+            "action": "stays_active"
+          },
+          {
+            "id": "C",
+            "quote": "If it's been over 3 weeks and I haven't heard back, send a follow-up, but only for postings that aren't stale and aren't at a top company.",
+            "when": {
+              "over_3_weeks_since_applied": {
+                "eq": "yes"
+              },
+              "heard_back": {
+                "eq": "no"
+              },
+              "over_30_days_old": {
+                "eq": "no"
+              },
+              "is_top_company": {
+                "eq": "no"
+              }
+            },
+            "action": "send_follow_up"
+          }
+        ],
+        "default": {
+          "quote": "Otherwise, just wait.",
+          "action": "wait"
+        },
+        "unconverted": [
+          {
+            "quote": "The tracker should give every application exactly one next step.",
+            "reason": "meta uniqueness requirement, not a single input-condition to action rule"
+          },
+          {
+            "quote": "Quick context: I apply to a lot of roles, so old postings pile up fast.",
+            "reason": "context only, not a condition-action requirement"
+          },
+          {
+            "quote": "The only facts the tracker knows are: is the posting over 30 days old (yes/no), is it a top company (yes/no), has it been over 3 weeks since I applied (yes/no), and have I heard back (yes/no).",
+            "reason": "defines input space, not a rule"
+          },
+          {
+            "quote": "For top companies I follow up myself, so the tracker shouldn't.",
+            "reason": "prohibition / manual handling, not a tracker action rule with eq conjunction"
+          }
+        ]
+      },
+      "measures": {
+        "rules_correct": 1,
+        "rules_truth": 4,
+        "rules_wrong": 3,
+        "rules_missing": 3,
+        "clashes_found": 0,
+        "clashes_truth": 4,
+        "clashes_missed": 4,
+        "clashes_false": 4,
+        "domains_correct": false,
+        "schema_errors": 0,
+        "invalid_unconverted": 0,
+        "success": false
+      },
+      "cost": {
+        "run_id": "spec-extract-aa28ea4fb3a3",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.0065775,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 5.532,
+        "tokens": {
+          "input": 417,
+          "output": 1425,
+          "cached_input": 0
+        }
+      },
+      "normalized_review": {
+        "schema": 1,
+        "kind": "spec review",
+        "doc": "Job tracker rules (for my own application spreadsheet)\n\nThe tracker should give every application exactly one next step.\n\nQuick context: I apply to a lot of roles, so old postings pile up fast.\n\nIf the posting is more than 30 days old, mark it stale.\n\nAnything at one of my top companies stays active.\n\nIf it's been over 3 weeks and I haven't heard back, send a follow-up, but only for postings that aren't stale and aren't at a top company. For top companies I follow up myself, so the tracker shouldn't.\n\nOtherwise, just wait.\n\nThe only facts the tracker knows are: is the posting over 30 days old (yes/no), is it a top company (yes/no), has it been over 3 weeks since I applied (yes/no), and have I heard back (yes/no).",
+        "doc_sha256": "74f9978bf58cbd33f3bd872611efbc663237131d1ea3d75a94b1c1fba2d43be1",
+        "model": "muse-spark-1.3",
+        "response_kind": "real",
+        "proposal": {
+          "input_space": {
+            "over_30_days_old": [
+              "yes",
+              "no"
+            ],
+            "top_company": [
+              "yes",
+              "no"
+            ],
+            "applied_over_3_weeks": [
+              "yes",
+              "no"
+            ],
+            "heard_back": [
+              "yes",
+              "no"
+            ]
+          },
+          "rules": [
+            {
+              "id": "A",
+              "quote": "If the posting is more than 30 days old, mark it stale.",
+              "when": {
+                "over_30_days_old": {
+                  "eq": "yes"
+                }
+              },
+              "action": "mark_stale"
+            },
+            {
+              "id": "B",
+              "quote": "Anything at one of my top companies stays active.",
+              "when": {
+                "top_company": {
+                  "eq": "yes"
+                }
+              },
+              "action": "stays_active"
+            },
+            {
+              "id": "C",
+              "quote": "If it's been over 3 weeks and I haven't heard back, send a follow-up, but only for postings that aren't stale and aren't at a top company.",
+              "when": {
+                "applied_over_3_weeks": {
+                  "eq": "yes"
+                },
+                "heard_back": {
+                  "eq": "no"
+                },
+                "over_30_days_old": {
+                  "eq": "no"
+                },
+                "top_company": {
+                  "eq": "no"
+                }
+              },
+              "action": "send_follow_up"
+            }
+          ],
+          "default": {
+            "quote": "Otherwise, just wait.",
+            "action": "wait"
+          },
+          "unconverted": [
+            {
+              "quote": "The tracker should give every application exactly one next step.",
+              "reason": "meta uniqueness requirement, not a single input-condition to action rule"
+            },
+            {
+              "quote": "Quick context: I apply to a lot of roles, so old postings pile up fast.",
+              "reason": "context only, not a condition-action requirement"
+            },
+            {
+              "quote": "The only facts the tracker knows are: is the posting over 30 days old (yes/no), is it a top company (yes/no), has it been over 3 weeks since I applied (yes/no), and have I heard back (yes/no).",
+              "reason": "defines input space, not a rule"
+            },
+            {
+              "quote": "For top companies I follow up myself, so the tracker shouldn't.",
+              "reason": "prohibition / manual handling, not a tracker action rule with eq conjunction"
+            }
+          ]
+        },
+        "proposal_sha256": "2640f097e7ccda6b466c05b52524ab6b73c9af2ef4e238950879bd0e2bab8d49",
+        "validation": {
+          "input_space": {
+            "over_30_days_old": [
+              "yes",
+              "no"
+            ],
+            "top_company": [
+              "yes",
+              "no"
+            ],
+            "applied_over_3_weeks": [
+              "yes",
+              "no"
+            ],
+            "heard_back": [
+              "yes",
+              "no"
+            ]
+          },
+          "items": [
+            {
+              "key": "rule-1",
+              "kind": "rule",
+              "proposal": {
+                "id": "A",
+                "quote": "If the posting is more than 30 days old, mark it stale.",
+                "when": {
+                  "over_30_days_old": {
+                    "eq": "yes"
+                  }
+                },
+                "action": "mark_stale"
+              },
+              "errors": [],
+              "valid": true
+            },
+            {
+              "key": "rule-2",
+              "kind": "rule",
+              "proposal": {
+                "id": "B",
+                "quote": "Anything at one of my top companies stays active.",
+                "when": {
+                  "top_company": {
+                    "eq": "yes"
+                  }
+                },
+                "action": "stays_active"
+              },
+              "errors": [],
+              "valid": true
+            },
+            {
+              "key": "rule-3",
+              "kind": "rule",
+              "proposal": {
+                "id": "C",
+                "quote": "If it's been over 3 weeks and I haven't heard back, send a follow-up, but only for postings that aren't stale and aren't at a top company.",
+                "when": {
+                  "applied_over_3_weeks": {
+                    "eq": "yes"
+                  },
+                  "heard_back": {
+                    "eq": "no"
+                  },
+                  "over_30_days_old": {
+                    "eq": "no"
+                  },
+                  "top_company": {
+                    "eq": "no"
+                  }
+                },
+                "action": "send_follow_up"
+              },
+              "errors": [],
+              "valid": true
+            },
+            {
+              "key": "default",
+              "kind": "default",
+              "proposal": {
+                "quote": "Otherwise, just wait.",
+                "action": "wait"
+              },
+              "errors": [],
+              "valid": true
+            }
+          ],
+          "errors": [],
+          "unconverted": [
+            {
+              "quote": "Job tracker rules (for my own application spreadsheet)",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "The tracker should give every application exactly one next step.",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "Quick context: I apply to a lot of roles, so old postings pile up fast.",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "For top companies I follow up myself, so the tracker shouldn't.",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "The only facts the tracker knows are: is the posting over 30 days old (yes/no), is it a top company (yes/no), has it been over 3 weeks since I applied (yes/no), and have I heard back (yes/no).",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "The tracker should give every application exactly one next step.",
+              "reason": "meta uniqueness requirement, not a single input-condition to action rule",
+              "source_verified": true
+            },
+            {
+              "quote": "Quick context: I apply to a lot of roles, so old postings pile up fast.",
+              "reason": "context only, not a condition-action requirement",
+              "source_verified": true
+            },
+            {
+              "quote": "The only facts the tracker knows are: is the posting over 30 days old (yes/no), is it a top company (yes/no), has it been over 3 weeks since I applied (yes/no), and have I heard back (yes/no).",
+              "reason": "defines input space, not a rule",
+              "source_verified": true
+            },
+            {
+              "quote": "For top companies I follow up myself, so the tracker shouldn't.",
+              "reason": "prohibition / manual handling, not a tracker action rule with eq conjunction",
+              "source_verified": true
+            }
+          ]
+        },
+        "decisions": [
+          {
+            "key": "rule-1",
+            "decision": "confirmed"
+          },
+          {
+            "key": "rule-2",
+            "decision": "confirmed"
+          },
+          {
+            "key": "rule-3",
+            "decision": "confirmed"
+          },
+          {
+            "key": "default",
+            "decision": "confirmed"
+          }
+        ],
+        "confirmed": {
+          "id": "spec-74f9978bf58c",
+          "pair": "spec-74f9978bf58c",
+          "version": 1,
+          "input_space": {
+            "over_30_days_old": [
+              "yes",
+              "no"
+            ],
+            "top_company": [
+              "yes",
+              "no"
+            ],
+            "applied_over_3_weeks": [
+              "yes",
+              "no"
+            ],
+            "heard_back": [
+              "yes",
+              "no"
+            ]
+          },
+          "default": "wait",
+          "rules": [
+            {
+              "id": "A",
+              "quote": "If the posting is more than 30 days old, mark it stale.",
+              "when": {
+                "over_30_days_old": {
+                  "eq": "yes"
+                }
+              },
+              "action": "mark_stale",
+              "text": "If the posting is more than 30 days old, mark it stale."
+            },
+            {
+              "id": "B",
+              "quote": "Anything at one of my top companies stays active.",
+              "when": {
+                "top_company": {
+                  "eq": "yes"
+                }
+              },
+              "action": "stays_active",
+              "text": "Anything at one of my top companies stays active."
+            },
+            {
+              "id": "C",
+              "quote": "If it's been over 3 weeks and I haven't heard back, send a follow-up, but only for postings that aren't stale and aren't at a top company.",
+              "when": {
+                "applied_over_3_weeks": {
+                  "eq": "yes"
+                },
+                "heard_back": {
+                  "eq": "no"
+                },
+                "over_30_days_old": {
+                  "eq": "no"
+                },
+                "top_company": {
+                  "eq": "no"
+                }
+              },
+              "action": "send_follow_up",
+              "text": "If it's been over 3 weeks and I haven't heard back, send a follow-up, but only for postings that aren't stale and aren't at a top company."
+            }
+          ],
+          "default_source": {
+            "quote": "Otherwise, just wait.",
+            "action": "wait"
+          },
+          "spec_origin": {
+            "doc_sha256": "74f9978bf58cbd33f3bd872611efbc663237131d1ea3d75a94b1c1fba2d43be1",
+            "model": "muse-spark-1.3",
+            "response_kind": "real"
+          }
+        },
+        "confirmed_sha256": "b1cb63950c6f0bdc03cd573ed6454c336183a2f228a7c1500e6a0d6970c0530b",
+        "clashes": [
+          {
+            "verified": true,
+            "witness": {
+              "over_30_days_old": "yes",
+              "top_company": "yes",
+              "applied_over_3_weeks": "yes",
+              "heard_back": "yes"
+            },
+            "rules": [
+              "A",
+              "B"
+            ],
+            "actions": [
+              "mark_stale",
+              "stays_active"
+            ],
+            "quotes": [
+              "If the posting is more than 30 days old, mark it stale.",
+              "Anything at one of my top companies stays active."
+            ]
+          },
+          {
+            "verified": true,
+            "witness": {
+              "over_30_days_old": "yes",
+              "top_company": "yes",
+              "applied_over_3_weeks": "yes",
+              "heard_back": "no"
+            },
+            "rules": [
+              "A",
+              "B"
+            ],
+            "actions": [
+              "mark_stale",
+              "stays_active"
+            ],
+            "quotes": [
+              "If the posting is more than 30 days old, mark it stale.",
+              "Anything at one of my top companies stays active."
+            ]
+          },
+          {
+            "verified": true,
+            "witness": {
+              "over_30_days_old": "yes",
+              "top_company": "yes",
+              "applied_over_3_weeks": "no",
+              "heard_back": "yes"
+            },
+            "rules": [
+              "A",
+              "B"
+            ],
+            "actions": [
+              "mark_stale",
+              "stays_active"
+            ],
+            "quotes": [
+              "If the posting is more than 30 days old, mark it stale.",
+              "Anything at one of my top companies stays active."
+            ]
+          },
+          {
+            "verified": true,
+            "witness": {
+              "over_30_days_old": "yes",
+              "top_company": "yes",
+              "applied_over_3_weeks": "no",
+              "heard_back": "no"
+            },
+            "rules": [
+              "A",
+              "B"
+            ],
+            "actions": [
+              "mark_stale",
+              "stays_active"
+            ],
+            "quotes": [
+              "If the posting is more than 30 days old, mark it stale.",
+              "Anything at one of my top companies stays active."
+            ]
+          }
+        ],
+        "uncovered_inputs": [],
+        "cost": {
+          "run_id": "spec-extract-aa28ea4fb3a3",
+          "date": "2026-10-27",
+          "stage": "spec feature, outside study",
+          "model": "muse-spark-1.3",
+          "pricing_mode": "STANDARD",
+          "cost_usd": 0.0065775,
+          "model_invoked": true,
+          "max_tokens": 6144,
+          "provider_calls": 1,
+          "time_seconds": 5.532,
+          "tokens": {
+            "input": 417,
+            "output": 1425,
+            "cached_input": 0
+          }
+        }
+      }
+    },
+    {
+      "document": "doc2",
+      "source_sha256": "bd08482179d558804cd539155f9553d020a54f17de1da73f28c60bf497fca093",
+      "proposal": {
+        "input_space": {
+          "perishable": [
+            true,
+            false
+          ],
+          "resident_away": [
+            true,
+            false
+          ],
+          "needs_signature": [
+            true,
+            false
+          ],
+          "oversized": [
+            true,
+            false
+          ]
+        },
+        "rules": [
+          {
+            "id": "A",
+            "quote": "If it's perishable and the resident is away, return it to the sender.",
+            "when": {
+              "perishable": {
+                "eq": true
+              },
+              "resident_away": {
+                "eq": true
+              }
+            },
+            "action": "return_to_sender"
+          },
+          {
+            "id": "B",
+            "quote": "If it's perishable and the resident is home, notify the resident right away.",
+            "when": {
+              "perishable": {
+                "eq": true
+              },
+              "resident_away": {
+                "eq": false
+              }
+            },
+            "action": "notify_resident"
+          },
+          {
+            "id": "C",
+            "quote": "For anything that isn't perishable: if it needs a signature, hold it at the front desk.",
+            "when": {
+              "perishable": {
+                "eq": false
+              },
+              "needs_signature": {
+                "eq": true
+              }
+            },
+            "action": "hold_at_desk"
+          },
+          {
+            "id": "D",
+            "quote": "Non-perishable packages that don't need a signature go in a locker, unless they're oversized.",
+            "when": {
+              "perishable": {
+                "eq": false
+              },
+              "needs_signature": {
+                "eq": false
+              },
+              "oversized": {
+                "eq": false
+              }
+            },
+            "action": "place_in_locker"
+          },
+          {
+            "id": "E",
+            "quote": "Oversized ones get held at the desk too.",
+            "when": {
+              "perishable": {
+                "eq": false
+              },
+              "needs_signature": {
+                "eq": false
+              },
+              "oversized": {
+                "eq": true
+              }
+            },
+            "action": "hold_at_desk"
+          }
+        ],
+        "unconverted": [
+          {
+            "quote": "Package room rules for our building",
+            "reason": "title with no actionable condition"
+          },
+          {
+            "quote": "Each package gets one action when it's logged at the desk.",
+            "reason": "states single-action constraint with no condition or action label"
+          },
+          {
+            "quote": "Honestly most of these are just Amazon boxes, but we have to be consistent.",
+            "reason": "commentary with no condition or action"
+          },
+          {
+            "quote": "The desk only knows: is it perishable (yes/no), is the resident away (yes/no), does it need a signature (yes/no), and is it oversized (yes/no).",
+            "reason": "defines input space, not a conditional rule"
+          }
+        ]
+      },
+      "measures": {
+        "rules_correct": 5,
+        "rules_truth": 5,
+        "rules_wrong": 0,
+        "rules_missing": 0,
+        "clashes_found": 0,
+        "clashes_truth": 0,
+        "clashes_missed": 0,
+        "clashes_false": 0,
+        "domains_correct": true,
+        "schema_errors": 0,
+        "invalid_unconverted": 0,
+        "success": true
+      },
+      "cost": {
+        "run_id": "spec-extract-c93181da9269",
+        "date": "2026-10-27",
+        "stage": "spec feature, outside study",
+        "model": "muse-spark-1.3",
+        "pricing_mode": "STANDARD",
+        "cost_usd": 0.005729,
+        "model_invoked": true,
+        "max_tokens": 6144,
+        "provider_calls": 1,
+        "time_seconds": 4.517,
+        "tokens": {
+          "input": 408,
+          "output": 1228,
+          "cached_input": 0
+        }
+      },
+      "normalized_review": {
+        "schema": 1,
+        "kind": "spec review",
+        "doc": "Package room rules for our building\n\nEach package gets one action when it's logged at the desk.\n\nHonestly most of these are just Amazon boxes, but we have to be consistent.\n\nIf it's perishable and the resident is away, return it to the sender.\n\nIf it's perishable and the resident is home, notify the resident right away.\n\nFor anything that isn't perishable: if it needs a signature, hold it at the front desk.\n\nNon-perishable packages that don't need a signature go in a locker, unless they're oversized. Oversized ones get held at the desk too.\n\nThe desk only knows: is it perishable (yes/no), is the resident away (yes/no), does it need a signature (yes/no), and is it oversized (yes/no).",
+        "doc_sha256": "1d70ac0b745e87a36f433f56ac6efb23639410deb6e10370948f5e5e277dd72c",
+        "model": "muse-spark-1.3",
+        "response_kind": "real",
+        "proposal": {
+          "input_space": {
+            "perishable": [
+              true,
+              false
+            ],
+            "resident_away": [
+              true,
+              false
+            ],
+            "needs_signature": [
+              true,
+              false
+            ],
+            "oversized": [
+              true,
+              false
+            ]
+          },
+          "rules": [
+            {
+              "id": "A",
+              "quote": "If it's perishable and the resident is away, return it to the sender.",
+              "when": {
+                "perishable": {
+                  "eq": true
+                },
+                "resident_away": {
+                  "eq": true
+                }
+              },
+              "action": "return_to_sender"
+            },
+            {
+              "id": "B",
+              "quote": "If it's perishable and the resident is home, notify the resident right away.",
+              "when": {
+                "perishable": {
+                  "eq": true
+                },
+                "resident_away": {
+                  "eq": false
+                }
+              },
+              "action": "notify_resident"
+            },
+            {
+              "id": "C",
+              "quote": "For anything that isn't perishable: if it needs a signature, hold it at the front desk.",
+              "when": {
+                "perishable": {
+                  "eq": false
+                },
+                "needs_signature": {
+                  "eq": true
+                }
+              },
+              "action": "hold_at_desk"
+            },
+            {
+              "id": "D",
+              "quote": "Non-perishable packages that don't need a signature go in a locker, unless they're oversized.",
+              "when": {
+                "perishable": {
+                  "eq": false
+                },
+                "needs_signature": {
+                  "eq": false
+                },
+                "oversized": {
+                  "eq": false
+                }
+              },
+              "action": "place_in_locker"
+            },
+            {
+              "id": "E",
+              "quote": "Oversized ones get held at the desk too.",
+              "when": {
+                "perishable": {
+                  "eq": false
+                },
+                "needs_signature": {
+                  "eq": false
+                },
+                "oversized": {
+                  "eq": true
+                }
+              },
+              "action": "hold_at_desk"
+            }
+          ],
+          "unconverted": [
+            {
+              "quote": "Package room rules for our building",
+              "reason": "title with no actionable condition"
+            },
+            {
+              "quote": "Each package gets one action when it's logged at the desk.",
+              "reason": "states single-action constraint with no condition or action label"
+            },
+            {
+              "quote": "Honestly most of these are just Amazon boxes, but we have to be consistent.",
+              "reason": "commentary with no condition or action"
+            },
+            {
+              "quote": "The desk only knows: is it perishable (yes/no), is the resident away (yes/no), does it need a signature (yes/no), and is it oversized (yes/no).",
+              "reason": "defines input space, not a conditional rule"
+            }
+          ]
+        },
+        "proposal_sha256": "fa8c8841c819816f1783b3415da75298e0901f79cbf553126617e599a16862ce",
+        "validation": {
+          "input_space": {
+            "perishable": [
+              true,
+              false
+            ],
+            "resident_away": [
+              true,
+              false
+            ],
+            "needs_signature": [
+              true,
+              false
+            ],
+            "oversized": [
+              true,
+              false
+            ]
+          },
+          "items": [
+            {
+              "key": "rule-1",
+              "kind": "rule",
+              "proposal": {
+                "id": "A",
+                "quote": "If it's perishable and the resident is away, return it to the sender.",
+                "when": {
+                  "perishable": {
+                    "eq": true
+                  },
+                  "resident_away": {
+                    "eq": true
+                  }
+                },
+                "action": "return_to_sender"
+              },
+              "errors": [],
+              "valid": true
+            },
+            {
+              "key": "rule-2",
+              "kind": "rule",
+              "proposal": {
+                "id": "B",
+                "quote": "If it's perishable and the resident is home, notify the resident right away.",
+                "when": {
+                  "perishable": {
+                    "eq": true
+                  },
+                  "resident_away": {
+                    "eq": false
+                  }
+                },
+                "action": "notify_resident"
+              },
+              "errors": [],
+              "valid": true
+            },
+            {
+              "key": "rule-3",
+              "kind": "rule",
+              "proposal": {
+                "id": "C",
+                "quote": "For anything that isn't perishable: if it needs a signature, hold it at the front desk.",
+                "when": {
+                  "perishable": {
+                    "eq": false
+                  },
+                  "needs_signature": {
+                    "eq": true
+                  }
+                },
+                "action": "hold_at_desk"
+              },
+              "errors": [],
+              "valid": true
+            },
+            {
+              "key": "rule-4",
+              "kind": "rule",
+              "proposal": {
+                "id": "D",
+                "quote": "Non-perishable packages that don't need a signature go in a locker, unless they're oversized.",
+                "when": {
+                  "perishable": {
+                    "eq": false
+                  },
+                  "needs_signature": {
+                    "eq": false
+                  },
+                  "oversized": {
+                    "eq": false
+                  }
+                },
+                "action": "place_in_locker"
+              },
+              "errors": [],
+              "valid": true
+            },
+            {
+              "key": "rule-5",
+              "kind": "rule",
+              "proposal": {
+                "id": "E",
+                "quote": "Oversized ones get held at the desk too.",
+                "when": {
+                  "perishable": {
+                    "eq": false
+                  },
+                  "needs_signature": {
+                    "eq": false
+                  },
+                  "oversized": {
+                    "eq": true
+                  }
+                },
+                "action": "hold_at_desk"
+              },
+              "errors": [],
+              "valid": true
+            }
+          ],
+          "errors": [],
+          "unconverted": [
+            {
+              "quote": "Package room rules for our building",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "Each package gets one action when it's logged at the desk.",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "Honestly most of these are just Amazon boxes, but we have to be consistent.",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "The desk only knows: is it perishable (yes/no), is the resident away (yes/no), does it need a signature (yes/no), and is it oversized (yes/no).",
+              "reason": "No rule proposed for this sentence; review whether context or a missing requirement"
+            },
+            {
+              "quote": "Package room rules for our building",
+              "reason": "title with no actionable condition",
+              "source_verified": true
+            },
+            {
+              "quote": "Each package gets one action when it's logged at the desk.",
+              "reason": "states single-action constraint with no condition or action label",
+              "source_verified": true
+            },
+            {
+              "quote": "Honestly most of these are just Amazon boxes, but we have to be consistent.",
+              "reason": "commentary with no condition or action",
+              "source_verified": true
+            },
+            {
+              "quote": "The desk only knows: is it perishable (yes/no), is the resident away (yes/no), does it need a signature (yes/no), and is it oversized (yes/no).",
+              "reason": "defines input space, not a conditional rule",
+              "source_verified": true
+            }
+          ]
+        },
+        "decisions": [
+          {
+            "key": "rule-1",
+            "decision": "confirmed"
+          },
+          {
+            "key": "rule-2",
+            "decision": "confirmed"
+          },
+          {
+            "key": "rule-3",
+            "decision": "confirmed"
+          },
+          {
+            "key": "rule-4",
+            "decision": "confirmed"
+          },
+          {
+            "key": "rule-5",
+            "decision": "confirmed"
+          }
+        ],
+        "confirmed": {
+          "id": "spec-1d70ac0b745e",
+          "pair": "spec-1d70ac0b745e",
+          "version": 1,
+          "input_space": {
+            "perishable": [
+              true,
+              false
+            ],
+            "resident_away": [
+              true,
+              false
+            ],
+            "needs_signature": [
+              true,
+              false
+            ],
+            "oversized": [
+              true,
+              false
+            ]
+          },
+          "default": "__UNSPECIFIED__",
+          "rules": [
+            {
+              "id": "A",
+              "quote": "If it's perishable and the resident is away, return it to the sender.",
+              "when": {
+                "perishable": {
+                  "eq": true
+                },
+                "resident_away": {
+                  "eq": true
+                }
+              },
+              "action": "return_to_sender",
+              "text": "If it's perishable and the resident is away, return it to the sender."
+            },
+            {
+              "id": "B",
+              "quote": "If it's perishable and the resident is home, notify the resident right away.",
+              "when": {
+                "perishable": {
+                  "eq": true
+                },
+                "resident_away": {
+                  "eq": false
+                }
+              },
+              "action": "notify_resident",
+              "text": "If it's perishable and the resident is home, notify the resident right away."
+            },
+            {
+              "id": "C",
+              "quote": "For anything that isn't perishable: if it needs a signature, hold it at the front desk.",
+              "when": {
+                "perishable": {
+                  "eq": false
+                },
+                "needs_signature": {
+                  "eq": true
+                }
+              },
+              "action": "hold_at_desk",
+              "text": "For anything that isn't perishable: if it needs a signature, hold it at the front desk."
+            },
+            {
+              "id": "D",
+              "quote": "Non-perishable packages that don't need a signature go in a locker, unless they're oversized.",
+              "when": {
+                "perishable": {
+                  "eq": false
+                },
+                "needs_signature": {
+                  "eq": false
+                },
+                "oversized": {
+                  "eq": false
+                }
+              },
+              "action": "place_in_locker",
+              "text": "Non-perishable packages that don't need a signature go in a locker, unless they're oversized."
+            },
+            {
+              "id": "E",
+              "quote": "Oversized ones get held at the desk too.",
+              "when": {
+                "perishable": {
+                  "eq": false
+                },
+                "needs_signature": {
+                  "eq": false
+                },
+                "oversized": {
+                  "eq": true
+                }
+              },
+              "action": "hold_at_desk",
+              "text": "Oversized ones get held at the desk too."
+            }
+          ],
+          "default_source": null,
+          "spec_origin": {
+            "doc_sha256": "1d70ac0b745e87a36f433f56ac6efb23639410deb6e10370948f5e5e277dd72c",
+            "model": "muse-spark-1.3",
+            "response_kind": "real"
+          }
+        },
+        "confirmed_sha256": "3d4d819e5b81879e8b871a0123c155c4233b7579628785ccd771b09b0870becb",
+        "clashes": [],
+        "uncovered_inputs": [],
+        "cost": {
+          "run_id": "spec-extract-c93181da9269",
+          "date": "2026-10-27",
+          "stage": "spec feature, outside study",
+          "model": "muse-spark-1.3",
+          "pricing_mode": "STANDARD",
+          "cost_usd": 0.005729,
+          "model_invoked": true,
+          "max_tokens": 6144,
+          "provider_calls": 1,
+          "time_seconds": 4.517,
+          "tokens": {
+            "input": 408,
+            "output": 1228,
+            "cached_input": 0
+          }
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "b18f58b6153c7ab5084f74f2df6289aee2e67e1b2c15bd285321c40d6ffd3ab5",
+  "cost_usd": 0.0123065
+}
