@@ -22,3 +22,7 @@ results/.run.lock
 
 /results/rehearsal-*/raw/
 /results/rehearsal-*/.study.lock
+
+# Service demo session exports stay private; structured evidence is separate.
+/returns_runs/**/raw/
+/demo/returns-service/recorded/raw/

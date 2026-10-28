@@ -44,3 +44,7 @@ One evidence record contains baseline HTTP requests/responses, source and approv
 | One authorized real run, viewer evidence and video rehearsal | 45–75 min | Actual receipts, code diff and HTTP observations agree |
 
 Total about **4–6 hours**, with the local-channel isolation adapter the main uncertainty. Avoid a database, frontend framework and payment integrations. Before a real run, reserve a conservative model allowance within the fresh daily $5 cap and stop on unknown usage; the old toy-study cost is not a service-run quote. If isolation takes longer, finish that check before any paid call or demo recording.
+
+## Implementation note — 2026-10-28
+
+The approved design is now implemented outside frozen evaluation paths. Baseline source/evidence was committed first (cbe732c), followed by the tested isolated channel (3a67db9). See [the run instructions](RETURNS_SERVICE_RUN.md) for the fake example and tomorrow's single interactive real command. No paid call was made during implementation. The original design above is retained.

@@ -1,0 +1,54 @@
+{
+  "kind": "constructed fake Spark and Muse service responses; not observed model behavior",
+  "proposal": {
+    "input_space": {
+      "eligible": [
+        false,
+        true
+      ],
+      "fraud_hold": [
+        false,
+        true
+      ]
+    },
+    "rules": [
+      {
+        "id": "A",
+        "quote": "For every eligible request, refund immediately.",
+        "when": {
+          "eligible": {
+            "eq": true
+          }
+        },
+        "action": "refund_immediately"
+      },
+      {
+        "id": "B",
+        "quote": "For every request on fraud hold, do not refund until manual review.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "manual_review"
+      }
+    ],
+    "default": {
+      "quote": "If neither rule matches, reject the refund.",
+      "action": "reject"
+    },
+    "unconverted": []
+  },
+  "review": [
+    true,
+    true,
+    true
+  ],
+  "decision": "B",
+  "implementation": {
+    "claim": "Constructed fake Muse reply: added a fraud-hold guard before eligible refunds. No payment call. Independent HTTP checks decide the result.",
+    "files": {
+      "refund_policy.py": "\"\"\"Approved next action; simulated only, never a payment.\"\"\"\ndef next_action(request):\n    if request[\"fraud_hold\"]:\n        return \"manual_review\"\n    if request[\"eligible\"]:\n        return \"refund_immediately\"\n    return \"reject\"\n"
+    }
+  }
+}

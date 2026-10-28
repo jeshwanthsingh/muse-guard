@@ -4,6 +4,9 @@ from submission_tools.continuous import run
 ROOT=Path(__file__).resolve().parents[1]
 def main():
  args=sys.argv[1:]
+ if args and args[0]=='returns':
+  from returns_demo.cli import main as returns_main
+  return returns_main(args[1:])
  if args and args[0] in ('run','view') and len(args)>1 and (args[0]=='view' or not args[1].endswith(('.yaml','.json'))):
   from submission_tools.presentation import main as presentation_main
   return presentation_main()
