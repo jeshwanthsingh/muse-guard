@@ -1,0 +1,50 @@
+{
+  "work_date": "2026-10-28",
+  "kind": "local presentation and decision-preview verification",
+  "published_commit": "49a2712e8eb1cc7535bcac9e44b01fe51be0340a",
+  "github_main_match_verified": true,
+  "github_submission_match_verified": true,
+  "publication_checks": {
+    "protected_files": 103,
+    "gitleaks_history_commits": 34,
+    "manifest_hash_false_positives_verified_against_git_blobs": 37,
+    "remaining_secret_findings": 0,
+    "privacy": "public export passed; tracked tailnet marker is deliberately fake fixture"
+  },
+  "later_work_local_only": true,
+  "paid_meta_calls": 0,
+  "incremental_meta_cost_usd": 0,
+  "completion_claiming_attempts": {
+    "plain": {
+      "initial": 40,
+      "repair": 37,
+      "total": 77
+    },
+    "guarded": {
+      "initial": 37,
+      "repair": 40,
+      "total": 77
+    }
+  },
+  "coding_attempts_per_mode": {
+    "initial": 80,
+    "repair": 40
+  },
+  "scoped_tests_passed": 26,
+  "python_node_browser_decision_preview_states": 144,
+  "interactive_fake_cli": "PASS: preview before input, B choice then independent PASS, cost zero",
+  "viewer_preview_before_choice": true,
+  "export_reproducible": true,
+  "static_privacy_scan": "PASS",
+  "static_gitleaks": "no leaks",
+  "protected_files_unchanged": 103,
+  "study_locked_files_unchanged": 199,
+  "study_and_evaluation_result_files": "unchanged",
+  "extraction_results_rescored": false,
+  "returns_service": "design only, estimated 4-6 hours",
+  "screenshots": {
+    "output/playwright/decision-preview-static-1280.png": "93a0f7f675f3502c7d9b5849f4ab6613fb3fca1dd719988911108826305c66a9",
+    "output/playwright/decision-preview-viewer-1280.png": "a692315f48f77c24b8fc30eff826073c789a3af61e5f9f500c036e2faef97156"
+  },
+  "site_manifest_sha256": "4c20e6391344a17983d961caa3b5e3191f4234754c93d0ab258d816d9d646bde"
+}

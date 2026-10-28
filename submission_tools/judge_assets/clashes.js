@@ -40,5 +40,29 @@
     }
     return {checked: space.length, clashes};
   }
-  root.MuseGuardClashes = {inputs, matches, search};
+  function preview(table) {
+    const result = search(table), groups = [];
+    const active = table.rules.filter(r => r.enabled !== false);
+    const seen = new Set();
+    for (const clash of result.clashes) {
+      const key = JSON.stringify(clash.rules);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const ids = clash.rules, rest = active.map(r => r.id).filter(id => !ids.includes(id));
+      const choices = [{winner: ids[0], priority: [...ids, ...rest]},
+                       {winner: ids[1], priority: [...ids].reverse().concat(rest)}];
+      const rows = [];
+      for (const value of inputs(table)) {
+        const matching = active.filter(r => matches(r, value));
+        const outcomes = choices.map(c => {
+          const id = c.priority.find(id => matching.some(r => r.id === id));
+          return id === undefined ? table.default : matching.find(r => r.id === id).action;
+        });
+        if (outcomes[0] !== outcomes[1]) rows.push({input: value, actions: outcomes});
+      }
+      groups.push({rules: ids, affected_inputs: rows.length, choices, rows});
+    }
+    return {checked: result.checked, conflicts: groups.length, groups};
+  }
+  root.MuseGuardClashes = {inputs, matches, search, preview};
 })(globalThis);

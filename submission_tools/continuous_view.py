@@ -12,6 +12,14 @@ def render(row):
   if quote not in unique:unique[quote]=item
   elif item['reason'] not in unique[quote]['reason']:unique[quote]['reason']+='; '+item['reason']
  display['validation']['unconverted']=list(unique.values());page=render_spec(display)
+ from submission_tools.decision_preview import html_preview,preview
+ req=row.get('requirements_v1',spec['confirmed'])
+ if req.get('input_space') and not domain_errors(req['input_space']):
+  start=page.index('<section><h2>Clashes found before coding</h2>')
+  end=page.index('<section class="panel"><h2>Rejected / couldn’t convert / uncovered',start)
+  page=page[:start]+html_preview(req)+page[end:]
+  grouped=preview(req)
+  page=page.replace('<span>'+str(len(spec['clashes']))+' verified clashes</span>','<span>'+str(grouped['conflicts'])+' grouped conflicts</span>')
  page=page.replace('Find the clash before writing code.','From requirements to an independently checked implementation.')
  page=page.replace('<span>No coding agent invoked</span>','<span>'+('Fake model responses only' if row['response_kind']=='fake' else 'Recorded Muse Code implementation')+'</span>')
  page=page.replace('Spec review · Recorded run','Spec → decision → recheck · Recorded run')

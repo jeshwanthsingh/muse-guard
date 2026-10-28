@@ -84,3 +84,15 @@ It refuses an uncommitted scorer, incomplete evidence or an existing output.
 This supplemental freeze does not rewrite the old active manifest or enable a
 holdout executor. A later authorized study must use the frozen external scorer
 and the unchanged Day6 agent runtime; otherwise it is not this amended protocol.
+
+## Decision consequence preview — 2026-10-28
+
+The opt-in submission command now shows exhaustive A-wins / B-wins consequences before asking for a decision. It groups witnesses by rule pair and lists every declared input whose action differs under the two choices. Its run viewer and static playground show the same comparison. For more than two rules, the preview explicitly displays both complete priority orders; remaining rules keep their listed order. No choice is inferred from the preview.
+
+```sh
+cd ~/Projects/muse-guard
+PATH="$PWD/submission_tools/bin:$PATH" muse-guard spec demo/continuous/refund.md --fake-response demo/continuous/fake-response.json --out /tmp/muse-preview-stage
+PATH="$PWD/submission_tools/bin:$PATH" muse-guard view recovery-289db424fb09-view-day5 --no-open
+```
+
+Choose a new output folder, review each rule and then make the decision. The first command uses labeled fake responses and costs $0. The second displays an existing saved record and makes no model call. Catalog `run <task>` through the same PATH wrapper also prints the preview before its original decision prompt; executing it with real models still requires available budget. The root `./muse-guard` and frozen study entrypoints remain unchanged. New display code lives in submission_tools; no frozen runtime or old evidence is rescored.

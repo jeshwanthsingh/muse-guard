@@ -24,4 +24,9 @@ def panel(identity):
  pair=(req or {}).get('pair','')
  meanings=('Choose ONE next action: refund means refund immediately; manual_review means do not refund until manual review.' if pair=='refund' else
            'Choose ONE next action: retry means retry this request now; stop means do not retry this request.' if pair=='retry' else 'Choose ONE next action for each input.')
- return '<section class="panel"><h2>Coverage and action meanings</h2><p>'+escape(checked)+'</p><p>'+escape(meanings)+'</p><p>Original recorded rule wording and scores are retained. This clarification does not rescore history.</p><p>Rejected / unconverted source sentences: not applicable; these historical tasks used authored rules.</p><p>What this does NOT check: English extraction accuracy, omitted requirements, undeclared inputs or real-world system behavior.</p></section>'
+ preview=''
+ v1=row.get('requirements_v1',req)
+ if v1 and v1.get('input_space') and not v1.get('priority'):
+  from submission_tools.decision_preview import html_preview
+  preview=html_preview(v1)
+ return preview+'<section class="panel"><h2>Coverage and action meanings</h2><p>'+escape(checked)+'</p><p>'+escape(meanings)+'</p><p>Original recorded rule wording and scores are retained. This clarification does not rescore history.</p><p>Rejected / unconverted source sentences: not applicable; these historical tasks used authored rules.</p><p>What this does NOT check: English extraction accuracy, omitted requirements, undeclared inputs or real-world system behavior.</p></section>'

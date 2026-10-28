@@ -26,6 +26,9 @@ def export(out):
  import shutil
  source=ROOT/'demo/continuous/recorded'
  if source.exists():shutil.copytree(source,out/'continuous')
+ if (source/'run.json').is_file():
+  from submission_tools.continuous_view import render as render_continuous
+  (out/'continuous/index.html').write_text(render_continuous(json.loads((source/'run.json').read_text())))
  from submission_tools.judge_demo import install
  install(out,(ROOT/'docs/MEASURED_RESULTS.md').read_text())
  from muse_guard.site import scan_text

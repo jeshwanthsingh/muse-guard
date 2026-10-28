@@ -4,6 +4,9 @@ from submission_tools.continuous import run
 ROOT=Path(__file__).resolve().parents[1]
 def main():
  args=sys.argv[1:]
+ if args and args[0] in ('run','view') and len(args)>1 and (args[0]=='view' or not args[1].endswith(('.yaml','.json'))):
+  from submission_tools.presentation import main as presentation_main
+  return presentation_main()
  if not args or args[0]!='spec':os.execv(str(ROOT/'spec_guard/bin/muse-guard'),[str(ROOT/'spec_guard/bin/muse-guard'),*args])
  p=argparse.ArgumentParser(prog='muse-guard spec');p.add_argument('document',type=Path)
  source=p.add_mutually_exclusive_group(required=True);source.add_argument('--fake-response',type=Path);source.add_argument('--real',action='store_true')

@@ -1,3 +1,5 @@
+> Day 1-6 = work stages completed on Oct 26, 2026; later entries use calendar dates.
+
 # Current provenance — Day 6 correction, 2026-10-26
 
 The original blanket README claim was inaccurate once Day1 reuse occurred. This

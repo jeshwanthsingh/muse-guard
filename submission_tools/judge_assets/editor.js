@@ -11,15 +11,26 @@
   function renderResult() {
     cards.replaceChildren();
     try {
-      const result = MuseGuardClashes.search(table);
-      status.textContent = `${result.checked} declared inputs checked · ${result.clashes.length} clashes found`;
-      status.dataset.clashes = result.clashes.length;
-      if (!result.clashes.length) cards.append(node("p", "No conflicting actions among the enabled rules and declared inputs."));
-      for (const clash of result.clashes) {
-        const card = node("article"); card.className = "clash-example";
-        card.append(node("h3", `Rule ${clash.rules[0]} vs Rule ${clash.rules[1]}`), node("code", JSON.stringify(clash.witness)),
-          node("p", `${clash.rules[0]} → ${clash.actions[0]}   /   ${clash.rules[1]} → ${clash.actions[1]}`));
-        cards.append(card);
+      const result = MuseGuardClashes.preview(table);
+      status.textContent = `${result.checked} declared inputs checked · ${result.conflicts} conflict${result.conflicts === 1 ? "" : "s"}`;
+      status.dataset.clashes = result.groups.reduce((n,g) => n+g.affected_inputs,0);
+      status.dataset.conflicts = result.conflicts;
+      if (!result.groups.length) cards.append(node("p", "No conflicting actions among the enabled rules and declared inputs."));
+      for (const group of result.groups) {
+        const card = node("article"); card.className = "clash-example preview-group";
+        card.append(node("h3", `1 conflict (${group.rules.join(" vs ")}), ${group.affected_inputs} input${group.affected_inputs === 1 ? "" : "s"} affected`));
+        const preview = node("table"), head = node("thead"), labels = node("tr"), body = node("tbody");
+        for (const label of ["Declared input", ...group.choices.map(c => `${c.winner} wins`)]) {
+          const th = node("th", label); th.scope = "col"; labels.append(th);
+        }
+        head.append(labels);
+        for (const row of group.rows) {
+          const tr = node("tr"), th = node("th"); th.scope = "row";
+          th.append(node("code", JSON.stringify(row.input))); tr.append(th);
+          for (const action of row.actions) {const td=node("td");td.append(node("code",action));tr.append(td);}
+          body.append(tr);
+        }
+        preview.append(head,body);card.append(preview,node("p","Other declared inputs have the same outcome under either choice."));cards.append(card);
       }
     } catch (error) { status.textContent = error.message; delete status.dataset.clashes; }
   }

@@ -119,7 +119,8 @@ def run(doc,out,*,fake_packet=None,accept_all=False,choice=None,reviewer=None):
   req=reviewed_requirements(spec);record['requirements_v1']=req
   if spec['clashes']:
    record.update(status='AWAITING DECISION');save()
-   for clash in spec['clashes']:print('VERIFIED CLASH:',json.dumps(clash))
+   from submission_tools.decision_preview import cli_preview
+   print(cli_preview(req),flush=True)
    scripted=choice is not None
    if choice is None:choice=input('Choose rule priority (e.g. B for two rules, or B,A,C): ').strip()
    req=approve_decision(req,spec['clashes'],choice,scripted=scripted)

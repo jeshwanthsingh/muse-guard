@@ -1,3 +1,5 @@
+> Day 1-6 = work stages completed on Oct 26, 2026; later entries use calendar dates.
+
 # Contributions
 
 A dated log of work built during the Meta Global AI Developer Hackathon
@@ -525,3 +527,11 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Committed the completed study evidence locally as 5ec471f before presentation work. Updated README, submission docs and the static index with the actual 160-flow results, null deception-related measures, plain 39/40 versus guarded 40/40 recovery and the one-flow caveat. Recorded +1.64% cost / +9.37% coding steps, strict 7/10 spec results with doc1 representation limitations, both excluded cohorts and finite-domain/version limits.
 - Added a separate browser-only rule playground to the submission exporter: four refund/retry tables, rule toggles, editable next actions, exhaustive declared-input witnesses and explicit boundaries. No recorded verdicts or evidence downloads change.
 - Verified all four tables over 144 toggle/action states against the unchanged Python validator in Node and the real browser. Checked toggles, same-action resolution, empty-action rejection and HTML-as-text safety; captured 1280x720 screenshots. Scoped static/render/privacy tests pass. No paid calls, push or merge. Frozen study paths remain unchanged.
+
+## 2026-10-28 — Published results, interpretation and decision preview
+
+- Used the one-time authorization to publish codex/submission and fast-forward main to 49a2712e8eb1cc7535bcac9e44b01fe51be0340a. Confirmed both GitHub heads match. Protected hashes passed; all 37 history-scan findings were verified file SHA-256 values, with no remaining Gitleaks findings. Privacy scan found only the deliberately fake hostname fixture. No force push or merge commit. Later work stays local.
+- Added the calendar note at the top of this file and PROVENANCE: Stage 1–6 labels describe work completed on Oct 26. Historical entries are retained. Clarified that 160 runs repeat 20 locked pairs, with 80 initial attempts plus 40 repairs per mode, and zero contradictions among 77 explicit completion-claiming attempts per mode (plain 40 initial/37 repair; guarded 37 initial/40 repair). Explained that old files still contradicted the plain decision, so the refusal was reasonable; guarded synchronizes instructions.
+- Documented the three strict extraction failures as representation mismatches unmatched by the frozen scorer, while acknowledging they passed schema validation and scripted review. Preserved all scores and evaluation files; added sentence/proposal explanations and links.
+- Added a display-only exhaustive decision preview before the submission CLI choice and in the run viewer/static playground, grouping witnesses by rule pair. Python uses the unchanged checker functions; all 144 demo editor states match the JavaScript preview in Node and the real browser. Verified a fake interactive CLI flow and 26 scoped regressions; captured 1280x720 screenshots. All 103 protected and 199 frozen-study hashes remain unchanged. No paid calls.
+- Wrote RETURNS_SERVICE_DEMO.md as design only for the next work stage: baseline HTTP service, real requests/responses, a reviewed policy decision, Muse modifying service code, independent finite policy and unchanged service-regression checks, reference table interpreter, scope limits and a 4–6 hour estimate. No service implementation yet.

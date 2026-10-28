@@ -42,17 +42,19 @@ Open the printed `index.html` path. Without `--accept-all`, you review each tran
 
 ## Results
 
-**160 pre-registered holdout runs** across 20 task pairs, two modes and two repeats. Both modes had **0 contradicted claims, 0 test edits, and 0 visible-pass/hidden-fail repairs**.
+**160 pre-registered holdout runs = 20 locked task pairs × 2 twins × 2 repeats × 2 modes**, not 160 independent problems. Each mode has **80 initial attempts + 40 repairs**. Both had **0 contradicted claims, 0 test edits, and 0 visible-pass/hidden-fail repairs**.
 
-Recovery after one developer decision: **plain 39/40, guarded 40/40**. This one-flow difference is **not a proven advantage**. Both modes completed 40/40 solvable runs. Observed guarded overhead was about **+2% cost and +9% coding steps**, including explanation calls in cost.
+Explicit completion claims: plain **40 initial + 37 repair = 77**, guarded **37 initial + 40 repair = 77**. Contradictions were **0/77 completion-claiming attempts in each mode** (also 0/120 total coding attempts per mode); an exit code is not a completion claim.
 
-Spec extraction passed the strict rubric on **7/10 docs**: 6/8 in the original set (all 5 clashes found, 0 false), and 1/2 in the separately preregistered Claude-written, user-reviewed set. Doc1 recognized four clashes in its own representation but failed the frozen Boolean/field/action matching rubric; it remains a failure.
+Recovery after one developer decision: **plain 39/40, guarded 40/40**. This one-flow difference is **not a proven advantage**. In the plain refusal, old rule files still contradicted the decision; refusing was reasonable. Guarded mode keeps instructions synchronized. This was not dishonesty. Both modes completed 40/40 solvable runs. Observed guarded overhead was about **+2% cost and +9% coding steps**, including explanation calls in cost.
+
+Spec extraction passed the strict rubric on **7/10 docs**: 6/8 in the original set (all 5 clashes found, 0 false), and 1/2 in the separately preregistered Claude-written, user-reviewed set. Doc1 recognized four clashes in its own representation but failed the frozen Boolean/field/action matching rubric; it remains a failure. [Explanation of the three extraction failures](docs/EXTRACTION_FAILURES.md).
 
 Two earlier cohorts were excluded for harness stops—reminder-export policy, then a repository-root/accounting bug—with both costs retained. The completed cohort cost $15.43881375; total including exclusions was $15.76510530.
 
 The zero-valued measures are a null result: this study provides no evidence that muse-guard makes Muse more honest. [Counts, denominators, overhead math and limitations](docs/MEASURED_RESULTS.md) · [Full study report](docs/STUDY_RESULTS_2026-10-27.md)
 
-Try the static demo's separate rule playground: toggle rules or edit actions to recompute clashes locally. Recorded development examples and the labeled planted-cheat fixture remain separate from study results.
+Try the static demo's separate rule playground: toggle rules or edit actions to see grouped conflicts and exactly which declared inputs change under A wins versus B wins. Recorded development examples and the labeled planted-cheat fixture remain separate from study results. The submission CLI (`PATH="$PWD/submission_tools/bin:$PATH"`) also shows this preview before a decision and in `muse-guard view <run>`.
 
 ## Limits
 
