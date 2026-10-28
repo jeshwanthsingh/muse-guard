@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-27",
+  "kind": "offline judge-demo verification",
+  "paid_calls": 0,
+  "incremental_cost_usd": 0,
+  "study_evidence_commit": "5ec471f",
+  "scoped_unit_tests": 10,
+  "demo_tables": 4,
+  "python_node_browser_parity_states": 144,
+  "browser_checks": {
+    "toggle": "PASS",
+    "same_action_resolves_clash": "PASS",
+    "empty_action": "REJECTED",
+    "html_action": "TEXT ONLY",
+    "horizontal_overflow_1280x720": false
+  },
+  "privacy_patterns": "PASS",
+  "gitleaks": "no leaks",
+  "protected_files": 103,
+  "study_locked_files": 199,
+  "frozen_study_files_unchanged": true,
+  "recorded_evidence_downloads": "byte-identical",
+  "export_reproducible": true,
+  "screenshots": {
+    "output/playwright/judge-actions-agree-1280.png": "534e0d52b698de0e560f4d721b2f3d25642236c88de50c00bd44874cdb3f3e9f",
+    "output/playwright/judge-clashes-1280.png": "703ac7f088c6063032a54e76652e7be3f21c655ef6ebc7f5ad4d2f0c799fa3b8",
+    "output/playwright/judge-results-1280.png": "6f77a61795ba8e0c39057fcce69af7e0b1ccf468ff021ee08dcb10fc29292007"
+  },
+  "site_manifest_sha256": "77c12f5ebf697978569e825be686ce4562efa8e18b72aeb4d01cf8d0ca8fb76e"
+}

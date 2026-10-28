@@ -26,6 +26,8 @@ def export(out):
  import shutil
  source=ROOT/'demo/continuous/recorded'
  if source.exists():shutil.copytree(source,out/'continuous')
+ from submission_tools.judge_demo import install
+ install(out,(ROOT/'docs/MEASURED_RESULTS.md').read_text())
  from muse_guard.site import scan_text
  for target in out.rglob('*'):
   if target.is_file():scan_text(target.read_text().replace(REPO,''))

@@ -33,7 +33,9 @@ class SubmissionTests(unittest.TestCase):
    for text in ('Refund policy - conflict','Refund policy - normal task','GitHub','Clash found','muse-guard finds every conflicting action among the confirmed rules and declared inputs'):self.assertIn(text,page)
    for p in (out/'evidence').glob('*.json'):self.assertEqual(p.read_bytes(),(ROOT/'output/judge-site/evidence'/p.name).read_bytes())
    for p in out.rglob('*.html'):
-    text=p.read_text();self.assertNotIn('<script',text);self.assertNotIn('<form',text)
+    text=p.read_text();self.assertNotIn('<form',text)
+    if p.name!='index.html' or p.parent!=out:self.assertNotIn('<script',text)
+    self.assertNotIn('/decision',text);self.assertNotIn('data-winner',text)
  def test_only_hackathon_model_and_text_tools_translated(self):
   request=chat_request({'model':'wrong','input':[{'type':'function_call','call_id':'c','name':'shell','arguments':'{}'},{'type':'function_call_output','call_id':'c','output':'ok'}],'tools':[{'type':'function','name':'shell','parameters':{}}]})
   self.assertEqual(request['model'],MODEL);self.assertEqual(request['messages'][1]['role'],'tool')

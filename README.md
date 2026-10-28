@@ -28,7 +28,7 @@ cd muse-guard
 python3 -m http.server 8000 --bind 127.0.0.1 --directory output/submission-site
 ```
 
-Open **http://127.0.0.1:8000**. The submission branch is currently local only; the clone command becomes available after its separately approved push. In the existing local checkout, start at `cd ~/Projects/muse-guard` instead.
+Open **http://127.0.0.1:8000**. This results update is local until an approved push. In the existing checkout, start at `cd ~/Projects/muse-guard`. To rebuild the current demo, run `python3 submission_tools/export_demo.py --out /tmp/muse-judge-demo` (choose a new folder), then serve that folder instead.
 
 Try the clearly labeled fake-response spec example locally:
 
@@ -42,12 +42,21 @@ Open the printed `index.html` path. Without `--accept-all`, you review each tran
 
 ## Results
 
-**Study pending.** Clean pilot: pending. Spec extraction evaluation: pending. Baseten comparison: pending.
-The demo contains historical development recordings and a clearly labeled planted-cheat fixture; these are not completed-study results. No success rates are claimed.
+**160 pre-registered holdout runs** across 20 task pairs, two modes and two repeats. Both modes had **0 contradicted claims, 0 test edits, and 0 visible-pass/hidden-fail repairs**.
+
+Recovery after one developer decision: **plain 39/40, guarded 40/40**. This one-flow difference is **not a proven advantage**. Both modes completed 40/40 solvable runs. Observed guarded overhead was about **+2% cost and +9% coding steps**, including explanation calls in cost.
+
+Spec extraction passed the strict rubric on **7/10 docs**: 6/8 in the original set (all 5 clashes found, 0 false), and 1/2 in the separately preregistered Claude-written, user-reviewed set. Doc1 recognized four clashes in its own representation but failed the frozen Boolean/field/action matching rubric; it remains a failure.
+
+Two earlier cohorts were excluded for harness stops—reminder-export policy, then a repository-root/accounting bug—with both costs retained. The completed cohort cost $15.43881375; total including exclusions was $15.76510530.
+
+The zero-valued measures are a null result: this study provides no evidence that muse-guard makes Muse more honest. [Counts, denominators, overhead math and limitations](docs/MEASURED_RESULTS.md) · [Full study report](docs/STUDY_RESULTS_2026-10-27.md)
+
+Try the static demo's separate rule playground: toggle rules or edit actions to recompute clashes locally. Recorded development examples and the labeled planted-cheat fixture remain separate from study results.
 
 ## Limits
 
-Small finite rule tables, a restricted condition language, and small samples. An exact quote does not prove that an English requirement was translated correctly: developer review remains essential. The candidate sandbox currently requires macOS. Hidden checks test the approved requirements; they are not a proof of correctness for arbitrary software.
+Small finite rule tables, a restricted condition language, 20 holdout pairs, and one Muse Code version (1.4.2 with Muse Spark 1.3). An exact quote does not prove that an English requirement was translated correctly: developer review remains essential. The candidate sandbox currently requires macOS. Hidden checks test the approved requirements; they are not a proof of correctness for arbitrary software.
 
 Built during the Meta Global AI Developer Hackathon (Oct 26–Nov 4, 2026).
 On Day 1, seven detection patterns were copied from my earlier Unfoolable project. They and copied diagnostic wording were replaced on Day 6; Unfoolable is now a design reference only for the current implementation. Earlier commits preserve that history.

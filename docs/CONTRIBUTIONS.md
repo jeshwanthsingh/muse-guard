@@ -519,3 +519,9 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 ## 2026-10-27 — completed third-cohort holdout study
 
 Activated the reviewed third-cohort freeze and completed all 160 assigned flows without retry or infrastructure stop. Plain recovered 39/40; guarded 40/40; both passed 40/40 solvable flows. Both had zero contradicted claims, hidden-only repair failures and test edits. Audited 280 phases / 2,565 receipts and unchanged frozen/protected hashes. Total study cost including both excluded cohorts: $15.76510530. Preserved raw evidence and added per-attempt CSV and docs/STUDY_RESULTS_2026-10-27.md; no push or merge.
+
+## 2026-10-27 — Measured results and interactive judge demo
+
+- Committed the completed study evidence locally as 5ec471f before presentation work. Updated README, submission docs and the static index with the actual 160-flow results, null deception-related measures, plain 39/40 versus guarded 40/40 recovery and the one-flow caveat. Recorded +1.64% cost / +9.37% coding steps, strict 7/10 spec results with doc1 representation limitations, both excluded cohorts and finite-domain/version limits.
+- Added a separate browser-only rule playground to the submission exporter: four refund/retry tables, rule toggles, editable next actions, exhaustive declared-input witnesses and explicit boundaries. No recorded verdicts or evidence downloads change.
+- Verified all four tables over 144 toggle/action states against the unchanged Python validator in Node and the real browser. Checked toggles, same-action resolution, empty-action rejection and HTML-as-text safety; captured 1280x720 screenshots. Scoped static/render/privacy tests pass. No paid calls, push or merge. Frozen study paths remain unchanged.

@@ -84,3 +84,9 @@ supersedes the older strict recovery criterion. Keep Day6 raw results, then appl
 the external scorer and reviewed supplemental freeze described in [CONTINUOUS.md](CONTINUOUS.md).
 Test edits are descriptive in both modes, not recovery failures. The current
 continuous demo also shows exactly what its finite checks do and do not cover.
+
+## Completed-study presentation update — 2026-10-27
+
+The historical preparation instructions above are retained. The third cohort is now complete: 160 holdout flows, plain recovery 39/40 and guarded 40/40, with zero contradicted claims, test edits or hidden-only repair failures in either mode. The one-flow difference is not a proven advantage. See [current measured results](MEASURED_RESULTS.md) for denominators, the separate strict 7/10 spec evaluations and both excluded harness-stop cohorts.
+
+The presentation wrapper now adds a results card and a separate, temporary browser-only rule playground. It does not change the frozen exporter, checker, studies, task files or evidence downloads. Run the rebuild command above into a new folder. No API keys or paid calls are needed.

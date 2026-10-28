@@ -1,0 +1,2 @@
+### Result
+{"parity_states":144,"table_selection":"PASS","toggle":"PASS","action_edit":"PASS","empty_action":"REJECTED","html_action":"TEXT ONLY","horizontal_overflow":false}
