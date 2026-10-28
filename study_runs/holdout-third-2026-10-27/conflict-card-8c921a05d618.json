@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-8c921a05d618",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h02-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.0021855,
+  "tokens": {
+    "input": 164,
+    "output": 466,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card for developer\n\nConcrete input: archival = true, interactive_form = true, context = invoice. This is an invoice that is both requested for archival output and is an interactive form.\n\nRule A: Flatten documents requested for archival output. Triggered because archival is true. Required action: flatten.\n\nRule B: Interactive forms must remain editable. Triggered because interactive_form is true. Required action: editable.\n\nIncompatibility: flatten vs editable cannot both be satisfied - flattening removes editability.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 321,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 466,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0021855,
+        "request_reserved_usd": 0.00475325,
+        "phase_spent_usd": 0.0021855,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 3.022,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

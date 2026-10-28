@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-3aef24cff922",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h09-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00202675,
+  "tokens": {
+    "input": 173,
+    "output": 426,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card for lease case where signature_due is true and unverified_identity is true.\n\nRule A - Sign documents whose signature is due - requires action sign.\nRule B - Defer signing if identity is unverified - requires action defer.\n\nSign and defer are incompatible for this same input - you cannot do both.\n\nWhich rule wins for this case?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 330,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 173,
+        "output_tokens": 426,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00202675,
+        "request_reserved_usd": 0.0047645,
+        "phase_spent_usd": 0.00202675,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 2.556,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

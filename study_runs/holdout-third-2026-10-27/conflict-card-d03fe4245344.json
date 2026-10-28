@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-d03fe4245344",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h18-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00229075,
+  "tokens": {
+    "input": 170,
+    "output": 489,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card:\n\nInput: narrow_viewport is true, large_print is true, context is article.\n\nRule A - Use compact layout in a narrow viewport - applies and requires action compact.\n\nRule B - Large-print mode requires expanded layout - applies and requires action expanded.\n\nThe actions compact and expanded are incompatible, both cannot be done at once.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 327,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 170,
+        "output_tokens": 489,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00229075,
+        "request_reserved_usd": 0.00476075,
+        "phase_spent_usd": 0.00229075,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 3.045,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

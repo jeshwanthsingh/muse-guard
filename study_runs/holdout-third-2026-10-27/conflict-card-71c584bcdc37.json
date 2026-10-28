@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-71c584bcdc37",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h12-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00259275,
+  "tokens": {
+    "input": 177,
+    "output": 558,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card for developer:\n\nInput case is a pallet with fragile = true and automated_aisle = true.\n\nRule A - Fragile pallets require manual picking - triggers action manual_pick.\n\nRule B - An automated aisle requires robot picking - triggers action robot_pick.\n\nmanual_pick and robot_pick are incompatible and cannot both be done.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 334,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 177,
+        "output_tokens": 558,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00259275,
+        "request_reserved_usd": 0.0047695,
+        "phase_spent_usd": 0.00259275,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 2.105,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

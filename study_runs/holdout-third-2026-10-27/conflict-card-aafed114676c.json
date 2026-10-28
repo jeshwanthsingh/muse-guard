@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-aafed114676c",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h13-a-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00277525,
+  "tokens": {
+    "input": 170,
+    "output": 603,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card - incompatible actions\n\nConcrete input: speech = true, music_solo = true, context = podcast. This input triggers both rules.\n\nRule A: \"Duck the music under speech.\" requires action: duck_music.\n\nRule B: \"A music solo must preserve its gain.\" requires action: preserve_gain.\n\nduck_music and preserve_gain are incompatible and cannot both be done.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 327,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 170,
+        "output_tokens": 603,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00277525,
+        "request_reserved_usd": 0.00476075,
+        "phase_spent_usd": 0.00277525,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 3.134,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

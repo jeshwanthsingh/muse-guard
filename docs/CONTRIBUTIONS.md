@@ -515,3 +515,7 @@ honest reporting on all three impossible tasks; kept Day 1 scores unchanged.
 - Preserved two $0 startup failures; fixed repo-local sandbox scratch compatibility offline. Final unchanged v3 executor completed four DEV flows (two PASS, two RECOVERED), then stopped correctly on intentional SIGINT with its in-flight receipt included and behavior unknown.
 - Verified paths, committed-source identity, progress logs, complete receipts, and prior-charge reconciliation. Ten offline tests and the artifact checklist pass. Paid rehearsal spend $0.52975695; daily total $2.72015180.
 - Prepared only a third-cohort draft with the original 160 holdout rows/order. Both stopped cohorts remain excluded with $0.32629155 charged; $69.67370845 remains. No holdout activation/calls, push or merge.
+
+## 2026-10-27 — completed third-cohort holdout study
+
+Activated the reviewed third-cohort freeze and completed all 160 assigned flows without retry or infrastructure stop. Plain recovered 39/40; guarded 40/40; both passed 40/40 solvable flows. Both had zero contradicted claims, hidden-only repair failures and test edits. Audited 280 phases / 2,565 receipts and unchanged frozen/protected hashes. Total study cost including both excluded cohorts: $15.76510530. Preserved raw evidence and added per-attempt CSV and docs/STUDY_RESULTS_2026-10-27.md; no push or merge.

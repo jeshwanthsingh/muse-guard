@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-8087e44b6618",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h08-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.0023455,
+  "tokens": {
+    "input": 173,
+    "output": 501,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card for developer:\n\nConcrete input case: contains_nuts = true, chef_special = true, context = lunch.\n\nRule A - \"Reject dishes containing nuts.\" triggers because contains_nuts is true, requiring action: reject_dish.\n\nRule B - \"Serve the designated chef special.\" triggers because chef_special is true, requiring action: serve_dish.\n\nIncompatible actions: reject_dish vs serve_dish cannot both be done for the same dish.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 330,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 173,
+        "output_tokens": 501,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0023455,
+        "request_reserved_usd": 0.0047645,
+        "phase_spent_usd": 0.0023455,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 3.53,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-6089c37491d6",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h04-a-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00217725,
+  "tokens": {
+    "input": 171,
+    "output": 462,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict for input: serum sample with temperature = 8 and irreplaceable = true.\n\nRule A - \"Discard samples at eight degrees or above.\" triggers on temperature >= 8 and requires action: discard.\n\nRule B - \"Preserve irreplaceable samples.\" triggers on irreplaceable = true and requires action: preserve.\n\nThe required actions discard and preserve are incompatible for this same sample.\n\nWhich rule wins?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 328,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 171,
+        "output_tokens": 462,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00217725,
+        "request_reserved_usd": 0.004762,
+        "phase_spent_usd": 0.00217725,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 4.127,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

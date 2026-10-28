@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-74bf1e1115ae",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h11-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00229275,
+  "tokens": {
+    "input": 175,
+    "output": 488,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card for developer:\n\nInput case: an archive on tape with few_copies = true and embargo = true.\n\nRule A - Replicate archives that have too few copies - applies and requires action replicate.\n\nRule B - Quarantine embargoed archives - applies and requires action quarantine.\n\nThe required actions replicate and quarantine are incompatible for this same input. Which rule wins?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 332,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 175,
+        "output_tokens": 488,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00229275,
+        "request_reserved_usd": 0.004767,
+        "phase_spent_usd": 0.00229275,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 2.579,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

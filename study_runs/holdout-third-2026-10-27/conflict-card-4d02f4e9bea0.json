@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-4d02f4e9bea0",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h19-a-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00227225,
+  "tokens": {
+    "input": 179,
+    "output": 482,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card - elevator controls in tower_a\n\nConcrete input: fire_alarm is true and seismic is true.\n\nRule A - \"A fire alarm sends the elevator to the ground floor.\" requires action: ground_floor.\n\nRule B - \"Seismic mode stops at the nearest floor.\" requires action: nearest_floor.\n\nThese actions are incompatible - the elevator cannot both go to the ground floor and stop at the nearest floor at the same time.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 336,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 482,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00227225,
+        "request_reserved_usd": 0.004772,
+        "phase_spent_usd": 0.00227225,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 4.028,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

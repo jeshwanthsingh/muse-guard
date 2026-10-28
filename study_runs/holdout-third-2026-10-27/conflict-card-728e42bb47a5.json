@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-728e42bb47a5",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h16-a-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.00233025,
+  "tokens": {
+    "input": 171,
+    "output": 498,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card\n\nConcrete input: turbidity is 10, maintenance_lock is true, context is intake.\n\nRule A says: Filter water at turbidity ten or higher. For this input it requires action filter.\n\nRule B says: A maintenance lock requires shutdown. For this input it requires action shutdown.\n\nThe required actions are incompatible: filter and shutdown cannot both be done.\n\nWhich rule wins for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 328,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 171,
+        "output_tokens": 498,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00233025,
+        "request_reserved_usd": 0.004762,
+        "phase_spent_usd": 0.00233025,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 2.583,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

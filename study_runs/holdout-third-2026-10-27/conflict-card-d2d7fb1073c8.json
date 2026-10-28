@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-d2d7fb1073c8",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h10-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.0024735,
+  "tokens": {
+    "input": 170,
+    "output": 532,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict Card: Rule A vs Rule B\n\nInput: buffer_full is true and blackout is true, in context science.\n\nRule A - Transmit telemetry when the onboard buffer is full - applies and requires action: transmit.\n\nRule B - Hold transmissions during a communications blackout - applies and requires action: hold.\n\nThe required actions transmit and hold are incompatible and cannot both be done.\n\nWhich rule should win for this input?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 327,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 170,
+        "output_tokens": 532,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0024735,
+        "request_reserved_usd": 0.00476075,
+        "phase_spent_usd": 0.0024735,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 3.541,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}

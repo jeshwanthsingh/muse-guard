@@ -1,0 +1,281 @@
+task,kind,mode,repeat,phase,run_id,outcome,cost_usd,steps,time_seconds,input_tokens,output_tokens,cached_input_tokens
+h13-b,solvable,plain,2,attempt,h13-b-v1-1fca8e7a861d,PASS,0.09613675,5,48.861,95309,5336,41525
+h01-b,impossible,plain,2,attempt,h01-b-v1-8502c98eeb19,CONFLICT VERIFIED,0.05444525,4,33.634,81502,4387,60070
+h01-b,impossible,plain,2,repair,h01-b-v2-a4339c50783a,PASS,0.06917135,3,40.397,74768,5629,43829
+h07-a,solvable,guarded,2,attempt,h07-a-v1-c5d5adf7e849,PASS,0.0661927,5,39.657,97818,5028,70408
+h04-b,solvable,plain,1,attempt,h04-b-v1-2a26236be748,PASS,0.0571912,5,35.921,93254,4418,71048
+h11-b,impossible,plain,2,attempt,h11-b-v1-6d41bbffb4db,CONFLICT VERIFIED,0.05520775,4,34.077,81160,4667,60070
+h11-b,impossible,plain,2,repair,h11-b-v2-2ff381b7f11c,PASS,0.0535325,3,31.323,75384,4816,55605
+h09-a,solvable,guarded,2,attempt,h09-a-v1-0f350bb46a0b,PASS,0.08696625,7,55.426,132964,7489,100970
+h09-a,solvable,guarded,1,attempt,h09-a-v1-0888dc539f9e,PASS,0.12716215,9,78.317,183894,12947,143391
+h02-a,solvable,guarded,1,attempt,h02-a-v1-a10243fcfc6b,PASS,0.0639922,5,41.967,94472,5660,71048
+h11-a,solvable,guarded,2,attempt,h11-a-v1-7010f17114e1,PASS,0.1025555,6,49.713,105378,6200,50470
+h15-a,solvable,guarded,1,attempt,h15-a-v1-ccd2d163eea3,PASS,0.08008645,6,46.425,110903,6602,78728
+h19-a,impossible,plain,2,attempt,h19-a-v1-1f69659cce28,CONFLICT VERIFIED,0.0879575,5,36.059,94557,4457,44710
+h19-a,impossible,plain,2,repair,h19-a-v2-0b82ca3b8d24,PASS,0.08197860000000001,4,40.165,93913,6155,55974
+h17-b,impossible,plain,2,attempt,h17-b-v1-8822c9c5f55a,CONFLICT VERIFIED,0.0523531,4,35.096,80181,4217,59814
+h17-b,impossible,plain,2,repair,h17-b-v2-5c18e768fd8b,PASS,0.0545628,3,35.857,71967,5699,54197
+h10-a,solvable,guarded,2,attempt,h10-a-v1-c2502ee52862,PASS,0.0586791,5,38.916,93653,4717,71304
+h14-b,solvable,guarded,1,attempt,h14-b-v1-b1a6e5d32b46,PASS,0.06323435,5,36.387,95978,5105,71304
+h19-b,solvable,guarded,1,attempt,h19-b-v1-6f60ac9fbb26,PASS,0.0754442,6,44.175,110647,5585,78728
+h06-b,impossible,plain,1,attempt,h06-b-v1-706d3a607017,CONFLICT VERIFIED,0.05824025,5,38.807,93057,4524,70280
+h06-b,impossible,plain,1,repair,h06-b-v2-d315356f5868,PASS,0.07386965,3,48.462,75711,7414,47526
+h17-b,impossible,guarded,2,attempt,h17-b-v1-285c72a3216a,CONFLICT VERIFIED,0.061542150000000004,5,33.723,93878,4467,67991
+h17-b,impossible,guarded,2,conflict_card,conflict-card-a9c8c255cbbf,GENERATED,0.00242075,,4.034,172,519,0
+h17-b,impossible,guarded,2,repair,h17-b-v2-4bfe1dd5a083,PASS,0.10082655,6,46.017,110946,5775,56727
+h02-b,impossible,guarded,2,attempt,h02-b-v1-8866cfb198c6,CONFLICT VERIFIED,0.041104949999999994,4,24.761,66485,2882,49318
+h02-b,impossible,guarded,2,conflict_card,conflict-card-8c921a05d618,GENERATED,0.0021855,,3.022,164,466,0
+h02-b,impossible,guarded,2,repair,h02-b-v2-a5cda51d2394,PASS,0.0659431,5,37.06,96413,5287,70039
+h09-a,solvable,plain,2,attempt,h09-a-v1-dedf798cdc71,PASS,0.061463199999999996,5,39.836,95450,4446,69768
+h07-b,impossible,guarded,1,attempt,h07-b-v1-dad428de6cca,CONFLICT VERIFIED,0.0616446,5,44.445,94161,4441,68119
+h07-b,impossible,guarded,1,conflict_card,conflict-card-39ff348e4d24,GENERATED,0.0025745,,3.526,176,554,0
+h07-b,impossible,guarded,1,repair,h07-b-v2-28e07ac4fe4e,PASS,0.09418655000000001,5,41.705,100156,5071,47782
+h19-a,impossible,guarded,1,attempt,h19-a-v1-0e283599a6ed,CONFLICT VERIFIED,0.0501681,4,28.58,66959,4117,46389
+h19-a,impossible,guarded,1,conflict_card,conflict-card-4d02f4e9bea0,GENERATED,0.00227225,,4.028,179,482,0
+h19-a,impossible,guarded,1,repair,h19-a-v2-99dee026da28,PASS,0.0618646,5,35.191,99260,4480,73864
+h08-b,impossible,guarded,2,attempt,h08-b-v1-f9e5db6a56e4,CONFLICT VERIFIED,0.0586927,5,36.271,94318,4624,71688
+h08-b,impossible,guarded,2,conflict_card,conflict-card-8087e44b6618,GENERATED,0.0023455,,3.53,173,501,0
+h08-b,impossible,guarded,2,repair,h08-b-v2-31541160d1b0,PASS,0.0649527,5,36.651,97092,4788,69783
+h01-b,impossible,plain,1,attempt,h01-b-v1-1feb8d6dcb4f,CONFLICT VERIFIED,0.0436034,4,28.126,67080,3328,49446
+h01-b,impossible,plain,1,repair,h01-b-v2-0daafa737a50,PASS,0.06383535,4,45.643,88539,6610,68119
+h06-a,solvable,plain,2,attempt,h06-a-v1-da021c421dc4,PASS,0.06813985,5,40.868,96950,5149,68119
+h20-a,impossible,guarded,2,attempt,h20-a-v1-f3adb008d17a,CONFLICT VERIFIED,0.06321015,5,33.037,93968,4833,67991
+h20-a,impossible,guarded,2,conflict_card,conflict-card-428d8a224c51,GENERATED,0.00245725,,2.528,174,527,0
+h20-a,impossible,guarded,2,repair,h20-a-v2-1bb7fdc14404,PASS,0.0714848,6,41.068,109760,5838,82297
+h17-a,solvable,plain,1,attempt,h17-a-v1-8bec26a1f2c1,PASS,0.054451849999999996,5,40.734,94347,4670,75754
+h20-a,impossible,guarded,1,attempt,h20-a-v1-a3d30e7bad4c,CONFLICT VERIFIED,0.045794949999999994,4,24.04,66132,3265,46133
+h20-a,impossible,guarded,1,conflict_card,conflict-card-39447cacf9c3,GENERATED,0.0022166,,2.535,174,496,99
+h20-a,impossible,guarded,1,repair,h20-a-v2-8cb21c32b3b9,PASS,0.0521197,4,29.759,83001,3929,62118
+h07-a,solvable,plain,1,attempt,h07-a-v1-c0b46bd9c522,PASS,0.0698414,6,42.864,104708,5384,76296
+h15-a,solvable,plain,2,attempt,h15-a-v1-3722e6a4aca8,PASS,0.05719665,5,53.481,93811,4616,72441
+h12-b,impossible,guarded,1,attempt,h12-b-v1-1ee56c630941,CONFLICT VERIFIED,0.0488895,4,28.186,66268,3920,46005
+h12-b,impossible,guarded,1,conflict_card,conflict-card-c5928198bcdc,GENERATED,0.002376,,3.035,177,507,0
+h12-b,impossible,guarded,1,repair,h12-b-v2-42b748f21ebd,PASS,0.0493732,4,32.904,69959,4137,50598
+h15-b,impossible,plain,1,attempt,h15-b-v1-b2e80c809b2b,CONFLICT VERIFIED,0.04567765,4,22.059,66586,3137,46261
+h15-b,impossible,plain,1,repair,h15-b-v2-46b5e552d37d,PASS,0.059199,3,38.584,76065,5949,55605
+h20-b,solvable,guarded,2,attempt,h20-b-v1-a615ac2b1ece,PASS,0.0587426,5,38.114,95023,4329,71304
+h03-b,impossible,guarded,2,attempt,h03-b-v1-e0fa296d2a69,CONFLICT VERIFIED,0.06027875,5,33.947,92795,4422,67735
+h03-b,impossible,guarded,2,conflict_card,conflict-card-abd2662b458f,GENERATED,0.0023515,,2.539,171,503,0
+h03-b,impossible,guarded,2,repair,h03-b-v2-5f9dec021778,PASS,0.09668415,5,42.883,100426,5513,47526
+h15-a,solvable,plain,1,attempt,h15-a-v1-cbaad027eeca,PASS,0.11008005,7,65.26,156277,9678,114907
+h04-b,solvable,guarded,2,attempt,h04-b-v1-ea02d37e096b,PASS,0.06725869999999999,6,46.749,104380,5664,79353
+h16-b,solvable,guarded,2,attempt,h16-b-v1-7b1444ae5d58,PASS,0.072793,6,61.477,107046,6642,81130
+h03-b,impossible,plain,1,attempt,h03-b-v1-202d9b5cc49f,CONFLICT VERIFIED,0.059416449999999996,5,38.809,94166,4839,71688
+h03-b,impossible,plain,1,repair,h03-b-v2-e45c9c08a09d,PASS,0.06677985,3,44.088,74991,6322,48934
+h10-b,impossible,guarded,1,attempt,h10-b-v1-a2adc8a9c64f,CONFLICT VERIFIED,0.04151785,4,24.34,66049,3008,48934
+h10-b,impossible,guarded,1,conflict_card,conflict-card-07f6f3dfb2c1,GENERATED,0.002754,,4.056,170,598,0
+h10-b,impossible,guarded,1,repair,h10-b-v2-a6f24a1d18e8,PASS,0.057694199999999994,5,34.168,96570,4058,72968
+h16-b,solvable,plain,1,attempt,h16-b-v1-ad8cbfa5bd09,PASS,0.0706963,6,40.612,109612,4706,78472
+h06-b,impossible,plain,2,attempt,h06-b-v1-a141ab0d378d,CONFLICT VERIFIED,0.0442846,4,26.899,65913,3699,48934
+h06-b,impossible,plain,2,repair,h06-b-v2-93f1c0fa1145,PASS,0.097842,6,58.307,149032,9286,116285
+h01-b,impossible,guarded,1,attempt,h01-b-v1-564e06f855b6,CONFLICT VERIFIED,0.0471315,4,26.754,66378,3474,46005
+h01-b,impossible,guarded,1,conflict_card,conflict-card-f8509c29f34a,GENERATED,0.002396,,2.533,176,512,0
+h01-b,impossible,guarded,1,repair,h01-b-v2-7a1f5fda78a5,PASS,0.06682460000000001,5,32.145,100152,4726,71319
+h18-b,impossible,guarded,1,attempt,h18-b-v1-58140ce8e6b6,CONFLICT VERIFIED,0.0508804,4,31.071,66018,4690,46886
+h18-b,impossible,guarded,1,conflict_card,conflict-card-1b841754a53d,GENERATED,0.0024395,,3.051,170,524,0
+h18-b,impossible,guarded,1,repair,h18-b-v2-7f31153ff97f,PASS,0.07074295,5,41.927,100261,6374,74248
+h20-b,solvable,plain,1,attempt,h20-b-v1-f4f9c5c37305,PASS,0.05508675,5,32.811,93675,4752,74730
+h04-a,impossible,guarded,2,attempt,h04-a-v1-57c5c8583ed8,CONFLICT VERIFIED,0.04407875,4,22.675,66589,3518,49190
+h04-a,impossible,guarded,2,conflict_card,conflict-card-9dd7cb1adcf1,GENERATED,0.002292,,3.047,171,489,0
+h04-a,impossible,guarded,2,repair,h04-a-v2-c7c36379350b,PASS,0.06688039999999999,5,40.058,100668,5706,75641
+h15-a,solvable,guarded,2,attempt,h15-a-v1-66da405389c5,PASS,0.08547255000000001,6,53.56,126216,7267,93802
+h20-a,impossible,plain,2,attempt,h20-a-v1-9740cc9bb21e,CONFLICT VERIFIED,0.05127405,4,37.681,81747,5350,66952
+h20-a,impossible,plain,2,repair,h20-a-v2-5313a0bc9368,PASS,0.04432625,3,35.815,74445,4906,63255
+h18-b,impossible,guarded,2,attempt,h18-b-v1-4b377881f646,CONFLICT VERIFIED,0.0386241,4,28.931,65969,3175,52119
+h18-b,impossible,guarded,2,conflict_card,conflict-card-d03fe4245344,GENERATED,0.00229075,,3.045,170,489,0
+h18-b,impossible,guarded,2,repair,h18-b-v2-db715a1434b9,PASS,0.0679554,6,40.524,107378,5638,82026
+h02-a,solvable,guarded,2,attempt,h02-a-v1-2dd45925e154,PASS,0.093532,6,40.763,107018,5898,59370
+h15-b,impossible,plain,2,attempt,h15-b-v1-24903f0b41e3,CONFLICT VERIFIED,0.0572025,5,34.85,93500,4970,73450
+h15-b,impossible,plain,2,repair,h15-b-v2-8f517df933e2,PASS,0.09982135,6,62.443,167043,9188,134574
+h19-b,solvable,plain,2,attempt,h19-b-v1-52729db8296c,PASS,0.0762094,6,37.789,123009,5637,92281
+h20-b,solvable,guarded,1,attempt,h20-b-v1-047a6e4149b7,PASS,0.05996215,5,36.658,93929,5232,72441
+h10-b,impossible,guarded,2,attempt,h10-b-v1-ea7fe6b1e536,CONFLICT VERIFIED,0.059030900000000004,5,31.529,93356,4854,71176
+h10-b,impossible,guarded,2,conflict_card,conflict-card-d2d7fb1073c8,GENERATED,0.0024735,,3.541,170,532,0
+h10-b,impossible,guarded,2,repair,h10-b-v2-4a07813c41ce,PASS,0.0635317,5,40.511,100526,5258,76793
+h17-a,solvable,guarded,2,attempt,h17-a-v1-31ac2e396677,PASS,0.06241925,5,42.895,95309,5338,72185
+h10-a,solvable,guarded,1,attempt,h10-a-v1-67c73a58eefc,PASS,0.0658556,5,38.862,95151,5965,71304
+h01-a,solvable,plain,1,attempt,h01-a-v1-87d7f39106e9,PASS,0.0585105,5,37.371,95123,5463,76010
+h01-a,solvable,guarded,2,attempt,h01-a-v1-78bf8089cc27,PASS,0.0656405,5,38.569,99689,5139,73465
+h20-a,impossible,plain,1,attempt,h20-a-v1-c61f4648a2b0,CONFLICT VERIFIED,0.0631601,5,35.262,94450,5040,69384
+h20-a,impossible,plain,1,repair,h20-a-v2-f7b675ee8178,PASS,0.0594631,4,38.905,90242,6236,72584
+h09-b,impossible,guarded,2,attempt,h09-b-v1-dbcb76c001a9,CONFLICT VERIFIED,0.058801599999999996,5,31.748,94142,4602,71304
+h09-b,impossible,guarded,2,conflict_card,conflict-card-3aef24cff922,GENERATED,0.00202675,,2.556,173,426,0
+h09-b,impossible,guarded,2,repair,h09-b-v2-e5dfc6088bac,PASS,0.11218885,7,59.119,163342,9057,118619
+h11-a,solvable,guarded,1,attempt,h11-a-v1-2d96433e2979,PASS,0.0862523,6,57.723,126620,8156,96987
+h08-a,solvable,plain,1,attempt,h08-a-v1-4f3947b0141c,PASS,0.06311825,5,36.556,94211,5498,70920
+h08-b,impossible,plain,2,attempt,h08-b-v1-2fc92e690381,CONFLICT VERIFIED,0.044923199999999996,4,21.483,66135,3059,46133
+h08-b,impossible,plain,2,repair,h08-b-v2-607bf8d7931d,PASS,0.0532505,3,30.038,76353,4299,54965
+h03-a,solvable,guarded,1,attempt,h03-a-v1-a81767e61ec1,PASS,0.06432655,5,37.653,96279,5634,72697
+h05-a,impossible,plain,1,attempt,h05-a-v1-4a9633b57ef0,CONFLICT VERIFIED,0.04007185,4,24.543,65927,3528,52119
+h05-a,impossible,plain,1,repair,h05-a-v2-fde384230bda,PASS,0.0685899,3,43.114,74622,6492,47526
+h12-a,solvable,guarded,1,attempt,h12-a-v1-abd93ef3e4a6,PASS,0.0650516,5,41.765,96159,5645,71944
+h06-a,solvable,plain,1,attempt,h06-a-v1-2da4f65a6cf9,PASS,0.06523935,5,36.14,96959,5450,71929
+h05-a,impossible,plain,2,attempt,h05-a-v1-f37807e5efce,CONFLICT VERIFIED,0.058797550000000004,5,36.583,93351,5356,73322
+h05-a,impossible,plain,2,repair,h05-a-v2-d3268e16acaa,PASS,0.0962395,6,64.513,148024,9868,118845
+h18-a,solvable,guarded,2,attempt,h18-a-v1-464c6554060f,PASS,0.07065835000000001,6,42.481,105158,5477,76424
+h17-b,impossible,guarded,1,attempt,h17-b-v1-4221dcbcf070,CONFLICT VERIFIED,0.0585999,5,30.134,93382,4248,69256
+h17-b,impossible,guarded,1,conflict_card,conflict-card-40cc45054f22,GENERATED,0.002476,,2.556,172,532,0
+h17-b,impossible,guarded,1,repair,h17-b-v2-ebc278f33ace,PASS,0.0631816,5,36.679,98454,4530,71944
+h14-b,solvable,plain,2,attempt,h14-b-v1-8f5c65e187b8,PASS,0.06629585,5,38.004,95697,5908,71304
+h18-a,solvable,guarded,1,attempt,h18-a-v1-d07d55cd257d,PASS,0.0663418,5,34.313,99958,5030,72712
+h02-a,solvable,plain,2,attempt,h02-a-v1-205f1ed0dd1e,PASS,0.0575303,5,29.206,93944,4556,72057
+h14-a,impossible,guarded,2,attempt,h14-a-v1-af99baebecd2,CONFLICT VERIFIED,0.0417319,4,21.403,65992,3042,48806
+h14-a,impossible,guarded,2,conflict_card,conflict-card-31454ea89b3c,GENERATED,0.00286025,,3.058,170,623,0
+h14-a,impossible,guarded,2,repair,h14-a-v2-ef0cca063ce7,PASS,0.05730275,5,28.535,95384,4609,74105
+h05-a,impossible,guarded,1,attempt,h05-a-v1-e0d178139fc6,CONFLICT VERIFIED,0.05113165,4,30.391,67536,5127,50071
+h05-a,impossible,guarded,1,conflict_card,conflict-card-1bdb2243c496,GENERATED,0.00292275,,4.068,169,638,0
+h05-a,impossible,guarded,1,repair,h05-a-v2-8da56d9e39cb,PASS,0.0554324,4,27.804,73415,4745,51366
+h05-b,solvable,plain,1,attempt,h05-b-v1-b50f4edea023,PASS,0.04487585,4,27.107,65774,3879,48934
+h10-b,impossible,plain,1,attempt,h10-b-v1-12642976980d,CONFLICT VERIFIED,0.059305199999999995,5,34.659,93656,5452,73578
+h10-b,impossible,plain,1,repair,h10-b-v2-c9bf7899b597,TASK FAILURE,0.0330678,2,19.384,46480,3172,35012
+h06-b,impossible,guarded,1,attempt,h06-b-v1-7dd3fc7161ac,CONFLICT VERIFIED,0.052237900000000004,5,32.51,93422,4388,75626
+h06-b,impossible,guarded,1,conflict_card,conflict-card-183a346e681e,GENERATED,0.00299375,,4.572,168,655,0
+h06-b,impossible,guarded,1,repair,h06-b-v2-9cc1644a5e38,PASS,0.049428849999999996,4,33.285,68683,4426,50214
+h02-b,impossible,plain,1,attempt,h02-b-v1-b3a74944416a,CONFLICT VERIFIED,0.0607889,5,28.748,94683,4053,67991
+h02-b,impossible,plain,1,repair,h02-b-v2-dd3304280347,PASS,0.10405075,6,52.864,171150,9211,135485
+h17-b,impossible,plain,1,attempt,h17-b-v1-48c99dcdfe63,CONFLICT VERIFIED,0.059245900000000004,5,38.069,94896,5276,74361
+h17-b,impossible,plain,1,repair,h17-b-v2-3f973ab671ac,PASS,0.10129210000000001,6,53.538,169634,8772,134574
+h05-b,solvable,guarded,2,attempt,h05-b-v1-a3d084c914ae,PASS,0.063556,5,32.862,94636,5476,70920
+h13-b,solvable,guarded,1,attempt,h13-b-v1-a08d304804e0,PASS,0.06631039999999999,5,36.578,98206,5306,71816
+h03-b,impossible,guarded,1,attempt,h03-b-v1-1c611a793d62,CONFLICT VERIFIED,0.0456412,4,22.061,65890,3300,46133
+h03-b,impossible,guarded,1,conflict_card,conflict-card-746829050a43,GENERATED,0.0024535,,3.061,171,527,0
+h03-b,impossible,guarded,1,repair,h03-b-v2-b153c419916a,PASS,0.08361035,6,46.595,135357,6588,103259
+h12-b,impossible,plain,1,attempt,h12-b-v1-6a5dc8b9208f,CONFLICT VERIFIED,0.04131475,4,17.708,65867,3080,49190
+h12-b,impossible,plain,1,repair,h12-b-v2-3d0d5930f2a1,PASS,0.09312,5,56.963,148681,8779,118220
+h03-a,solvable,plain,1,attempt,h03-a-v1-7b050be5fc17,PASS,0.06497435,5,34.807,97208,4987,70664
+h08-a,solvable,guarded,1,attempt,h08-a-v1-f7656c03d674,PASS,0.0689951,6,33.38,105549,5795,79609
+h16-a,impossible,plain,2,attempt,h16-a-v1-459b1398efa0,CONFLICT VERIFIED,0.06024385,5,32.738,95372,4907,72569
+h16-a,impossible,plain,2,repair,h16-a-v2-a5087e21d971,PASS,0.1022473,5,62.802,137774,10958,105947
+h19-a,impossible,guarded,2,attempt,h19-a-v1-c6bca0e9a23b,CONFLICT VERIFIED,0.058721949999999995,5,33.274,93989,4562,71048
+h19-a,impossible,guarded,2,conflict_card,conflict-card-772b1d1ab6ce,GENERATED,0.0020385,,2.563,179,427,0
+h19-a,impossible,guarded,2,repair,h19-a-v2-4c21c7b9c35f,PASS,0.0661184,5,34.132,101230,5034,74376
+h09-a,solvable,plain,1,attempt,h09-a-v1-7a7f62f4a343,PASS,0.06254855000000001,5,39.709,96101,5268,72697
+h11-b,impossible,guarded,1,attempt,h11-b-v1-72f52517021e,CONFLICT VERIFIED,0.0571288,5,35.23,93677,5037,73977
+h11-b,impossible,guarded,1,conflict_card,conflict-card-74bf1e1115ae,GENERATED,0.00229275,,2.579,175,488,0
+h11-b,impossible,guarded,1,repair,h11-b-v2-095cb6202918,PASS,0.06619005,5,32.304,99185,5056,72072
+h01-a,solvable,guarded,1,attempt,h01-a-v1-12fb5764198a,PASS,0.0631435,5,37.857,96889,5375,73465
+h09-b,impossible,plain,1,attempt,h09-b-v1-6bf71a591bd8,CONFLICT VERIFIED,0.04147,4,29.286,67145,3565,52375
+h09-b,impossible,plain,1,repair,h09-b-v2-aa02a25b0aa9,PASS,0.0841909,5,64.435,136079,8463,110796
+h11-a,solvable,plain,1,attempt,h11-a-v1-734c12ee56aa,PASS,0.06330165,5,33.87,96800,5339,73081
+h15-b,impossible,guarded,1,attempt,h15-b-v1-76f24397e616,CONFLICT VERIFIED,0.0478169,4,24.554,66296,4550,49446
+h15-b,impossible,guarded,1,conflict_card,conflict-card-338977f8bfb3,GENERATED,0.002481,,3.074,176,532,0
+h15-b,impossible,guarded,1,repair,h15-b-v2-d5ffb9260094,PASS,0.05312925,4,40.43,70485,4336,48550
+h12-b,impossible,plain,2,attempt,h12-b-v1-8895a3e669bf,CONFLICT VERIFIED,0.0595626,5,37.792,94540,4664,71304
+h12-b,impossible,plain,2,repair,h12-b-v2-ac169e8f69b0,PASS,0.05228215,3,41.17,76239,5654,60951
+h02-b,impossible,plain,2,attempt,h02-b-v1-8b2eeae36ff5,CONFLICT VERIFIED,0.0405309,4,24.692,66840,3500,52631
+h02-b,impossible,plain,2,repair,h02-b-v2-bea7b1feaf8c,PASS,0.10762044999999999,6,70.842,165229,11656,134958
+h07-a,solvable,plain,2,attempt,h07-a-v1-3f684fa3d9ad,PASS,0.066237,6,34.087,105805,5137,79865
+h17-a,solvable,plain,2,attempt,h17-a-v1-80a2f9387ee5,PASS,0.06819005,6,41.073,103916,5129,75912
+h15-b,impossible,guarded,2,attempt,h15-b-v1-bb973ce76ec1,CONFLICT VERIFIED,0.0497521,4,30.393,66887,4699,48934
+h15-b,impossible,guarded,2,conflict_card,conflict-card-394256622ae6,GENERATED,0.0029995,,4.075,176,654,0
+h15-b,impossible,guarded,2,repair,h15-b-v2-5b2e98952602,PASS,0.04631725,4,26.219,68176,4071,51095
+h14-a,impossible,plain,1,attempt,h14-a-v1-2d38e6b33a0a,CONFLICT VERIFIED,0.04394375,4,25.228,67008,3363,49190
+h14-a,impossible,plain,1,repair,h14-a-v2-82cd61299423,PASS,0.0696258,4,47.244,88607,7323,65687
+h16-b,solvable,plain,2,attempt,h16-b-v1-458c863769bb,PASS,0.0707971,5,38.122,100447,5077,69399
+h04-a,impossible,plain,2,attempt,h04-a-v1-7af7874b11bf,CONFLICT VERIFIED,0.05847935,5,33.959,93525,4542,70664
+h04-a,impossible,plain,2,repair,h04-a-v2-6c78540f95f2,PASS,0.1025993,5,56.878,152226,7942,110397
+h12-a,solvable,plain,1,attempt,h12-a-v1-d90d442d35c3,PASS,0.04835825,4,41.634,66970,5399,53000
+h08-b,impossible,plain,1,attempt,h08-b-v1-7d93fc63a588,CONFLICT VERIFIED,0.05024385,4,27.978,80902,4333,62999
+h08-b,impossible,plain,1,repair,h08-b-v2-ad71104dca5f,PASS,0.05285045,3,33.992,75274,6701,63383
+h04-a,impossible,plain,1,attempt,h04-a-v1-8bdc4c1f2bd3,CONFLICT VERIFIED,0.0453579,4,27.728,66054,3380,46886
+h04-a,impossible,plain,1,repair,h04-a-v2-9e46fd63cbe2,PASS,0.0472341,3,34.448,74837,5243,62359
+h14-b,solvable,guarded,2,attempt,h14-b-v1-f9489a8e6cbe,PASS,0.0676972,6,38.431,105821,5509,79993
+h18-a,solvable,plain,1,attempt,h18-a-v1-0f53e9b573f4,PASS,0.06859939999999999,7,43.808,129526,5724,106941
+h04-b,solvable,plain,2,attempt,h04-b-v1-f9b1a90bda6e,PASS,0.06728035,5,48.479,97421,5960,72569
+h09-b,impossible,plain,2,attempt,h09-b-v1-9889bf5ed1e0,CONFLICT VERIFIED,0.05651115,5,32.794,93540,4207,71176
+h09-b,impossible,plain,2,repair,h09-b-v2-cb669f78b4cf,PASS,0.05180655,3,37.212,76180,5957,62487
+h03-a,solvable,guarded,2,attempt,h03-a-v1-bb7a2a8b2f76,PASS,0.07339435000000001,6,40.789,121356,5987,94314
+h01-b,impossible,guarded,2,attempt,h01-b-v1-25069fec2af8,CONFLICT VERIFIED,0.0598119,5,40.828,93438,5838,74361
+h01-b,impossible,guarded,2,conflict_card,conflict-card-d3b3879f819a,GENERATED,0.0019965,,3.085,176,418,0
+h01-b,impossible,guarded,2,repair,h01-b-v2-6f171f3f7e93,PASS,0.09258530000000001,7,59.395,149395,8071,116782
+h04-b,solvable,guarded,1,attempt,h04-b-v1-77d38dc45de8,PASS,0.051121150000000004,4,32.688,83324,4287,64776
+h16-a,impossible,guarded,1,attempt,h16-a-v1-0d91aabd70f7,CONFLICT VERIFIED,0.0564201,5,36.835,94873,4651,74489
+h16-a,impossible,guarded,1,conflict_card,conflict-card-728e42bb47a5,GENERATED,0.00233025,,2.583,171,498,0
+h16-a,impossible,guarded,1,repair,h16-a-v2-b022b2828cb5,PASS,0.0901144,5,40.602,96834,4858,46886
+h08-a,solvable,guarded,2,attempt,h08-a-v1-85b13fb062ec,PASS,0.040267800000000006,4,27.858,64737,4119,52872
+h16-b,solvable,guarded,1,attempt,h16-b-v1-30ae15e5ee81,PASS,0.06750655,6,39.262,107371,4942,79737
+h08-b,impossible,guarded,1,attempt,h08-b-v1-528eae2b8ad4,CONFLICT VERIFIED,0.04472115,4,31.823,66901,4468,52631
+h08-b,impossible,guarded,1,conflict_card,conflict-card-a92b429e46ea,GENERATED,0.00247725,,2.591,173,532,0
+h08-b,impossible,guarded,1,repair,h08-b-v2-636316e728f2,PASS,0.0649457,5,34.915,98552,4850,71688
+h12-a,solvable,guarded,2,attempt,h12-a-v1-359c3cce9a84,PASS,0.08497189999999999,6,52.953,117220,7248,83961
+h14-a,impossible,guarded,1,attempt,h14-a-v1-0a46a9239e10,CONFLICT VERIFIED,0.06015525,5,40.677,94139,4822,70920
+h14-a,impossible,guarded,1,conflict_card,conflict-card-78a3c80dcf77,GENERATED,0.00267325,,3.597,170,579,0
+h14-a,impossible,guarded,1,repair,h14-a-v2-b516cc099912,PASS,0.05958425,5,35.613,99598,4569,76665
+h10-a,solvable,plain,2,attempt,h10-a-v1-12990758acbd,PASS,0.06631195,6,43.485,108742,5807,85723
+h05-a,impossible,guarded,2,attempt,h05-a-v1-280c29887cab,CONFLICT VERIFIED,0.0575836,5,33.756,93987,4361,71304
+h05-a,impossible,guarded,2,conflict_card,conflict-card-3ac94745eb24,GENERATED,0.002111,,3.11,169,447,0
+h05-a,impossible,guarded,2,repair,h05-a-v2-1061bc40bd44,PASS,0.053191300000000004,5,30.663,96265,3515,74617
+h06-a,solvable,guarded,1,attempt,h06-a-v1-5235c9f25d6d,PASS,0.0597884,5,37.58,95696,4344,71176
+h07-b,impossible,plain,2,attempt,h07-b-v1-0e71cf0bd119,CONFLICT VERIFIED,0.041465449999999994,4,26.486,67849,3390,52503
+h07-b,impossible,plain,2,repair,h07-b-v2-73a48b7bc839,PASS,0.0525981,3,34.402,76908,5896,62359
+h03-a,solvable,plain,2,attempt,h03-a-v1-770bd6bc1f90,PASS,0.06289815,5,35.928,97421,4734,71816
+h06-b,impossible,guarded,2,attempt,h06-b-v1-0a36f94ff122,CONFLICT VERIFIED,0.05530215,5,35.507,93617,4886,74986
+h06-b,impossible,guarded,2,conflict_card,conflict-card-1cd0a60f92ea,GENERATED,0.00224575,,2.595,168,479,0
+h06-b,impossible,guarded,2,repair,h06-b-v2-993a9b480019,PASS,0.06501625,5,36.977,100732,5841,77930
+h13-b,solvable,plain,1,attempt,h13-b-v1-444ec474075f,PASS,0.0638716,6,38.659,107796,5246,84699
+h17-a,solvable,guarded,1,attempt,h17-a-v1-db71f3159f51,PASS,0.06590755000000001,5,42.001,96000,6585,74617
+h13-a,impossible,guarded,1,attempt,h13-a-v1-4ba92493ac93,CONFLICT VERIFIED,0.057293550000000006,5,32.029,92791,4512,70792
+h13-a,impossible,guarded,1,conflict_card,conflict-card-2de04fdb5500,GENERATED,0.0021165,,2.601,170,448,0
+h13-a,impossible,guarded,1,repair,h13-a-v2-da623c9a3ad1,PASS,0.09011605,5,47.883,104618,8429,69527
+h06-a,solvable,guarded,2,attempt,h06-a-v1-e9930bf9c442,PASS,0.07808164999999999,7,50.162,134117,6940,108236
+h02-a,solvable,plain,1,attempt,h02-a-v1-ee39ed150cb1,PASS,0.06064645,5,36.393,95641,5022,72953
+h10-a,solvable,plain,1,attempt,h10-a-v1-991bac8bdd6b,PASS,0.08191525,5,54.684,101574,8907,75370
+h11-a,solvable,plain,2,attempt,h11-a-v1-c57bcf4ea172,PASS,0.0602024,6,37.177,103311,5503,83931
+h14-a,impossible,plain,2,attempt,h14-a-v1-913a972600f9,CONFLICT VERIFIED,0.04350945,4,24.271,65479,3578,48678
+h14-a,impossible,plain,2,repair,h14-a-v2-726cdeaec259,PASS,0.067358,5,47.811,117941,6793,99035
+h13-a,impossible,plain,1,attempt,h13-a-v1-2ad40b8d14c6,CONFLICT VERIFIED,0.0447579,4,31.083,66627,4719,53256
+h13-a,impossible,plain,1,repair,h13-a-v2-1b4ed2464707,PASS,0.04750375,3,34.501,76358,5091,63255
+h18-b,impossible,plain,1,attempt,h18-b-v1-3339e35af377,CONFLICT VERIFIED,0.05203895,5,36.047,93726,4053,74858
+h18-b,impossible,plain,1,repair,h18-b-v2-2a6c4329a43a,PASS,0.05885695,4,38.901,90622,6081,72968
+h10-b,impossible,plain,2,attempt,h10-b-v1-d57ab35c18c2,CONFLICT VERIFIED,0.0432801,4,27.214,66075,3415,48934
+h10-b,impossible,plain,2,repair,h10-b-v2-be93522159ad,PASS,0.04477345,3,43.375,75311,4624,62743
+h14-b,solvable,plain,1,attempt,h14-b-v1-bd58d1b5771c,PASS,0.0890851,7,54.529,137289,6811,101339
+h13-b,solvable,guarded,2,attempt,h13-b-v1-de197a1619e1,PASS,0.074291,6,47.246,125125,6477,99675
+h05-b,solvable,guarded,1,attempt,h05-b-v1-912ad66b5760,PASS,0.06524440000000001,6,36.0,110301,4803,84586
+h20-b,solvable,plain,2,attempt,h20-b-v1-749735ee3154,PASS,0.06852125,6,45.656,109079,6522,86860
+h07-b,impossible,plain,1,attempt,h07-b-v1-6573f382c83d,CONFLICT VERIFIED,0.06272155,5,31.401,93958,4949,68872
+h07-b,impossible,plain,1,repair,h07-b-v2-9982102c6ba3,PASS,0.1163234,5,61.183,156013,9995,110156
+h19-b,solvable,plain,1,attempt,h19-b-v1-9850ffb0c559,PASS,0.0619788,5,33.586,94207,4701,68872
+h18-b,impossible,plain,2,attempt,h18-b-v1-6ef03ec43033,CONFLICT VERIFIED,0.0576681,5,32.639,92491,5807,75114
+h18-b,impossible,plain,2,repair,h18-b-v2-dec812a6ed46,PASS,0.04671465,3,32.719,75721,4662,61591
+h07-b,impossible,guarded,2,attempt,h07-b-v1-a3f7b210c0a5,CONFLICT VERIFIED,0.059334,5,41.236,93652,4772,70920
+h07-b,impossible,guarded,2,conflict_card,conflict-card-cc55d8008c2b,GENERATED,0.0025405,,2.6,176,546,0
+h07-b,impossible,guarded,2,repair,h07-b-v2-568eef977b93,PASS,0.08019710000000001,6,47.639,110862,6872,79624
+h02-b,impossible,guarded,1,attempt,h02-b-v1-db072cc83aef,CONFLICT VERIFIED,0.0570588,5,29.729,92440,4560,70792
+h02-b,impossible,guarded,1,conflict_card,conflict-card-eac3dfc7b650,GENERATED,0.002908,,3.599,164,636,0
+h02-b,impossible,guarded,1,repair,h02-b-v2-5691d5168888,PASS,0.0653827,5,35.839,98558,5448,73608
+h12-b,impossible,guarded,2,attempt,h12-b-v1-6b44f99603ff,CONFLICT VERIFIED,0.03986915,4,30.391,65972,2937,50071
+h12-b,impossible,guarded,2,conflict_card,conflict-card-71c584bcdc37,GENERATED,0.00259275,,2.105,177,558,0
+h12-b,impossible,guarded,2,repair,h12-b-v2-58152173fc13,PASS,0.05118545,4,25.081,68136,4437,48038
+h19-b,solvable,guarded,2,attempt,h19-b-v1-7b2c5f8f0ca5,PASS,0.08943105,5,61.711,119716,10765,96332
+h16-a,impossible,guarded,2,attempt,h16-a-v1-39d826f71607,CONFLICT VERIFIED,0.06450875,5,39.406,93854,6585,73450
+h16-a,impossible,guarded,2,conflict_card,conflict-card-bc0e74db894f,GENERATED,0.00250875,,3.202,171,540,0
+h16-a,impossible,guarded,2,repair,h16-a-v2-9fbad4aa2905,PASS,0.06225175,5,35.018,99267,5294,76665
+h09-b,impossible,guarded,1,attempt,h09-b-v1-19338d6cc3e9,CONFLICT VERIFIED,0.06219975,5,34.33,93968,5519,71560
+h09-b,impossible,guarded,1,conflict_card,conflict-card-7326ad4285ab,GENERATED,0.00228175,,3.119,173,486,0
+h09-b,impossible,guarded,1,repair,h09-b-v2-92a811fca8ad,PASS,0.06577369999999999,5,29.969,100358,5338,74873
+h07-a,solvable,guarded,1,attempt,h07-a-v1-ca4f08fe7045,PASS,0.067925,7,35.978,129840,5738,107965
+h11-b,impossible,guarded,2,attempt,h11-b-v1-806eea522a3e,CONFLICT VERIFIED,0.0493471,4,27.866,65509,5009,48934
+h11-b,impossible,guarded,2,conflict_card,conflict-card-16ff2d7b36d7,GENERATED,0.0022545,,2.596,175,479,0
+h11-b,impossible,guarded,2,repair,h11-b-v2-069fb7652383,PASS,0.0448827,4,27.831,68254,4568,54408
+h11-b,impossible,plain,1,attempt,h11-b-v1-da4c57440350,CONFLICT VERIFIED,0.04826225,4,26.264,66232,3783,46005
+h11-b,impossible,plain,1,repair,h11-b-v2-50cdb744aefd,PASS,0.1031465,5,53.265,140037,9705,102860
+h12-a,solvable,plain,2,attempt,h12-a-v1-624e1b6f78b7,PASS,0.0622666,5,33.623,98535,5277,75754
+h19-a,impossible,plain,1,attempt,h19-a-v1-75d498cf6ed4,CONFLICT VERIFIED,0.05392925,5,29.76,94405,4758,76635
+h19-a,impossible,plain,1,repair,h19-a-v2-876d87ba7a65,PASS,0.049948099999999995,4,28.854,88180,4438,71944
+h13-a,impossible,plain,2,attempt,h13-a-v1-7148bb8a6308,CONFLICT VERIFIED,0.0500028,4,26.636,67411,4637,49062
+h13-a,impossible,plain,2,repair,h13-a-v2-2af03a536be4,PASS,0.06886914999999999,3,36.475,79307,6008,50726
+h01-a,solvable,plain,2,attempt,h01-a-v1-d70b42986f58,PASS,0.06262765,6,34.181,106280,4873,82666
+h03-b,impossible,plain,2,attempt,h03-b-v1-d322e1812b42,CONFLICT VERIFIED,0.06716939999999999,5,37.723,96928,5884,71816
+h03-b,impossible,plain,2,repair,h03-b-v2-22907bf1e648,PASS,0.0975106,5,61.04,154776,10434,127549
+h18-a,solvable,plain,2,attempt,h18-a-v1-17671d34ed20,PASS,0.09117544999999999,6,56.402,128455,9334,99148
+h13-a,impossible,guarded,2,attempt,h13-a-v1-41ac1a0d7afd,CONFLICT VERIFIED,0.05480985,5,48.071,94758,4799,76394
+h13-a,impossible,guarded,2,conflict_card,conflict-card-aafed114676c,GENERATED,0.00277525,,3.134,170,603,0
+h13-a,impossible,guarded,2,repair,h13-a-v2-ae7423938086,PASS,0.045930900000000004,4,31.592,68416,3814,50726
+h16-a,impossible,plain,1,attempt,h16-a-v1-3c0663edbb4a,CONFLICT VERIFIED,0.04460815,4,33.206,66568,3715,49446
+h16-a,impossible,plain,1,repair,h16-a-v2-5639c074f03e,PASS,0.08835695,5,56.712,134747,8808,106828
+h05-b,solvable,plain,2,attempt,h05-b-v1-fdad5057e375,PASS,0.0588173,5,35.931,96628,4732,74617
+h08-a,solvable,plain,2,attempt,h08-a-v1-3185a3621071,PASS,0.06440255,6,41.428,106986,5311,83547
+h04-a,impossible,guarded,1,attempt,h04-a-v1-1ffff4908294,CONFLICT VERIFIED,0.0498946,4,30.124,68741,5339,53384
+h04-a,impossible,guarded,1,conflict_card,conflict-card-6089c37491d6,GENERATED,0.00217725,,4.127,171,462,0
+h04-a,impossible,guarded,1,repair,h04-a-v2-a2acf1875229,PASS,0.07109014999999999,6,44.056,126822,5291,99931

@@ -1,0 +1,43 @@
+{
+  "run_id": "conflict-card-abd2662b458f",
+  "date": "2026-10-27",
+  "stage": "holdout-study",
+  "task": "h03-b-conflict-card",
+  "mode": "guarded-card",
+  "pricing_mode": "STANDARD",
+  "model": "muse-spark-1.3",
+  "cost_usd": 0.0023515,
+  "tokens": {
+    "input": 171,
+    "output": 503,
+    "cached_input": 0
+  },
+  "status": "GENERATED",
+  "reserved_cost_usd": 0.068,
+  "model_invoked": true,
+  "text": "Conflict card for developer\n\nConcrete input: wheelchair is true and route_closed is true, in the morning context.\n\nRule A - \"Choose the accessible route for wheelchair trips.\" triggers because wheelchair is true. Its action is accessible_route.\n\nRule B - \"Reject a route that is closed.\" triggers because route_closed is true. Its action is reject_route.\n\nThe two actions are incompatible: you cannot both choose the accessible route and reject the route.\n\nWhich rule wins when both conditions hold?",
+  "advisory_only": true,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 328,
+      "max_output_tokens": 1024,
+      "usage": {
+        "input_tokens": 171,
+        "output_tokens": 503,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0023515,
+        "request_reserved_usd": 0.004762,
+        "phase_spent_usd": 0.0023515,
+        "phase_limit_usd": 0.068,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "budget_stop": false,
+  "time_seconds": 2.539,
+  "cost_basis": "all terminal provider usage, persisted from first request"
+}
