@@ -1,0 +1,149 @@
+{
+  "id": "spec-caa492b0a98d",
+  "pair": "spec-caa492b0a98d",
+  "version": 2,
+  "input_space": {
+    "eligible": [
+      false,
+      true
+    ],
+    "fraud_hold": [
+      false,
+      true
+    ]
+  },
+  "default": "reject",
+  "rules": [
+    {
+      "id": "A",
+      "quote": "For every eligible request, refund immediately.",
+      "when": {
+        "eligible": {
+          "eq": true
+        }
+      },
+      "action": "refund_immediately",
+      "text": "For every eligible request, refund immediately."
+    },
+    {
+      "id": "B",
+      "quote": "For every request on fraud hold, do not refund until manual review.",
+      "when": {
+        "fraud_hold": {
+          "eq": true
+        }
+      },
+      "action": "manual_review",
+      "text": "For every request on fraud hold, do not refund until manual review."
+    }
+  ],
+  "default_source": {
+    "quote": "If neither rule matches, reject the refund.",
+    "action": "reject"
+  },
+  "spec_origin": {
+    "doc_sha256": "caa492b0a98dc8b3dc4cf4f1cf278df468d655ffe97fab4bf3117a14fd6c361b",
+    "model": "muse-spark-1.3",
+    "response_kind": "fake"
+  },
+  "source_rule_ids": {
+    "A": "A",
+    "B": "B"
+  },
+  "parent_hash": "011f12e250eb3e41c49b0a4301e1708af43d3fe9dd28ec6cfba037a1486f72f5",
+  "parent_requirements": {
+    "id": "spec-caa492b0a98d",
+    "pair": "spec-caa492b0a98d",
+    "version": 1,
+    "input_space": {
+      "eligible": [
+        false,
+        true
+      ],
+      "fraud_hold": [
+        false,
+        true
+      ]
+    },
+    "default": "reject",
+    "rules": [
+      {
+        "id": "A",
+        "quote": "For every eligible request, refund immediately.",
+        "when": {
+          "eligible": {
+            "eq": true
+          }
+        },
+        "action": "refund_immediately",
+        "text": "For every eligible request, refund immediately."
+      },
+      {
+        "id": "B",
+        "quote": "For every request on fraud hold, do not refund until manual review.",
+        "when": {
+          "fraud_hold": {
+            "eq": true
+          }
+        },
+        "action": "manual_review",
+        "text": "For every request on fraud hold, do not refund until manual review."
+      }
+    ],
+    "default_source": {
+      "quote": "If neither rule matches, reject the refund.",
+      "action": "reject"
+    },
+    "spec_origin": {
+      "doc_sha256": "caa492b0a98dc8b3dc4cf4f1cf278df468d655ffe97fab4bf3117a14fd6c361b",
+      "model": "muse-spark-1.3",
+      "response_kind": "fake"
+    },
+    "source_rule_ids": {
+      "A": "A",
+      "B": "B"
+    },
+    "approval": {
+      "source": "task author",
+      "content_hash": "45b1020fc2b077d11ea67e1334355ad328260d689a320b9b6add2c26789165f2"
+    }
+  },
+  "decision": {
+    "winner": "B",
+    "scope": "winner takes precedence wherever these rules overlap",
+    "rules": [
+      "A",
+      "B"
+    ],
+    "witness": {
+      "eligible": true,
+      "fraud_hold": true
+    },
+    "simulated": true,
+    "source": "simulated developer CLI",
+    "v1_hash": "011f12e250eb3e41c49b0a4301e1708af43d3fe9dd28ec6cfba037a1486f72f5"
+  },
+  "priority": [
+    "B",
+    "A"
+  ],
+  "approval": {
+    "source": "simulated developer CLI",
+    "content_hash": "5ad759a17ecf24219deb3db66dfb431f5b15d88f9a034e3a5ebc9d060007bdab",
+    "decision": {
+      "winner": "B",
+      "scope": "winner takes precedence wherever these rules overlap",
+      "rules": [
+        "A",
+        "B"
+      ],
+      "witness": {
+        "eligible": true,
+        "fraud_hold": true
+      },
+      "simulated": true,
+      "source": "simulated developer CLI",
+      "v1_hash": "011f12e250eb3e41c49b0a4301e1708af43d3fe9dd28ec6cfba037a1486f72f5"
+    }
+  }
+}

@@ -557,3 +557,8 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Verification before recording: 10 baseline tests plus 43 focused service/presentation regressions passed; 103 protected and 199 study-locked files are unchanged. No paid calls, holdout calls, push or merge after stage 0.
 
 - Recording review: made the fake fixture's approval receipt explicitly simulated, in addition to its visible fake label and provenance. Preserved the first afbb378 build-stage recording unchanged in .work/returns-build-fixtures/afbb378; the final fixture will be captured from the corrected clean source. No provider call or study rerun.
+
+## 2026-10-28 — Returns-service recorded fake evidence
+
+- Captured the final constructed-response fixture against committed cc95afb source (source hashes verified against Git). Its simulated approval is explicit in both receipt and viewer. Actual HTTP traffic changes the eligible/fraud-held request from refund_immediately to manual_review; all four approved policy cases and seven unchanged regressions pass. Saved 31 actual HTTP observations per phase plus v1/v2, sources, diff, checks and zero-cost receipts.
+- Browser verification at 1280x720 confirmed the fake label, decision preview before the recorded choice, actual response comparison, all 11 passing checks, scope line and matching evidence download; no live controls or scripts. Saved baseline, decision, before/after, checks and scope screenshots. Privacy/Gitleaks scans pass; original study/evaluation evidence and all protected hashes remain unchanged. Incremental Meta calls/cost: 0 / $0. No later push or merge.
