@@ -1,0 +1,88 @@
+{
+  "kind": "actual baseline HTTP traffic; no model call",
+  "cost_usd": 0,
+  "requests": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/returns",
+        "json": {
+          "eligible": true,
+          "fraud_hold": true,
+          "amount_cents": 2500
+        }
+      },
+      "response": {
+        "status": 201,
+        "json": {
+          "eligible": true,
+          "fraud_hold": true,
+          "amount_cents": 2500,
+          "id": "r1",
+          "next_action": "not_evaluated"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/returns/r1/evaluate",
+        "json": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "eligible": true,
+          "fraud_hold": true,
+          "amount_cents": 2500,
+          "id": "r1",
+          "next_action": "refund_immediately"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/returns",
+        "json": {
+          "eligible": true,
+          "fraud_hold": false,
+          "amount_cents": 2500
+        }
+      },
+      "response": {
+        "status": 201,
+        "json": {
+          "eligible": true,
+          "fraud_hold": false,
+          "amount_cents": 2500,
+          "id": "r2",
+          "next_action": "not_evaluated"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/returns/r2/evaluate",
+        "json": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "eligible": true,
+          "fraud_hold": false,
+          "amount_cents": 2500,
+          "id": "r2",
+          "next_action": "refund_immediately"
+        }
+      }
+    }
+  ],
+  "source_sha256": {
+    "server.py": "a0b0675d3c6f72d0cad0ed49f17286e225eb30060f43352de6e9576c31f5552f",
+    "refund_policy.py": "3f46f7316b259425d7904591e77b4923a0199b8d69136af440cb59ad88954857",
+    "test_existing.py": "29c3b312ae982ebb385e0491bedd0d4c3b33cc9232ec2493045590ef7d096eff",
+    "test_policy.py": "9b0aa13aed9fb0f1ef24ecb32f5be3946067f727e09173bd80ff1c4369e55706"
+  }
+}
