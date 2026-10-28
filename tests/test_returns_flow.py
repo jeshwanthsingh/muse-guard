@@ -22,7 +22,7 @@ class ReturnsFlowTests(unittest.TestCase):
   self.assertEqual(r['status'],'CHECKED');self.assertEqual(r['outcome'],'PASS');self.assertEqual(r['cost_usd'],0);self.assertEqual(r['paid_calls'],0)
   self.assertEqual(r['baseline']['outcome'],'PASS');self.assertEqual(len(r['final']['tests']),11);self.assertTrue(r['final']['inventory_complete'])
   self.assertEqual(witness_response(r['baseline'])['json']['next_action'],'refund_immediately');self.assertEqual(witness_response(r['final'])['json']['next_action'],'manual_review')
-  self.assertEqual(r['requirements_v1']['version'],1);self.assertEqual(r['requirements_v2']['version'],2);self.assertEqual(r['decision']['winner'],'B')
+  self.assertEqual(r['requirements_v1']['version'],1);self.assertEqual(r['requirements_v2']['version'],2);self.assertEqual(r['decision']['winner'],'B');self.assertTrue(r['decision']['simulated'])
   self.assertEqual(r['baseline']['regression_source_sha256'],r['final']['regression_source_sha256'])
   self.assertEqual(r['baseline_source_sha256']['server.py'],r['agent']['source_sha256']['server.py']);self.assertNotEqual(r['baseline_source_sha256']['refund_policy.py'],r['agent']['source_sha256']['refund_policy.py'])
   self.assertEqual(r['decision_preview']['groups'][0]['affected_inputs'],1)

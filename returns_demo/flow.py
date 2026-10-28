@@ -9,7 +9,7 @@ import time
 import uuid
 from spec_guard.core import review,domain_errors
 from spec_guard.cli import decision as review_translation
-from muse_guard.rules import actions,digest,approved
+from muse_guard.rules import actions,digest,approved,approve
 from submission_tools.continuous import reviewed_requirements,approve_decision
 from submission_tools.decision_preview import preview,cli_preview
 from returns_demo import provider
@@ -96,13 +96,17 @@ def run(out,*,fake_packet=None,reviewer=None,input_fn=None):
         if record['decision_preview']['conflicts']!=1:raise ValueError('Expected one verified A/B conflict; review extraction, no automatic retry')
         record['status']='AWAITING DECISION';save();print(cli_preview(req),flush=True)
         if fake_packet is not None:
-            answer=fake_packet['decision'];scripted=True
+            answer=fake_packet['decision']
             record['decision_provenance']='constructed fake fixture choice; not a human decision'
         else:
-            answer=(input_fn or input)('Your choice — A or B (no delegated choice): ').strip().upper();scripted=False
+            answer=(input_fn or input)('Your choice — A or B (no delegated choice): ').strip().upper()
             if answer not in ('A','B'):raise ValueError('Explicit human A/B choice required; no choice was delegated')
             record['decision_provenance']='interactive human CLI choice'
-        approved=approve_decision(req,spec['clashes'],answer,scripted=scripted)
+        if fake_packet is not None:
+            clash=spec['clashes'][0]
+            report={'conflict':True,'rules':clash['rules'],'witness':clash['witness'],'explanation':'Verified fake-fixture decision'}
+            approved=approve(req,answer,report,confirmed=True,source='simulated developer CLI')
+        else:approved=approve_decision(req,spec['clashes'],answer,scripted=False)
         record.update(requirements_v2=approved,decision=approved['decision'],status='EDITING SERVICE')
         (out/'approved.yaml').write_text(json.dumps(approved,indent=2)+'\n')
         agent_files=copy.deepcopy(files);agent_files['test_policy.py']=approved_visible_tests(approved)
