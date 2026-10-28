@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "kind": "actual sandbox denials and restricted checker HTTP",
+  "checks": {
+    "candidate": {
+      "home_canary_read_denied": true,
+      "repo_env_open_denied": true,
+      "outside_write_denied": true,
+      "other_loopback_connect_denied": true,
+      "external_connect_denied": true,
+      "new_listener_bind_denied": true,
+      "provider_keys_absent": true,
+      "other_env_value_absent": true,
+      "own_endpoint_outbound_denied": true
+    },
+    "checker": {
+      "home_canary_read_denied": true,
+      "repo_env_open_denied": true,
+      "outside_write_denied": true,
+      "other_loopback_connect_denied": true,
+      "external_connect_denied": true,
+      "new_listener_bind_denied": true,
+      "provider_keys_absent": true,
+      "other_env_value_absent": true,
+      "candidate_health_reachable": true
+    }
+  },
+  "candidate_listener": "parent-created inherited IPv4 socket; candidate has no bind or outbound permission",
+  "checker_endpoint": "OS permits localhost on selected port; client hard-pins IPv4 127.0.0.1 and never follows redirects"
+}
