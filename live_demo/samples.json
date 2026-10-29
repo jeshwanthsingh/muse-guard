@@ -1,0 +1,176 @@
+[
+  {
+    "id": "refunds",
+    "title": "Refund notes",
+    "doc": "Refund notes, copied from our support chat.\n\nFor now, eligible and fraud_hold are the only inputs, and both are booleans (true or false).\n\nYep, every eligible order gets a refund.\nAlso, Fraud hold means manual review, always.\nIf nothing above applies, reject the refund.\n",
+    "doc_sha256": "080afcd0f53f229768ebf22f036b71520af77ee4762fb870f0137133e0a1bc7f",
+    "proposal": {
+      "input_space": {
+        "eligible": [
+          true,
+          false
+        ],
+        "fraud_hold": [
+          true,
+          false
+        ]
+      },
+      "rules": [
+        {
+          "id": "A",
+          "quote": "Yep, every eligible order gets a refund.",
+          "when": {
+            "eligible": {
+              "eq": true
+            }
+          },
+          "action": "refund"
+        },
+        {
+          "id": "B",
+          "quote": "Also, Fraud hold means manual review, always.",
+          "when": {
+            "fraud_hold": {
+              "eq": true
+            }
+          },
+          "action": "manual_review"
+        }
+      ],
+      "default": {
+        "quote": "If nothing above applies, reject the refund.",
+        "action": "reject"
+      },
+      "unconverted": []
+    },
+    "label": "recorded extraction",
+    "source": {
+      "run": "spec_eval/results/2026-10-27/refunds/record.json",
+      "model": "muse-spark-1.3",
+      "cost_usd": 0.00210925
+    }
+  },
+  {
+    "id": "package-room",
+    "title": "Package room rules",
+    "doc": "Package room rules for our building\n\nEach package gets one action when it's logged at the desk.\n\nHonestly most of these are just Amazon boxes, but we have to be\nconsistent.\n\nIf it's perishable and the resident is away, return it to the sender.\n\nIf it's perishable and the resident is home, notify the resident\nright away.\n\nFor anything that isn't perishable: if it needs a signature, hold it\nat the front desk.\n\nNon-perishable packages that don't need a signature go in a locker,\nunless they're oversized. Oversized ones get held at the desk too.\n\nThe desk only knows: is it perishable (yes/no), is the resident away\n(yes/no), does it need a signature (yes/no), and is it oversized\n(yes/no).\n",
+    "doc_sha256": "bd08482179d558804cd539155f9553d020a54f17de1da73f28c60bf497fca093",
+    "proposal": {
+      "input_space": {
+        "perishable": [
+          true,
+          false
+        ],
+        "resident_away": [
+          true,
+          false
+        ],
+        "needs_signature": [
+          true,
+          false
+        ],
+        "oversized": [
+          true,
+          false
+        ]
+      },
+      "rules": [
+        {
+          "id": "A",
+          "quote": "If it's perishable and the resident is away, return it to the sender.",
+          "when": {
+            "perishable": {
+              "eq": true
+            },
+            "resident_away": {
+              "eq": true
+            }
+          },
+          "action": "return_to_sender"
+        },
+        {
+          "id": "B",
+          "quote": "If it's perishable and the resident is home, notify the resident right away.",
+          "when": {
+            "perishable": {
+              "eq": true
+            },
+            "resident_away": {
+              "eq": false
+            }
+          },
+          "action": "notify_resident"
+        },
+        {
+          "id": "C",
+          "quote": "For anything that isn't perishable: if it needs a signature, hold it at the front desk.",
+          "when": {
+            "perishable": {
+              "eq": false
+            },
+            "needs_signature": {
+              "eq": true
+            }
+          },
+          "action": "hold_at_desk"
+        },
+        {
+          "id": "D",
+          "quote": "Non-perishable packages that don't need a signature go in a locker, unless they're oversized.",
+          "when": {
+            "perishable": {
+              "eq": false
+            },
+            "needs_signature": {
+              "eq": false
+            },
+            "oversized": {
+              "eq": false
+            }
+          },
+          "action": "place_in_locker"
+        },
+        {
+          "id": "E",
+          "quote": "Oversized ones get held at the desk too.",
+          "when": {
+            "perishable": {
+              "eq": false
+            },
+            "needs_signature": {
+              "eq": false
+            },
+            "oversized": {
+              "eq": true
+            }
+          },
+          "action": "hold_at_desk"
+        }
+      ],
+      "unconverted": [
+        {
+          "quote": "Package room rules for our building",
+          "reason": "title with no actionable condition"
+        },
+        {
+          "quote": "Each package gets one action when it's logged at the desk.",
+          "reason": "states single-action constraint with no condition or action label"
+        },
+        {
+          "quote": "Honestly most of these are just Amazon boxes, but we have to be consistent.",
+          "reason": "commentary with no condition or action"
+        },
+        {
+          "quote": "The desk only knows: is it perishable (yes/no), is the resident away (yes/no), does it need a signature (yes/no), and is it oversized (yes/no).",
+          "reason": "defines input space, not a conditional rule"
+        }
+      ]
+    },
+    "label": "recorded extraction",
+    "source": {
+      "run": "spec_eval/human/results/2026-10-27/evaluation.json",
+      "model": "muse-spark-1.3",
+      "cost_usd": 0.005729
+    }
+  }
+]

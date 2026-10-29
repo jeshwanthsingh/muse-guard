@@ -26,3 +26,6 @@ results/.run.lock
 # Service demo session exports stay private; structured evidence is separate.
 /returns_runs/**/raw/
 /demo/returns-service/recorded/raw/
+
+# Browser automation snapshots (not evidence)
+.playwright-mcp/

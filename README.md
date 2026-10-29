@@ -18,6 +18,17 @@ Muse Spark proposes rules from English and explains clashes. A deterministic che
 | Muse Spark | Turns English requirements into proposed rules and explains clashes |
 | Muse Spark Open via Baseten | Planned second agent backend; offline adapter only, live comparison pending |
 
+## Try it live (coming soon)
+
+A public page will let you paste requirements, confirm each proposed rule, see clashes and what each choice changes, and download approved rules plus evidence. It is not deployed yet. Until then, the local test build runs with fake model responses and makes no Meta calls:
+
+```sh
+python3 -m pip install -r live_demo/requirements.txt
+python3 -m uvicorn live_demo.local_dev:app --host 127.0.0.1 --port 8765
+```
+
+Open http://127.0.0.1:8765. Live extraction, the $10 public budget and rate limits apply only to the Modal deployment.
+
 ## Try it in 60 seconds
 
 Requires Git and Python 3.11+; this demo needs no key and makes no model calls.

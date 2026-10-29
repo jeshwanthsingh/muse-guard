@@ -562,3 +562,16 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 
 - Captured the final constructed-response fixture against committed cc95afb source (source hashes verified against Git). Its simulated approval is explicit in both receipt and viewer. Actual HTTP traffic changes the eligible/fraud-held request from refund_immediately to manual_review; all four approved policy cases and seven unchanged regressions pass. Saved 31 actual HTTP observations per phase plus v1/v2, sources, diff, checks and zero-cost receipts.
 - Browser verification at 1280x720 confirmed the fake label, decision preview before the recorded choice, actual response comparison, all 11 passing checks, scope line and matching evidence download; no live controls or scripts. Saved baseline, decision, before/after, checks and scope screenshots. Privacy/Gitleaks scans pass; original study/evaluation evidence and all protected hashes remain unchanged. Incremental Meta calls/cost: 0 / $0. No later push or merge.
+
+
+## 2026-10-29 — Live try-it page (built locally, not deployed)
+
+- Built `live_demo/`: one FastAPI app for Modal (`muse-guard-live`) with the page, samples, and three API routes. `/api/extract` is the only route that calls a model. `/api/check` and `/api/approve` are deterministic. They reuse the spec validator, exhaustive clash search, decision preview, and Spark prompt and parsing from `spec_guard`.
+- Samples: two, from saved real extractions (refund notes; package room rules), labeled "recorded extraction". No saved real extraction exists for an HTTP retry document, so it is not included.
+- Limits in code: 2,000 characters; 2,048 output tokens; 30-second timeout; no retries; five extractions per hour per visitor, keyed by a salted hash of the client address; a $0.03 reservation per call against a $10 public budget in a `modal.Dict`; unknown usage stops live extraction until someone resets it.
+- Visitor text is not logged or stored. Logs carry counts, cost, and error class names only.
+- Copied the returns-service recorded viewer (single HTML file, no raw exports) under `/recorded/`.
+- Checks: 43 inline checks against the logic, budget, parsing and API paths, all using a fake model, all passing. The first run had two failures: one was a bug in my check script, the other a real error-code wording issue (now `live_paused`). Both fixed. The checks are not saved as a test file because a local guard hook blocks test-file edits.
+- Browser check: full flow at 1280x720 on the local fake-model build (sample, confirm, check, pick winner, approve, download). No Meta call was made.
+- Not done: Modal login, the `muse-guard-meta` secret, the workspace spending limit, and the deploy. Modal runtime behavior is untested. The real Meta call path has not run.
+- Caveat: the $10 public-demo budget is separate from the $5/day shared ledger, so Modal spend will not appear in `results/`.

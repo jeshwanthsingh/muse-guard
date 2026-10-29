@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Muse Guard · Live requirements check</title>
+<style>
+:root{--ink:#172438;--muted:#5b6b82;--line:#d9e0ec;--bg:#f6f8fb;--card:#ffffff;--accent:#2357d6;--ok:#17724a;--warn:#9a5b00;--bad:#b42318;--soft:#eef3ff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48}}
+:root[data-theme="dark"]{--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.banner{background:var(--soft);border-bottom:1px solid var(--line);padding:10px 16px;font-size:14px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.banner strong{color:var(--accent)}
+.banner a{color:var(--accent)}
+.test-badge{background:var(--bad);color:#fff;border-radius:4px;padding:2px 8px;font-weight:600}
+main{max-width:920px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:26px;margin:0 0 6px}
+h2{font-size:19px;margin:0 0 4px}
+.lead{color:var(--muted);margin:0 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:0 0 18px}
+.step{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 4px}
+textarea{width:100%;min-height:140px;font:15px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.muted{color:var(--muted);font-size:14px}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+button[aria-pressed="true"].yes{background:var(--ok);border-color:var(--ok);color:#fff}
+button[aria-pressed="true"].no{background:var(--bad);border-color:var(--bad);color:#fff}
+button:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.status{min-height:22px;margin-top:10px;font-size:14px}
+.status.err{color:var(--bad)}
+.rule{border:1px solid var(--line);border-radius:8px;padding:12px;margin:10px 0}
+.rule q{display:block;font-style:italic;margin-bottom:6px}
+.rule code,.clash code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:14px;word-break:break-word}
+.rule .bad{color:var(--bad)}
+.clash{border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:8px;padding:12px;margin:12px 0}
+.clash h3{margin:0 0 6px;font-size:17px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+.table-wrap{overflow-x:auto}
+.note{font-size:14px;color:var(--muted)}
+.not-checked{border-left:4px solid var(--warn)}
+.not-checked ul{margin:6px 0 0;padding-left:20px}
+.hidden{display:none}
+@media (max-width:600px){main{padding:16px 12px}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="banner" role="note">
+  <span class="test-badge hidden" id="test-badge">Local test build · fake model responses · no Meta calls</span>
+  <span><strong>Live:</strong> requirements check only. Code changes are shown as a recorded run.</span>
+  <a href="/recorded/index.html">See the full recorded run (Recorded)</a>
+</div>
+
+<main>
+  <h1>Find clashes in your requirements before any code is written</h1>
+  <p class="lead">Paste plain-English rules. Muse Spark proposes a rules table, you confirm each rule, and an exhaustive search lists every input where the rules disagree.</p>
+
+  <section class="not-checked" aria-labelledby="nc-title">
+    <h2 id="nc-title">What this does NOT check</h2>
+    <ul>
+      <li>Only the input values you declare. Values outside those fields are not checked.</li>
+      <li>Whether the model read your text correctly. Check each rule against its source sentence.</li>
+      <li>Code. Nothing is written or run here. Code changes are shown only as a recorded run.</li>
+      <li>Business, legal or safety impact, or which rule should win. You choose that.</li>
+      <li>A result means "checked over declared inputs". It is not a proof.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s1">
+    <p class="step">Step 1</p>
+    <h2 id="s1">Paste requirements or pick a sample</h2>
+    <p class="muted" id="live-note">Up to 2,000 characters. Live extraction is limited to 5 per hour per visitor.</p>
+    <textarea id="doc" aria-label="Requirements text" maxlength="2000" placeholder="Paste requirements here. Each rule should be a full sentence."></textarea>
+    <div class="row">
+      <span class="muted" id="counter">0 / 2,000</span>
+      <button id="extract" class="primary" type="button">Extract rules (live model)</button>
+    </div>
+    <div class="row" id="samples"></div>
+    <div class="status" id="status1" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="review" class="hidden" aria-labelledby="s2">
+    <p class="step">Step 2</p>
+    <h2 id="s2">Confirm each rule</h2>
+    <p class="muted">Reject any rule that does not match its source sentence. Rejected or unconverted sentences are not checked.</p>
+    <div id="rules"></div>
+    <div id="unconverted"></div>
+    <div class="row"><button id="check" class="primary" type="button">Check confirmed rules</button></div>
+    <div class="status" id="status2" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="clashes" class="hidden" aria-labelledby="s3">
+    <p class="step">Step 3</p>
+    <h2 id="s3">Clashes and what each choice changes</h2>
+    <div id="clash-body"></div>
+  </section>
+
+  <section id="choose" class="hidden" aria-labelledby="s4">
+    <p class="step">Step 4</p>
+    <h2 id="s4">Pick the winner for each clash</h2>
+    <div id="winners"></div>
+    <div class="row"><button id="approve" class="primary" type="button">Approve choices</button></div>
+    <div class="status" id="status4" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="result" class="hidden" aria-labelledby="s5">
+    <p class="step">Step 5</p>
+    <h2 id="s5">Download</h2>
+    <p class="muted">Approved rules are version 2 of your table. The evidence file records every step and what was not checked.</p>
+    <div class="row">
+      <button id="dl-rules" type="button">Download approved rules (JSON)</button>
+      <button id="dl-evidence" type="button">Download evidence (JSON)</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var MAX = 2000;
+  var state = { doc: '', proposal: null, view: null, origin: '', decisions: {}, check: null, winners: {}, approved: null };
+  var samples = [];
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text !== undefined && text !== null) node.textContent = String(text);
+    return node;
+  }
+  function setStatus(id, text, isErr) {
+    var node = $(id);
+    node.textContent = text || '';
+    node.className = 'status' + (isErr ? ' err' : '');
+  }
+  function show(id, on) { $(id).classList.toggle('hidden', !on); }
+  function json(value) { return JSON.stringify(value); }
+
+  function ruleText(rule) {
+    var parts = Object.keys(rule.when || {}).map(function (field) {
+      var ops = rule.when[field];
+      if (ops.eq !== undefined) return field + ' is ' + json(ops.eq);
+      if (ops.gte !== undefined) return field + ' is at least ' + json(ops.gte);
+      return field;
+    });
+    return (parts.length ? 'When ' + parts.join(' and ') : 'When') + ' → ' + rule.action;
+  }
+
+  function loadProposal(doc, proposal, view, origin) {
+    state.doc = doc;
+    resetFrom(1);
+    state.proposal = proposal; state.view = view; state.origin = origin;
+    renderRules();
+    show('review', true);
+  }
+
+  function resetFrom(step) {
+    if (step <= 1) { state.proposal = null; state.view = null; state.origin = ''; }
+    if (step <= 2) { state.decisions = {}; state.check = null; }
+    if (step <= 3) { state.winners = {}; }
+    state.approved = null;
+    show('review', !!state.view); show('clashes', !!state.check); show('choose', !!state.check && state.check.clashes.length > 0);
+    show('result', false);
+  }
+
+  $('doc').addEventListener('input', function () {
+    var value = $('doc').value;
+    $('counter').textContent = value.length + ' / ' + MAX;
+    if (value !== state.doc) { state.doc = value; resetFrom(1); setStatus('status1', ''); }
+  });
+
+  function renderSamples() {
+    var box = $('samples');
+    box.textContent = '';
+    samples.forEach(function (s) {
+      var b = el('button', '', 'Sample: ' + s.title + ' (' + s.label + ')');
+      b.type = 'button';
+      b.addEventListener('click', function () {
+        $('doc').value = s.doc;
+        $('counter').textContent = s.doc.length + ' / ' + MAX;
+        loadProposal(s.doc, s.proposal, s.view, 'recorded extraction: ' + s.id);
+        setStatus('status1', 'Loaded a recorded extraction from a saved real run. No model call was made.');
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function renderRules() {
+    var box = $('rules');
+    box.textContent = '';
+    state.view.items.forEach(function (item, index) {
+      var card = el('div', 'rule');
+      card.appendChild(el('strong', '', 'Rule ' + (index + 1) + (item.kind === 'default' ? ' (fallback)' : '')));
+      card.appendChild(el('q', '', item.proposal.quote || 'Source sentence missing'));
+      if (!item.valid) {
+        card.appendChild(el('p', 'bad', "Couldn't convert: " + item.errors.join('; ')));
+      } else {
+        var text = item.kind === 'default' ? 'If nothing above applies → ' + item.proposal.action : ruleText(item.proposal);
+        card.appendChild(el('div', '', text));
+        if (item.example) card.appendChild(el('p', 'note', 'Example input: ' + json(item.example)));
+        var row = el('div', 'row');
+        [['Confirm', true, 'yes'], ['Reject', false, 'no']].forEach(function (pair) {
+          var b = el('button', pair[2], pair[0]);
+          b.type = 'button';
+          b.setAttribute('aria-pressed', String(state.decisions[item.key] === pair[1]));
+          b.addEventListener('click', function () {
+            state.decisions[item.key] = pair[1];
+            state.check = null; show('clashes', false); show('choose', false); show('result', false);
+            renderRules();
+          });
+          row.appendChild(b);
+        });
+        card.appendChild(row);
+      }
+      box.appendChild(card);
+    });
+    var unc = $('unconverted');
+    unc.textContent = '';
+    if (state.view.unconverted.length) {
+      unc.appendChild(el('h3', '', 'Not converted to a rule'));
+      state.view.unconverted.forEach(function (u) {
+        var p = el('p', 'note', '"' + (u.quote || '') + '": ' + (u.reason || 'No rule proposed'));
+        unc.appendChild(p);
+      });
+    }
+  }
+
+  function renderClashes(check) {
+    var body = $('clash-body');
+    body.textContent = '';
+    body.appendChild(el('p', 'muted', check.checked_inputs + ' declared inputs checked.'));
+    if (check.uncovered_count) {
+      body.appendChild(el('p', 'bad', check.uncovered_count + ' declared input(s) have no rule and no fallback. Approval is blocked until a fallback is confirmed or the text changes.'));
+    }
+    if (!check.clashes.length) {
+      body.appendChild(el('p', '', 'No conflicting actions among these confirmed rules and declared inputs.'));
+      return;
+    }
+    check.clashes.forEach(function (group) {
+      var card = el('div', 'clash');
+      card.appendChild(el('h3', '', group.summary));
+      card.appendChild(el('p', 'note', 'Verified by exhaustive search over the declared inputs.'));
+      var wrap = el('div', 'table-wrap');
+      var table = el('table');
+      var head = el('tr');
+      head.appendChild(el('th', '', 'Declared input'));
+      group.choices.forEach(function (c) { head.appendChild(el('th', '', c.winner + ' wins')); });
+      table.appendChild(el('thead')).appendChild(head);
+      var tbody = el('tbody');
+      group.rows.forEach(function (row) {
+        var tr = el('tr');
+        tr.appendChild(el('td', '', json(row.input)));
+        row.actions.forEach(function (a) { tr.appendChild(el('td', '', a)); });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      wrap.appendChild(table);
+      card.appendChild(wrap);
+      card.appendChild(el('p', 'note', 'Other declared inputs have the same outcome under either choice.'));
+      body.appendChild(card);
+    });
+  }
+
+  function renderWinners(check) {
+    var box = $('winners');
+    box.textContent = '';
+    check.clashes.forEach(function (group) {
+      var key = group.rules.join('+');
+      var fs = el('fieldset', 'rule');
+      fs.appendChild(el('legend', '', group.rules.join(' vs ')));
+      group.choices.forEach(function (c) {
+        var label = el('label');
+        var input = el('input');
+        input.type = 'radio';
+        input.name = 'w-' + key;
+        input.value = c.winner;
+        input.checked = state.winners[key] === c.winner;
+        input.addEventListener('change', function () { state.winners[key] = c.winner; state.approved = null; show('result', false); });
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(' ' + c.winner + ' wins'));
+        fs.appendChild(label);
+        fs.appendChild(document.createTextNode(' '));
+      });
+      box.appendChild(fs);
+    });
+  }
+
+  function post(path, body) {
+    return fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: json(body) })
+      .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, status: r.status, data: data }; }); });
+  }
+
+  $('extract').addEventListener('click', function () {
+    var doc = $('doc').value;
+    if (!doc.trim()) { setStatus('status1', 'Paste requirements text first.', true); return; }
+    $('extract').disabled = true;
+    setStatus('status1', 'Extracting rules with the live model…');
+    post('/api/extract', { doc: doc }).then(function (res) {
+      $('extract').disabled = false;
+      if (!res.ok) {
+        setStatus('status1', res.data.message || 'Extraction failed.', true);
+        if (res.status >= 500) {
+          $('live-note').textContent = 'Live extraction is paused. Samples and the recorded run still work.';
+        }
+        return;
+      }
+      loadProposal(doc, res.data.proposal, res.data.view, 'live request');
+      setStatus('status1', 'Proposed rules are ready. Confirm each one before checking.');
+    }).catch(function () {
+      $('extract').disabled = false;
+      setStatus('status1', 'Could not reach the server. Samples still work after reload.', true);
+    });
+  });
+
+  $('check').addEventListener('click', function () {
+    setStatus('status2', 'Checking confirmed rules…');
+    post('/api/check', { doc: state.doc, proposal: state.proposal, decisions: state.decisions }).then(function (res) {
+      if (!res.ok) { setStatus('status2', res.data.message || 'Check failed.', true); return; }
+      state.check = res.data;
+      setStatus('status2', '');
+      renderClashes(res.data);
+      show('clashes', true);
+      renderWinners(res.data);
+      show('choose', res.data.clashes.length > 0);
+      show('result', false);
+      if (!res.data.clashes.length) show('choose', false);
+    }).catch(function () { setStatus('status2', 'Could not reach the server.', true); });
+  });
+
+  $('approve').addEventListener('click', function () {
+    setStatus('status4', 'Approving…');
+    post('/api/approve', { doc: state.doc, proposal: state.proposal, decisions: state.decisions, winners: state.winners })
+      .then(function (res) {
+        if (!res.ok) { setStatus('status4', res.data.message || 'Approval failed.', true); return; }
+        state.approved = res.data;
+        setStatus('status4', 'Approved. Download below.');
+        show('result', true);
+      }).catch(function () { setStatus('status4', 'Could not reach the server.', true); });
+  });
+
+  function download(name, value) {
+    var blob = new Blob([json(value) + '\n'], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = el('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+  $('dl-rules').addEventListener('click', function () { if (state.approved) download('muse-guard-approved-rules.json', state.approved.approved_rules); });
+  $('dl-evidence').addEventListener('click', function () { if (state.approved) download('muse-guard-evidence.json', state.approved.evidence); });
+
+  fetch('/samples').then(function (r) { return r.json(); }).then(function (data) {
+    samples = data.samples || [];
+    if (data.mode !== 'live') $('test-badge').classList.remove('hidden');
+    if (!data.live_extraction) $('live-note').textContent = 'Live extraction is paused. Samples and the recorded run still work.';
+    renderSamples();
+  }).catch(function () {
+    setStatus('status1', 'Could not load samples. Reload the page.', true);
+  });
+})();
+</script>
+</body>
+</html>
