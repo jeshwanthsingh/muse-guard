@@ -1,4 +1,4 @@
-import copy,json,tempfile,unittest
+import copy,json,os,tempfile,unittest
 from pathlib import Path
 from submission_tools.export_policy import phase_failure,export_session
 ROOT=Path(__file__).resolve().parents[1]
@@ -23,6 +23,14 @@ class ExportPolicyTests(unittest.TestCase):
   cli=self.root/'fake';cli.write_text('#!/bin/sh\nprintf "missing session\\n" >&2\nexit 1\n');cli.chmod(0o755)
   result=export_session(str(cli),'missing',self.root/'out.json',self.root,{})
   self.assertEqual(result.returncode,1);self.assertEqual((self.root/result.diagnostics['stderr_file']).read_text(),'missing session\n')
+ def test_relative_destination_resolves_from_caller_not_child_cwd(self):
+  # Regression: muse export ran inside the temporary workspace, so a relative --out landed there and failed.
+  cwd=Path.cwd();os.chdir(self.root);self.addCleanup(os.chdir,cwd)
+  workspace=self.root/'workspace';workspace.mkdir();(self.root/'returns_runs/raw').mkdir(parents=True)
+  cli=self.root/'fake-muse';cli.write_text('#!/bin/sh\nwhile [ $# -gt 0 ]; do if [ "$1" = --out ]; then out=$2; fi; shift; done\nprintf "{}\\n" > "$out"\n');cli.chmod(0o755)
+  result=export_session(str(cli),'sid',Path('returns_runs/raw/session.json'),workspace,{})
+  self.assertEqual(result.returncode,0,(self.root/'returns_runs/raw'/result.diagnostics['stderr_file']).read_text())
+  self.assertTrue((self.root/'returns_runs/raw/session.json').is_file())
  def test_holdout_smoke_rejected(self):
   from submission_tools.export_runtime.ledger import authorize
   with self.assertRaisesRegex(ValueError,'DEV smoke only'):authorize({'split':'holdout'},True)

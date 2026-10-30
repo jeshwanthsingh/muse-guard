@@ -32,3 +32,8 @@
 - Log each day's work in docs/CONTRIBUTIONS.md, dated and honest.
 - Honest wording: say "checked over declared inputs", never "proves".
 - Run a privacy and gitleaks scan before any push or deploy.
+
+## Lessons
+
+### User preferences
+- Do update the project file in the same session when the user corrects a project fact, because stale facts mislead the next session.

@@ -16,7 +16,7 @@ Muse Spark proposes rules from English and explains clashes. A deterministic che
 |---|---|
 | Muse Code | Writes and repairs code |
 | Muse Spark | Turns English requirements into proposed rules and explains clashes |
-| Muse Spark Open via Baseten | Planned second agent backend; offline adapter only, live comparison pending |
+| Muse Spark Open via Baseten | Not run. Offline adapter only; the live comparison is a no-go as of 2026-10-29 ([notes](docs/BASETEN_GO_NO_GO.md)) |
 
 ## Try it live
 

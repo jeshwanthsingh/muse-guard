@@ -74,7 +74,7 @@ See [the preregistered exploration](BASETEN_EXPLORATION.md). The supplied grant
 uses the shared Model API and restricted `meta-models/muse-spark-open-1026` name.
 Offline bridge tests pass. Live comparison remains blocked on a verified token
 counter and balanced executor; do not represent fake tests as a
-live adapter validation. Tomorrow's preflight reports this blocker without calls.
+live adapter validation. Decision on 2026-10-29: no-go; see [BASETEN_GO_NO_GO.md](BASETEN_GO_NO_GO.md). No Baseten result is claimed.
 
 
 ## Review correction — 2026-10-26
