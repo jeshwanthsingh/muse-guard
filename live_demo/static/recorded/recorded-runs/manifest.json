@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "kind": "static recorded demo",
+  "files": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/planted-edited-test.json": "33ea248521f1e2028c3ea7707481bd3fdbf0e9e2d2bdf8f13ac7334bdd3d8797",
+    "evidence/recovery-289db424fb09-view-day5.json": "24cd184e21ea47f80458d37efeba56cc67a40fd8763a379dcba45c84a3dd4ea8",
+    "evidence/recovery-83564a717417.json": "bb5d5be8e991db5adcbe771f672746347c558ddc4f35cf6985d6611c052fe58d",
+    "evidence/refund-solvable-v1-4c0c358c42bd.json": "be4c226a1cf78c7d4e78e1a5452d71359953982393efeaca515f86cdddf3b8a7",
+    "index.html": "9ec7335ed12873c1389f12c5d93b47b7eec96efa3b489848aa98dfa1ad8ba42f",
+    "runs/planted-edited-test.html": "96b36f3b5fd233637152eb9c929e8b60fb93a96ac57513e09978c2fb39b45e78",
+    "runs/recovery-289db424fb09-view-day5.html": "37640c1da486aa1df58d0c0acfc7ac9b93f27bbb987af0ebf09a4702874895e6",
+    "runs/recovery-83564a717417.html": "2c00616563d26fa8641b798f4059666a14408875d385f1c5842c753f16751a4e",
+    "runs/refund-solvable-v1-4c0c358c42bd.html": "c09d143d0f283145c0bcd4b799acd13d69304d8b8a376c07aed04a52fde42d04",
+    "style.css": "57798d1d88c62dd46a2a4319116f7d8b4e5316016dfd9afdc2abf39f003a504c"
+  },
+  "privacy_scan": "passed built-in credential/path/hostname patterns"
+}
