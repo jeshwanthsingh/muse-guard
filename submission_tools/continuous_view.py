@@ -19,7 +19,8 @@ def render(row):
   end=page.index('<section class="panel"><h2>Rejected / couldn’t convert / uncovered',start)
   page=page[:start]+html_preview(req)+page[end:]
   grouped=preview(req)
-  page=page.replace('<span>'+str(len(spec['clashes']))+' verified clashes</span>','<span>'+str(grouped['conflicts'])+' grouped conflicts</span>')
+  page=page.replace('<span>'+str(len(spec['clashes']))+' verified clashes</span>','<span>'+str(grouped['conflicts'])+(' grouped conflict' if grouped['conflicts']==1 else ' grouped conflicts')+'</span>')
+ page=page.replace('<span>1 verified clashes</span>','<span>1 verified clash</span>')
  page=page.replace('Find the clash before writing code.','From requirements to an independently checked implementation.')
  page=page.replace('<span>No coding agent invoked</span>','<span>'+('Fake model responses only' if row['response_kind']=='fake' else 'Recorded Muse Code implementation')+'</span>')
  page=page.replace('Spec review · Recorded run','Spec → decision → recheck · Recorded run')
@@ -31,7 +32,8 @@ def render(row):
  page=page.replace('<section class="panel"><h2>Source requirements',boundary+'<section class="panel"><h2>Source requirements',1)
  extras='<section class="panel"><h2>Developer decision → approved rules</h2>'
  if row.get('decision'):
-  extras+='<p>Selected priority: <strong>'+e(' → '.join(row['decision']['priority_order']))+'</strong></p><p>The first matching rule chooses the one next action. Version 1 is preserved; approved version 2 synchronizes the agent requirements and visible tests.</p>'
+  order=row['decision']['priority_order']
+  extras+=''.join('<p>Rule '+e(a)+' wins over Rule '+e(b)+' where they overlap.</p>' for a,b in zip(order,order[1:]))+'<p>The first matching rule chooses the one next action. Version 1 is preserved; approved version 2 synchronizes the agent requirements and visible tests.</p>'
  else:extras+='<p>'+('No conflict required a priority decision.' if row['status']!='AWAITING DECISION' else 'Waiting for the developer’s CLI decision.')+'</p>'
  extras+='</section>'
  implementation=row.get('implementation')
