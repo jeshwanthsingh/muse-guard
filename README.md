@@ -18,16 +18,20 @@ Muse Spark proposes rules from English and explains clashes. A deterministic che
 | Muse Spark | Turns English requirements into proposed rules and explains clashes |
 | Muse Spark Open via Baseten | Planned second agent backend; offline adapter only, live comparison pending |
 
-## Try it live (coming soon)
+## Try it live
 
-A public page will let you paste requirements, confirm each proposed rule, see clashes and what each choice changes, and download approved rules plus evidence. It is not deployed yet. Until then, the local test build runs with fake model responses and makes no Meta calls:
+Live page: https://jeshwanthsingh--muse-guard-live-web.us-east.modal.run/
+
+Paste requirements, confirm each proposed rule, see clashes and what each choice changes, and download approved rules plus evidence. The page includes one sample from a saved real extraction, labeled "recorded extraction". Live extraction is limited to 5 per hour per visitor and to a $10 public budget. A result means "checked over declared inputs". It is not a proof.
+
+The local test build runs with fake model responses and makes no Meta calls:
 
 ```sh
 python3 -m pip install -r live_demo/requirements.txt
 python3 -m uvicorn live_demo.local_dev:app --host 127.0.0.1 --port 8765
 ```
 
-Open http://127.0.0.1:8765. Live extraction, the $10 public budget and rate limits apply only to the Modal deployment.
+Open http://127.0.0.1:8765.
 
 ## Try it in 60 seconds
 
@@ -39,7 +43,7 @@ cd muse-guard
 python3 -m http.server 8000 --bind 127.0.0.1 --directory output/submission-site
 ```
 
-Open **http://127.0.0.1:8000**. This results update is local until an approved push. In the existing checkout, start at `cd ~/Projects/muse-guard`. To rebuild the current demo, run `python3 submission_tools/export_demo.py --out /tmp/muse-judge-demo` (choose a new folder), then serve that folder instead.
+Open **http://127.0.0.1:8000**. This results update is local until an approved push. In the existing checkout, start in the repository folder. To rebuild the current demo, run `python3 submission_tools/export_demo.py --out /tmp/muse-judge-demo` (choose a new folder), then serve that folder instead.
 
 Try the clearly labeled fake-response spec example locally:
 

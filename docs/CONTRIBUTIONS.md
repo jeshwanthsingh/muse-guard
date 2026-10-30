@@ -575,3 +575,15 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Browser check: full flow at 1280x720 on the local fake-model build (sample, confirm, check, pick winner, approve, download). No Meta call was made.
 - Not done: Modal login, the `muse-guard-meta` secret, the workspace spending limit, and the deploy. Modal runtime behavior is untested. The real Meta call path has not run.
 - Caveat: the $10 public-demo budget is separate from the $5/day shared ledger, so Modal spend will not appear in `results/`.
+
+## 2026-10-29 — Live try-it page deployed
+
+- Deployed `muse-guard-live` to Modal: https://jeshwanthsingh--muse-guard-live-web.us-east.modal.run/ . Two deploys today. The second removed the package-room sample and added the review and example-input fixes below. The Modal secret `muse-guard-meta` and the workspace spending limit were set by the owner.
+- Samples: refund notes only. Package room was removed because three of its saved rules did not match their quotes, so approval is blocked (`docs/EXTRACTION_FAILURES.md`, Known limitation). HTTP retry has no saved real extraction, so it is not included.
+- Page: "Check confirmed rules" stays disabled until every converted rule is confirmed or rejected. The page lists the rules still waiting. Each example input is chosen so that only that rule applies when possible; the page says so when other rules also apply.
+- Live cost today: one live extraction, $0.00500375 recorded. The public budget counter reads $0.005004 spent, nothing pending, no unknown-usage flag. Modal compute is not measured here, and Modal spend is separate from the $5/day ledger.
+- Checked on the deployed build: routes; `/samples`; refund sample check and approve (evidence origin "recorded extraction: refunds", all checks match); empty input 422; input over 2,000 characters 413; one live extraction returned 200. The key did not appear in the response, and the Modal logs contain zero matches for it.
+- Checked by temporarily changing stored counters, then restoring them: budget spent (`/samples` reports live off, `/api/extract` returns 503 `live_paused`) and rate limit (429 `rate_limited`). The restored values were the ones read before the test.
+- Offline: the same samples and endpoints under a fake model, plus the page's disabled-check behavior in a local browser run. No Meta call.
+- Browser run on the deployed page: refund sample, confirm all rules, check, winner B, approve. Screenshots are in the session, not committed.
+- Not verified: the unknown-usage stop on the deployed build (offline only), and the rendered paused message in the browser (API only).

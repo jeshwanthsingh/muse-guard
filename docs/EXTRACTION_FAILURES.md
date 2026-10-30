@@ -15,3 +15,7 @@ None of these three saved failures is classified as (c), an accepted rule shown 
 Evidence inspected: original proposals/review decisions in `spec_eval/results/2026-10-27/{notifications,bookings}/record.json`; original truth in `spec_eval/truth/{notifications,bookings}.json`; separate saved proposal and normalized review in `spec_eval/human/results/2026-10-27/evaluation.json`; separate truth in `spec_eval/human/truth/doc1.json`. Original scorer: `spec_guard/evaluation.py`; separate scorer: `submission_tools/human_eval.py`. The saved provider records remain local; the exact relevant excerpts are above.
 
 The strict result stays **6/8 original docs + 1/2 separately registered docs = 7/10**, reported separately by set. All five ground-truth clashes in the original eight were found with zero false clashes. No improved-accuracy claim is made for a later normalizer; that would require a new evaluation set.
+
+## Known limitation — package room saved extraction (2026-10-29)
+
+The saved package-room extraction (`spec_eval/human/results/2026-10-27/evaluation.json`, entry 1) has three rules whose quotes did not match their source sentences exactly. Those rules stay unconverted, so the approval step refuses any table with declared inputs left uncovered. This is correct, cautious behavior, but it is a limitation: the package-room sample was removed from the live page for that reason. It is not a fix to the extraction result, and the saved record is unchanged.

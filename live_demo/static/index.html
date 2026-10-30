@@ -88,7 +88,7 @@ th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertic
     <p class="muted">Reject any rule that does not match its source sentence. Rejected or unconverted sentences are not checked.</p>
     <div id="rules"></div>
     <div id="unconverted"></div>
-    <div class="row"><button id="check" class="primary" type="button">Check confirmed rules</button></div>
+    <div class="row"><button id="check" class="primary" type="button" disabled>Check confirmed rules</button><span class="note" id="pending" aria-live="polite"></span></div>
     <div class="status" id="status2" role="status" aria-live="polite"></div>
   </section>
 
@@ -188,19 +188,35 @@ th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertic
     });
   }
 
+  function ruleLabel(item, index) {
+    return 'Rule ' + (index + 1) + (item.kind === 'default' ? ' (fallback)' : '');
+  }
+
+  function updateCheck() {
+    var waiting = [];
+    state.view.items.forEach(function (item, index) {
+      if (item.valid && state.decisions[item.key] === undefined) waiting.push(ruleLabel(item, index) + ' not reviewed yet');
+    });
+    $('pending').textContent = waiting.join('; ');
+    $('check').disabled = waiting.length > 0;
+  }
+
   function renderRules() {
     var box = $('rules');
     box.textContent = '';
     state.view.items.forEach(function (item, index) {
       var card = el('div', 'rule');
-      card.appendChild(el('strong', '', 'Rule ' + (index + 1) + (item.kind === 'default' ? ' (fallback)' : '')));
+      card.appendChild(el('strong', '', ruleLabel(item, index)));
       card.appendChild(el('q', '', item.proposal.quote || 'Source sentence missing'));
       if (!item.valid) {
         card.appendChild(el('p', 'bad', "Couldn't convert: " + item.errors.join('; ')));
       } else {
         var text = item.kind === 'default' ? 'If nothing above applies → ' + item.proposal.action : ruleText(item.proposal);
         card.appendChild(el('div', '', text));
-        if (item.example) card.appendChild(el('p', 'note', 'Example input: ' + json(item.example)));
+        if (item.example) {
+          var note = item.example_alone ? '' : ' (other rules also apply to this input)';
+          card.appendChild(el('p', 'note', 'Example input' + note + ': ' + json(item.example)));
+        }
         var row = el('div', 'row');
         [['Confirm', true, 'yes'], ['Reject', false, 'no']].forEach(function (pair) {
           var b = el('button', pair[2], pair[0]);
@@ -217,6 +233,7 @@ th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertic
       }
       box.appendChild(card);
     });
+    updateCheck();
     var unc = $('unconverted');
     unc.textContent = '';
     if (state.view.unconverted.length) {

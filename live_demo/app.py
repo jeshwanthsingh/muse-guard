@@ -135,13 +135,17 @@ def read_proposal(raw):
 
 def extraction_view(doc, proposal):
     checked = validate(doc, proposal)
+    rules = [item for item in checked['items'] if item['valid'] and item['kind'] == 'rule']
     items = []
     for item in checked['items']:
         row = {'key': item['key'], 'kind': item['kind'], 'valid': item['valid'], 'errors': item['errors'],
                'proposal': item['proposal']}
         if item['valid'] and item['kind'] == 'rule':
-            row['example'] = next((value for value in space(checked['input_space'])
-                                   if matches(item['proposal'], value)), None)
+            hits = [value for value in space(checked['input_space']) if matches(item['proposal'], value)]
+            alone = [value for value in hits
+                     if not any(matches(other['proposal'], value) for other in rules if other is not item)]
+            row['example'] = next(iter(alone or hits), None)
+            row['example_alone'] = bool(alone)
         items.append(row)
     return {'input_space': checked['input_space'], 'items': items, 'errors': checked['errors'],
             'unconverted': checked['unconverted']}
