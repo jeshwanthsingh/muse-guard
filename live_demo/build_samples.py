@@ -18,10 +18,10 @@ def sha(text):
     return hashlib.sha256(text.encode()).hexdigest()
 
 
-def sample(sample_id, title, doc, proposal, proposal_sha, doc_sha, run, model, cost):
+def sample(sample_id, title, doc, proposal, proposal_sha, doc_sha, run, model, cost, response_kind):
     assert sha(doc) == doc_sha and digest(proposal) == proposal_sha
     return {'id': sample_id, 'title': title, 'doc': doc, 'doc_sha256': doc_sha, 'proposal': proposal,
-            'label': 'recorded extraction',
+            'label': 'recorded extraction', 'response_kind': response_kind,
             'source': {'run': run, 'model': model, 'cost_usd': cost}}
 
 
@@ -30,7 +30,7 @@ def refunds():
     record = json.loads((ROOT / run).read_text())
     assert record['response_kind'] == 'real'
     return sample('refunds', 'Refund notes', record['doc'], record['proposal'], record['proposal_sha256'],
-                  record['doc_sha256'], run, record['model'], record['cost']['cost_usd'])
+                  record['doc_sha256'], run, record['model'], record['cost']['cost_usd'], record['response_kind'])
 
 
 if __name__ == '__main__':

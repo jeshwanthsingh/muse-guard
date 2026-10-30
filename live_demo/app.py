@@ -151,8 +151,8 @@ def extraction_view(doc, proposal):
             'unconverted': checked['unconverted']}
 
 
-def run_review(doc, proposal, decisions):
-    record = review(doc, proposal, lambda item: decisions.get(item['key']) is True)
+def run_review(doc, proposal, decisions, response_kind='unverified'):
+    record = review(doc, proposal, lambda item: decisions.get(item['key']) is True, response_kind=response_kind)
     table = record['confirmed']
     groups = []
     if table['rules'] and not domain_errors(table['input_space']):
@@ -191,8 +191,8 @@ def outcome(table, value):
     return table['default']
 
 
-def approve_choices(doc, proposal, decisions, winners, origin, mode):
-    record, groups = run_review(doc, proposal, decisions)
+def approve_choices(doc, proposal, decisions, winners, origin, mode, kind):
+    record, groups = run_review(doc, proposal, decisions, kind)
     if record['validation']['errors']:
         raise ValueError('The rule table has errors. Fix the rules first.')
     if record['uncovered_inputs']:
@@ -224,7 +224,7 @@ def approve_choices(doc, proposal, decisions, winners, origin, mode):
         checks.append({'rules': group['rules'], 'winner': winner, 'inputs_checked': len(group['rows']),
                        'all_match': True})
     evidence = {'schema': 1, 'kind': 'muse-guard live check evidence', 'mode': mode,
-                'model_responses': 'fake local test build' if mode == 'test' else 'live call or recorded extraction',
+                'model_responses': 'recorded %s extraction' % kind if kind in ('real', 'fake') else 'page-submitted; not checked by the server',
                 'extraction_origin': origin, 'model': MODEL, 'doc_sha256': record['doc_sha256'],
                 'proposal_sha256': record['proposal_sha256'], 'confirmed_sha256': record['confirmed_sha256'],
                 'approved_rules_sha256': digest(v2), 'decisions': record['decisions'], 'choices': chosen,
@@ -330,12 +330,12 @@ def create_app(model_call, store, mode, samples_path=HERE / 'samples.json'):
         if not isinstance(doc, str) or len(doc) > MAX_DOC_CHARS or not isinstance(proposal, dict) \
                 or not isinstance(decisions, dict) or not isinstance(winners, dict):
             return error(422, 'bad_request', 'Send doc, proposal, decisions and winners.')
-        origin = 'page-submitted proposal (model output not checked by the server)'
+        origin, kind = 'page-submitted proposal (model output not checked by the server)', 'unverified'
         for sample in samples:
             if sample['doc'] == doc and digest(sample['proposal']) == digest(proposal):
-                origin = 'recorded extraction: ' + sample['id']
+                origin, kind = 'recorded extraction: ' + sample['id'], sample['response_kind']
         try:
-            return approve_choices(doc, proposal, decisions, winners, origin, mode)
+            return approve_choices(doc, proposal, decisions, winners, origin, mode, kind)
         except ValueError as exc:
             return error(422, 'cannot_approve', str(exc))
 
