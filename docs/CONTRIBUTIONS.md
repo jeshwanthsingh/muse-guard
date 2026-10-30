@@ -587,3 +587,10 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Offline: the same samples and endpoints under a fake model, plus the page's disabled-check behavior in a local browser run. No Meta call.
 - Browser run on the deployed page: refund sample, confirm all rules, check, winner B, approve. Screenshots are in the session, not committed.
 - Not verified: the unknown-usage stop on the deployed build (offline only), and the rendered paused message in the browser (API only).
+
+## 2026-10-29 — Recorded runs on the live page; viewer wording
+
+- Added the four recorded runs to the live site under `/recorded/recorded-runs/`: refund recovery, HTTP retry recovery, solvable PASS and planted cheat. They are exported with `muse-guard export-site` from `demo/records/`, labeled "Recorded", and linked from the live page banner. The export was checked for the owner's username, hostname and Tailscale address; none found. The live site has not been redeployed since this change.
+- Viewer wording in `submission_tools/continuous_view.py`: "1 verified clash" and "1 grouped conflict" use singular forms. The priority line now reads "Rule B wins over Rule A where they overlap." The change is in the generator only.
+- Not regenerated, because they are recorded outputs: `demo/continuous/recorded/index.html` and `output/submission-site/continuous/index.html` still carry "Selected priority". The `spec_eval/results/2026-10-27/*/index.html` pages come from `spec_guard/view.py`, which is protected, and still show "verified clashes".
+- Unfoolable audit: no README or docs claim muse-guard was built with it. Earlier docs disclose that seven Day-1 pattern definitions were copied and later replaced; that history is kept. The current status is design reference only.
