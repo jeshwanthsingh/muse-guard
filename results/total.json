@@ -1,12 +1,12 @@
 {
   "date": "2026-10-29",
   "limit_usd": 5,
-  "known_cost_usd": 0.1379853,
-  "fully_accounted_cost_usd": 0.1379853,
+  "known_cost_usd": 0.2816055,
+  "fully_accounted_cost_usd": 0.2816055,
   "observed_partial_cost_usd": 0.0,
   "unknown_usage": false,
   "reserved_unknown_usd": 0.0,
-  "total_upper_bound_usd": 0.1379853,
-  "run_count": 2,
+  "total_upper_bound_usd": 0.2816055,
+  "run_count": 4,
   "can_start": true
 }
