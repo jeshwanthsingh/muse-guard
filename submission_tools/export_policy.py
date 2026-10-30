@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from submission_tools.holdout_study import phase_failure as original_failure
 
 def export_session(cli, session, destination, workspace, env):
-    destination=Path(destination)
+    destination=Path(destination).resolve()  # the child runs in the workspace, so a relative path would land there
     stdout=destination.with_suffix('.stdout.log'); stderr=destination.with_suffix('.stderr.log')
     with stdout.open('wb') as out, stderr.open('wb') as err:
         try:
