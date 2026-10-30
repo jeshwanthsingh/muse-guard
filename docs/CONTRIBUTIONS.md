@@ -599,3 +599,5 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 
 - Correction to the Day 1 line above that reads "adapted the listed Unfoolable algorithms/designs with permission." It should read: "reused from my own earlier project, Unfoolable; later replaced (see [PROVENANCE.md](PROVENANCE.md))." The original line is kept above.
 - Update to the recorded-runs entry above: the two continuous pages now show the new wording by text replacement, not by re-rendering. `output/submission-site/continuous/index.html` changed only in those two strings. `demo/continuous/recorded/index.html` was rendered by an older generator, so a full re-render would also replace its clash section with the decision preview. That page was left otherwise as it was.
+
+- Decision (2026-10-29): `demo/continuous/recorded/index.html` is not linked from the live site, the README or the static index, so it was left as it was. The linked copy, `output/submission-site/continuous/index.html`, has the new wording. The run record was not changed.
