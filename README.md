@@ -43,7 +43,7 @@ cd muse-guard
 python3 -m http.server 8000 --bind 127.0.0.1 --directory output/submission-site
 ```
 
-Open **http://127.0.0.1:8000**. This results update is local until an approved push. In the existing checkout, start in the repository folder. To rebuild the current demo, run `python3 submission_tools/export_demo.py --out /tmp/muse-judge-demo` (choose a new folder), then serve that folder instead.
+Open **http://127.0.0.1:8000**. In the existing checkout, start in the repository folder. To rebuild the current demo, run `python3 submission_tools/export_demo.py --out /tmp/muse-judge-demo` (choose a new folder), then serve that folder instead.
 
 Try the clearly labeled fake-response spec example locally:
 

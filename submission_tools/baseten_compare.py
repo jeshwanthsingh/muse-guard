@@ -15,6 +15,8 @@ if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--plan',action='store_true');p.add_argument('--preflight',action='store_true');p.add_argument('--execute',action='store_true');a=p.parse_args()
  if a.plan:print(json.dumps(plan(),indent=2))
  elif a.preflight or a.execute:
-  configuration();print(json.dumps({'model':MODEL,'credentials_present':True,'endpoint_valid':True,'status':plan()['live_status']}))
+  try:configuration()
+  except ValueError as error:print(json.dumps({'status':'refused','reason':str(error),'live_status':plan()['live_status']}));raise SystemExit(2)
+  print(json.dumps({'model':MODEL,'credentials_present':True,'endpoint_valid':True,'status':plan()['live_status']}))
   raise SystemExit(2)
  else:p.error('Choose --plan or --preflight')

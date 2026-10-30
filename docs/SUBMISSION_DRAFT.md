@@ -1,6 +1,6 @@
 # Submission draft
 
-Draft text for the hackathon submission. Every number below appears in [MEASURED_RESULTS.md](MEASURED_RESULTS.md). Placeholders in square brackets must be filled with real results before submitting.
+Draft text for the hackathon submission. Numbers in the Description come from [MEASURED_RESULTS.md](MEASURED_RESULTS.md). Numbers in the Real-world check come from the named run records. Placeholders in square brackets must be filled with real results before submitting.
 
 ---
 
@@ -28,7 +28,7 @@ Draft text for the hackathon submission. Every number below appears in [MEASURED
 ## Real-world check
 
 - [outside-user result: fill after the session. Rules fit the supported format: __; finished without help: __; clash understood: __. Source: session recording in docs/USER_SESSION_KIT.md, with consent recorded.]
-- [real returns-run result: fill after the owner's run. Outcome, cost and evidence path: __. Not run by the builder.]
+- Real returns run (`returns_runs/real-2026-10-29-b`, published at `/recorded/returns-run/`): the developer confirmed three rules and chose B at the interactive conflict step. Result: CHECKED / PASS, with four policy cases including one hidden case and the existing regression tests, for $0.1436202 across 19 paid calls. Muse also appended one test to `test_policy.py`, recorded as a test edit. An earlier attempt (run A) stopped on an export bug, now fixed; its record is kept.
 
 ## Built during the event
 
