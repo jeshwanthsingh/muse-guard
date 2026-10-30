@@ -182,7 +182,7 @@ class AuthorBoundaryIntegrationTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as directory:
    root=Path(directory);workspace=root/'workspace';workspace.mkdir();outside=root/'outside'
    script='from pathlib import Path\ntry: Path('+repr(str(outside))+').write_text("bad")\nexcept PermissionError: print("DENIED")\nelse: print("LEAKED")'
-   result=subprocess.run(author_command([sys.executable,'-c',script],write_root=workspace),capture_output=True,text=True)
+   result=subprocess.run(author_command([sys.executable,'-c',script],write_root=workspace),cwd=workspace,capture_output=True,text=True)
    self.assertEqual(result.returncode,0,result.stderr);self.assertEqual(result.stdout.strip(),'DENIED');self.assertFalse(outside.exists())
  def test_real_muse_shell_tool_works_under_outer_boundary_without_nested_sandbox(self):
   from muse_guard.gateway import Gateway
@@ -259,7 +259,7 @@ class PairedRepairAndNetworkTests(unittest.TestCase):
   with socket.socket() as denied,socket.socket() as allowed,tempfile.TemporaryDirectory() as directory:
    denied.bind(('127.0.0.1',0));denied.listen();allowed.bind(('127.0.0.1',0));allowed.listen()
    script='import socket\ntry: socket.create_connection(("127.0.0.1",'+str(denied.getsockname()[1])+'),timeout=.2)\nexcept PermissionError: print("DENIED")\nelse: print("LEAKED")'
-   result=subprocess.run(author_command([sys.executable,'-c',script],write_root=directory,gateway_url='http://127.0.0.1:'+str(allowed.getsockname()[1])),capture_output=True,text=True)
+   result=subprocess.run(author_command([sys.executable,'-c',script],write_root=directory,gateway_url='http://127.0.0.1:'+str(allowed.getsockname()[1])),cwd=directory,capture_output=True,text=True)
    self.assertEqual(result.returncode,0,result.stderr);self.assertEqual(result.stdout.strip(),'DENIED')
 
 class ParentSecretBoundaryTests(unittest.TestCase):
