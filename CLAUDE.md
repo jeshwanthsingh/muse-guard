@@ -27,7 +27,7 @@
 - Paid Meta calls: the shared ledger is $5/day. Tell the owner before any paid call. Stop on unknown usage. Never retry silently.
 - Never make or simulate the owner's decisions (rule review, A/B choice). Label anything fake, simulated, or recorded as such.
 - Secrets live only in `.env` or server-side secrets. Never print them, commit them, or pass them to Muse, candidate code, or the browser.
-- No home paths, hostnames, or Tailscale addresses in public files.
+- "~/" paths are fine in public files. Not allowed: absolute paths that include the owner's username (for example /Users/<username>/...), the computer's hostname, or the Tailscale address.
 - No code copied from the Unfoolable project (a separate local repo). It is a design reference only.
 - Log each day's work in docs/CONTRIBUTIONS.md, dated and honest.
 - Honest wording: say "checked over declared inputs", never "proves".
