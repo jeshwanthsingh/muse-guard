@@ -1,0 +1,255 @@
+{
+  "run_id": "returns-service-edit-13103e9c982f",
+  "service_run_id": "returns-service-c9a1444da013",
+  "date": "2026-10-29",
+  "stage": "returns-service demo, outside evaluation",
+  "model": "muse-spark-1.3",
+  "pricing_mode": "STANDARD",
+  "cost_basis": "provider usage at configured Standard token rates",
+  "max_tokens": 320000,
+  "cost_usd": 0.1325008,
+  "model_invoked": true,
+  "provider_calls": 13,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 6221,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 6078,
+        "output_tokens": 124,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0081245,
+        "request_reserved_usd": 0.01648025,
+        "phase_spent_usd": 0.0081245,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 13370,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 13227,
+        "output_tokens": 570,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.01895625,
+        "request_reserved_usd": 0.0254165,
+        "phase_spent_usd": 0.02708075,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 7578,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 7435,
+        "output_tokens": 93,
+        "cached_input_tokens": 6001
+      },
+      "settlement": {
+        "actual_usd": 0.0030879,
+        "request_reserved_usd": 0.0181765,
+        "phase_spent_usd": 0.03016865,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 8844,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 8701,
+        "output_tokens": 133,
+        "cached_input_tokens": 7409
+      },
+      "settlement": {
+        "actual_usd": 0.0032916,
+        "request_reserved_usd": 0.019759,
+        "phase_spent_usd": 0.03346025,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 15922,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 15779,
+        "output_tokens": 667,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0225585,
+        "request_reserved_usd": 0.0286065,
+        "phase_spent_usd": 0.05601875,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 9040,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 8897,
+        "output_tokens": 244,
+        "cached_input_tokens": 8561
+      },
+      "settlement": {
+        "actual_usd": 0.00274115,
+        "request_reserved_usd": 0.020004,
+        "phase_spent_usd": 0.0587599,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 10091,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 9948,
+        "output_tokens": 390,
+        "cached_input_tokens": 8689
+      },
+      "settlement": {
+        "actual_usd": 0.0045346,
+        "request_reserved_usd": 0.02131775,
+        "phase_spent_usd": 0.0632945,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 17015,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 16872,
+        "output_tokens": 1608,
+        "cached_input_tokens": 13041
+      },
+      "settlement": {
+        "actual_usd": 0.0135789,
+        "request_reserved_usd": 0.02997275,
+        "phase_spent_usd": 0.0768734,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 5316,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 5173,
+        "output_tokens": 755,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.009675,
+        "request_reserved_usd": 0.015349,
+        "phase_spent_usd": 0.0865484,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 11100,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 10957,
+        "output_tokens": 208,
+        "cached_input_tokens": 9841
+      },
+      "settlement": {
+        "actual_usd": 0.00375515,
+        "request_reserved_usd": 0.022579,
+        "phase_spent_usd": 0.09030355,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 8230,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 8087,
+        "output_tokens": 1599,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0169045,
+        "request_reserved_usd": 0.0189915,
+        "phase_spent_usd": 0.10720805,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 5668,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 5525,
+        "output_tokens": 2125,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0159375,
+        "request_reserved_usd": 0.015789,
+        "phase_spent_usd": 0.12314555,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": true
+      }
+    },
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 5764,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 5621,
+        "output_tokens": 548,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.00935525,
+        "request_reserved_usd": 0.015909,
+        "phase_spent_usd": 0.1325008,
+        "phase_limit_usd": 1.36,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "time_seconds": 90.05,
+  "tokens": {
+    "input": 122300,
+    "output": 9064,
+    "cached_input": 53542
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "run_id": "returns-extract-90fe995f3342",
+  "service_run_id": "returns-service-c9a1444da013",
+  "date": "2026-10-29",
+  "stage": "returns-service demo, outside evaluation",
+  "model": "muse-spark-1.3",
+  "pricing_mode": "STANDARD",
+  "cost_basis": "provider usage at configured Standard token rates",
+  "max_tokens": 6144,
+  "cost_usd": 0.0054845,
+  "model_invoked": true,
+  "provider_calls": 1,
+  "budget_events": [
+    {
+      "model": "muse-spark-1.3",
+      "pricing_mode": "STANDARD",
+      "input_tokens_reserved": 471,
+      "max_output_tokens": 2048,
+      "usage": {
+        "input_tokens": 328,
+        "output_tokens": 1194,
+        "cached_input_tokens": 0
+      },
+      "settlement": {
+        "actual_usd": 0.0054845,
+        "request_reserved_usd": 0.00929275,
+        "phase_spent_usd": 0.0054845,
+        "phase_limit_usd": 0.026112,
+        "exceeded_request_estimate": false
+      }
+    }
+  ],
+  "time_seconds": 14.559,
+  "tokens": {
+    "input": 328,
+    "output": 1194,
+    "cached_input": 0
+  }
+}
