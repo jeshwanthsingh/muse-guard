@@ -594,3 +594,8 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Viewer wording in `submission_tools/continuous_view.py`: "1 verified clash" and "1 grouped conflict" use singular forms. The priority line now reads "Rule B wins over Rule A where they overlap." The change is in the generator only.
 - Not regenerated, because they are recorded outputs: `demo/continuous/recorded/index.html` and `output/submission-site/continuous/index.html` still carry "Selected priority". The `spec_eval/results/2026-10-27/*/index.html` pages come from `spec_guard/view.py`, which is protected, and still show "verified clashes".
 - Unfoolable audit: no README or docs claim muse-guard was built with it. Earlier docs disclose that seven Day-1 pattern definitions were copied and later replaced; that history is kept. The current status is design reference only.
+
+## 2026-10-29 — Correction: Day 1 provenance wording
+
+- Correction to the Day 1 line above that reads "adapted the listed Unfoolable algorithms/designs with permission." It should read: "reused from my own earlier project, Unfoolable; later replaced (see [PROVENANCE.md](PROVENANCE.md))." The original line is kept above.
+- Update to the recorded-runs entry above: the two continuous pages now show the new wording by text replacement, not by re-rendering. `output/submission-site/continuous/index.html` changed only in those two strings. `demo/continuous/recorded/index.html` was rendered by an older generator, so a full re-render would also replace its clash section with the decision preview. That page was left otherwise as it was.
