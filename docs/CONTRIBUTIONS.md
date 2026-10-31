@@ -645,3 +645,10 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - A "79/80 conflicts recovered" figure was not used, because `docs/MEASURED_RESULTS.md` gives 39/40 plain and 40/40 guarded. The page shows those two figures.
 - Tests: seven render tests in `proposed_tests/test_live_page.py`, outside `tests/` because of the test-edit guard. The existing suite passes, 267 of 267.
 - Screenshots (local test build, fake model responses): 1280×720 and 390×844. The README screenshot is `docs/img/live-landing-1280.png`.
+
+## 2026-10-30 — Favicon, CSP image rule, and live README screenshot
+
+- Added a favicon at `/assets/favicon.svg`. The page's content security policy now allows images from the same origin only (`img-src 'self'`). All other directives are unchanged, and a test checks that `data:` and external hosts stay blocked.
+- Redeployed the live app. Free checks on the live URL: sample approval (origin `real`, 0 uncovered inputs), empty input 422, input over 2,000 characters 413, favicon and social image served, and the recorded pages loaded. The live page logs no console errors. No paid calls.
+- The README screenshot is now a screenshot of the live page (`docs/img/live-landing-1280.png`), not the local test build.
+- Not pushed. Render tests are in `proposed_tests/test_live_page.py`, moved into `tests/` by the owner.

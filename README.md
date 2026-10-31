@@ -6,7 +6,7 @@
 
 ![The muse-guard live page: a landing section with four steps and a Try the example button](docs/img/live-landing-1280.png)
 
-*Screenshot of the local test build (fake model responses). The live page uses the same layout.*
+*Screenshot of the live page at 1280×720.*
 
 **Results** (completed study, 160 pre-registered runs):
 
