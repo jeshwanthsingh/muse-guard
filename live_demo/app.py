@@ -274,7 +274,7 @@ def create_app(model_call, store, mode, samples_path=HERE / 'samples.json'):
     @api.get('/', response_class=HTMLResponse)
     def index():
         return HTMLResponse((HERE / 'static' / 'index.html').read_text(), headers={
-            'Content-Security-Policy': "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; "
+            'Content-Security-Policy': "default-src 'none'; img-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; "
                                        "connect-src 'self'; base-uri 'none'; form-action 'none'",
             'X-Content-Type-Options': 'nosniff'})
 
