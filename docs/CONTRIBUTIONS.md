@@ -651,4 +651,4 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Added a favicon at `/assets/favicon.svg`. The page's content security policy now allows images from the same origin only (`img-src 'self'`). All other directives are unchanged, and a test checks that `data:` and external hosts stay blocked.
 - Redeployed the live app. Free checks on the live URL: sample approval (origin `real`, 0 uncovered inputs), empty input 422, input over 2,000 characters 413, favicon and social image served, and the recorded pages loaded. The live page logs no console errors. No paid calls.
 - The README screenshot is now a screenshot of the live page (`docs/img/live-landing-1280.png`), not the local test build.
-- Not pushed. Render tests are in `proposed_tests/test_live_page.py`, moved into `tests/` by the owner.
+- Not pushed. Render tests are in `proposed_tests/test_live_page.py`, waiting for the owner to move them into `tests/`.
