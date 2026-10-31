@@ -1,5 +1,26 @@
 # muse-guard
 
+**Resolve the policy. Check the code.** When requirements clash, muse-guard shows exactly where, you decide which rule wins, Meta's coding agent implements it, and an independent checker verifies it.
+
+**[Try the live page →](https://jeshwanthsingh--muse-guard-live-web.us-east.modal.run/)**
+
+![The muse-guard live page: a landing section with four steps and a Try the example button](docs/img/live-landing-1280.png)
+
+*Screenshot of the local test build (fake model responses). The live page uses the same layout.*
+
+**Results** (completed study, 160 pre-registered runs):
+
+- 0/77 contradicted "done" claims in each mode.
+- Recovery after one decision: 39/40 plain, 40/40 guarded. Not a proven advantage.
+- About +2% cost overhead for guarded mode (+9% coding steps). Zero-count measures are a null result. [How we measured](docs/MEASURED_RESULTS.md)
+
+**How it works**
+
+1. **Requirements:** plain-English rules, each quoted from its source sentence.
+2. **Clash found:** an exhaustive search lists every declared input where the rules disagree.
+3. **You decide:** you pick which rule wins.
+4. **Checked code:** Muse Code implements the approved rules, and an independent checker verifies them.
+
 muse-guard finds every conflicting action among the confirmed rules and declared inputs, then independently checks the fix against every input in the approved rule table.
 
 Requirements can contradict each other even when each sentence sounds reasonable.

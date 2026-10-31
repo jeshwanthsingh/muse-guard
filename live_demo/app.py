@@ -269,6 +269,7 @@ def create_app(model_call, store, mode, samples_path=HERE / 'samples.json'):
     samples = load_samples(samples_path)
     api = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
     api.mount('/recorded', StaticFiles(directory=HERE / 'static' / 'recorded'), name='recorded')
+    api.mount('/assets', StaticFiles(directory=HERE / 'static' / 'assets'), name='assets')
 
     @api.get('/', response_class=HTMLResponse)
     def index():

@@ -636,3 +636,12 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Fixed: samples now carry `response_kind` from their source records. The approve route passes the matching sample's kind into the review, so the approved rules and evidence match. Evidence `model_responses` now reads "recorded real extraction" for that sample. Proposals that are not a saved sample are marked "unverified".
 - Test: `proposed_tests/test_live_samples.py` (3 tests, passing) checks that every sample's label and evidence match its record. It is outside `tests/` because the test-edit guard is on. It is not committed.
 - Not yet checked in a browser: that the evidence and approved-rules downloads work in Chrome and Safari.
+
+## 2026-10-30 — Judge-facing polish: live page and README (local only)
+
+- Live page: a landing section with the headline, the one-sentence pitch, a four-step visual, and a "Try the example (60 seconds)" button that loads the refund sample and scrolls to step 2. The results strip shows only numbers from `docs/MEASURED_RESULTS.md`. The real-run section shows the fraud-held order before and after (`refund_immediately` to `manual_review`), 4/4 policy cases and 7/7 regressions, from run B's record. The footer links GitHub, results, limits, provenance and the contribution log. Social card at `/assets/og.png` (1200×630) with meta tags.
+- Not changed: checker, validation, scoring, budget and evidence logic. The page's content security policy is unchanged.
+- Not done: a favicon. The page's `default-src 'none'` policy blocks same-origin icons too, so a favicon needs a decision on `img-src`. A GIF of the sample flow. The `frontend-design` skill was not in this session's skill list.
+- A "79/80 conflicts recovered" figure was not used, because `docs/MEASURED_RESULTS.md` gives 39/40 plain and 40/40 guarded. The page shows those two figures.
+- Tests: seven render tests in `proposed_tests/test_live_page.py`, outside `tests/` because of the test-edit guard. The existing suite passes, 267 of 267.
+- Screenshots (local test build, fake model responses): 1280×720 and 390×844. The README screenshot is `docs/img/live-landing-1280.png`.

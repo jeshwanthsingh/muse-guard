@@ -3,8 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Muse Guard · Live requirements check</title>
-<style>
+<title>Muse Guard · Resolve the policy. Check the code.</title>
+<meta name="description" content="When requirements clash, muse-guard shows exactly where, you decide which rule wins, Meta's coding agent implements it, and an independent checker verifies it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeshwanthsingh--muse-guard-live-web.us-east.modal.run/">
+<meta property="og:title" content="Resolve the policy. Check the code.">
+<meta property="og:description" content="When requirements clash, muse-guard shows exactly where, you decide which rule wins, Meta's coding agent implements it, and an independent checker verifies it.">
+<meta property="og:image" content="https://jeshwanthsingh--muse-guard-live-web.us-east.modal.run/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Resolve the policy. Check the code.">
+<meta name="twitter:image" content="https://jeshwanthsingh--muse-guard-live-web.us-east.modal.run/assets/og.png"><style>
 :root{--ink:#172438;--muted:#5b6b82;--line:#d9e0ec;--bg:#f6f8fb;--card:#ffffff;--accent:#2357d6;--ok:#17724a;--warn:#9a5b00;--bad:#b42318;--soft:#eef3ff}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48}}
 :root[data-theme="dark"]{--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48}
@@ -44,7 +52,33 @@ th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertic
 .not-checked{border-left:4px solid var(--warn)}
 .not-checked ul{margin:6px 0 0;padding-left:20px}
 .hidden{display:none}
-@media (max-width:600px){main{padding:16px 12px}h1{font-size:22px}}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 18px;margin:0 0 18px}
+.hero h1{font-size:30px;margin:0 0 8px;line-height:1.2}
+.pitch{font-size:18px;margin:0 0 16px}
+.flow{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 18px;padding:0}
+.flow li{border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--bg)}
+.flow .n{display:inline-block;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:26px;font-weight:600;font-size:14px}
+.flow strong{display:block;margin-top:6px}
+.flow small{color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button.big{padding:12px 18px;font-size:17px}
+.btn{display:inline-block;border:1px solid var(--line);border-radius:8px;padding:8px 14px;color:var(--accent);text-decoration:none;background:var(--card)}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:16px 0 0;padding:0}
+.badges li{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted)}
+.results,.real{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:0 0 18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.stats div{border-top:3px solid var(--accent);padding-top:8px}
+.stats dt{font-size:22px;font-weight:700}
+.stats dd{margin:4px 0 0;color:var(--muted);font-size:14px}
+.tool-title{font-size:22px;margin:24px 0 6px}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.ba figure{margin:0}
+.ba figcaption{font-weight:600;margin-bottom:6px}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;overflow-x:auto;font-size:14px;margin:0;white-space:pre-wrap}
+.site-footer{max-width:920px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:14px}
+.site-footer a,.note a{color:var(--accent)}
+@media (max-width:600px){main{padding:16px 12px}h1{font-size:22px}.hero h1{font-size:24px}.flow,.stats{grid-template-columns:1fr 1fr}.ba{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -57,7 +91,57 @@ th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertic
 </div>
 
 <main>
-  <h1>Find clashes in your requirements before any code is written</h1>
+  <section class="hero" aria-labelledby="hero-h">
+    <h1 id="hero-h">Resolve the policy. Check the code.</h1>
+    <p class="pitch">When requirements clash, muse-guard shows exactly where, you decide which rule wins, Meta's coding agent implements it, and an independent checker verifies it.</p>
+    <ol class="flow" aria-label="How it works">
+      <li><span class="n">1</span><strong>Requirements</strong><small>Plain-English rules</small></li>
+      <li><span class="n">2</span><strong>Clash found</strong><small>Every conflicting input</small></li>
+      <li><span class="n">3</span><strong>You decide</strong><small>Pick the winning rule</small></li>
+      <li><span class="n">4</span><strong>Checked code</strong><small>Independent checker</small></li>
+    </ol>
+    <div class="cta">
+      <button id="try" class="primary big" type="button">Try the example (60 seconds)</button>
+      <a class="btn" href="#real">See it change real code</a>
+      <a class="btn" href="https://github.com/jeshwanthsingh/muse-guard">GitHub</a>
+    </div>
+    <ul class="badges" aria-label="Built with">
+      <li>Built with Muse Spark + Muse Code</li>
+      <li>Meta Global AI Developer Hackathon 2026</li>
+    </ul>
+  </section>
+
+  <section class="results" aria-labelledby="res-h">
+    <h2 id="res-h">What the completed study measured</h2>
+    <dl class="stats">
+      <div><dt>160</dt><dd>pre-registered runs (20 pairs × 2 twins × 2 repeats × 2 modes)</dd></div>
+      <div><dt>0/77</dt><dd>contradicted "done" claims in each mode</dd></div>
+      <div><dt>39/40 → 40/40</dt><dd>recovered after one decision, plain → guarded. Not a proven advantage.</dd></div>
+      <div><dt>about +2%</dt><dd>guarded cost overhead (+9% coding steps)</dd></div>
+    </dl>
+    <p class="note">Zero-count measures are a null result: this study does not show that muse-guard makes Muse more honest. <a href="https://github.com/jeshwanthsingh/muse-guard/blob/codex/submission/docs/MEASURED_RESULTS.md">How we measured</a></p>
+  </section>
+
+  <section id="real" class="real" aria-labelledby="real-h">
+    <h2 id="real-h">See it change real code</h2>
+    <p class="note">A recorded real Muse Code run on a returns service. The same fraud-held order, before and after the developer's choice:</p>
+    <div class="ba">
+      <figure>
+        <figcaption>Before: baseline policy</figcaption>
+        <pre><code>{"eligible": true, "fraud_hold": true, "amount_cents": 2500}
+next_action: refund_immediately</code></pre>
+      </figure>
+      <figure>
+        <figcaption>After: developer-approved rules (v2)</figcaption>
+        <pre><code>{"eligible": true, "fraud_hold": true, "amount_cents": 2500}
+next_action: manual_review</code></pre>
+      </figure>
+    </div>
+    <p>Independent HTTP checks: <strong>4/4 policy cases</strong> and <strong>7/7 existing regressions</strong> PASS. The developer chose rule B. Muse also added one test to its policy tests, and the record marks that as a test edit.</p>
+    <p><a class="btn" href="/recorded/returns-run/index.html">Open the full recorded run</a></p>
+  </section>
+
+  <h2 id="tool" class="tool-title">Find clashes in your requirements before any code is written</h2>
   <p class="lead">Paste plain-English rules. Muse Spark proposes a rules table, you confirm each rule, and an exhaustive search lists every input where the rules disagree.</p>
 
   <section class="not-checked" aria-labelledby="nc-title">
@@ -118,6 +202,15 @@ th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertic
     </div>
   </section>
 </main>
+<footer class="site-footer">
+  <p>
+    <a href="https://github.com/jeshwanthsingh/muse-guard">GitHub</a> ·
+    <a href="https://github.com/jeshwanthsingh/muse-guard/blob/codex/submission/docs/MEASURED_RESULTS.md">Results</a> ·
+    <a href="#nc-title">Limits</a> ·
+    <a href="https://github.com/jeshwanthsingh/muse-guard/blob/codex/submission/docs/PROVENANCE.md">Provenance</a> ·
+    <a href="https://github.com/jeshwanthsingh/muse-guard/blob/codex/submission/docs/CONTRIBUTIONS.md">Built during the event</a>
+  </p>
+</footer>
 
 <script>
 (function () {
@@ -370,6 +463,12 @@ th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertic
   }
   $('dl-rules').addEventListener('click', function () { if (state.approved) download('muse-guard-approved-rules.json', state.approved.approved_rules); });
   $('dl-evidence').addEventListener('click', function () { if (state.approved) download('muse-guard-evidence.json', state.approved.evidence); });
+
+  $('try').addEventListener('click', function () {
+    var first = document.querySelector('#samples button');
+    if (first) first.click();
+    $('review').scrollIntoView({ behavior: 'smooth' });
+  });
 
   fetch('/samples').then(function (r) { return r.json(); }).then(function (data) {
     samples = data.samples || [];
