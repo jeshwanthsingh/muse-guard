@@ -3,6 +3,13 @@ import argparse
 import json
 from pathlib import Path
 from returns_demo.flow import run
+from returns_demo.source import ROOT
+
+
+def shown(path):
+    """Repo-relative when inside the repo, so a screen recording shows no home path."""
+    try:return path.resolve().relative_to(ROOT)
+    except ValueError:return path
 
 
 def main(argv=None):
@@ -14,7 +21,7 @@ def main(argv=None):
     try:
         fake=json.loads(args.fake_response.read_text()) if args.fake_response else None
         row=run(args.out,fake_packet=fake)
-        print(json.dumps({k:row.get(k) for k in ('status','outcome','cost_usd','paid_calls')}));print(args.out/'index.html')
+        print(json.dumps({k:row.get(k) for k in ('status','outcome','cost_usd','paid_calls')}));print(shown(args.out/'index.html'))
         if row['status']!='CHECKED':parser.exit(2,'Stopped before a completed recheck; evidence retained.\n')
     except (EOFError,KeyboardInterrupt):parser.exit(130,'Stopped for human input; evidence retained, no implicit choice.\n')
     except (ValueError,OSError,KeyError,TypeError) as error:parser.exit(2,str(error)+'\n')

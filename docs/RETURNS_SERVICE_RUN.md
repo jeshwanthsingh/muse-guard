@@ -30,7 +30,7 @@ Do not add --decide or --accept-all: this command does not implement those flags
 
 Standard model muse-spark-1.3 is pinned. Extraction has a 6,144-total-token ceiling; service editing has 12 model steps / 320,000 total tokens / 300 seconds. Every provider request, including reminders, is journaled through the gateway from its first request, then reconciled to actual usage. Both phases use the existing shared daily $5 ledger, not the study allowance. Conservative maximum phase reservations are $0.026112 + $1.36 = $1.386112; this is a reservation, not a measured price or guaranteed provider quote. Unknown usage stops further calls. No automatic retries. An existing output folder is refused.
 
-The real date gate rejects paid execution before or after Oct 29 under this one-run preparation. Root session export and full stdout/stderr are retained privately under the run's raw/ directory; provider receipts are in the daily ledger and copied into the structured service record. A failed phase still contributes its receipt to the record. Raw session data must not be published.
+The real date gate rejects paid execution on any date other than Oct 29 and, with the owner's approval recorded in docs/CONTRIBUTIONS.md, Oct 31 (exactly one run on Oct 31; any returns receipt dated Oct 31 blocks another). Root session export and full stdout/stderr are retained privately under the run's raw/ directory; provider receipts are in the daily ledger and copied into the structured service record. A failed phase still contributes its receipt to the record. Raw session data must not be published.
 
 ## Evidence and scope
 

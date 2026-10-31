@@ -660,3 +660,11 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Rule cards: Confirm is the filled primary action and Reject is secondary. A confirmed card has a green border and a "Confirmed" tag. A rejected card is greyed with a "Rejected" tag.
 - Before/after: the changed value is underlined and bold, with a text label ("replaced" / "new"), not colour alone.
 - Tests: `proposed_tests/test_live_page.py` (10 tests, passing). Existing suite: 267 of 267 pass.
+
+## 2026-10-31 — Owner approval: one more real returns run, for the video recording
+
+- Approval (from the owner, 2026-10-31): allow exactly one real returns run dated 2026-10-31 under the normal $5 daily cap. Same flow: interactive rule review and the owner's live A/B choice, no `--decide` or `--accept-all`. The run is to be screen-recorded for the demo video.
+- Change: `returns_demo/provider.py` now accepts two dates, 2026-10-29 and 2026-10-31 (it refused 10-31 with "reserved for 2026-10-29"). For 10-31 a second guard allows exactly one run: any returns receipt already dated 10-31, even from a failed run, blocks another real run, so there is no retry. The 10-29 behavior is unchanged. The shared $5 ledger, the unknown-usage stop and the existing-folder refusal are unchanged.
+- Change: `muse-guard returns` prints the final `index.html` path relative to the repo (for example `returns_runs/real-2026-10-31/index.html`) instead of a path with the home folder, so a screen recording shows no username.
+- Offline checks: the existing suite passes, 277 of 277 (`python3 -m unittest discover -s tests -t .`). Four new tests in `proposed_tests/test_returns_date_gate.py` pass (dates, one-run guard, relative path); they are outside `tests/` because of the test-edit guard. A fake-response run printed a repo-relative path. `check_protected.py`: UNCHANGED.
+- Not done: the real run itself (the owner runs it), and no paid call was made for this change.

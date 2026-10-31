@@ -14,14 +14,20 @@ from muse_guard.runner import ledger_records,reserve_budget,save_total,usage_fro
 from submission_tools.settlement import ReconciledGateway
 from returns_demo.source import ROOT
 
-REAL_DATE='2026-10-29'
+REAL_DATES=('2026-10-29','2026-10-31')  # owner-approved one-run dates; 10-31 approved in docs/CONTRIBUTIONS.md
 RESULTS=ROOT/'results'
 MODEL='muse-spark-1.3'
 RUN_ID=ContextVar('returns_service_run_id',default=None)
 
 
 def require_real_date():
-    if today()!=REAL_DATE:raise ValueError('No paid calls today; this one-run command is reserved for '+REAL_DATE)
+    if today() not in REAL_DATES:raise ValueError('No paid calls today; this one-run command is reserved for '+' and '.join(REAL_DATES))
+
+
+def require_unused_date():
+    """2026-10-31 allows exactly one run: any returns receipt dated today, even from a failed run, blocks another."""
+    if today()=='2026-10-31' and any(json.loads(p.read_text()).get('date')==today() for p in RESULTS.glob('returns-*.json')):
+        raise ValueError('The one approved run for 2026-10-31 is already used; no retry')
 
 
 @contextmanager

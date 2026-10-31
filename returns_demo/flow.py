@@ -48,7 +48,7 @@ def validate_service_table(req):
 
 
 def run(out,*,fake_packet=None,reviewer=None,input_fn=None):
-    if fake_packet is None:provider.require_real_date()
+    if fake_packet is None:provider.require_real_date();provider.require_unused_date()
     elif fake_packet.get('kind')!=FAKE:raise ValueError('Fake responses must be explicitly labeled')
     out=Path(out)
     if out.exists():raise ValueError('Choose a new run folder; no overwrite or automatic retry')
