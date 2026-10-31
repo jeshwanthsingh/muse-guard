@@ -29,3 +29,6 @@ results/.run.lock
 
 # Browser automation snapshots (not evidence)
 .playwright-mcp/
+
+# Demo video: local only until approved
+/video/
