@@ -652,3 +652,11 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Redeployed the live app. Free checks on the live URL: sample approval (origin `real`, 0 uncovered inputs), empty input 422, input over 2,000 characters 413, favicon and social image served, and the recorded pages loaded. The live page logs no console errors. No paid calls.
 - The README screenshot is now a screenshot of the live page (`docs/img/live-landing-1280.png`), not the local test build.
 - Not pushed. Render tests are in `proposed_tests/test_live_page.py`, waiting for the owner to move them into `tests/`.
+
+## 2026-10-30 — Live page review fixes (display only)
+
+- Banner: one "Live" line. Recorded links moved to the footer and the "See it change real code" section. The earlier-demo link is in the footer, labelled "fake responses".
+- Primary buttons are solid blue with on-accent text in both themes. Disabled controls are grey, with a not-allowed cursor.
+- Rule cards: Confirm is the filled primary action and Reject is secondary. A confirmed card has a green border and a "Confirmed" tag. A rejected card is greyed with a "Rejected" tag.
+- Before/after: the changed value is underlined and bold, with a text label ("replaced" / "new"), not colour alone.
+- Tests: `proposed_tests/test_live_page.py` (10 tests, passing). Existing suite: 267 of 267 pass.

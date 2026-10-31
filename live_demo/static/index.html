@@ -13,9 +13,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Resolve the policy. Check the code.">
 <meta name="twitter:image" content="https://jeshwanthsingh--muse-guard-live-web.us-east.modal.run/assets/og.png"><style>
-:root{--ink:#172438;--muted:#5b6b82;--line:#d9e0ec;--bg:#f6f8fb;--card:#ffffff;--accent:#2357d6;--ok:#17724a;--warn:#9a5b00;--bad:#b42318;--soft:#eef3ff}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48}}
-:root[data-theme="dark"]{--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48}
+:root{--ink:#172438;--muted:#5b6b82;--line:#d9e0ec;--bg:#f6f8fb;--card:#ffffff;--accent:#2357d6;--ok:#17724a;--warn:#9a5b00;--bad:#b42318;--soft:#eef3ff;--on-accent:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48;--on-accent:#0f1622}}
+:root[data-theme="dark"]{--ink:#e8edf6;--muted:#9aa8be;--line:#2b3649;--bg:#0f1622;--card:#172133;--accent:#8ab4ff;--ok:#6fd3a0;--warn:#f0c061;--bad:#ff8a80;--soft:#1d2c48;--on-accent:#0f1622}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .banner{background:var(--soft);border-bottom:1px solid var(--line);padding:10px 16px;font-size:14px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
@@ -32,10 +32,8 @@ textarea{width:100%;min-height:140px;font:15px/1.5 ui-monospace,SFMono-Regular,M
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
 .muted{color:var(--muted);font-size:14px}
 button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer}
-button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-button[aria-pressed="true"].yes{background:var(--ok);border-color:var(--ok);color:#fff}
-button[aria-pressed="true"].no{background:var(--bad);border-color:var(--bad);color:#fff}
-button:disabled{opacity:.5;cursor:not-allowed}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+button:disabled{background:var(--line);border-color:var(--line);color:var(--muted);cursor:not-allowed}
 button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .status{min-height:22px;margin-top:10px;font-size:14px}
 .status.err{color:var(--bad)}
@@ -78,6 +76,11 @@ a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;overflow-x:auto;font-size:14px;margin:0;white-space:pre-wrap}
 .site-footer{max-width:920px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:14px}
 .site-footer a,.note a{color:var(--accent)}
+.tag{display:inline-block;font-size:13px;font-weight:600;border:1px solid currentColor;border-radius:999px;padding:1px 9px;margin-left:8px}
+.rule.confirmed{border:2px solid var(--ok)}
+.rule.confirmed .tag{color:var(--ok)}
+.rule.rejected{background:var(--bg);color:var(--muted)}
+mark{background:var(--soft);color:var(--ink);font-weight:700;text-decoration:underline;padding:0 2px;border-radius:3px}
 @media (max-width:600px){main{padding:16px 12px}h1{font-size:22px}.hero h1{font-size:24px}.flow,.stats{grid-template-columns:1fr 1fr}.ba{grid-template-columns:1fr}}
 </style>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -85,10 +88,7 @@ pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:
 <body>
 <div class="banner" role="note">
   <span class="test-badge hidden" id="test-badge">Local test build · fake model responses · no Meta calls</span>
-  <span><strong>Live:</strong> requirements check only. Code changes are shown as a recorded run.</span>
-  <a href="/recorded/returns-run/index.html">Main recorded returns run: real Muse Code run, PASS (Recorded)</a>
-  <a href="/recorded/index.html">Earlier returns demo (fake responses)</a>
-  <a href="/recorded/recorded-runs/index.html">Recorded runs: refund and HTTP retry recoveries, solvable PASS, planted cheat</a>
+  <span><strong>Live:</strong> requirements check only. Code changes are shown as recorded runs.</span>
 </div>
 
 <main>
@@ -130,12 +130,12 @@ pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:
       <figure>
         <figcaption>Before: baseline policy</figcaption>
         <pre><code>{"eligible": true, "fraud_hold": true, "amount_cents": 2500}
-next_action: refund_immediately</code></pre>
+next_action: <mark>refund_immediately</mark> ← replaced</code></pre>
       </figure>
       <figure>
         <figcaption>After: developer-approved rules (v2)</figcaption>
         <pre><code>{"eligible": true, "fraud_hold": true, "amount_cents": 2500}
-next_action: manual_review</code></pre>
+next_action: <mark>manual_review</mark> ← new</code></pre>
       </figure>
     </div>
     <p>Independent HTTP checks: <strong>4/4 policy cases</strong> and <strong>7/7 existing regressions</strong> PASS. The developer chose rule B. Muse also added one test to its policy tests, and the record marks that as a test edit.</p>
@@ -210,6 +210,11 @@ next_action: manual_review</code></pre>
     <a href="#nc-title">Limits</a> ·
     <a href="https://github.com/jeshwanthsingh/muse-guard/blob/codex/submission/docs/PROVENANCE.md">Provenance</a> ·
     <a href="https://github.com/jeshwanthsingh/muse-guard/blob/codex/submission/docs/CONTRIBUTIONS.md">Built during the event</a>
+  </p>
+  <p>
+    Recorded: <a href="/recorded/returns-run/index.html">main returns run (real Muse Code run)</a> ·
+    <a href="/recorded/recorded-runs/index.html">recorded runs</a> ·
+    <a href="/recorded/index.html">Earlier returns demo (fake responses)</a>
   </p>
 </footer>
 
@@ -301,8 +306,10 @@ next_action: manual_review</code></pre>
     var box = $('rules');
     box.textContent = '';
     state.view.items.forEach(function (item, index) {
-      var card = el('div', 'rule');
+      var decided = state.decisions[item.key];
+      var card = el('div', 'rule' + (decided === true ? ' confirmed' : decided === false ? ' rejected' : ''));
       card.appendChild(el('strong', '', ruleLabel(item, index)));
+      if (decided !== undefined) card.appendChild(el('span', 'tag', decided ? 'Confirmed' : 'Rejected'));
       card.appendChild(el('q', '', item.proposal.quote || 'Source sentence missing'));
       if (!item.valid) {
         card.appendChild(el('p', 'bad', "Couldn't convert: " + item.errors.join('; ')));
@@ -314,7 +321,7 @@ next_action: manual_review</code></pre>
           card.appendChild(el('p', 'note', 'Example input' + note + ': ' + json(item.example)));
         }
         var row = el('div', 'row');
-        [['Confirm', true, 'yes'], ['Reject', false, 'no']].forEach(function (pair) {
+        [['Confirm', true, 'primary'], ['Reject', false, '']].forEach(function (pair) {
           var b = el('button', pair[2], pair[0]);
           b.type = 'button';
           b.setAttribute('aria-pressed', String(state.decisions[item.key] === pair[1]));
