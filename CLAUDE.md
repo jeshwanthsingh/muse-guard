@@ -17,7 +17,7 @@
 - What it does: Muse Spark turns plain-English requirements into a rules table. Each rule quotes its source sentence, and the owner confirms each one. Exhaustive search finds every conflicting action before coding, with a decision preview. The owner chooses which rule wins, giving approved v2 rules. Muse Code (v1.4.2) implements them. An independent sandboxed checker verifies with visible and hidden tests. The result is a downloadable evidence record.
 - Results (README.md, docs/MEASURED_RESULTS.md): 160 pre-registered holdout runs; 0 contradicted claims, 0 test edits, 0 hidden-check failures. Recovery: plain 39/40 vs guarded 40/40 (not a proven advantage). About 2% overhead. Spec extraction strict 7/10 (format and label mismatches, see docs/EXTRACTION_FAILURES.md).
 - Quote these numbers exactly. Do not round them up or drop their caveats.
-- Working branch: codex/submission. GitHub main is at 7712f8e.
+- Working branch: codex/submission. GitHub main is the submitted state; check it with `git ls-remote origin main` instead of trusting a hash written here.
 
 ## Hard rules
 
