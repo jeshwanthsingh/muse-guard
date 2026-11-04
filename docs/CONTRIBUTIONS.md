@@ -668,3 +668,17 @@ Activated the reviewed third-cohort freeze and completed all 160 assigned flows 
 - Change: `muse-guard returns` prints the final `index.html` path relative to the repo (for example `returns_runs/real-2026-10-31/index.html`) instead of a path with the home folder, so a screen recording shows no username.
 - Offline checks: the existing suite passes, 277 of 277 (`python3 -m unittest discover -s tests -t .`). Four new tests in `proposed_tests/test_returns_date_gate.py` pass (dates, one-run guard, relative path); they are outside `tests/` because of the test-edit guard. A fake-response run printed a repo-relative path. `check_protected.py`: UNCHANGED.
 - Not done: the real run itself (the owner runs it), and no paid call was made for this change.
+
+## 2026-10-31 — The approved real returns run was not used
+
+- The approval above (one real returns run dated 2026-10-31, for the screen recording) was not used. There is no `returns_runs/real-2026-10-31` folder, and all four returns receipts in `results/` are dated 2026-10-29. The only run record dated 10-31 is the fake-response check `returns_runs/_tmp-fake-check`. No paid call was made for it.
+- Consequence: no real terminal recording exists. `returns_demo/provider.py` still allows real runs only on 2026-10-29 and 2026-10-31, so a later real run would need another reviewed change and a new owner approval.
+- No commits were made between the 10-31 commit and the 11-03 entry below. Nothing was pushed.
+
+## 2026-11-03 — Video and submission text (local only)
+
+- Video: the terminal clip is dropped. The 65–85 s scene now shows the recorded real run B page (the clashing rules, then the developer's recorded B choice), labelled "Recorded real run, Oct 29". The before/after scenes follow it. Segments were re-recorded from the live site (no model calls).
+- Source check: `live_demo/static/recorded/returns-run/index.html` is byte-identical to `returns_runs/real-2026-10-29-b/index.html` and to the live page, so it is run B. `demo/returns-service/recorded` is a different run (fake responses, simulated choice) and was not used.
+- A no-voice preview was rendered (3:00). An OCR scan of 90 frames, one every 2 seconds, found no username or home path. Only the public live URL and GitHub name appear, on the closing card. The video folder is gitignored.
+- Not done: the voiceover (`video/voiceover.m4a` does not exist yet), the final `muse-guard-demo-v3.mp4`, and any push.
+- `docs/SUBMISSION_DRAFT.md`: the outside-user line is filled from the developer's report. It is one person; no quotes and no session recording are included.

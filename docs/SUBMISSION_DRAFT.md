@@ -27,7 +27,7 @@ Draft text for the hackathon submission. Numbers in the Description come from [M
 
 ## Real-world check
 
-- [outside-user result: fill after the session. Rules fit the supported format: __; finished without help: __; clash understood: __. Source: session recording in docs/USER_SESSION_KIT.md, with consent recorded.]
+- Outside user, reported by the developer: one outside developer used the live page without help. They completed the refund sample (three rules confirmed, none rejected), approved B, and downloaded the files. They also found a real labeling bug, which was fixed and redeployed. This is one person; no quotes are included, and no session recording is published.
 - Real returns run (`returns_runs/real-2026-10-29-b`, published at `/recorded/returns-run/`): the developer confirmed three rules and chose B at the interactive conflict step. Result: CHECKED / PASS, with four policy cases including one hidden case and the existing regression tests, for $0.1436202 across 19 paid calls. Muse also appended one test to `test_policy.py`, recorded as a test edit. An earlier attempt (run A) stopped on an export bug, now fixed; its record is kept.
 
 ## Built during the event
